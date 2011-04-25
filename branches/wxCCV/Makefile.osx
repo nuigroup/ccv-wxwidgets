@@ -11,7 +11,7 @@ DOXYCONFIG = $(RESDIR)/Doxyfile
 all: app html
      
 clean:
-	rm -fr $(PROGDIR) *.app
+	rm -fr $(PROGDIR)  $(DOCDIR) *.app
 	
 html:
 	mkdir -p $(DOCDIR)
