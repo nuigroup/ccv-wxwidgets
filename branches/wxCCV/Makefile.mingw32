@@ -1,0 +1,16 @@
+SRCDIRS=src
+SRCS=$(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.cpp))
+PROGDIR=build
+PROGRAM=CCV.exe
+WXCONFIG = res/win/wx-config.exe
+DLLDIR = res/win/dll
+
+all: $(PROGRAM)
+	cp $(DLLDIR)/*.dll $(PROGDIR)
+     
+clean:
+	rm -fr $(PROGDIR) *.app
+
+$(PROGRAM):
+	mkdir -p build
+	g++ -m32 $(SRCS) `$(WXCONFIG) --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
