@@ -2,19 +2,24 @@ SRCDIRS=src
 SRCS=$(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.cpp))
 PROGDIR=build
 PROGRAM=CCV
-OSXPLIST=res/osx/Info.plist
-OSTYPE = $(shell uname)
+RESDIR = res
+OSXPLIST= $(RESDIR)/osx/Info.plist
+DOCDIR = docs
+DOXYGEN = doxygen
+DOXYCONFIG = $(RESDIR)/Doxyfile
 
-all: $(PROGRAM)
-ifeq ($(OSTYPE), Darwin)
-	mkdir -p $(PROGRAM).app/Contents/MacOS
-	cp $(OSXPLIST) $(PROGRAM).app/Contents/
-	cp $(PROGDIR)/$(PROGRAM) $(PROGRAM).app/Contents/MacOS/$(PROGRAM)
-endif
+all: $(PROGRAM) html
      
 clean:
 	rm -fr $(PROGDIR) *.app
+	
+html:
+	mkdir -p $(DOCDIR)
+	$(DOXYGEN) $(DOXYCONFIG)
 
 $(PROGRAM):
 	mkdir -p build
-	g++ -m32 $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
+	g++ -m32 $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)	
+	mkdir -p $(PROGRAM).app/Contents/MacOS
+	cp $(OSXPLIST) $(PROGRAM).app/Contents/
+	cp $(PROGDIR)/$(PROGRAM) $(PROGRAM).app/Contents/MacOS/$(PROGRAM)

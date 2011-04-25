@@ -1,18 +1,21 @@
-This is the CCV based on wxWidgets.
+This is the new CCV that based on wxWidgets.
 
-== For Windows ==
+== Complie under Windows ==
 Require:
   wxWidget
   MinGW
+  Doxygen
 
 To complie, use the following command in MinGW shell:
-  mingw32-make -f Makefile.mingw32
+  $ mingw32-make -f Makefile.mingw32
 
-== For Mac OS X ==
+== Complie under Mac OS X ==
 Require:
   gcc4
+  Doxygen
+  
 you may need select the correct gcc version in shell like this:
-  $sudo gcc_select gcc42
+  $ sudo gcc_select gcc42
 
 To complie, use the following command in uxix shell:
-  make -f Makefile.osx 
+  $ make -f Makefile.osx

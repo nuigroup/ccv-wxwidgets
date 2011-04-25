@@ -2,15 +2,23 @@ SRCDIRS=src
 SRCS=$(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.cpp))
 PROGDIR=build
 PROGRAM=CCV.exe
-WXCONFIG = res/win/wx-config.exe
-DLLDIR = res/win/dll
+RESDIR = res
+WXCONFIG = $(RESDIR)/win/wx-config.exe
+DLLDIR = $(RESDIR)/win/dll
+DOCDIR = docs
+DOXYGEN = doxygen
+DOXYCONFIG = $(RESDIR)/Doxyfile
 
-all: $(PROGRAM)
-	cp $(DLLDIR)/*.dll $(PROGDIR)
+all: $(PROGRAM) html
      
 clean:
 	rm -fr $(PROGDIR) *.app
+	
+html:
+	mkdir -p $(DOCDIR)
+	$(DOXYGEN) $(DOXYCONFIG)
 
 $(PROGRAM):
 	mkdir -p build
 	g++ -m32 $(SRCS) `$(WXCONFIG) --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
+	cp $(DLLDIR)/*.dll $(PROGDIR)
