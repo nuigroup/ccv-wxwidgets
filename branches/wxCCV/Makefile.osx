@@ -5,7 +5,7 @@ PROGRAM=CCV
 RESDIR = res
 OSXPLIST= $(RESDIR)/osx/Info.plist
 DOCDIR = docs
-DOXYGEN = doxygen
+DOXYGEN = /Developer/Applications/Doxygen.app/Contents/Resources/doxygen
 DOXYCONFIG = $(RESDIR)/Doxyfile
 
 all: app html
