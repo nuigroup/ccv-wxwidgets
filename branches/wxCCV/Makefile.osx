@@ -8,7 +8,7 @@ DOCDIR = docs
 DOXYGEN = doxygen
 DOXYCONFIG = $(RESDIR)/Doxyfile
 
-all: $(PROGRAM) html
+all: app html
      
 clean:
 	rm -fr $(PROGDIR) *.app
@@ -17,7 +17,7 @@ html:
 	mkdir -p $(DOCDIR)
 	$(DOXYGEN) $(DOXYCONFIG)
 
-$(PROGRAM):
+app:
 	mkdir -p build
 	g++ -m32 $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)	
 	mkdir -p $(PROGRAM).app/Contents/MacOS
