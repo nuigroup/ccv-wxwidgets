@@ -1,17 +1,22 @@
-/*
- *  CCVFrame.h
- *  NUI Group Community Core Vision
- * 
- *  Created by NUI Group Dev Team.
- *  Copyright 2011 NUI Group/Inc. All rights reserved.
- *
- */
+/////////////////////////////////////////////////////////////////////////////
+// Name:        src/CCVFrame.h
+// Purpose:     Provide the main frame and callback functions
+// Copyright:   (c) 2011 NUI Group
+/////////////////////////////////////////////////////////////////////////////
+
  
 #include <wx/wx.h>
 #include "CCVbaseFrame.h"
 
+//
+// CCVbaseFrame is generated automatically by wxFormBuilder, CCVFrame extends 
+// CCVbaseFrame to implement the event handling functions.
+//
 class CCVFrame : public CCVbaseFrame
 {
 public:
-    CCVFrame( wxWindow* parent) : CCVbaseFrame(parent) {}
+    /**
+        Default constructor.
+    */
+    CCVFrame() : CCVbaseFrame(NULL) {}
 };

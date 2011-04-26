@@ -1,15 +1,16 @@
-/*
- *  main.cpp
- *  NUI Group Community Core Vision
- * 
- *  Created by NUI Group Dev Team.
- *  Copyright 2011 NUI Group/Inc. All rights reserved.
- *
- */
+/////////////////////////////////////////////////////////////////////////////
+// Name:        src/main.cpp
+// Purpose:     Provide the entrance of the application
+// Author:      Jimbo Zhang
+// Copyright:   (c) 2011 NUI Group
+/////////////////////////////////////////////////////////////////////////////
  
 #include <wx/wx.h>
 #include "CCVFrame.h"
 
+//
+// wxCCV is the class that provides the main application.
+//
 class wxCCV : public wxApp
 {
     virtual bool OnInit();
@@ -19,7 +20,7 @@ IMPLEMENT_APP(wxCCV)
 
 bool wxCCV::OnInit()
 {
-    CCVFrame *mainframe = new CCVFrame(NULL);
+    CCVFrame *mainframe = new CCVFrame();
     mainframe->Show(true);
     
     return true;

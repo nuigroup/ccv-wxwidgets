@@ -81,7 +81,7 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	
 	bSizer_contols->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	m_staticText_about = new wxStaticText( m_panel_control, wxID_ANY, wxT("http://ccv.nuigroup.com"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
+	m_staticText_about = new wxStaticText( m_panel_control, wxID_ANY, wxT("ccv.nuigroup.com"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
 	m_staticText_about->Wrap( -1 );
 	m_staticText_about->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DDKSHADOW ) );
 	m_staticText_about->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );

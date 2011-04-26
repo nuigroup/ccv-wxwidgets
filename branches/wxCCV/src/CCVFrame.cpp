@@ -1,10 +1,9 @@
-/*
- *  CCVFrame.cpp
- *  NUI Group Community Core Vision
- * 
- *  Created by NUI Group Dev Team.
- *  Copyright 2011 NUI Group/Inc. All rights reserved.
- *
- */
+/////////////////////////////////////////////////////////////////////////////
+// Name:        src/CCVFrame.cpp
+// Purpose:     Provide the main frame and callback functions
+// Author:      Jimbo Zhang
+// Copyright:   (c) 2011 NUI Group
+/////////////////////////////////////////////////////////////////////////////
+
 
 #include "CCVFrame.h"
