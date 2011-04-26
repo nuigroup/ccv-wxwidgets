@@ -14,6 +14,4 @@ class CCVFrame : public CCVbaseFrame
 {
 public:
     CCVFrame( wxWindow* parent) : CCVbaseFrame(parent) {}
-        
-    virtual void OnOK( wxCommandEvent& event );
 };

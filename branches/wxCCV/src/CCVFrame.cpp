@@ -8,8 +8,3 @@
  */
 
 #include "CCVFrame.h"
-
-void CCVFrame::OnOK( wxCommandEvent& event )
-{
-    wxMessageBox( _("This is CCV."));
-}
