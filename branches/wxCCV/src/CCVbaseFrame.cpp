@@ -1,161 +1,1 @@
-///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Sep  8 2010)
-// http://www.wxformbuilder.org/
-//
-// PLEASE DO "NOT" EDIT THIS FILE!
-///////////////////////////////////////////////////////////////////////////
-
-#include "CCVbaseFrame.h"
-
-///////////////////////////////////////////////////////////////////////////
-
-CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
-{
-	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
-	
-	wxBoxSizer* bSizer_main;
-	bSizer_main = new wxBoxSizer( wxHORIZONTAL );
-	
-	m_panel_left = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_panel_left->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_APPWORKSPACE ) );
-	
-	wxBoxSizer* bSizer_workspace;
-	bSizer_workspace = new wxBoxSizer( wxVERTICAL );
-	
-	wxBoxSizer* bSizer_inout;
-	bSizer_inout = new wxBoxSizer( wxHORIZONTAL );
-	
-	wxBoxSizer* bSizer_input;
-	bSizer_input = new wxBoxSizer( wxVERTICAL );
-	
-	m_staticText_inputViewer = new wxStaticText( m_panel_left, wxID_ANY, wxT("Input"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
-	m_staticText_inputViewer->Wrap( -1 );
-	m_staticText_inputViewer->SetFont( wxFont( 14, 74, 90, 90, false, wxT("Verdana") ) );
-	m_staticText_inputViewer->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_CAPTIONTEXT ) );
-	
-	bSizer_input->Add( m_staticText_inputViewer, 0, wxEXPAND|wxALL, 10 );
-	
-	m_panel_inputViewer = new wxPanel( m_panel_left, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_panel_inputViewer->SetBackgroundColour( wxColour( 0, 0, 0 ) );
-	
-	bSizer_input->Add( m_panel_inputViewer, 3, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-	
-	m_panel_inputContrl = new wxPanel( m_panel_left, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_panel_inputContrl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
-	
-	bSizer_input->Add( m_panel_inputContrl, 1, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 20 );
-	
-	bSizer_inout->Add( bSizer_input, 1, wxEXPAND, 5 );
-	
-	wxBoxSizer* bSizer_output;
-	bSizer_output = new wxBoxSizer( wxVERTICAL );
-	
-	m_staticText_outputViewer = new wxStaticText( m_panel_left, wxID_ANY, wxT("Tracked"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
-	m_staticText_outputViewer->Wrap( -1 );
-	m_staticText_outputViewer->SetFont( wxFont( 14, 74, 90, 90, false, wxT("Verdana") ) );
-	m_staticText_outputViewer->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_CAPTIONTEXT ) );
-	
-	bSizer_output->Add( m_staticText_outputViewer, 0, wxEXPAND|wxALL, 10 );
-	
-	m_panel_outputViewer = new wxPanel( m_panel_left, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_panel_outputViewer->SetBackgroundColour( wxColour( 0, 0, 0 ) );
-	
-	bSizer_output->Add( m_panel_outputViewer, 3, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-	
-	m_panel_outputControl = new wxPanel( m_panel_left, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_panel_outputControl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
-	
-	bSizer_output->Add( m_panel_outputControl, 1, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 20 );
-	
-	bSizer_inout->Add( bSizer_output, 1, wxEXPAND, 5 );
-	
-	bSizer_workspace->Add( bSizer_inout, 2, wxEXPAND, 5 );
-	
-	wxBoxSizer* bSizer_filters;
-	bSizer_filters = new wxBoxSizer( wxHORIZONTAL );
-	
-	bSizer_workspace->Add( bSizer_filters, 1, wxEXPAND, 5 );
-	
-	m_panel_left->SetSizer( bSizer_workspace );
-	m_panel_left->Layout();
-	bSizer_workspace->Fit( m_panel_left );
-	bSizer_main->Add( m_panel_left, 72, wxEXPAND, 5 );
-	
-	m_panel_right = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_panel_right->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
-	m_panel_right->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DDKSHADOW ) );
-	
-	wxBoxSizer* bSizer_contols;
-	bSizer_contols = new wxBoxSizer( wxVERTICAL );
-	
-	wxStaticBoxSizer* sbSizer_ctrl_camera;
-	sbSizer_ctrl_camera = new wxStaticBoxSizer( new wxStaticBox( m_panel_right, wxID_ANY, wxT("Camera Properties") ), wxVERTICAL );
-	
-	m_checkBox_filpV = new wxCheckBox( m_panel_right, wxID_ANY, wxT("Filp Vertical"), wxDefaultPosition, wxDefaultSize, 0 );
-	sbSizer_ctrl_camera->Add( m_checkBox_filpV, 0, wxALL, 2 );
-	
-	m_checkBox_filpH = new wxCheckBox( m_panel_right, wxID_ANY, wxT("Filp Horizontal"), wxDefaultPosition, wxDefaultSize, 0 );
-	sbSizer_ctrl_camera->Add( m_checkBox_filpH, 0, wxALL, 2 );
-	
-	bSizer_contols->Add( sbSizer_ctrl_camera, 0, wxALL|wxEXPAND, 5 );
-	
-	wxStaticBoxSizer* sbSizer_ctrl_Gpu;
-	sbSizer_ctrl_Gpu = new wxStaticBoxSizer( new wxStaticBox( m_panel_right, wxID_ANY, wxT("GPU Properties") ), wxVERTICAL );
-	
-	m_checkBox_gpu = new wxCheckBox( m_panel_right, wxID_ANY, wxT("GPU Shaders"), wxDefaultPosition, wxDefaultSize, 0 );
-	sbSizer_ctrl_Gpu->Add( m_checkBox_gpu, 0, wxALL, 2 );
-	
-	bSizer_contols->Add( sbSizer_ctrl_Gpu, 0, wxALL|wxEXPAND, 5 );
-	
-	wxString m_radioBox_ctrl_commuChoices[] = { wxT("None"), wxT("TUIO UDP"), wxT("Flash XML"), wxT("Binary TCP") };
-	int m_radioBox_ctrl_commuNChoices = sizeof( m_radioBox_ctrl_commuChoices ) / sizeof( wxString );
-	m_radioBox_ctrl_commu = new wxRadioBox( m_panel_right, wxID_ANY, wxT("Communication"), wxDefaultPosition, wxDefaultSize, m_radioBox_ctrl_commuNChoices, m_radioBox_ctrl_commuChoices, 1, wxRA_SPECIFY_COLS );
-	m_radioBox_ctrl_commu->SetSelection( 0 );
-	bSizer_contols->Add( m_radioBox_ctrl_commu, 0, wxALL|wxEXPAND, 5 );
-	
-	wxStaticBoxSizer* sbSizer_ctrl_settings;
-	sbSizer_ctrl_settings = new wxStaticBoxSizer( new wxStaticBox( m_panel_right, wxID_ANY, wxT("Settings") ), wxHORIZONTAL );
-	
-	wxBoxSizer* bSizer_ctrl_setting_aligner;
-	bSizer_ctrl_setting_aligner = new wxBoxSizer( wxVERTICAL );
-	
-	m_button_camera_setting = new wxButton( m_panel_right, wxID_ANY, wxT("Camera Settings"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer_ctrl_setting_aligner->Add( m_button_camera_setting, 0, wxALL|wxEXPAND, 2 );
-	
-	m_button_calibr = new wxButton( m_panel_right, wxID_ANY, wxT("Enter Calibration"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer_ctrl_setting_aligner->Add( m_button_calibr, 0, wxALL|wxEXPAND, 2 );
-	
-	m_button_savesetting = new wxButton( m_panel_right, wxID_ANY, wxT("Save Settings"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer_ctrl_setting_aligner->Add( m_button_savesetting, 0, wxALL|wxEXPAND, 2 );
-	
-	sbSizer_ctrl_settings->Add( bSizer_ctrl_setting_aligner, 3, wxEXPAND, 0 );
-	
-	
-	sbSizer_ctrl_settings->Add( 0, 0, 1, wxEXPAND, 0 );
-	
-	bSizer_contols->Add( sbSizer_ctrl_settings, 0, wxALL|wxEXPAND, 5 );
-	
-	
-	bSizer_contols->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	m_staticText_about = new wxStaticText( m_panel_right, wxID_ANY, wxT("ccv.nuigroup.com"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
-	m_staticText_about->Wrap( -1 );
-	m_staticText_about->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DDKSHADOW ) );
-	m_staticText_about->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
-	
-	bSizer_contols->Add( m_staticText_about, 0, wxEXPAND, 5 );
-	
-	m_panel_right->SetSizer( bSizer_contols );
-	m_panel_right->Layout();
-	bSizer_contols->Fit( m_panel_right );
-	bSizer_main->Add( m_panel_right, 23, wxEXPAND, 5 );
-	
-	this->SetSizer( bSizer_main );
-	this->Layout();
-	
-	this->Centre( wxBOTH );
-}
-
-CCVbaseFrame::~CCVbaseFrame()
-{
-}
+///////////////////////////////////////////////////////////////////////////// C++ code generated with wxFormBuilder (version Sep 12 2010)// http://www.wxformbuilder.org///// PLEASE DO "NOT" EDIT THIS FILE!///////////////////////////////////////////////////////////////////////////#include "CCVbaseFrame.h"///////////////////////////////////////////////////////////////////////////CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style ){	this->SetSizeHints( wxDefaultSize, wxDefaultSize );		wxBoxSizer* bSizer_main;	bSizer_main = new wxBoxSizer( wxHORIZONTAL );		m_panel_left = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );	m_panel_left->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_APPWORKSPACE ) );		wxBoxSizer* bSizer_workspace;	bSizer_workspace = new wxBoxSizer( wxVERTICAL );		wxBoxSizer* bSizer_inout;	bSizer_inout = new wxBoxSizer( wxHORIZONTAL );		wxBoxSizer* bSizer_input;	bSizer_input = new wxBoxSizer( wxVERTICAL );		m_staticText_inputViewer = new wxStaticText( m_panel_left, wxID_ANY, wxT("Source"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );	m_staticText_inputViewer->Wrap( -1 );	m_staticText_inputViewer->SetFont( wxFont( 14, 74, 90, 90, false, wxT("Verdana") ) );	m_staticText_inputViewer->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_CAPTIONTEXT ) );		bSizer_input->Add( m_staticText_inputViewer, 0, wxEXPAND|wxALL, 10 );		m_panel_inputViewer = new wxPanel( m_panel_left, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );	m_panel_inputViewer->SetBackgroundColour( wxColour( 0, 0, 0 ) );		bSizer_input->Add( m_panel_inputViewer, 3, wxEXPAND|wxRIGHT|wxLEFT, 20 );		m_panel_inputContrl = new wxPanel( m_panel_left, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );	m_panel_inputContrl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );		wxBoxSizer* bSizer9;	bSizer9 = new wxBoxSizer( wxVERTICAL );		wxBoxSizer* bSizer10;	bSizer10 = new wxBoxSizer( wxHORIZONTAL );		m_staticText6 = new wxStaticText( m_panel_inputContrl, wxID_ANY, wxT("Source Image"), wxDefaultPosition, wxDefaultSize, 0 );	m_staticText6->Wrap( -1 );	bSizer10->Add( m_staticText6, 0, wxALL, 5 );			bSizer10->Add( 0, 0, 1, wxEXPAND, 5 );		m_checkBox11 = new wxCheckBox( m_panel_inputContrl, wxID_ANY, wxT("Show Outlines"), wxDefaultPosition, wxDefaultSize, 0 );	bSizer10->Add( m_checkBox11, 0, wxALL, 5 );		m_checkBox12 = new wxCheckBox( m_panel_inputContrl, wxID_ANY, wxT("Show IDs"), wxDefaultPosition, wxDefaultSize, 0 );	bSizer10->Add( m_checkBox12, 0, wxALL, 5 );		bSizer9->Add( bSizer10, 0, wxEXPAND, 5 );		wxBoxSizer* bSizer11;	bSizer11 = new wxBoxSizer( wxHORIZONTAL );		wxString m_radioBox2Choices[] = { wxT("Use Camera"), wxT("Use Video") };	int m_radioBox2NChoices = sizeof( m_radioBox2Choices ) / sizeof( wxString );	m_radioBox2 = new wxRadioBox( m_panel_inputContrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, m_radioBox2NChoices, m_radioBox2Choices, 1, wxRA_SPECIFY_COLS );	m_radioBox2->SetSelection( 1 );	bSizer11->Add( m_radioBox2, 0, wxALL, 5 );			bSizer11->Add( 0, 0, 1, wxEXPAND, 5 );		wxBoxSizer* bSizer12;	bSizer12 = new wxBoxSizer( wxVERTICAL );		m_button4 = new wxButton( m_panel_inputContrl, wxID_ANY, wxT("Prev Camera"), wxDefaultPosition, wxDefaultSize, 0 );	m_button4->Enable( false );		bSizer12->Add( m_button4, 0, wxALIGN_CENTER|wxEXPAND|wxALL, 5 );		m_button5 = new wxButton( m_panel_inputContrl, wxID_ANY, wxT("Next Camera"), wxDefaultPosition, wxDefaultSize, 0 );	m_button5->Enable( false );		bSizer12->Add( m_button5, 0, wxALIGN_CENTER|wxEXPAND|wxALL, 5 );		bSizer11->Add( bSizer12, 2, wxEXPAND|wxRIGHT, 10 );		bSizer9->Add( bSizer11, 0, wxEXPAND, 5 );		m_panel_inputContrl->SetSizer( bSizer9 );	m_panel_inputContrl->Layout();	bSizer9->Fit( m_panel_inputContrl );	bSizer_input->Add( m_panel_inputContrl, 0, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 20 );		bSizer_inout->Add( bSizer_input, 1, wxEXPAND, 5 );		wxBoxSizer* bSizer_output;	bSizer_output = new wxBoxSizer( wxVERTICAL );		m_staticText_outputViewer = new wxStaticText( m_panel_left, wxID_ANY, wxT("Tracked"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );	m_staticText_outputViewer->Wrap( -1 );	m_staticText_outputViewer->SetFont( wxFont( 14, 74, 90, 90, false, wxT("Verdana") ) );	m_staticText_outputViewer->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_CAPTIONTEXT ) );		bSizer_output->Add( m_staticText_outputViewer, 0, wxEXPAND|wxALL, 10 );		m_panel_outputViewer = new wxPanel( m_panel_left, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );	m_panel_outputViewer->SetBackgroundColour( wxColour( 0, 0, 0 ) );		bSizer_output->Add( m_panel_outputViewer, 3, wxEXPAND|wxRIGHT|wxLEFT, 20 );		m_panel_outputControl = new wxPanel( m_panel_left, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );	m_panel_outputControl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );		wxBoxSizer* bSizer13;	bSizer13 = new wxBoxSizer( wxVERTICAL );		wxBoxSizer* bSizer14;	bSizer14 = new wxBoxSizer( wxHORIZONTAL );		m_staticText7 = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Tracked Image"), wxDefaultPosition, wxDefaultSize, 0 );	m_staticText7->Wrap( -1 );	bSizer14->Add( m_staticText7, 0, wxALL, 5 );			bSizer14->Add( 0, 0, 1, wxEXPAND, 5 );		m_checkBox13 = new wxCheckBox( m_panel_outputControl, wxID_ANY, wxT("Inverse"), wxDefaultPosition, wxDefaultSize, 0 );	bSizer14->Add( m_checkBox13, 0, wxALL, 5 );		bSizer13->Add( bSizer14, 0, wxEXPAND, 5 );		wxGridSizer* gSizer1;	gSizer1 = new wxGridSizer( 2, 2, 0, 0 );		wxBoxSizer* bSizer15;	bSizer15 = new wxBoxSizer( wxVERTICAL );		m_staticText8 = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Image Threhold"), wxDefaultPosition, wxDefaultSize, 0 );	m_staticText8->Wrap( -1 );	bSizer15->Add( m_staticText8, 0, wxTOP|wxRIGHT|wxLEFT, 5 );		m_slider9 = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );	bSizer15->Add( m_slider9, 0, wxBOTTOM|wxRIGHT|wxLEFT, 5 );		gSizer1->Add( bSizer15, 1, wxEXPAND, 5 );		wxBoxSizer* bSizer16;	bSizer16 = new wxBoxSizer( wxVERTICAL );		m_staticText9 = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Movement Filter"), wxDefaultPosition, wxDefaultSize, 0 );	m_staticText9->Wrap( -1 );	bSizer16->Add( m_staticText9, 0, wxTOP|wxRIGHT|wxLEFT, 5 );		m_slider10 = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );	bSizer16->Add( m_slider10, 0, wxBOTTOM|wxRIGHT|wxLEFT, 5 );		gSizer1->Add( bSizer16, 1, wxEXPAND, 5 );		wxBoxSizer* bSizer17;	bSizer17 = new wxBoxSizer( wxVERTICAL );		m_staticText10 = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Min Blob Size"), wxDefaultPosition, wxDefaultSize, 0 );	m_staticText10->Wrap( -1 );	bSizer17->Add( m_staticText10, 0, wxTOP|wxRIGHT|wxLEFT, 5 );		m_slider11 = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );	bSizer17->Add( m_slider11, 0, wxBOTTOM|wxRIGHT|wxLEFT, 5 );		gSizer1->Add( bSizer17, 1, wxEXPAND, 5 );		wxBoxSizer* bSizer18;	bSizer18 = new wxBoxSizer( wxVERTICAL );		m_staticText11 = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Max Blob Size"), wxDefaultPosition, wxDefaultSize, 0 );	m_staticText11->Wrap( -1 );	bSizer18->Add( m_staticText11, 0, wxTOP|wxRIGHT|wxLEFT, 5 );		m_slider12 = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );	bSizer18->Add( m_slider12, 0, wxBOTTOM|wxRIGHT|wxLEFT, 5 );		gSizer1->Add( bSizer18, 1, wxEXPAND, 5 );		bSizer13->Add( gSizer1, 0, wxEXPAND, 5 );		m_panel_outputControl->SetSizer( bSizer13 );	m_panel_outputControl->Layout();	bSizer13->Fit( m_panel_outputControl );	bSizer_output->Add( m_panel_outputControl, 0, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 20 );		bSizer_inout->Add( bSizer_output, 1, wxEXPAND, 5 );		bSizer_workspace->Add( bSizer_inout, 2, wxEXPAND, 5 );		wxBoxSizer* bSizer_filters;	bSizer_filters = new wxBoxSizer( wxHORIZONTAL );		bSizer_workspace->Add( bSizer_filters, 1, wxEXPAND, 5 );		m_panel_left->SetSizer( bSizer_workspace );	m_panel_left->Layout();	bSizer_workspace->Fit( m_panel_left );	bSizer_main->Add( m_panel_left, 72, wxEXPAND, 5 );		m_panel_right = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );	m_panel_right->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );	m_panel_right->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DDKSHADOW ) );		wxBoxSizer* bSizer_contols;	bSizer_contols = new wxBoxSizer( wxVERTICAL );		wxStaticBoxSizer* sbSizer_ctrl_camera;	sbSizer_ctrl_camera = new wxStaticBoxSizer( new wxStaticBox( m_panel_right, wxID_ANY, wxT("Camera Properties") ), wxVERTICAL );		m_checkBox_filpV = new wxCheckBox( m_panel_right, wxID_ANY, wxT("Filp Vertical"), wxDefaultPosition, wxDefaultSize, 0 );	sbSizer_ctrl_camera->Add( m_checkBox_filpV, 0, wxALL, 2 );		m_checkBox_filpH = new wxCheckBox( m_panel_right, wxID_ANY, wxT("Filp Horizontal"), wxDefaultPosition, wxDefaultSize, 0 );	sbSizer_ctrl_camera->Add( m_checkBox_filpH, 0, wxALL, 2 );		bSizer_contols->Add( sbSizer_ctrl_camera, 0, wxALL|wxEXPAND, 5 );		wxStaticBoxSizer* sbSizer_ctrl_Gpu;	sbSizer_ctrl_Gpu = new wxStaticBoxSizer( new wxStaticBox( m_panel_right, wxID_ANY, wxT("GPU Properties") ), wxVERTICAL );		m_checkBox_gpu = new wxCheckBox( m_panel_right, wxID_ANY, wxT("GPU Shaders"), wxDefaultPosition, wxDefaultSize, 0 );	sbSizer_ctrl_Gpu->Add( m_checkBox_gpu, 0, wxALL, 2 );		bSizer_contols->Add( sbSizer_ctrl_Gpu, 0, wxALL|wxEXPAND, 5 );		wxString m_radioBox_ctrl_commuChoices[] = { wxT("None"), wxT("TUIO UDP"), wxT("Flash XML"), wxT("Binary TCP") };	int m_radioBox_ctrl_commuNChoices = sizeof( m_radioBox_ctrl_commuChoices ) / sizeof( wxString );	m_radioBox_ctrl_commu = new wxRadioBox( m_panel_right, wxID_ANY, wxT("Communication"), wxDefaultPosition, wxDefaultSize, m_radioBox_ctrl_commuNChoices, m_radioBox_ctrl_commuChoices, 1, wxRA_SPECIFY_COLS );	m_radioBox_ctrl_commu->SetSelection( 0 );	bSizer_contols->Add( m_radioBox_ctrl_commu, 0, wxALL|wxEXPAND, 5 );		wxStaticBoxSizer* sbSizer_ctrl_settings;	sbSizer_ctrl_settings = new wxStaticBoxSizer( new wxStaticBox( m_panel_right, wxID_ANY, wxT("Settings") ), wxHORIZONTAL );		wxBoxSizer* bSizer_ctrl_setting_aligner;	bSizer_ctrl_setting_aligner = new wxBoxSizer( wxVERTICAL );		m_button_camera_setting = new wxButton( m_panel_right, wxID_ANY, wxT("Camera Settings"), wxDefaultPosition, wxDefaultSize, 0 );	bSizer_ctrl_setting_aligner->Add( m_button_camera_setting, 0, wxALL|wxEXPAND, 2 );		m_button_calibr = new wxButton( m_panel_right, wxID_ANY, wxT("Enter Calibration"), wxDefaultPosition, wxDefaultSize, 0 );	bSizer_ctrl_setting_aligner->Add( m_button_calibr, 0, wxALL|wxEXPAND, 2 );		m_button_savesetting = new wxButton( m_panel_right, wxID_ANY, wxT("Save Settings"), wxDefaultPosition, wxDefaultSize, 0 );	bSizer_ctrl_setting_aligner->Add( m_button_savesetting, 0, wxALL|wxEXPAND, 2 );		sbSizer_ctrl_settings->Add( bSizer_ctrl_setting_aligner, 3, wxEXPAND, 0 );			sbSizer_ctrl_settings->Add( 0, 0, 1, wxEXPAND, 0 );		bSizer_contols->Add( sbSizer_ctrl_settings, 0, wxALL|wxEXPAND, 5 );			bSizer_contols->Add( 0, 0, 1, wxEXPAND, 5 );		m_staticText_about = new wxStaticText( m_panel_right, wxID_ANY, wxT("ccv.nuigroup.com"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );	m_staticText_about->Wrap( -1 );	m_staticText_about->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DDKSHADOW ) );	m_staticText_about->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );		bSizer_contols->Add( m_staticText_about, 0, wxEXPAND, 5 );		m_panel_right->SetSizer( bSizer_contols );	m_panel_right->Layout();	bSizer_contols->Fit( m_panel_right );	bSizer_main->Add( m_panel_right, 23, wxEXPAND, 5 );		this->SetSizer( bSizer_main );	this->Layout();		this->Centre( wxBOTH );}CCVbaseFrame::~CCVbaseFrame(){}
