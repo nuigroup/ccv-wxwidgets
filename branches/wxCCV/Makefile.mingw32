@@ -20,5 +20,5 @@ html:
 
 app:
 	mkdir -p build
-	g++ -m32 $(SRCS) `$(WXCONFIG) --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
+	g++ -m32 -Wall -Wl,--enable-auto-import $(SRCS) `$(WXCONFIG) --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
 	cp $(DLLDIR)/*.dll $(PROGDIR)
