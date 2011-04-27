@@ -19,7 +19,7 @@ html:
 
 app:
 	mkdir -p build
-	g++ -m32 $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)	
+	g++ -m32 -Wall $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)	
 	mkdir -p $(PROGRAM).app/Contents/MacOS
 	cp $(OSXPLIST) $(PROGRAM).app/Contents/
 	cp $(PROGDIR)/$(PROGRAM) $(PROGRAM).app/Contents/MacOS/$(PROGRAM)

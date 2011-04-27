@@ -19,11 +19,7 @@ class wxCCV : public wxApp
 IMPLEMENT_APP(wxCCV)
 
 bool wxCCV::OnInit()
-{  
-#ifdef __MINGW32__
-    FreeConsole();
-#endif
-    
+{
     CCVFrame *mainframe = new CCVFrame();
     mainframe->Show(true);
     
