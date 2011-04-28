@@ -8,6 +8,7 @@ DLLDIR = $(RESDIR)/win/dll
 DOCDIR = docs
 DOXYGEN = doxygen
 DOXYCONFIG = $(RESDIR)/Doxyfile
+RCFILE =  $(RESDIR)/win/resource.rc
 
 all: app
      
@@ -19,6 +20,7 @@ doc:
 	$(DOXYGEN) $(DOXYCONFIG)
 
 app:
-	mkdir -p build
-	g++ -m32 -Wall -Wl,--enable-auto-import -Wl,--subsystem,windows $(SRCS) `$(WXCONFIG) --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
+	mkdir -p $(PROGDIR)
+	windres `$(WXCONFIG) --rcflags` $(RCFILE) $(PROGDIR)/res.o
+	g++ -m32 -Wall -Wl,--enable-auto-import -Wl,--subsystem,windows $(SRCS) $(PROGDIR)/res.o `$(WXCONFIG) --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
 	cp $(DLLDIR)/*.dll $(PROGDIR)
