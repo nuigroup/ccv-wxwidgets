@@ -9,12 +9,12 @@ DOCDIR = docs
 DOXYGEN = doxygen
 DOXYCONFIG = $(RESDIR)/Doxyfile
 
-all: app html
+all: app
      
 clean:
 	rm -fr $(PROGDIR) $(DOCDIR)
 	
-html:
+doc:
 	mkdir -p $(DOCDIR)
 	$(DOXYGEN) $(DOXYCONFIG)
 
