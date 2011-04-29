@@ -40,7 +40,7 @@
             <property name="size">955,700</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass"></property>
-            <property name="title">Community Core Visision</property>
+            <property name="title">Community Core Vision</property>
             <property name="tooltip"></property>
             <property name="validator_data_type"></property>
             <property name="validator_style">wxFILTER_NONE</property>
@@ -1088,7 +1088,7 @@
                                                                         <property name="font"></property>
                                                                         <property name="hidden">0</property>
                                                                         <property name="id">wxID_ANY</property>
-                                                                        <property name="label">Image Threhold</property>
+                                                                        <property name="label">Image Threshold</property>
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minimum_size"></property>
                                                                         <property name="name">m_staticText8</property>
