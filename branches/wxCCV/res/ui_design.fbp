@@ -1895,16 +1895,16 @@
                                         <property name="border">5</property>
                                         <property name="flag">wxEXPAND</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxBoxSizer" expanded="0">
+                                        <object class="wxBoxSizer" expanded="1">
                                             <property name="minimum_size"></property>
                                             <property name="name">s_background</property>
                                             <property name="orient">wxVERTICAL</property>
                                             <property name="permission">none</property>
-                                            <object class="sizeritem" expanded="0">
+                                            <object class="sizeritem" expanded="1">
                                                 <property name="border">15</property>
                                                 <property name="flag">wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT</property>
                                                 <property name="proportion">0</property>
-                                                <object class="wxPanel" expanded="0">
+                                                <object class="wxPanel" expanded="1">
                                                     <property name="bg">wxSYS_COLOUR_3DLIGHT</property>
                                                     <property name="context_help"></property>
                                                     <property name="context_menu">1</property>
@@ -2299,16 +2299,16 @@
                                         <property name="border">5</property>
                                         <property name="flag">wxEXPAND</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxBoxSizer" expanded="0">
+                                        <object class="wxBoxSizer" expanded="1">
                                             <property name="minimum_size"></property>
                                             <property name="name">s_smooth</property>
                                             <property name="orient">wxVERTICAL</property>
                                             <property name="permission">none</property>
-                                            <object class="sizeritem" expanded="0">
+                                            <object class="sizeritem" expanded="1">
                                                 <property name="border">15</property>
                                                 <property name="flag">wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT</property>
                                                 <property name="proportion">0</property>
-                                                <object class="wxPanel" expanded="0">
+                                                <object class="wxPanel" expanded="1">
                                                     <property name="bg">wxSYS_COLOUR_3DLIGHT</property>
                                                     <property name="context_help"></property>
                                                     <property name="context_menu">1</property>
@@ -2355,9 +2355,9 @@
                                                     <event name="OnSetFocus"></event>
                                                     <event name="OnSize"></event>
                                                     <event name="OnUpdateUI"></event>
-                                                    <object class="wxBoxSizer" expanded="0">
+                                                    <object class="wxBoxSizer" expanded="1">
                                                         <property name="minimum_size"></property>
-                                                        <property name="name">s_smooth</property>
+                                                        <property name="name">s_smooth_ctrl</property>
                                                         <property name="orient">wxVERTICAL</property>
                                                         <property name="permission">none</property>
                                                         <object class="sizeritem" expanded="0">
@@ -2651,11 +2651,11 @@
                                             <property name="name">s_highpass</property>
                                             <property name="orient">wxVERTICAL</property>
                                             <property name="permission">none</property>
-                                            <object class="sizeritem" expanded="1">
+                                            <object class="sizeritem" expanded="0">
                                                 <property name="border">15</property>
                                                 <property name="flag">wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT</property>
                                                 <property name="proportion">0</property>
-                                                <object class="wxPanel" expanded="1">
+                                                <object class="wxPanel" expanded="0">
                                                     <property name="bg">wxSYS_COLOUR_3DLIGHT</property>
                                                     <property name="context_help"></property>
                                                     <property name="context_menu">1</property>
@@ -2702,16 +2702,16 @@
                                                     <event name="OnSetFocus"></event>
                                                     <event name="OnSize"></event>
                                                     <event name="OnUpdateUI"></event>
-                                                    <object class="wxBoxSizer" expanded="1">
+                                                    <object class="wxBoxSizer" expanded="0">
                                                         <property name="minimum_size"></property>
-                                                        <property name="name">s_highpass</property>
+                                                        <property name="name">s_highpass_ctrl</property>
                                                         <property name="orient">wxVERTICAL</property>
                                                         <property name="permission">none</property>
-                                                        <object class="sizeritem" expanded="1">
+                                                        <object class="sizeritem" expanded="0">
                                                             <property name="border">5</property>
                                                             <property name="flag">wxEXPAND</property>
                                                             <property name="proportion">0</property>
-                                                            <object class="wxBoxSizer" expanded="1">
+                                                            <object class="wxBoxSizer" expanded="0">
                                                                 <property name="minimum_size"></property>
                                                                 <property name="name">s_highpass_aligner</property>
                                                                 <property name="orient">wxHORIZONTAL</property>
@@ -3121,11 +3121,11 @@
                                             <property name="name">s_amplify</property>
                                             <property name="orient">wxVERTICAL</property>
                                             <property name="permission">none</property>
-                                            <object class="sizeritem" expanded="1">
+                                            <object class="sizeritem" expanded="0">
                                                 <property name="border">15</property>
                                                 <property name="flag">wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT</property>
                                                 <property name="proportion">0</property>
-                                                <object class="wxPanel" expanded="1">
+                                                <object class="wxPanel" expanded="0">
                                                     <property name="bg">wxSYS_COLOUR_3DLIGHT</property>
                                                     <property name="context_help"></property>
                                                     <property name="context_menu">1</property>
@@ -3172,16 +3172,16 @@
                                                     <event name="OnSetFocus"></event>
                                                     <event name="OnSize"></event>
                                                     <event name="OnUpdateUI"></event>
-                                                    <object class="wxBoxSizer" expanded="1">
+                                                    <object class="wxBoxSizer" expanded="0">
                                                         <property name="minimum_size"></property>
-                                                        <property name="name">s_amp</property>
+                                                        <property name="name">s_amp_ctrl</property>
                                                         <property name="orient">wxVERTICAL</property>
                                                         <property name="permission">none</property>
-                                                        <object class="sizeritem" expanded="1">
+                                                        <object class="sizeritem" expanded="0">
                                                             <property name="border">5</property>
                                                             <property name="flag">wxEXPAND</property>
                                                             <property name="proportion">0</property>
-                                                            <object class="wxBoxSizer" expanded="1">
+                                                            <object class="wxBoxSizer" expanded="0">
                                                                 <property name="minimum_size"></property>
                                                                 <property name="name">s_amp_aligner</property>
                                                                 <property name="orient">wxHORIZONTAL</property>

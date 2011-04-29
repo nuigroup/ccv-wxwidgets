@@ -285,8 +285,8 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_panel_smooth_ctrl = new wxPanel( panelleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER|wxTAB_TRAVERSAL );
 	m_panel_smooth_ctrl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
 	
-	wxBoxSizer* s_smooth;
-	s_smooth = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* s_smooth_ctrl;
+	s_smooth_ctrl = new wxBoxSizer( wxVERTICAL );
 	
 	wxBoxSizer* s_smooth_aligner;
 	s_smooth_aligner = new wxBoxSizer( wxHORIZONTAL );
@@ -301,18 +301,18 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_checkBox_smooth = new wxCheckBox( m_panel_smooth_ctrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	s_smooth_aligner->Add( m_checkBox_smooth, 0, wxALL, 5 );
 	
-	s_smooth->Add( s_smooth_aligner, 0, wxEXPAND, 5 );
+	s_smooth_ctrl->Add( s_smooth_aligner, 0, wxEXPAND, 5 );
 	
 	m_staticText_smoothctrl = new wxStaticText( m_panel_smooth_ctrl, wxID_ANY, wxT("Smooth Factor"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText_smoothctrl->Wrap( -1 );
-	s_smooth->Add( m_staticText_smoothctrl, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	s_smooth_ctrl->Add( m_staticText_smoothctrl, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
 	m_slider_smooth = new wxSlider( m_panel_smooth_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	s_smooth->Add( m_slider_smooth, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	s_smooth_ctrl->Add( m_slider_smooth, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	m_panel_smooth_ctrl->SetSizer( s_smooth );
+	m_panel_smooth_ctrl->SetSizer( s_smooth_ctrl );
 	m_panel_smooth_ctrl->Layout();
-	s_smooth->Fit( m_panel_smooth_ctrl );
+	s_smooth_ctrl->Fit( m_panel_smooth_ctrl );
 	s_smooth->Add( m_panel_smooth_ctrl, 0, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 15 );
 	
 	
@@ -326,8 +326,8 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_panel_highpass_ctrl = new wxPanel( panelleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER|wxTAB_TRAVERSAL );
 	m_panel_highpass_ctrl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
 	
-	wxBoxSizer* s_highpass;
-	s_highpass = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* s_highpass_ctrl;
+	s_highpass_ctrl = new wxBoxSizer( wxVERTICAL );
 	
 	wxBoxSizer* s_highpass_aligner;
 	s_highpass_aligner = new wxBoxSizer( wxHORIZONTAL );
@@ -342,25 +342,25 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_checkBox_highpass = new wxCheckBox( m_panel_highpass_ctrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	s_highpass_aligner->Add( m_checkBox_highpass, 0, wxALL, 5 );
 	
-	s_highpass->Add( s_highpass_aligner, 0, wxEXPAND, 5 );
+	s_highpass_ctrl->Add( s_highpass_aligner, 0, wxEXPAND, 5 );
 	
 	m_staticText_blur = new wxStaticText( m_panel_highpass_ctrl, wxID_ANY, wxT("Blur"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText_blur->Wrap( -1 );
-	s_highpass->Add( m_staticText_blur, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	s_highpass_ctrl->Add( m_staticText_blur, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
 	m_slider_blur = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	s_highpass->Add( m_slider_blur, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	s_highpass_ctrl->Add( m_slider_blur, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	m_staticText_nosie = new wxStaticText( m_panel_highpass_ctrl, wxID_ANY, wxT("Noise"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText_nosie->Wrap( -1 );
-	s_highpass->Add( m_staticText_nosie, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	s_highpass_ctrl->Add( m_staticText_nosie, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
 	m_slider_noise = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	s_highpass->Add( m_slider_noise, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	s_highpass_ctrl->Add( m_slider_noise, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	m_panel_highpass_ctrl->SetSizer( s_highpass );
+	m_panel_highpass_ctrl->SetSizer( s_highpass_ctrl );
 	m_panel_highpass_ctrl->Layout();
-	s_highpass->Fit( m_panel_highpass_ctrl );
+	s_highpass_ctrl->Fit( m_panel_highpass_ctrl );
 	s_highpass->Add( m_panel_highpass_ctrl, 0, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 15 );
 	
 	s_filter_ctrl->Add( s_highpass, 1, wxEXPAND, 5 );
@@ -371,8 +371,8 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_panel_amplify_ctrl = new wxPanel( panelleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER|wxTAB_TRAVERSAL );
 	m_panel_amplify_ctrl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
 	
-	wxBoxSizer* s_amp;
-	s_amp = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* s_amp_ctrl;
+	s_amp_ctrl = new wxBoxSizer( wxVERTICAL );
 	
 	wxBoxSizer* s_amp_aligner;
 	s_amp_aligner = new wxBoxSizer( wxHORIZONTAL );
@@ -387,18 +387,18 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_checkBox_amp = new wxCheckBox( m_panel_amplify_ctrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	s_amp_aligner->Add( m_checkBox_amp, 0, wxALL, 5 );
 	
-	s_amp->Add( s_amp_aligner, 0, wxEXPAND, 5 );
+	s_amp_ctrl->Add( s_amp_aligner, 0, wxEXPAND, 5 );
 	
 	m_staticText_ampctrl = new wxStaticText( m_panel_amplify_ctrl, wxID_ANY, wxT("Amplify Factor"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText_ampctrl->Wrap( -1 );
-	s_amp->Add( m_staticText_ampctrl, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	s_amp_ctrl->Add( m_staticText_ampctrl, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
 	m_slider_amp = new wxSlider( m_panel_amplify_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	s_amp->Add( m_slider_amp, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	s_amp_ctrl->Add( m_slider_amp, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	m_panel_amplify_ctrl->SetSizer( s_amp );
+	m_panel_amplify_ctrl->SetSizer( s_amp_ctrl );
 	m_panel_amplify_ctrl->Layout();
-	s_amp->Fit( m_panel_amplify_ctrl );
+	s_amp_ctrl->Fit( m_panel_amplify_ctrl );
 	s_amplify->Add( m_panel_amplify_ctrl, 0, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 15 );
 	
 	s_filter_ctrl->Add( s_amplify, 1, wxEXPAND, 5 );
