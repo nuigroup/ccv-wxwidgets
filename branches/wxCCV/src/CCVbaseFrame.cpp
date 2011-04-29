@@ -41,20 +41,20 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	
 	s_leftMain->Add( s_title, 0, wxEXPAND, 5 );
 	
-	wxBoxSizer* bSizer_input;
-	bSizer_input = new wxBoxSizer( wxHORIZONTAL );
+	wxBoxSizer* s_input;
+	s_input = new wxBoxSizer( wxHORIZONTAL );
 	
 	m_panel_inputViewer = new wxPanel( panelleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSIMPLE_BORDER|wxTAB_TRAVERSAL );
 	m_panel_inputViewer->SetBackgroundColour( wxColour( 0, 0, 0 ) );
 	
-	bSizer_input->Add( m_panel_inputViewer, 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+	s_input->Add( m_panel_inputViewer, 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
 	
 	m_panel_outputViewer = new wxPanel( panelleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSIMPLE_BORDER|wxTAB_TRAVERSAL );
 	m_panel_outputViewer->SetBackgroundColour( wxColour( 0, 0, 0 ) );
 	
-	bSizer_input->Add( m_panel_outputViewer, 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+	s_input->Add( m_panel_outputViewer, 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
 	
-	s_leftMain->Add( bSizer_input, 80, wxEXPAND, 5 );
+	s_leftMain->Add( s_input, 80, wxEXPAND, 5 );
 	
 	wxBoxSizer* s_inout_ctrl;
 	s_inout_ctrl = new wxBoxSizer( wxHORIZONTAL );
@@ -62,144 +62,144 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_panel_inputContrl = new wxPanel( panelleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER|wxTAB_TRAVERSAL );
 	m_panel_inputContrl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
 	
-	wxBoxSizer* bSizer9;
-	bSizer9 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* s_inputContrl;
+	s_inputContrl = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizer10;
-	bSizer10 = new wxBoxSizer( wxHORIZONTAL );
+	wxBoxSizer* s_inputContrl_up;
+	s_inputContrl_up = new wxBoxSizer( wxHORIZONTAL );
 	
 	m_staticText_title_inputctrl = new wxStaticText( m_panel_inputContrl, wxID_ANY, wxT("Source Image"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText_title_inputctrl->Wrap( -1 );
-	bSizer10->Add( m_staticText_title_inputctrl, 0, wxALL, 5 );
+	s_inputContrl_up->Add( m_staticText_title_inputctrl, 0, wxALL, 5 );
 	
 	
-	bSizer10->Add( 0, 0, 1, wxEXPAND, 5 );
+	s_inputContrl_up->Add( 0, 0, 1, wxEXPAND, 5 );
 	
 	m_checkBox_showoutline = new wxCheckBox( m_panel_inputContrl, wxID_ANY, wxT("Show Outlines"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer10->Add( m_checkBox_showoutline, 0, wxALL, 5 );
+	s_inputContrl_up->Add( m_checkBox_showoutline, 0, wxALL, 5 );
 	
 	m_checkBox_showid = new wxCheckBox( m_panel_inputContrl, wxID_ANY, wxT("Show IDs"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer10->Add( m_checkBox_showid, 0, wxALL, 5 );
+	s_inputContrl_up->Add( m_checkBox_showid, 0, wxALL, 5 );
 	
-	bSizer9->Add( bSizer10, 0, wxEXPAND, 5 );
+	s_inputContrl->Add( s_inputContrl_up, 0, wxEXPAND, 5 );
 	
 	
-	bSizer9->Add( 0, 0, 1, wxEXPAND, 5 );
+	s_inputContrl->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	wxBoxSizer* bSizer11;
-	bSizer11 = new wxBoxSizer( wxHORIZONTAL );
+	wxBoxSizer* s_inputContrl_down;
+	s_inputContrl_down = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxString m_radioBox_selectInputChoices[] = { wxT("Use Camera"), wxT("Use Video") };
 	int m_radioBox_selectInputNChoices = sizeof( m_radioBox_selectInputChoices ) / sizeof( wxString );
 	m_radioBox_selectInput = new wxRadioBox( m_panel_inputContrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, m_radioBox_selectInputNChoices, m_radioBox_selectInputChoices, 1, wxRA_SPECIFY_COLS );
 	m_radioBox_selectInput->SetSelection( 0 );
-	bSizer11->Add( m_radioBox_selectInput, 0, wxALL, 5 );
+	s_inputContrl_down->Add( m_radioBox_selectInput, 0, wxALL, 5 );
 	
 	
-	bSizer11->Add( 0, 0, 1, wxEXPAND, 5 );
+	s_inputContrl_down->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	wxBoxSizer* bSizer12;
-	bSizer12 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* bSizer_camera_sel;
+	bSizer_camera_sel = new wxBoxSizer( wxVERTICAL );
 	
 	m_button_prevCamera = new wxButton( m_panel_inputContrl, wxID_ANY, wxT("Prev Camera"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_button_prevCamera->Enable( false );
 	
-	bSizer12->Add( m_button_prevCamera, 0, wxALIGN_CENTER|wxEXPAND|wxALL, 5 );
+	bSizer_camera_sel->Add( m_button_prevCamera, 0, wxALIGN_CENTER|wxEXPAND|wxALL, 5 );
 	
 	m_button_nextCamera = new wxButton( m_panel_inputContrl, wxID_ANY, wxT("Next Camera"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_button_nextCamera->Enable( false );
 	
-	bSizer12->Add( m_button_nextCamera, 0, wxALIGN_CENTER|wxEXPAND|wxALL, 5 );
+	bSizer_camera_sel->Add( m_button_nextCamera, 0, wxALIGN_CENTER|wxEXPAND|wxALL, 5 );
 	
-	bSizer11->Add( bSizer12, 2, wxEXPAND|wxRIGHT, 10 );
+	s_inputContrl_down->Add( bSizer_camera_sel, 2, wxEXPAND|wxRIGHT, 10 );
 	
-	bSizer9->Add( bSizer11, 0, wxEXPAND, 5 );
+	s_inputContrl->Add( s_inputContrl_down, 0, wxEXPAND, 5 );
 	
-	m_panel_inputContrl->SetSizer( bSizer9 );
+	m_panel_inputContrl->SetSizer( s_inputContrl );
 	m_panel_inputContrl->Layout();
-	bSizer9->Fit( m_panel_inputContrl );
+	s_inputContrl->Fit( m_panel_inputContrl );
 	s_inout_ctrl->Add( m_panel_inputContrl, 1, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 20 );
 	
 	m_panel_outputControl = new wxPanel( panelleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER|wxTAB_TRAVERSAL );
 	m_panel_outputControl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
 	
-	wxBoxSizer* bSizer13;
-	bSizer13 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* s_outputControl;
+	s_outputControl = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizer14;
-	bSizer14 = new wxBoxSizer( wxHORIZONTAL );
+	wxBoxSizer* s_outputCtrl_up;
+	s_outputCtrl_up = new wxBoxSizer( wxHORIZONTAL );
 	
 	m_staticText_title_outputctrl = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Tracked Image"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText_title_outputctrl->Wrap( -1 );
-	bSizer14->Add( m_staticText_title_outputctrl, 0, wxALL, 5 );
+	s_outputCtrl_up->Add( m_staticText_title_outputctrl, 0, wxALL, 5 );
 	
 	
-	bSizer14->Add( 0, 0, 1, wxEXPAND, 5 );
+	s_outputCtrl_up->Add( 0, 0, 1, wxEXPAND, 5 );
 	
 	m_checkBox13 = new wxCheckBox( m_panel_outputControl, wxID_ANY, wxT("Inverse"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer14->Add( m_checkBox13, 0, wxALL, 5 );
+	s_outputCtrl_up->Add( m_checkBox13, 0, wxALL, 5 );
 	
-	bSizer13->Add( bSizer14, 0, wxEXPAND, 5 );
+	s_outputControl->Add( s_outputCtrl_up, 0, wxEXPAND, 5 );
 	
 	
-	bSizer13->Add( 0, 0, 1, wxEXPAND, 5 );
+	s_outputControl->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	wxGridSizer* gSizer1;
-	gSizer1 = new wxGridSizer( 2, 2, 0, 0 );
+	wxGridSizer* s_outputCtrl_down;
+	s_outputCtrl_down = new wxGridSizer( 2, 2, 0, 0 );
 	
-	wxBoxSizer* bSizer15;
-	bSizer15 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* s_imageThre;
+	s_imageThre = new wxBoxSizer( wxVERTICAL );
 	
-	m_staticText8 = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Image Threshold"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText8->Wrap( -1 );
-	bSizer15->Add( m_staticText8, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	m_staticText_imageThre = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Image Threshold"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_imageThre->Wrap( -1 );
+	s_imageThre->Add( m_staticText_imageThre, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider9 = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	bSizer15->Add( m_slider9, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	m_slider_imageThre = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	s_imageThre->Add( m_slider_imageThre, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	gSizer1->Add( bSizer15, 1, wxEXPAND, 5 );
+	s_outputCtrl_down->Add( s_imageThre, 1, wxEXPAND, 5 );
 	
-	wxBoxSizer* bSizer16;
-	bSizer16 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* s_moveFilter;
+	s_moveFilter = new wxBoxSizer( wxVERTICAL );
 	
-	m_staticText9 = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Movement Filter"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText9->Wrap( -1 );
-	bSizer16->Add( m_staticText9, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	m_staticText_moveFilter = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Movement Filter"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_moveFilter->Wrap( -1 );
+	s_moveFilter->Add( m_staticText_moveFilter, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider10 = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	bSizer16->Add( m_slider10, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	m_slider_moveFilter = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	s_moveFilter->Add( m_slider_moveFilter, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	gSizer1->Add( bSizer16, 1, wxEXPAND, 5 );
+	s_outputCtrl_down->Add( s_moveFilter, 1, wxEXPAND, 5 );
 	
-	wxBoxSizer* bSizer17;
-	bSizer17 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* s_minBlob;
+	s_minBlob = new wxBoxSizer( wxVERTICAL );
 	
-	m_staticText10 = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Min Blob Size"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText10->Wrap( -1 );
-	bSizer17->Add( m_staticText10, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	m_staticText_minBlob = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Min Blob Size"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_minBlob->Wrap( -1 );
+	s_minBlob->Add( m_staticText_minBlob, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider11 = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	bSizer17->Add( m_slider11, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	m_slider_minBlob = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	s_minBlob->Add( m_slider_minBlob, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	gSizer1->Add( bSizer17, 1, wxEXPAND, 5 );
+	s_outputCtrl_down->Add( s_minBlob, 1, wxEXPAND, 5 );
 	
-	wxBoxSizer* bSizer18;
-	bSizer18 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* s_maxBlob;
+	s_maxBlob = new wxBoxSizer( wxVERTICAL );
 	
-	m_staticText11 = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Max Blob Size"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText11->Wrap( -1 );
-	bSizer18->Add( m_staticText11, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	m_staticText_maxBlob = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Max Blob Size"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_maxBlob->Wrap( -1 );
+	s_maxBlob->Add( m_staticText_maxBlob, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider12 = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	bSizer18->Add( m_slider12, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	m_slider_maxBlob = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	s_maxBlob->Add( m_slider_maxBlob, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	gSizer1->Add( bSizer18, 1, wxEXPAND, 5 );
+	s_outputCtrl_down->Add( s_maxBlob, 1, wxEXPAND, 5 );
 	
-	bSizer13->Add( gSizer1, 0, wxEXPAND, 5 );
+	s_outputControl->Add( s_outputCtrl_down, 0, wxEXPAND, 5 );
 	
-	m_panel_outputControl->SetSizer( bSizer13 );
+	m_panel_outputControl->SetSizer( s_outputControl );
 	m_panel_outputControl->Layout();
-	bSizer13->Fit( m_panel_outputControl );
+	s_outputControl->Fit( m_panel_outputControl );
 	s_inout_ctrl->Add( m_panel_outputControl, 1, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 20 );
 	
 	s_leftMain->Add( s_inout_ctrl, 0, wxEXPAND, 5 );
@@ -241,37 +241,37 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_panel_background_ctrl = new wxPanel( panelleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER|wxTAB_TRAVERSAL );
 	m_panel_background_ctrl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
 	
-	wxBoxSizer* bSizer29;
-	bSizer29 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* bSizer_background_ctrl;
+	bSizer_background_ctrl = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizer33;
-	bSizer33 = new wxBoxSizer( wxHORIZONTAL );
+	wxBoxSizer* bSizer_backctrl_aligner;
+	bSizer_backctrl_aligner = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_staticText101 = new wxStaticText( m_panel_background_ctrl, wxID_ANY, wxT("BackGround"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText101->Wrap( -1 );
-	bSizer33->Add( m_staticText101, 0, wxALL, 5 );
+	m_staticText_background = new wxStaticText( m_panel_background_ctrl, wxID_ANY, wxT("BackGround"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_background->Wrap( -1 );
+	bSizer_backctrl_aligner->Add( m_staticText_background, 0, wxALL, 5 );
 	
 	
-	bSizer33->Add( 0, 0, 1, wxEXPAND, 5 );
+	bSizer_backctrl_aligner->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	bSizer29->Add( bSizer33, 0, wxEXPAND, 5 );
+	bSizer_background_ctrl->Add( bSizer_backctrl_aligner, 0, wxEXPAND, 5 );
 	
-	m_checkBox8 = new wxCheckBox( m_panel_background_ctrl, wxID_ANY, wxT("Remove BG"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer29->Add( m_checkBox8, 0, wxRIGHT|wxLEFT, 5 );
+	m_checkBox_removeBG = new wxCheckBox( m_panel_background_ctrl, wxID_ANY, wxT("Remove BG"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer_background_ctrl->Add( m_checkBox_removeBG, 0, wxRIGHT|wxLEFT, 5 );
 	
-	m_checkBox9 = new wxCheckBox( m_panel_background_ctrl, wxID_ANY, wxT("Dynamic Subtract"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer29->Add( m_checkBox9, 0, wxRIGHT|wxLEFT, 5 );
+	m_checkBox_dsubtract = new wxCheckBox( m_panel_background_ctrl, wxID_ANY, wxT("Dynamic Subtract"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer_background_ctrl->Add( m_checkBox_dsubtract, 0, wxRIGHT|wxLEFT, 5 );
 	
-	m_staticText12 = new wxStaticText( m_panel_background_ctrl, wxID_ANY, wxT("Learn Speed"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText12->Wrap( -1 );
-	bSizer29->Add( m_staticText12, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	m_staticText_learnspeed = new wxStaticText( m_panel_background_ctrl, wxID_ANY, wxT("Learn Speed"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_learnspeed->Wrap( -1 );
+	bSizer_background_ctrl->Add( m_staticText_learnspeed, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider6 = new wxSlider( m_panel_background_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	bSizer29->Add( m_slider6, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	m_slider_learnspeed = new wxSlider( m_panel_background_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	bSizer_background_ctrl->Add( m_slider_learnspeed, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	m_panel_background_ctrl->SetSizer( bSizer29 );
+	m_panel_background_ctrl->SetSizer( bSizer_background_ctrl );
 	m_panel_background_ctrl->Layout();
-	bSizer29->Fit( m_panel_background_ctrl );
+	bSizer_background_ctrl->Fit( m_panel_background_ctrl );
 	s_background->Add( m_panel_background_ctrl, 0, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 15 );
 	
 	
@@ -285,34 +285,34 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_panel_smooth_ctrl = new wxPanel( panelleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER|wxTAB_TRAVERSAL );
 	m_panel_smooth_ctrl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
 	
-	wxBoxSizer* bSizer30;
-	bSizer30 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* s_smooth;
+	s_smooth = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizer34;
-	bSizer34 = new wxBoxSizer( wxHORIZONTAL );
+	wxBoxSizer* s_smooth_aligner;
+	s_smooth_aligner = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_staticText13 = new wxStaticText( m_panel_smooth_ctrl, wxID_ANY, wxT("Smooth"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText13->Wrap( -1 );
-	bSizer34->Add( m_staticText13, 0, wxALL, 5 );
+	m_staticText_smooth = new wxStaticText( m_panel_smooth_ctrl, wxID_ANY, wxT("Smooth"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_smooth->Wrap( -1 );
+	s_smooth_aligner->Add( m_staticText_smooth, 0, wxALL, 5 );
 	
 	
-	bSizer34->Add( 0, 0, 1, wxEXPAND, 5 );
+	s_smooth_aligner->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	m_checkBox10 = new wxCheckBox( m_panel_smooth_ctrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer34->Add( m_checkBox10, 0, wxALL, 5 );
+	m_checkBox_smooth = new wxCheckBox( m_panel_smooth_ctrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	s_smooth_aligner->Add( m_checkBox_smooth, 0, wxALL, 5 );
 	
-	bSizer30->Add( bSizer34, 0, wxEXPAND, 5 );
+	s_smooth->Add( s_smooth_aligner, 0, wxEXPAND, 5 );
 	
-	m_staticText14 = new wxStaticText( m_panel_smooth_ctrl, wxID_ANY, wxT("Smooth Factor"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText14->Wrap( -1 );
-	bSizer30->Add( m_staticText14, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	m_staticText_smoothctrl = new wxStaticText( m_panel_smooth_ctrl, wxID_ANY, wxT("Smooth Factor"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_smoothctrl->Wrap( -1 );
+	s_smooth->Add( m_staticText_smoothctrl, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider7 = new wxSlider( m_panel_smooth_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	bSizer30->Add( m_slider7, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	m_slider_smooth = new wxSlider( m_panel_smooth_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	s_smooth->Add( m_slider_smooth, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	m_panel_smooth_ctrl->SetSizer( bSizer30 );
+	m_panel_smooth_ctrl->SetSizer( s_smooth );
 	m_panel_smooth_ctrl->Layout();
-	bSizer30->Fit( m_panel_smooth_ctrl );
+	s_smooth->Fit( m_panel_smooth_ctrl );
 	s_smooth->Add( m_panel_smooth_ctrl, 0, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 15 );
 	
 	
@@ -326,41 +326,41 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_panel_highpass_ctrl = new wxPanel( panelleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER|wxTAB_TRAVERSAL );
 	m_panel_highpass_ctrl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
 	
-	wxBoxSizer* bSizer31;
-	bSizer31 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* s_highpass;
+	s_highpass = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizer39;
-	bSizer39 = new wxBoxSizer( wxHORIZONTAL );
+	wxBoxSizer* s_highpass_aligner;
+	s_highpass_aligner = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_staticText15 = new wxStaticText( m_panel_highpass_ctrl, wxID_ANY, wxT("HighPass"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText15->Wrap( -1 );
-	bSizer39->Add( m_staticText15, 0, wxALL, 5 );
+	m_staticText_highpass = new wxStaticText( m_panel_highpass_ctrl, wxID_ANY, wxT("HighPass"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_highpass->Wrap( -1 );
+	s_highpass_aligner->Add( m_staticText_highpass, 0, wxALL, 5 );
 	
 	
-	bSizer39->Add( 0, 0, 1, wxEXPAND, 5 );
+	s_highpass_aligner->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	m_checkBox111 = new wxCheckBox( m_panel_highpass_ctrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer39->Add( m_checkBox111, 0, wxALL, 5 );
+	m_checkBox_highpass = new wxCheckBox( m_panel_highpass_ctrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	s_highpass_aligner->Add( m_checkBox_highpass, 0, wxALL, 5 );
 	
-	bSizer31->Add( bSizer39, 0, wxEXPAND, 5 );
+	s_highpass->Add( s_highpass_aligner, 0, wxEXPAND, 5 );
 	
-	m_staticText17 = new wxStaticText( m_panel_highpass_ctrl, wxID_ANY, wxT("Blur"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText17->Wrap( -1 );
-	bSizer31->Add( m_staticText17, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	m_staticText_blur = new wxStaticText( m_panel_highpass_ctrl, wxID_ANY, wxT("Blur"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_blur->Wrap( -1 );
+	s_highpass->Add( m_staticText_blur, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider8 = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	bSizer31->Add( m_slider8, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	m_slider_blur = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	s_highpass->Add( m_slider_blur, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	m_staticText18 = new wxStaticText( m_panel_highpass_ctrl, wxID_ANY, wxT("Noise"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText18->Wrap( -1 );
-	bSizer31->Add( m_staticText18, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	m_staticText_nosie = new wxStaticText( m_panel_highpass_ctrl, wxID_ANY, wxT("Noise"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_nosie->Wrap( -1 );
+	s_highpass->Add( m_staticText_nosie, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider91 = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	bSizer31->Add( m_slider91, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	m_slider_noise = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	s_highpass->Add( m_slider_noise, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	m_panel_highpass_ctrl->SetSizer( bSizer31 );
+	m_panel_highpass_ctrl->SetSizer( s_highpass );
 	m_panel_highpass_ctrl->Layout();
-	bSizer31->Fit( m_panel_highpass_ctrl );
+	s_highpass->Fit( m_panel_highpass_ctrl );
 	s_highpass->Add( m_panel_highpass_ctrl, 0, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 15 );
 	
 	s_filter_ctrl->Add( s_highpass, 1, wxEXPAND, 5 );
@@ -371,34 +371,34 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	m_panel_amplify_ctrl = new wxPanel( panelleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER|wxTAB_TRAVERSAL );
 	m_panel_amplify_ctrl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
 	
-	wxBoxSizer* bSizer32;
-	bSizer32 = new wxBoxSizer( wxVERTICAL );
+	wxBoxSizer* s_amp;
+	s_amp = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* bSizer40;
-	bSizer40 = new wxBoxSizer( wxHORIZONTAL );
+	wxBoxSizer* s_amp_aligner;
+	s_amp_aligner = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_staticText16 = new wxStaticText( m_panel_amplify_ctrl, wxID_ANY, wxT("Amplify"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText16->Wrap( -1 );
-	bSizer40->Add( m_staticText16, 0, wxALL, 5 );
+	m_staticText_amp = new wxStaticText( m_panel_amplify_ctrl, wxID_ANY, wxT("Amplify"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_amp->Wrap( -1 );
+	s_amp_aligner->Add( m_staticText_amp, 0, wxALL, 5 );
 	
 	
-	bSizer40->Add( 0, 0, 1, wxEXPAND, 5 );
+	s_amp_aligner->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	m_checkBox121 = new wxCheckBox( m_panel_amplify_ctrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer40->Add( m_checkBox121, 0, wxALL, 5 );
+	m_checkBox_amp = new wxCheckBox( m_panel_amplify_ctrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	s_amp_aligner->Add( m_checkBox_amp, 0, wxALL, 5 );
 	
-	bSizer32->Add( bSizer40, 0, wxEXPAND, 5 );
+	s_amp->Add( s_amp_aligner, 0, wxEXPAND, 5 );
 	
-	m_staticText19 = new wxStaticText( m_panel_amplify_ctrl, wxID_ANY, wxT("Amplify Factor"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText19->Wrap( -1 );
-	bSizer32->Add( m_staticText19, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	m_staticText_ampctrl = new wxStaticText( m_panel_amplify_ctrl, wxID_ANY, wxT("Amplify Factor"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_ampctrl->Wrap( -1 );
+	s_amp->Add( m_staticText_ampctrl, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider101 = new wxSlider( m_panel_amplify_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	bSizer32->Add( m_slider101, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	m_slider_amp = new wxSlider( m_panel_amplify_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	s_amp->Add( m_slider_amp, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	m_panel_amplify_ctrl->SetSizer( bSizer32 );
+	m_panel_amplify_ctrl->SetSizer( s_amp );
 	m_panel_amplify_ctrl->Layout();
-	bSizer32->Fit( m_panel_amplify_ctrl );
+	s_amp->Fit( m_panel_amplify_ctrl );
 	s_amplify->Add( m_panel_amplify_ctrl, 0, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 15 );
 	
 	s_filter_ctrl->Add( s_amplify, 1, wxEXPAND, 5 );

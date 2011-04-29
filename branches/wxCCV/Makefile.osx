@@ -11,14 +11,14 @@ DOXYCONFIG = $(RESDIR)/Doxyfile
 all: app
      
 clean:
-	rm -fr $(PROGDIR)  $(DOCDIR) *.app
+	rm -fr $(PROGDIR) $(DOCDIR) $(PROGRAM).app
 	
 doc:
 	mkdir -p $(DOCDIR)
 	$(DOXYGEN) $(DOXYCONFIG)
 
 app:
-	mkdir -p build
+	mkdir -p $(PROGDIR)
 	g++ -m32 -Wall $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)	
 	mkdir -p $(PROGRAM).app/Contents/MacOS
 	cp $(OSXPLIST) $(PROGRAM).app/Contents/

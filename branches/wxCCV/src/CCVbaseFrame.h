@@ -53,48 +53,48 @@ class CCVbaseFrame : public wxFrame
 		
 		wxCheckBox* m_checkBox13;
 		
-		wxStaticText* m_staticText8;
-		wxSlider* m_slider9;
-		wxStaticText* m_staticText9;
-		wxSlider* m_slider10;
-		wxStaticText* m_staticText10;
-		wxSlider* m_slider11;
-		wxStaticText* m_staticText11;
-		wxSlider* m_slider12;
+		wxStaticText* m_staticText_imageThre;
+		wxSlider* m_slider_imageThre;
+		wxStaticText* m_staticText_moveFilter;
+		wxSlider* m_slider_moveFilter;
+		wxStaticText* m_staticText_minBlob;
+		wxSlider* m_slider_minBlob;
+		wxStaticText* m_staticText_maxBlob;
+		wxSlider* m_slider_maxBlob;
 		
 		wxPanel* m_panel_background;
 		wxPanel* m_panel_smooth;
 		wxPanel* m_panel_highpass;
 		wxPanel* m_panel_amplify;
 		wxPanel* m_panel_background_ctrl;
-		wxStaticText* m_staticText101;
+		wxStaticText* m_staticText_background;
 		
-		wxCheckBox* m_checkBox8;
-		wxCheckBox* m_checkBox9;
-		wxStaticText* m_staticText12;
-		wxSlider* m_slider6;
+		wxCheckBox* m_checkBox_removeBG;
+		wxCheckBox* m_checkBox_dsubtract;
+		wxStaticText* m_staticText_learnspeed;
+		wxSlider* m_slider_learnspeed;
 		
 		wxPanel* m_panel_smooth_ctrl;
-		wxStaticText* m_staticText13;
+		wxStaticText* m_staticText_smooth;
 		
-		wxCheckBox* m_checkBox10;
-		wxStaticText* m_staticText14;
-		wxSlider* m_slider7;
+		wxCheckBox* m_checkBox_smooth;
+		wxStaticText* m_staticText_smoothctrl;
+		wxSlider* m_slider_smooth;
 		
 		wxPanel* m_panel_highpass_ctrl;
-		wxStaticText* m_staticText15;
+		wxStaticText* m_staticText_highpass;
 		
-		wxCheckBox* m_checkBox111;
-		wxStaticText* m_staticText17;
-		wxSlider* m_slider8;
-		wxStaticText* m_staticText18;
-		wxSlider* m_slider91;
+		wxCheckBox* m_checkBox_highpass;
+		wxStaticText* m_staticText_blur;
+		wxSlider* m_slider_blur;
+		wxStaticText* m_staticText_nosie;
+		wxSlider* m_slider_noise;
 		wxPanel* m_panel_amplify_ctrl;
-		wxStaticText* m_staticText16;
+		wxStaticText* m_staticText_amp;
 		
-		wxCheckBox* m_checkBox121;
-		wxStaticText* m_staticText19;
-		wxSlider* m_slider101;
+		wxCheckBox* m_checkBox_amp;
+		wxStaticText* m_staticText_ampctrl;
+		wxSlider* m_slider_amp;
 		wxPanel* panelright;
 		wxCheckBox* m_checkBox_filpV;
 		wxCheckBox* m_checkBox_filpH;

@@ -269,7 +269,7 @@
                                 <property name="proportion">80</property>
                                 <object class="wxBoxSizer" expanded="0">
                                     <property name="minimum_size"></property>
-                                    <property name="name">bSizer_input</property>
+                                    <property name="name">s_input</property>
                                     <property name="orient">wxHORIZONTAL</property>
                                     <property name="permission">none</property>
                                     <object class="sizeritem" expanded="0">
@@ -384,16 +384,16 @@
                                 <property name="border">5</property>
                                 <property name="flag">wxEXPAND</property>
                                 <property name="proportion">0</property>
-                                <object class="wxBoxSizer" expanded="1">
+                                <object class="wxBoxSizer" expanded="0">
                                     <property name="minimum_size"></property>
                                     <property name="name">s_inout_ctrl</property>
                                     <property name="orient">wxHORIZONTAL</property>
                                     <property name="permission">none</property>
-                                    <object class="sizeritem" expanded="1">
+                                    <object class="sizeritem" expanded="0">
                                         <property name="border">20</property>
                                         <property name="flag">wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxPanel" expanded="1">
+                                        <object class="wxPanel" expanded="0">
                                             <property name="bg">wxSYS_COLOUR_3DLIGHT</property>
                                             <property name="context_help"></property>
                                             <property name="context_menu">1</property>
@@ -440,9 +440,9 @@
                                             <event name="OnSetFocus"></event>
                                             <event name="OnSize"></event>
                                             <event name="OnUpdateUI"></event>
-                                            <object class="wxBoxSizer" expanded="1">
+                                            <object class="wxBoxSizer" expanded="0">
                                                 <property name="minimum_size"></property>
-                                                <property name="name">bSizer9</property>
+                                                <property name="name">s_inputContrl</property>
                                                 <property name="orient">wxVERTICAL</property>
                                                 <property name="permission">none</property>
                                                 <object class="sizeritem" expanded="0">
@@ -451,7 +451,7 @@
                                                     <property name="proportion">0</property>
                                                     <object class="wxBoxSizer" expanded="0">
                                                         <property name="minimum_size"></property>
-                                                        <property name="name">bSizer10</property>
+                                                        <property name="name">s_inputContrl_up</property>
                                                         <property name="orient">wxHORIZONTAL</property>
                                                         <property name="permission">none</property>
                                                         <object class="sizeritem" expanded="0">
@@ -646,13 +646,13 @@
                                                         <property name="width">0</property>
                                                     </object>
                                                 </object>
-                                                <object class="sizeritem" expanded="1">
+                                                <object class="sizeritem" expanded="0">
                                                     <property name="border">5</property>
                                                     <property name="flag">wxEXPAND</property>
                                                     <property name="proportion">0</property>
                                                     <object class="wxBoxSizer" expanded="0">
                                                         <property name="minimum_size"></property>
-                                                        <property name="name">bSizer11</property>
+                                                        <property name="name">s_inputContrl_down</property>
                                                         <property name="orient">wxHORIZONTAL</property>
                                                         <property name="permission">none</property>
                                                         <object class="sizeritem" expanded="0">
@@ -730,7 +730,7 @@
                                                             <property name="proportion">2</property>
                                                             <object class="wxBoxSizer" expanded="0">
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">bSizer12</property>
+                                                                <property name="name">bSizer_camera_sel</property>
                                                                 <property name="orient">wxVERTICAL</property>
                                                                 <property name="permission">none</property>
                                                                 <object class="sizeritem" expanded="0">
@@ -907,7 +907,7 @@
                                             <event name="OnUpdateUI"></event>
                                             <object class="wxBoxSizer" expanded="0">
                                                 <property name="minimum_size"></property>
-                                                <property name="name">bSizer13</property>
+                                                <property name="name">s_outputControl</property>
                                                 <property name="orient">wxVERTICAL</property>
                                                 <property name="permission">none</property>
                                                 <object class="sizeritem" expanded="0">
@@ -916,7 +916,7 @@
                                                     <property name="proportion">0</property>
                                                     <object class="wxBoxSizer" expanded="0">
                                                         <property name="minimum_size"></property>
-                                                        <property name="name">bSizer14</property>
+                                                        <property name="name">s_outputCtrl_up</property>
                                                         <property name="orient">wxHORIZONTAL</property>
                                                         <property name="permission">none</property>
                                                         <object class="sizeritem" expanded="0">
@@ -1062,7 +1062,7 @@
                                                         <property name="cols">2</property>
                                                         <property name="hgap">0</property>
                                                         <property name="minimum_size"></property>
-                                                        <property name="name">gSizer1</property>
+                                                        <property name="name">s_outputCtrl_down</property>
                                                         <property name="permission">none</property>
                                                         <property name="rows">2</property>
                                                         <property name="vgap">0</property>
@@ -1072,7 +1072,7 @@
                                                             <property name="proportion">1</property>
                                                             <object class="wxBoxSizer" expanded="0">
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">bSizer15</property>
+                                                                <property name="name">s_imageThre</property>
                                                                 <property name="orient">wxVERTICAL</property>
                                                                 <property name="permission">none</property>
                                                                 <object class="sizeritem" expanded="0">
@@ -1091,7 +1091,7 @@
                                                                         <property name="label">Image Threshold</property>
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_staticText8</property>
+                                                                        <property name="name">m_staticText_imageThre</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -1148,7 +1148,7 @@
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minValue">0</property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_slider9</property>
+                                                                        <property name="name">m_slider_imageThre</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -1216,7 +1216,7 @@
                                                             <property name="proportion">1</property>
                                                             <object class="wxBoxSizer" expanded="0">
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">bSizer16</property>
+                                                                <property name="name">s_moveFilter</property>
                                                                 <property name="orient">wxVERTICAL</property>
                                                                 <property name="permission">none</property>
                                                                 <object class="sizeritem" expanded="0">
@@ -1235,7 +1235,7 @@
                                                                         <property name="label">Movement Filter</property>
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_staticText9</property>
+                                                                        <property name="name">m_staticText_moveFilter</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -1292,7 +1292,7 @@
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minValue">0</property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_slider10</property>
+                                                                        <property name="name">m_slider_moveFilter</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -1360,7 +1360,7 @@
                                                             <property name="proportion">1</property>
                                                             <object class="wxBoxSizer" expanded="0">
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">bSizer17</property>
+                                                                <property name="name">s_minBlob</property>
                                                                 <property name="orient">wxVERTICAL</property>
                                                                 <property name="permission">none</property>
                                                                 <object class="sizeritem" expanded="0">
@@ -1379,7 +1379,7 @@
                                                                         <property name="label">Min Blob Size</property>
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_staticText10</property>
+                                                                        <property name="name">m_staticText_minBlob</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -1436,7 +1436,7 @@
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minValue">0</property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_slider11</property>
+                                                                        <property name="name">m_slider_minBlob</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -1504,7 +1504,7 @@
                                                             <property name="proportion">1</property>
                                                             <object class="wxBoxSizer" expanded="0">
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">bSizer18</property>
+                                                                <property name="name">s_maxBlob</property>
                                                                 <property name="orient">wxVERTICAL</property>
                                                                 <property name="permission">none</property>
                                                                 <object class="sizeritem" expanded="0">
@@ -1523,7 +1523,7 @@
                                                                         <property name="label">Max Blob Size</property>
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_staticText11</property>
+                                                                        <property name="name">m_staticText_maxBlob</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -1580,7 +1580,7 @@
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minValue">0</property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_slider12</property>
+                                                                        <property name="name">m_slider_maxBlob</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -1663,7 +1663,7 @@
                                 <property name="border">15</property>
                                 <property name="flag">wxEXPAND|wxRIGHT|wxLEFT</property>
                                 <property name="proportion">40</property>
-                                <object class="wxBoxSizer" expanded="1">
+                                <object class="wxBoxSizer" expanded="0">
                                     <property name="minimum_size"></property>
                                     <property name="name">s_filters</property>
                                     <property name="orient">wxHORIZONTAL</property>
@@ -1895,7 +1895,7 @@
                                         <property name="border">5</property>
                                         <property name="flag">wxEXPAND</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxBoxSizer" expanded="1">
+                                        <object class="wxBoxSizer" expanded="0">
                                             <property name="minimum_size"></property>
                                             <property name="name">s_background</property>
                                             <property name="orient">wxVERTICAL</property>
@@ -1953,7 +1953,7 @@
                                                     <event name="OnUpdateUI"></event>
                                                     <object class="wxBoxSizer" expanded="0">
                                                         <property name="minimum_size"></property>
-                                                        <property name="name">bSizer29</property>
+                                                        <property name="name">bSizer_background_ctrl</property>
                                                         <property name="orient">wxVERTICAL</property>
                                                         <property name="permission">none</property>
                                                         <object class="sizeritem" expanded="0">
@@ -1962,7 +1962,7 @@
                                                             <property name="proportion">0</property>
                                                             <object class="wxBoxSizer" expanded="0">
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">bSizer33</property>
+                                                                <property name="name">bSizer_backctrl_aligner</property>
                                                                 <property name="orient">wxHORIZONTAL</property>
                                                                 <property name="permission">none</property>
                                                                 <object class="sizeritem" expanded="0">
@@ -1981,7 +1981,7 @@
                                                                         <property name="label">BackGround</property>
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_staticText101</property>
+                                                                        <property name="name">m_staticText_background</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -2050,7 +2050,7 @@
                                                                 <property name="label">Remove BG</property>
                                                                 <property name="maximum_size"></property>
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">m_checkBox8</property>
+                                                                <property name="name">m_checkBox_removeBG</property>
                                                                 <property name="permission">protected</property>
                                                                 <property name="pos"></property>
                                                                 <property name="size"></property>
@@ -2107,7 +2107,7 @@
                                                                 <property name="label">Dynamic Subtract</property>
                                                                 <property name="maximum_size"></property>
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">m_checkBox9</property>
+                                                                <property name="name">m_checkBox_dsubtract</property>
                                                                 <property name="permission">protected</property>
                                                                 <property name="pos"></property>
                                                                 <property name="size"></property>
@@ -2163,7 +2163,7 @@
                                                                 <property name="label">Learn Speed</property>
                                                                 <property name="maximum_size"></property>
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">m_staticText12</property>
+                                                                <property name="name">m_staticText_learnspeed</property>
                                                                 <property name="permission">protected</property>
                                                                 <property name="pos"></property>
                                                                 <property name="size"></property>
@@ -2220,7 +2220,7 @@
                                                                 <property name="maximum_size"></property>
                                                                 <property name="minValue">0</property>
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">m_slider6</property>
+                                                                <property name="name">m_slider_learnspeed</property>
                                                                 <property name="permission">protected</property>
                                                                 <property name="pos"></property>
                                                                 <property name="size"></property>
@@ -2357,7 +2357,7 @@
                                                     <event name="OnUpdateUI"></event>
                                                     <object class="wxBoxSizer" expanded="0">
                                                         <property name="minimum_size"></property>
-                                                        <property name="name">bSizer30</property>
+                                                        <property name="name">s_smooth</property>
                                                         <property name="orient">wxVERTICAL</property>
                                                         <property name="permission">none</property>
                                                         <object class="sizeritem" expanded="0">
@@ -2366,7 +2366,7 @@
                                                             <property name="proportion">0</property>
                                                             <object class="wxBoxSizer" expanded="0">
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">bSizer34</property>
+                                                                <property name="name">s_smooth_aligner</property>
                                                                 <property name="orient">wxHORIZONTAL</property>
                                                                 <property name="permission">none</property>
                                                                 <object class="sizeritem" expanded="0">
@@ -2385,7 +2385,7 @@
                                                                         <property name="label">Smooth</property>
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_staticText13</property>
+                                                                        <property name="name">m_staticText_smooth</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -2452,7 +2452,7 @@
                                                                         <property name="label"></property>
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_checkBox10</property>
+                                                                        <property name="name">m_checkBox_smooth</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -2510,7 +2510,7 @@
                                                                 <property name="label">Smooth Factor</property>
                                                                 <property name="maximum_size"></property>
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">m_staticText14</property>
+                                                                <property name="name">m_staticText_smoothctrl</property>
                                                                 <property name="permission">protected</property>
                                                                 <property name="pos"></property>
                                                                 <property name="size"></property>
@@ -2567,7 +2567,7 @@
                                                                 <property name="maximum_size"></property>
                                                                 <property name="minValue">0</property>
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">m_slider7</property>
+                                                                <property name="name">m_slider_smooth</property>
                                                                 <property name="permission">protected</property>
                                                                 <property name="pos"></property>
                                                                 <property name="size"></property>
@@ -2651,11 +2651,11 @@
                                             <property name="name">s_highpass</property>
                                             <property name="orient">wxVERTICAL</property>
                                             <property name="permission">none</property>
-                                            <object class="sizeritem" expanded="0">
+                                            <object class="sizeritem" expanded="1">
                                                 <property name="border">15</property>
                                                 <property name="flag">wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT</property>
                                                 <property name="proportion">0</property>
-                                                <object class="wxPanel" expanded="0">
+                                                <object class="wxPanel" expanded="1">
                                                     <property name="bg">wxSYS_COLOUR_3DLIGHT</property>
                                                     <property name="context_help"></property>
                                                     <property name="context_menu">1</property>
@@ -2702,18 +2702,18 @@
                                                     <event name="OnSetFocus"></event>
                                                     <event name="OnSize"></event>
                                                     <event name="OnUpdateUI"></event>
-                                                    <object class="wxBoxSizer" expanded="0">
+                                                    <object class="wxBoxSizer" expanded="1">
                                                         <property name="minimum_size"></property>
-                                                        <property name="name">bSizer31</property>
+                                                        <property name="name">s_highpass</property>
                                                         <property name="orient">wxVERTICAL</property>
                                                         <property name="permission">none</property>
-                                                        <object class="sizeritem" expanded="0">
+                                                        <object class="sizeritem" expanded="1">
                                                             <property name="border">5</property>
                                                             <property name="flag">wxEXPAND</property>
                                                             <property name="proportion">0</property>
-                                                            <object class="wxBoxSizer" expanded="0">
+                                                            <object class="wxBoxSizer" expanded="1">
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">bSizer39</property>
+                                                                <property name="name">s_highpass_aligner</property>
                                                                 <property name="orient">wxHORIZONTAL</property>
                                                                 <property name="permission">none</property>
                                                                 <object class="sizeritem" expanded="0">
@@ -2732,7 +2732,7 @@
                                                                         <property name="label">HighPass</property>
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_staticText15</property>
+                                                                        <property name="name">m_staticText_highpass</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -2799,7 +2799,7 @@
                                                                         <property name="label"></property>
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_checkBox111</property>
+                                                                        <property name="name">m_checkBox_highpass</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -2857,7 +2857,7 @@
                                                                 <property name="label">Blur</property>
                                                                 <property name="maximum_size"></property>
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">m_staticText17</property>
+                                                                <property name="name">m_staticText_blur</property>
                                                                 <property name="permission">protected</property>
                                                                 <property name="pos"></property>
                                                                 <property name="size"></property>
@@ -2914,7 +2914,7 @@
                                                                 <property name="maximum_size"></property>
                                                                 <property name="minValue">0</property>
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">m_slider8</property>
+                                                                <property name="name">m_slider_blur</property>
                                                                 <property name="permission">protected</property>
                                                                 <property name="pos"></property>
                                                                 <property name="size"></property>
@@ -2990,7 +2990,7 @@
                                                                 <property name="label">Noise</property>
                                                                 <property name="maximum_size"></property>
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">m_staticText18</property>
+                                                                <property name="name">m_staticText_nosie</property>
                                                                 <property name="permission">protected</property>
                                                                 <property name="pos"></property>
                                                                 <property name="size"></property>
@@ -3047,7 +3047,7 @@
                                                                 <property name="maximum_size"></property>
                                                                 <property name="minValue">0</property>
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">m_slider91</property>
+                                                                <property name="name">m_slider_noise</property>
                                                                 <property name="permission">protected</property>
                                                                 <property name="pos"></property>
                                                                 <property name="size"></property>
@@ -3121,11 +3121,11 @@
                                             <property name="name">s_amplify</property>
                                             <property name="orient">wxVERTICAL</property>
                                             <property name="permission">none</property>
-                                            <object class="sizeritem" expanded="0">
+                                            <object class="sizeritem" expanded="1">
                                                 <property name="border">15</property>
                                                 <property name="flag">wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT</property>
                                                 <property name="proportion">0</property>
-                                                <object class="wxPanel" expanded="0">
+                                                <object class="wxPanel" expanded="1">
                                                     <property name="bg">wxSYS_COLOUR_3DLIGHT</property>
                                                     <property name="context_help"></property>
                                                     <property name="context_menu">1</property>
@@ -3172,18 +3172,18 @@
                                                     <event name="OnSetFocus"></event>
                                                     <event name="OnSize"></event>
                                                     <event name="OnUpdateUI"></event>
-                                                    <object class="wxBoxSizer" expanded="0">
+                                                    <object class="wxBoxSizer" expanded="1">
                                                         <property name="minimum_size"></property>
-                                                        <property name="name">bSizer32</property>
+                                                        <property name="name">s_amp</property>
                                                         <property name="orient">wxVERTICAL</property>
                                                         <property name="permission">none</property>
-                                                        <object class="sizeritem" expanded="0">
+                                                        <object class="sizeritem" expanded="1">
                                                             <property name="border">5</property>
                                                             <property name="flag">wxEXPAND</property>
                                                             <property name="proportion">0</property>
-                                                            <object class="wxBoxSizer" expanded="0">
+                                                            <object class="wxBoxSizer" expanded="1">
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">bSizer40</property>
+                                                                <property name="name">s_amp_aligner</property>
                                                                 <property name="orient">wxHORIZONTAL</property>
                                                                 <property name="permission">none</property>
                                                                 <object class="sizeritem" expanded="0">
@@ -3202,7 +3202,7 @@
                                                                         <property name="label">Amplify</property>
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_staticText16</property>
+                                                                        <property name="name">m_staticText_amp</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -3269,7 +3269,7 @@
                                                                         <property name="label"></property>
                                                                         <property name="maximum_size"></property>
                                                                         <property name="minimum_size"></property>
-                                                                        <property name="name">m_checkBox121</property>
+                                                                        <property name="name">m_checkBox_amp</property>
                                                                         <property name="permission">protected</property>
                                                                         <property name="pos"></property>
                                                                         <property name="size"></property>
@@ -3327,7 +3327,7 @@
                                                                 <property name="label">Amplify Factor</property>
                                                                 <property name="maximum_size"></property>
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">m_staticText19</property>
+                                                                <property name="name">m_staticText_ampctrl</property>
                                                                 <property name="permission">protected</property>
                                                                 <property name="pos"></property>
                                                                 <property name="size"></property>
@@ -3384,7 +3384,7 @@
                                                                 <property name="maximum_size"></property>
                                                                 <property name="minValue">0</property>
                                                                 <property name="minimum_size"></property>
-                                                                <property name="name">m_slider101</property>
+                                                                <property name="name">m_slider_amp</property>
                                                                 <property name="permission">protected</property>
                                                                 <property name="pos"></property>
                                                                 <property name="size"></property>
@@ -3505,7 +3505,7 @@
                         <event name="OnSetFocus"></event>
                         <event name="OnSize"></event>
                         <event name="OnUpdateUI"></event>
-                        <object class="wxBoxSizer" expanded="0">
+                        <object class="wxBoxSizer" expanded="1">
                             <property name="minimum_size"></property>
                             <property name="name">s_contols</property>
                             <property name="orient">wxVERTICAL</property>
