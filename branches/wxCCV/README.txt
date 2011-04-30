@@ -2,14 +2,17 @@ This is the new CCV that based on wxWidgets.
 
 == Complie under Windows ==
 Require:
-  wxWidget
+  wxWidgets
   MinGW
+
+You can download the binary wxWidgets (wxPack) from http://wxpack.sourceforge.net
 
 To complie, use the following command in MinGW shell:
   $ mingw32-make -f Makefile.mingw32
 
 == Complie under Mac OS X ==
 Require:
+  wxWidgets
   gcc4
   
 you may need select the correct gcc version in shell like this:
@@ -18,8 +21,18 @@ you may need select the correct gcc version in shell like this:
 To complie, use the following command in uxix shell:
   $ make -f Makefile.osx
 
-== Notes & Tips ==
-1. Compiling wxWidgets need a long time. For windows users, you can download the binary wxWidgets from http://wxpack.sourceforge.net
-2. If you want to build documents, you need install doxygen and use the following command:
+== Complie under Linux ==
+Require:
+  wxWidgets
+
+If you are using Ubuntu, you could use apt to install binary wxWidgets:
+  $ sudo aptitude install libwxgtk2.8-dev
+
+To complie, use the following command in uxix shell:
+  $ make -f Makefile.linux
+
+
+== Documents ==
+If you want to build documents, you need install doxygen and use the following command:
    $ make -f Makefile.yourplatform doc
    

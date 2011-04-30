@@ -1,0 +1,22 @@
+SRCDIRS=src
+SRCS=$(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.cpp))
+PROGDIR=build
+PROGRAM=CCV
+RESDIR = res
+DOCDIR = docs
+DOXYGEN = doxygen
+DOXYCONFIG = $(RESDIR)/Doxyfile
+
+all: app
+     
+clean:
+	rm -fr $(PROGDIR) $(DOCDIR) $(PROGRAM).app
+	
+doc:
+	mkdir -p $(DOCDIR)
+	$(DOXYGEN) $(DOXYCONFIG)
+
+app:
+	mkdir -p $(PROGDIR)
+	g++ -m32 -Wall $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
+
