@@ -394,7 +394,7 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	s_amp_ctrl->Add( m_staticText_ampctrl, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
 	m_slider_amp = new wxSlider( m_panel_amplify_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	s_amp_ctrl->Add( m_slider_amp, 0, wxBOTTOM|wxLEFT|wxRIGHT, 5 );
+	s_amp_ctrl->Add( m_slider_amp, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	s_apmlify_ctrl_h->Add( s_amp_ctrl, 1, wxEXPAND, 5 );
 	
