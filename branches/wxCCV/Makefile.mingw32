@@ -24,3 +24,4 @@ app:
 	windres `$(WXCONFIG) --rcflags` $(RCFILE) $(PROGDIR)/res.o
 	g++ -m32 -Wall -Wl,--enable-auto-import -Wl,--subsystem,windows $(SRCS) $(PROGDIR)/res.o `$(WXCONFIG) --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
 	cp $(DLLDIR)/*.dll $(PROGDIR)
+	cp -Rf $(RESDIR)/data $(PROGDIR)

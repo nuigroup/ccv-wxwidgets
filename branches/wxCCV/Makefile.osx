@@ -21,5 +21,7 @@ app:
 	mkdir -p $(PROGDIR)
 	g++ -m32 -Wall $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)	
 	mkdir -p $(PROGRAM).app/Contents/MacOS
+	mkdir -p $(PROGRAM).app/Contents/Resources
 	cp $(OSXPLIST) $(PROGRAM).app/Contents/
 	cp $(PROGDIR)/$(PROGRAM) $(PROGRAM).app/Contents/MacOS/$(PROGRAM)
+	cp -Rf $(RESDIR)/data $(PROGRAM).app/Contents/Resources

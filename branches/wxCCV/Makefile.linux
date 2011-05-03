@@ -19,4 +19,4 @@ doc:
 app:
 	mkdir -p $(PROGDIR)
 	g++ -m32 -Wall $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
-
+	cp -Rf $(RESDIR)/data $(PROGDIR)
