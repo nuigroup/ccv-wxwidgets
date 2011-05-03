@@ -17,6 +17,8 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	mainSizer = new wxBoxSizer( wxHORIZONTAL );
 	
 	panelleft = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	panelleft->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_APPWORKSPACE ) );
+	
 	wxBoxSizer* s_leftMain;
 	s_leftMain = new wxBoxSizer( wxVERTICAL );
 	
@@ -201,6 +203,9 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	s_inout_ctrl->Add( m_panel_outputControl, 1, wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT, 20 );
 	
 	s_leftMain->Add( s_inout_ctrl, 0, wxEXPAND, 5 );
+	
+	wxStaticBoxSizer* s_filter_panel;
+	s_filter_panel = new wxStaticBoxSizer( new wxStaticBox( panelleft, wxID_ANY, wxT("Filters") ), wxVERTICAL );
 	
 	m_notebook_filters = new wxNotebook( panelleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 	m_panel_background = new wxPanel( m_notebook_filters, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
@@ -409,7 +414,9 @@ CCVbaseFrame::CCVbaseFrame( wxWindow* parent, wxWindowID id, const wxString& tit
 	s_amp->Fit( m_panel_amp );
 	m_notebook_filters->AddPage( m_panel_amp, wxT("Amplify"), false );
 	
-	s_leftMain->Add( m_notebook_filters, 0, wxEXPAND | wxALL, 20 );
+	s_filter_panel->Add( m_notebook_filters, 0, wxEXPAND | wxALL, 0 );
+	
+	s_leftMain->Add( s_filter_panel, 0, wxEXPAND|wxALL, 20 );
 	
 	panelleft->SetSizer( s_leftMain );
 	panelleft->Layout();
