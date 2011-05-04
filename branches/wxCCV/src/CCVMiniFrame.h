@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:        src/CCVFrame.h
+// Name:        src/CCVMiniFrame.h
 // Purpose:     Provide the main frame and callback functions
 // Copyright:   (c) 2011 NUI Group
 /////////////////////////////////////////////////////////////////////////////
@@ -9,14 +9,14 @@
 #include "CCVbaseFrame.h"
 
 //
-// CCVbaseFrame is generated automatically by wxFormBuilder, CCVFrame extends 
-// CCVbaseFrame to implement the event handling functions.
+// CCVbaseMiniFrame is generated automatically by wxFormBuilder, CCVMiniFrame
+// extends CCVbaseMiniFrame to implement the event handling functions.
 //
-class CCVFrame : public CCVbaseFrame
+class CCVMiniFrame : public CCVbaseMiniFrame
 {
 public:
     /**
         Default constructor.
     */
-    CCVFrame() : CCVbaseFrame(NULL) {}
+    CCVMiniFrame() : CCVbaseMiniFrame(NULL) {}
 };
