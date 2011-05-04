@@ -1,3 +1,4 @@
+DEBUGFLAG=-g -O0
 SRCDIRS=src
 SRCS=$(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.cpp))
 PROGDIR=build
@@ -19,7 +20,7 @@ doc:
 
 app:
 	mkdir -p $(PROGDIR)
-	g++ -m32 -Wall $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)	
+	g++ $(DEBUGFLAG) -m32 -Wall $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)	
 	mkdir -p $(PROGRAM).app/Contents/MacOS
 	mkdir -p $(PROGRAM).app/Contents/Resources
 	cp $(OSXPLIST) $(PROGRAM).app/Contents/

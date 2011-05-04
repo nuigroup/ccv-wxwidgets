@@ -18,5 +18,5 @@ public:
     /**
         Default constructor.
     */
-    CCVMiniFrame() : CCVbaseMiniFrame(NULL) {}
+    CCVMiniFrame(wxWindow* parent) : CCVbaseMiniFrame(parent) {}
 };

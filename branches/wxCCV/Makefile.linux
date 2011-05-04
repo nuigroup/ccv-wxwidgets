@@ -1,3 +1,4 @@
+DEBUGFLAG=-g -O0
 SRCDIRS=src
 SRCS=$(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.cpp))
 PROGDIR=build
@@ -18,5 +19,5 @@ doc:
 
 app:
 	mkdir -p $(PROGDIR)
-	g++ -m32 -Wall $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
+	g++ $(DEBUGFLAG) -m32 -Wall $(SRCS) `wx-config --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
 	cp -Rf $(RESDIR)/data $(PROGDIR)

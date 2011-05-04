@@ -35,7 +35,7 @@ bool wxCCV::OnInit()
     if (mainframe==NULL)
         return false;
         
-    miniframe = new CCVMiniFrame();
+    miniframe = new CCVMiniFrame(mainframe);
     if (miniframe==NULL)
         return false;
         
