@@ -15,7 +15,6 @@
 class wxCCV : public wxApp
 {
     virtual bool OnInit();
-    virtual int OnExit();
     int FilterEvent(wxEvent& event);
     
 private:
@@ -44,24 +43,6 @@ bool wxCCV::OnInit()
     miniframe->Show(!use_Mainframe);
     
     return true;
-}
-
-/**
-    Delete mainframe and miniframe.
-*/
-int wxCCV::OnExit()
-{
-    if (mainframe==NULL) {
-        delete mainframe;
-        mainframe = NULL;
-    }
-        
-    if (miniframe==NULL) {
-        delete miniframe;
-        miniframe = NULL;
-    }
-    
-    return 0;
 }
 
 /**
