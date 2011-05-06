@@ -4,6 +4,21 @@
 // Author:      Jimbo Zhang
 // Copyright:   (c) 2011 NUI Group
 /////////////////////////////////////////////////////////////////////////////
+
+/*! \mainpage Introduction
+ *
+ * Community Core Vision, CCV for short (aka tbeta), is a open 
+ * source/cross-platform solution for computer vision and machine sensing. 
+ * It takes an video input stream and outputs tracking data (e.g. coordinates
+ * and blob size) and events (e.g. finger down, moved and released) that are
+ * used in building multi-touch applications. CCV can interface with various
+ * web cameras and video devices as well as connect to various TUIO/OSC/XML
+ * enabled applications and supports many multi-touch lighting techniques
+ * including: FTIR, DI, DSI, and LLP with expansion planned for the future
+ * vision applications (custom modules/filters).
+ *
+ * This version of CCV is based on wxWidgets.
+ */
  
 #include <wx/wx.h>
 #include "CCVMainFrame.h"

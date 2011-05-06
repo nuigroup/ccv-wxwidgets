@@ -38,7 +38,7 @@ class CCVbaseMainFrame : public wxFrame
 	private:
 	
 	protected:
-		wxPanel* panelleft;
+		wxPanel* m_panel_mainleft;
 		wxStaticText* m_staticText_inputViewer;
 		wxStaticText* m_staticText_outputViewer;
 		wxPanel* m_panel_inputViewer;
@@ -102,7 +102,7 @@ class CCVbaseMainFrame : public wxFrame
 		wxStaticText* m_staticText_ampctrl;
 		wxSlider* m_slider_amp;
 		
-		wxPanel* panelright;
+		wxPanel* m_panel_mainright;
 		wxCheckBox* m_checkBox_filpV;
 		wxCheckBox* m_checkBox_filpH;
 		wxCheckBox* m_checkBox_gpu;

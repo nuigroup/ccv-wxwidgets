@@ -21,7 +21,7 @@ public:
     CCVMiniFrame(wxWindow* parent) : CCVbaseMiniFrame(parent) {}
         
     /**
-        Show the main Frame when the miniFrame was closed
+        Close the parent frame when the miniFrame was closed.
     */
     virtual void OnClose( wxCloseEvent& event );
 };
