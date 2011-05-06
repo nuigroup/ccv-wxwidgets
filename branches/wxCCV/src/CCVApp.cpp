@@ -10,9 +10,9 @@
 #include "CCVMiniFrame.h"
 
 //
-// wxCCV is the class that provides the main application.
+// CCVApp is the class that provides the main application.
 //
-class wxCCV : public wxApp
+class CCVApp : public wxApp
 {
     virtual bool OnInit();
     int FilterEvent(wxEvent& event);
@@ -23,12 +23,12 @@ private:
     CCVMiniFrame *miniframe;
 };
 
-IMPLEMENT_APP(wxCCV)
+IMPLEMENT_APP(CCVApp)
 
 /**
-    Set mainframe and miniframe.
+    The entrance of the application. Set mainframe and miniframe.
 */
-bool wxCCV::OnInit()
+bool CCVApp::OnInit()
 {
     mainframe = new CCVMainFrame();
     if (mainframe==NULL)
@@ -48,7 +48,7 @@ bool wxCCV::OnInit()
 /**
     Switch between mainframe and miniframe when the spacebar was pressed.
 */
-int wxCCV::FilterEvent(wxEvent& event)
+int CCVApp::FilterEvent(wxEvent& event)
 {
     if ( event.GetEventType()==wxEVT_KEY_DOWN && ((wxKeyEvent&)event).GetKeyCode()==WXK_SPACE)
     {

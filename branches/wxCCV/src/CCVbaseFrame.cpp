@@ -598,8 +598,14 @@ CCVbaseMiniFrame::CCVbaseMiniFrame( wxWindow* parent, wxWindowID id, const wxStr
 	this->Layout();
 	
 	this->Centre( wxBOTH );
+	
+	// Connect Events
+	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( CCVbaseMiniFrame::OnClose ) );
 }
 
 CCVbaseMiniFrame::~CCVbaseMiniFrame()
 {
+	// Disconnect Events
+	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( CCVbaseMiniFrame::OnClose ) );
+	
 }

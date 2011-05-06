@@ -147,6 +147,10 @@ class CCVbaseMiniFrame : public wxFrame
 		wxStaticText* m_staticText_mini_row_4_left;
 		
 		wxStaticText* m_staticText_mini_row_4_right;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
+		
 	
 	public:
 		

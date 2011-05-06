@@ -19,4 +19,9 @@ public:
         Default constructor.
     */
     CCVMiniFrame(wxWindow* parent) : CCVbaseMiniFrame(parent) {}
+        
+    /**
+        Show the main Frame when the miniFrame was closed
+    */
+    virtual void OnClose( wxCloseEvent& event );
 };
