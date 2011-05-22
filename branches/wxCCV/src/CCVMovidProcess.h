@@ -16,7 +16,7 @@ class CCVMovidProcess : public wxThread
 public:
     CCVMovidProcess();
     virtual void *Entry();
-	
+    
 private:
     moFactory *factory;
     moPipeline *pipeline;

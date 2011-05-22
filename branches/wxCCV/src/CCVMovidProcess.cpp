@@ -27,13 +27,13 @@ void *CCVMovidProcess::Entry()
   
     pipeline->start();
     while (true) {
-	cvWaitKey(50);
+        cvWaitKey(50);
 
-	if ( pipeline->isStarted() )
-	    pipeline->poll();
+    if ( pipeline->isStarted() )
+        pipeline->poll();
 
-	while ( pipeline->haveError() )
-	    wxLogMessage(wxT("Pipeline error: %s"), pipeline->getLastError().c_str());
+    while ( pipeline->haveError() )
+        wxLogMessage(wxT("Pipeline error: %s"), pipeline->getLastError().c_str());
     }
     pipeline->stop();
 

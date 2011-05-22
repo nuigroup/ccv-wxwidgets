@@ -11,6 +11,6 @@ void CCVMiniFrame::OnClose( wxCloseEvent& event )
 {
     wxWindow *parent = GetParent();
     if (parent!=NULL) {
-	parent->Close();
+        parent->Close();
     }
 }
