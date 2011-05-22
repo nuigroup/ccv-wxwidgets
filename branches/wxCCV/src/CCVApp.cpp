@@ -21,6 +21,8 @@
  */
  
 #include <wx/wx.h>
+#include <wx/thread.h>
+#include "CCVMovidProcess.h"
 #include "CCVMainFrame.h"
 #include "CCVMiniFrame.h"
 
@@ -56,6 +58,10 @@ bool CCVApp::OnInit()
     use_Mainframe = true;
     mainframe->Show(use_Mainframe);
     miniframe->Show(!use_Mainframe);
+    
+    CCVMovidProcess *movidthread = new CCVMovidProcess;
+    movidthread->Create();
+    movidthread->Run();
     
     return true;
 }
