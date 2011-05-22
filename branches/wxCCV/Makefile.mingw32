@@ -11,6 +11,10 @@ DOXYGEN = doxygen
 DOXYCONFIG = $(RESDIR)/Doxyfile
 RCFILE =  $(RESDIR)/win/resource.rc
 
+MOVIDFLAG = -Ilib/movid/include -Ilib/movid/contrib -Ilib/movid/contrib/cJSON -Ilib/movid/contrib/libevent-1.4.13-stable -Ilib/movid/contrib/WOscLib-00.09 -Ilib/movid/contrib/ptypes-2.1.1/include -Ilib/movid/contrib/XgetOpt -Ilib/movid/contrib/bitmap_munkres lib/movid/lib_osx/libmovid.a lib/movid/contrib/cJSON/cJSON.o -Llib/movid/contrib/lib -L/usr/local/lib -levent -lptypes -lwosclib -lfidtrack
+WXFLAG = `$(WXCONFIG) --libs --cxxflags`
+OPENCVFLAG = `pkg-config --cflags --libs opencv`
+
 all: app
      
 clean:
@@ -23,6 +27,5 @@ doc:
 app:
 	mkdir -p $(PROGDIR)
 	windres `$(WXCONFIG) --rcflags` $(RCFILE) $(PROGDIR)/res.o
-	g++ $(DEBUGFLAG) -m32 -Wall -Wl,--enable-auto-import -Wl,--subsystem,windows $(SRCS) $(PROGDIR)/res.o `$(WXCONFIG) --libs --cxxflags` -o $(PROGDIR)/$(PROGRAM)
+	g++ -m32 -Wall -Wl,--enable-auto-import -Wl,--subsystem,windows $(SRCS) $(PROGDIR)/res.o $(WXFLAG) $(OPENCVFLAG) $(MOVIDFLAG) -o $(PROGDIR)/$(PROGRAM)
 	cp $(DLLDIR)/*.dll $(PROGDIR)
-	cp -Rf $(RESDIR)/data $(PROGDIR)

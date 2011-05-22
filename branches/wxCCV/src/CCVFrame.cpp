@@ -1,8 +1,8 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:        src/CCVMainFrame.cpp
+// Name:        src/CCVFrame.cpp
 // Purpose:     Provide the main frame and callback functions
 // Author:      Jimbo Zhang
 // Copyright:   (c) 2011 NUI Group
 /////////////////////////////////////////////////////////////////////////////
 
-#include "CCVMainFrame.h"
+#include "CCVFrame.h"
