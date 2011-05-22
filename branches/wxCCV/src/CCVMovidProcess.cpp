@@ -24,7 +24,7 @@ CCVMovidProcess::CCVMovidProcess()
 
 void *CCVMovidProcess::Entry()
 {
-    movid_test2();
+    movid_test();
   
     pipeline->start();
     while (true) {
@@ -35,38 +35,32 @@ void *CCVMovidProcess::Entry()
 
         while ( pipeline->haveError() )
             wxLogMessage(wxT("Pipeline error: %s"), pipeline->getLastError().c_str());
+            
+        if (pipeline->lastModule()->getName() == "Stream") {
+            CvSize roiSize;
+		    int step = 0;
+		    unsigned char *outputRawImage;
+		    IplImage *outIpl = ((otStreamModule *)(pipeline->lastModule()))->output_buffer;
+            cvGetRawData(outIpl, &outputRawImage, &step, &roiSize );
+            
+            // then draw outputRawImage on wxWidgets
+            // (drawing codes here)
+        }
     }
     pipeline->stop();
 
     return NULL;
 }
 
-int CCVMovidProcess::movid_test1()
+int CCVMovidProcess::movid_test()
 {
     moModule *camera = factory->create("Camera");
     pipeline->addElement(camera);
+    
+    moModule *stream = new otStreamModule();
+    pipeline->addElement(stream);
 
-    moModule *display = factory->create("ImageDisplay");
-    pipeline->addElement(display);
-
-    display->setInput(camera->getOutput(0), 0);
-  
-    return 0;
-}
-
-int CCVMovidProcess::movid_test2()
-{
-    moModule *camera = factory->create("Camera");
-    pipeline->addElement(camera);
-
-/*    moModule *invert = factory->create("Invert");
-    pipeline->addElement(invert);
-
-    moModule *display = factory->create("ImageDisplay");
-    pipeline->addElement(display);
-
-    display->setInput(invert->getOutput(0), 0);
-    invert->setInput(camera->getOutput(0), 0);*/
+    stream->setInput(camera->getOutput(0), 0);
   
     return 0;
 }

@@ -21,8 +21,7 @@ private:
     moFactory *factory;
     moPipeline *pipeline;
   
-    int movid_test1();
-    int movid_test2();
+    int movid_test();
 };
 
 #endif
