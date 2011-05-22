@@ -19,7 +19,7 @@ class CCVMainFrame : public CCVbaseMainFrame
 {
 public:
     /**
-        Default constructor.
+       Default constructor.
     */
     CCVMainFrame() : CCVbaseMainFrame(NULL) {}
 };

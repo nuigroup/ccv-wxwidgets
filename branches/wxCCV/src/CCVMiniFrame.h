@@ -4,7 +4,6 @@
 // Copyright:   (c) 2011 NUI Group
 /////////////////////////////////////////////////////////////////////////////
 
- 
 #include <wx/wx.h>
 #include "CCVbaseFrame.h"
 
@@ -16,12 +15,12 @@ class CCVMiniFrame : public CCVbaseMiniFrame
 {
 public:
     /**
-        Default constructor.
+       Default constructor.
     */
     CCVMiniFrame(wxWindow* parent) : CCVbaseMiniFrame(parent) {}
         
     /**
-        Close the parent frame when the miniFrame was closed.
+       Close the parent frame when the miniFrame was closed.
     */
     virtual void OnClose( wxCloseEvent& event );
 };

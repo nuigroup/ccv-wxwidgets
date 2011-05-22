@@ -17,7 +17,7 @@
  * including: FTIR, DI, DSI, and LLP with expansion planned for the future
  * vision applications (custom modules/filters).
  *
- * This version of CCV is based on wxWidgets.
+ * This ver?sion of CCV is based on wxWidgets.
  */
  
 #include <wx/wx.h>
@@ -43,7 +43,7 @@ private:
 IMPLEMENT_APP(CCVApp)
 
 /**
-    The entrance of the application. Set mainframe and miniframe.
+   The entrance of the application. Set mainframe and miniframe.
 */
 bool CCVApp::OnInit()
 {
@@ -67,12 +67,11 @@ bool CCVApp::OnInit()
 }
 
 /**
-    Switch between mainframe and miniframe when the spacebar was pressed.
+   Switch between mainframe and miniframe when the spacebar was pressed.
 */
 int CCVApp::FilterEvent(wxEvent& event)
 {
-    if ( event.GetEventType()==wxEVT_KEY_DOWN && ((wxKeyEvent&)event).GetKeyCode()==WXK_SPACE)
-    {
+    if ( event.GetEventType()==wxEVT_KEY_DOWN && ((wxKeyEvent&)event).GetKeyCode()==WXK_SPACE) {
         use_Mainframe = !use_Mainframe;
         mainframe->Show(use_Mainframe);
         miniframe->Show(!use_Mainframe);

@@ -14,15 +14,15 @@
 class CCVMovidProcess : public wxThread
 {
 public:
-  CCVMovidProcess();
-  virtual void *Entry();
+    CCVMovidProcess();
+    virtual void *Entry();
 	
 private:
-  moFactory *factory;
-  moPipeline *pipeline;
+    moFactory *factory;
+    moPipeline *pipeline;
   
-  int movid_test1();
-  int movid_test2();
+    int movid_test1();
+    int movid_test2();
 };
 
 #endif

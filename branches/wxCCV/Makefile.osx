@@ -24,7 +24,7 @@ doc:
 
 app:
 	mkdir -p $(PROGDIR)
-	g++ -m32 -Wall $(SRCS) $(WXFLAG) $(OPENCVFLAG) $(MOVIDFLAG) -o $(PROGDIR)/$(PROGRAM)	
+	g++ -g -m32 -Wall $(SRCS) $(WXFLAG) $(OPENCVFLAG) $(MOVIDFLAG) -o $(PROGDIR)/$(PROGRAM)	
 	mkdir -p $(PROGRAM).app/Contents/MacOS
 	mkdir -p $(PROGRAM).app/Contents/Resources
 	cp $(OSXPLIST) $(PROGRAM).app/Contents/
