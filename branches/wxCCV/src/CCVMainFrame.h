@@ -31,6 +31,9 @@ public:
        Set movid processor
     */
     void SetMovid(CCVMovidProcess *movidProc);
+
+	void drawCameraImage();
+	void onMovidImage(wxCommandEvent&);
     
 private:
     CCVMovidProcess *movidProcess;

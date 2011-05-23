@@ -13,8 +13,12 @@
 
 int g_config_delay = 50;
 
+const wxEventType newEVT_MOVIDPROCESS_NEWIMAGE = wxNewEventType();
+
 CCVMovidProcess::CCVMovidProcess()
 {
+	eventHandler = NULL;
+
     // initialize/discover all modules
     moFactory::init();
     factory = moFactory::getInstance();
@@ -32,18 +36,23 @@ void *CCVMovidProcess::Entry()
         if(TestDestroy()==1) 
             break;
     
-        cvWaitKey(50);
+		// XXX Not needed if you're not using image display of opencv
+        //cvWaitKey(50);
 
         if ( pipeline->isStarted() )
             pipeline->poll();
 
         while ( pipeline->haveError() )
             wxLogMessage(wxT("Pipeline error: %s"), pipeline->getLastError().c_str());
-            
+
         if (pipeline->lastModule()->getName() == "Stream") {
-            IplImage *outIpl = ((otStreamModule *)(pipeline->lastModule()))->output_buffer;
-            if (outIpl != NULL) {
-                cvGetRawData(outIpl, &outRaw, &widthstep, imgRoi);
+			otStreamModule *stream = static_cast<otStreamModule *>(pipeline->lastModule());
+            if (stream->copy()) {
+                cvGetRawData(stream->output_buffer, &outRaw, &widthstep, imgRoi);
+				if (eventHandler != NULL) {
+					wxCommandEvent event( newEVT_MOVIDPROCESS_NEWIMAGE, GetId() );
+					wxPostEvent(eventHandler, event);
+				}
             }
         }
     }
