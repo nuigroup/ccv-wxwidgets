@@ -5,6 +5,7 @@
 // Copyright:   (c) 2011 NUI Group
 /////////////////////////////////////////////////////////////////////////////
 
+#include <wx/wx.h>
 #include <wx/string.h>
 #include <wx/log.h>
 #include "CCVMovidProcess.h"
@@ -18,8 +19,8 @@ CCVMovidProcess::CCVMovidProcess()
     moFactory::init();
     factory = moFactory::getInstance();
 
-    // create our pipeline
     pipeline = new moPipeline();
+    imgRoi = new CvSize;
 }
 
 void *CCVMovidProcess::Entry()
@@ -28,6 +29,9 @@ void *CCVMovidProcess::Entry()
   
     pipeline->start();
     while (true) {
+        if(TestDestroy()==1) 
+            break;
+    
         cvWaitKey(50);
 
         if ( pipeline->isStarted() )
@@ -37,14 +41,10 @@ void *CCVMovidProcess::Entry()
             wxLogMessage(wxT("Pipeline error: %s"), pipeline->getLastError().c_str());
             
         if (pipeline->lastModule()->getName() == "Stream") {
-            CvSize roiSize;
-		    int step = 0;
-		    unsigned char *outputRawImage;
-		    IplImage *outIpl = ((otStreamModule *)(pipeline->lastModule()))->output_buffer;
-            cvGetRawData(outIpl, &outputRawImage, &step, &roiSize );
-            
-            // then draw outputRawImage on wxWidgets
-            // (drawing codes here)
+            IplImage *outIpl = ((otStreamModule *)(pipeline->lastModule()))->output_buffer;
+            if (outIpl != NULL) {
+                cvGetRawData(outIpl, &outRaw, &widthstep, imgRoi);
+            }
         }
     }
     pipeline->stop();

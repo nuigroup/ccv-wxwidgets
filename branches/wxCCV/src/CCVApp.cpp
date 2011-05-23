@@ -38,6 +38,7 @@ private:
     bool use_Mainframe;
     CCVMainFrame *mainframe;
     CCVMiniFrame *miniframe;
+    CCVMovidProcess *movidthread;
 };
 
 IMPLEMENT_APP(CCVApp)
@@ -47,21 +48,26 @@ IMPLEMENT_APP(CCVApp)
 */
 bool CCVApp::OnInit()
 {
-    mainframe = new CCVMainFrame();
+    movidthread = new CCVMovidProcess;
+    if (movidthread->Create() != wxTHREAD_NO_ERROR ) {
+	    wxExit();
+	}
+	if (movidthread->Run() != wxTHREAD_NO_ERROR) {
+	    wxExit();
+	}
+	
+	use_Mainframe = true;
+	
+	mainframe = new CCVMainFrame();
     if (mainframe==NULL)
         return false;
+    mainframe->SetMovid(movidthread);
+    mainframe->Show(use_Mainframe);
         
     miniframe = new CCVMiniFrame(mainframe);
     if (miniframe==NULL)
         return false;
-        
-    use_Mainframe = true;
-    mainframe->Show(use_Mainframe);
     miniframe->Show(!use_Mainframe);
-    
-    CCVMovidProcess *movidthread = new CCVMovidProcess;
-    movidthread->Create();
-    movidthread->Run();
     
     return true;
 }

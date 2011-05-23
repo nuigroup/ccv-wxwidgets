@@ -10,6 +10,7 @@
 
 #include <wx/wx.h>
 #include "CCVbaseFrame.h"
+#include "CCVMovidProcess.h"
 
 //
 // CCVbaseMainFrame is generated automatically by wxFormBuilder, CCVMainFrame
@@ -21,7 +22,19 @@ public:
     /**
        Default constructor.
     */
-    CCVMainFrame() : CCVbaseMainFrame(NULL) {}
+    CCVMainFrame() : CCVbaseMainFrame(NULL)
+    {
+        movidProcess = NULL;
+    }
+    
+    /**
+       Set movid processor
+    */
+    void SetMovid(CCVMovidProcess *movidProc);
+    
+private:
+    CCVMovidProcess *movidProcess;
+    virtual void OnInputViewerPaint(wxPaintEvent& event);
 };
 
 #endif

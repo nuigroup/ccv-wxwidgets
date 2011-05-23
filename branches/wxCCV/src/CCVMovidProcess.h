@@ -17,9 +17,17 @@ public:
     CCVMovidProcess();
     virtual void *Entry();
     
+    CvSize *getRoi() { return imgRoi; }
+    int getWidthstep() { return widthstep; }
+    unsigned char *getOutRaw() { return outRaw; }
+    
 private:
     moFactory *factory;
     moPipeline *pipeline;
+    
+    CvSize *imgRoi;
+    int widthstep;
+    unsigned char *outRaw;
   
     int movid_test();
 };
