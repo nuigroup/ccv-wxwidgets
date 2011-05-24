@@ -39,9 +39,10 @@ public:
             return;
         if ( this->output_buffer == NULL ||
             this->output_buffer->nChannels != src->nChannels ) {
-           if ( this->output_buffer != NULL )
-           cvReleaseImage(&this->output_buffer);
-           CvSize size = cvGetSize(src);
+            if ( this->output_buffer != NULL ) {
+                cvReleaseImage(&this->output_buffer);
+            }
+            CvSize size = cvGetSize(src);
             size.width /= this->property("scale").asInteger();
             size.height /= this->property("scale").asInteger();
             this->output_buffer = cvCreateImage(size, src->depth, src->nChannels);
@@ -68,7 +69,7 @@ public:
             cvCopy(src, this->output_buffer);
         else
             cvResize(src, this->output_buffer);
-		cvCvtColor(this->output_buffer, this->output_buffer, CV_BGR2RGB);
+        cvCvtColor(this->output_buffer, this->output_buffer, CV_BGR2RGB);
         this->input->unlock();
         return true;
     }

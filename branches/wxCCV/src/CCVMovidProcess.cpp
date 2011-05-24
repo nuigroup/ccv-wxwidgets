@@ -17,7 +17,7 @@ const wxEventType newEVT_MOVIDPROCESS_NEWIMAGE = wxNewEventType();
 
 CCVMovidProcess::CCVMovidProcess()
 {
-	eventHandler = NULL;
+    eventHandler = NULL;
 
     // initialize/discover all modules
     moFactory::init();
@@ -30,14 +30,11 @@ CCVMovidProcess::CCVMovidProcess()
 void *CCVMovidProcess::Entry()
 {
     movid_test();
-  
+
     pipeline->start();
     while (true) {
-        if(TestDestroy()==1) 
+        if(TestDestroy()==1)
             break;
-    
-		// XXX Not needed if you're not using image display of opencv
-        //cvWaitKey(50);
 
         if ( pipeline->isStarted() )
             pipeline->poll();
@@ -46,13 +43,13 @@ void *CCVMovidProcess::Entry()
             wxLogMessage(wxT("Pipeline error: %s"), pipeline->getLastError().c_str());
 
         if (pipeline->lastModule()->getName() == "Stream") {
-			otStreamModule *stream = static_cast<otStreamModule *>(pipeline->lastModule());
+            otStreamModule *stream = static_cast<otStreamModule *>(pipeline->lastModule());
             if (stream->copy()) {
                 cvGetRawData(stream->output_buffer, &outRaw, &widthstep, imgRoi);
-				if (eventHandler != NULL) {
-					wxCommandEvent event( newEVT_MOVIDPROCESS_NEWIMAGE, GetId() );
-					wxPostEvent(eventHandler, event);
-				}
+                if (eventHandler != NULL) {
+                    wxCommandEvent event( newEVT_MOVIDPROCESS_NEWIMAGE, GetId() );
+                    wxPostEvent(eventHandler, event);
+                }
             }
         }
     }
@@ -65,11 +62,11 @@ int CCVMovidProcess::movid_test()
 {
     moModule *camera = factory->create("Camera");
     pipeline->addElement(camera);
-    
+
     moModule *stream = new otStreamModule();
     pipeline->addElement(stream);
 
     stream->setInput(camera->getOutput(0), 0);
-  
+
     return 0;
 }

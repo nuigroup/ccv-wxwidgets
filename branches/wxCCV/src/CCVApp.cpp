@@ -7,8 +7,8 @@
 
 /*! \mainpage Introduction
  *
- * Community Core Vision, CCV for short (aka tbeta), is a open 
- * source/cross-platform solution for computer vision and machine sensing. 
+ * Community Core Vision, CCV for short (aka tbeta), is a open
+ * source/cross-platform solution for computer vision and machine sensing.
  * It takes an video input stream and outputs tracking data (e.g. coordinates
  * and blob size) and events (e.g. finger down, moved and released) that are
  * used in building multi-touch applications. CCV can interface with various
@@ -19,7 +19,7 @@
  *
  * This ver?sion of CCV is based on wxWidgets.
  */
- 
+
 #include <wx/wx.h>
 #include <wx/thread.h>
 #include "CCVMovidProcess.h"
@@ -33,7 +33,7 @@ class CCVApp : public wxApp
 {
     virtual bool OnInit();
     int FilterEvent(wxEvent& event);
-    
+
 private:
     bool use_Mainframe;
     CCVMainFrame *mainframe;
@@ -50,25 +50,25 @@ bool CCVApp::OnInit()
 {
     movidthread = new CCVMovidProcess;
     if (movidthread->Create() != wxTHREAD_NO_ERROR ) {
-	    wxExit();
-	}
-	if (movidthread->Run() != wxTHREAD_NO_ERROR) {
-	    wxExit();
-	}
-	
-	use_Mainframe = true;
-	
-	mainframe = new CCVMainFrame();
+        wxExit();
+    }
+    if (movidthread->Run() != wxTHREAD_NO_ERROR) {
+        wxExit();
+    }
+
+    use_Mainframe = true;
+
+    mainframe = new CCVMainFrame();
     if (mainframe==NULL)
         return false;
     mainframe->SetMovid(movidthread);
     mainframe->Show(use_Mainframe);
-        
+
     miniframe = new CCVMiniFrame(mainframe);
     if (miniframe==NULL)
         return false;
     miniframe->Show(!use_Mainframe);
-    
+
     return true;
 }
 
@@ -83,6 +83,6 @@ int CCVApp::FilterEvent(wxEvent& event)
         miniframe->Show(!use_Mainframe);
         return 0;
     }
- 
+
     return -1;
 }

@@ -18,7 +18,7 @@ public:
        Default constructor.
     */
     CCVMiniFrame(wxWindow* parent) : CCVbaseMiniFrame(parent) {}
-        
+
     /**
        Close the parent frame when the miniFrame was closed.
     */

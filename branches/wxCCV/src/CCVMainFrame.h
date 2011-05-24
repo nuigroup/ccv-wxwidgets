@@ -26,15 +26,15 @@ public:
     {
         movidProcess = NULL;
     }
-    
+
     /**
        Set movid processor
     */
     void SetMovid(CCVMovidProcess *movidProc);
 
-	void drawCameraImage();
-	void onMovidImage(wxCommandEvent&);
-    
+    void drawCameraImage();
+    void onMovidImage(wxCommandEvent&);
+
 private:
     CCVMovidProcess *movidProcess;
     virtual void OnInputViewerPaint(wxPaintEvent& event);
