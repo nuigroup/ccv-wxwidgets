@@ -10,10 +10,11 @@ DOCDIR = docs
 DOXYGEN = doxygen
 DOXYCONFIG = $(RESDIR)/Doxyfile
 RCFILE =  $(RESDIR)/win/resource.rc
+OPENCVDIR = C:\OpenCV2.2
 
-MOVIDFLAG = -Ilib/movid/include -Ilib/movid/contrib -Ilib/movid/contrib/WOscLib-00.09 -Ilib/movid/contrib/ptypes-2.1.1/include -Ilib/movid/contrib/bitmap_munkres lib/movid/lib_osx/libmovid.a -Llib/movid/contrib/lib -L/usr/local/lib -lptypes -lwosclib -lfidtrack
+MOVIDFLAG = -Ilib/movid/include -Ilib/movid/contrib -Ilib/movid/contrib/WOscLib-00.09 -Ilib/movid/contrib/ptypes-2.1.1/include -Ilib/movid/contrib/bitmap_munkres lib/movid/lib_mingw/libmovid.a -Llib/movid/contrib/lib -L/usr/local/lib -lptypes -lwosclib -lfidtrack
 WXFLAG = `$(WXCONFIG) --libs --cxxflags`
-OPENCVFLAG = `pkg-config --cflags --libs opencv`
+OPENCVFLAG = -I$(OPENCVDIR)/include -I$(OPENCVDIR)/include/opencv -I$(OPENCVDIR)/build/include -I$(OPENCVDIR)/build/opencv -L$(OPENCVDIR)/lib -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_ml -lopencv_video -lopencv_features2d -lopencv_calib3d -lopencv_objdetect -lopencv_contrib -lopencv_legacy -lopencv_flann
 
 all: app
      
