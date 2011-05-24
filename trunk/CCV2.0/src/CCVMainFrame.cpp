@@ -14,21 +14,21 @@ void CCVMainFrame::SetMovid(CCVMovidProcess *movidProc)
 {
     movidProcess = movidProc;
     movidProcess->setEventHandler(this);
-    Disconnect(newEVT_MOVIDPROCESS_NEWIMAGE, wxCommandEventHandler(CCVMainFrame::onMovidImage));
-    Connect(newEVT_MOVIDPROCESS_NEWIMAGE, wxCommandEventHandler(CCVMainFrame::onMovidImage));
+    Disconnect(newEVT_MOVIDPROCESS_NEWIMAGE, wxCommandEventHandler(CCVMainFrame::OnMovidImage));
+    Connect(newEVT_MOVIDPROCESS_NEWIMAGE, wxCommandEventHandler(CCVMainFrame::OnMovidImage));
 }
 
-void CCVMainFrame::onMovidImage(wxCommandEvent &command)
+void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
 {
-    drawCameraImage();
+    DrawCameraImage();
 }
 
 void CCVMainFrame::OnInputViewerPaint(wxPaintEvent& event)
 {
-    drawCameraImage();
+    DrawCameraImage();
 }
 
-void CCVMainFrame::drawCameraImage() {
+void CCVMainFrame::DrawCameraImage() {
     wxPanel* drawRec = m_panel_inputViewer;
     wxPaintDC dc(drawRec);
 
