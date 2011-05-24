@@ -1,0 +1,27 @@
+DEBUGFLAG=-g -O0
+SRCDIRS=src
+SRCS=$(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.cpp))
+PROGDIR=build
+PROGRAM=CCV
+RESDIR = res
+DOCDIR = docs
+DOXYGEN = doxygen
+DOXYCONFIG = $(RESDIR)/Doxyfile
+
+MOVIDFLAG = -Ilib/movid/include -Ilib/movid/contrib -Ilib/movid/contrib/WOscLib-00.09 -Ilib/movid/contrib/ptypes-2.1.1/include -Ilib/movid/contrib/bitmap_munkres lib/movid/lib_linux/libmovid.a -Llib/movid/contrib/lib -L/usr/local/lib -lptypes -lwosclib -lfidtrack
+WXFLAG = `wx-config --libs --cxxflags`
+OPENCVFLAG = `pkg-config --cflags --libs opencv`
+
+all: app
+     
+clean:
+	rm -fr $(PROGDIR) $(DOCDIR) $(PROGRAM).app
+	
+doc:
+	mkdir -p $(DOCDIR)
+	$(DOXYGEN) $(DOXYCONFIG)
+
+app:
+	mkdir -p $(PROGDIR)
+	g++ -m32 -Wall $(SRCS) $(WXFLAG) $(OPENCVFLAG) $(MOVIDFLAG) -o $(PROGDIR)/$(PROGRAM)
+

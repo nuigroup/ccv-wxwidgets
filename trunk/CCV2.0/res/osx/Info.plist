@@ -1,0 +1,9 @@
+{
+	CFBundleDisplayName = "Community Core Visision";
+	CFBundleIdentifier = CCV;
+	CFBundleVersion = "2.0";
+	CFBundlePackageType = APPL;
+	CFBundleSignature = nccv;
+	CFBundleExecutable = CCV;
+	CFBundleName = CCV;
+}

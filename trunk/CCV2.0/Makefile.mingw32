@@ -1,0 +1,32 @@
+DEBUGFLAG=-g -O0
+SRCDIRS=src
+SRCS=$(foreach dir,$(SRCDIRS),$(wildcard $(dir)/*.cpp))
+PROGDIR=build
+PROGRAM=CCV.exe
+RESDIR = res
+WXCONFIG = $(RESDIR)/win/wx-config.exe
+DLLDIR = $(RESDIR)/win/dll
+DOCDIR = docs
+DOXYGEN = doxygen
+DOXYCONFIG = $(RESDIR)/Doxyfile
+RCFILE =  $(RESDIR)/win/resource.rc
+OPENCVDIR = C:\OpenCV2.2
+
+MOVIDFLAG = -Ilib/movid/include -Ilib/movid/contrib -Ilib/movid/contrib/WOscLib-00.09 -Ilib/movid/contrib/ptypes-2.1.1/include -Ilib/movid/contrib/bitmap_munkres lib/movid/lib_mingw/libmovid.a -Llib/movid/contrib/lib -L/usr/local/lib -lptypes -lwosclib -lfidtrack
+WXFLAG = `$(WXCONFIG) --libs --cxxflags`
+OPENCVFLAG = -I$(OPENCVDIR)/include -I$(OPENCVDIR)/include/opencv -I$(OPENCVDIR)/build/include -I$(OPENCVDIR)/build/opencv -L$(OPENCVDIR)/lib -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_ml -lopencv_video -lopencv_features2d -lopencv_calib3d -lopencv_objdetect -lopencv_contrib -lopencv_legacy -lopencv_flann
+
+all: app
+     
+clean:
+	rm -fr $(PROGDIR) $(DOCDIR)
+	
+doc:
+	mkdir -p $(DOCDIR)
+	$(DOXYGEN) $(DOXYCONFIG)
+
+app:
+	mkdir -p $(PROGDIR)
+	windres `$(WXCONFIG) --rcflags` $(RCFILE) $(PROGDIR)/res.o
+	g++ -m32 -Wall -Wl,--enable-auto-import -Wl,--subsystem,windows $(SRCS) $(PROGDIR)/res.o $(WXFLAG) $(OPENCVFLAG) $(MOVIDFLAG) -o $(PROGDIR)/$(PROGRAM)
+	cp $(DLLDIR)/*.dll $(PROGDIR)
