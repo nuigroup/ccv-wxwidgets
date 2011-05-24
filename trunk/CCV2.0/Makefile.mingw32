@@ -29,4 +29,4 @@ app:
 	mkdir -p $(PROGDIR)
 	windres `$(WXCONFIG) --rcflags` $(RCFILE) $(PROGDIR)/res.o
 	g++ -m32 -Wall -Wl,--enable-auto-import -Wl,--subsystem,windows $(SRCS) $(PROGDIR)/res.o $(WXFLAG) $(OPENCVFLAG) $(MOVIDFLAG) -o $(PROGDIR)/$(PROGRAM)
-	cp $(DLLDIR)/*.dll $(PROGDIR)
+	cp $(DLLDIR)/libgcc_s_dw2-1.dll $(DLLDIR)/libstdc++-6.dll $(DLLDIR)/mingwm10.dll $(DLLDIR)/wxmsw28_gcc.dll $(PROGDIR)
