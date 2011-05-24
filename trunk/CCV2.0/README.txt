@@ -3,6 +3,7 @@ This is the new CCV that based on wxWidgets.
 == Complie under Windows ==
 Require:
   wxWidgets
+  OpenCV2.2 or higher
   MinGW
 
 You can download the binary wxWidgets (wxPack) from http://wxpack.sourceforge.net
@@ -13,6 +14,7 @@ To complie, use the following command in MinGW shell:
 == Complie under Mac OS X ==
 Require:
   wxWidgets
+  OpenCV2.2 or higher
   gcc4
   
 you may need to select the correct gcc version in shell like this:
@@ -24,6 +26,7 @@ To complie, use the following command in uxix shell:
 == Complie under Linux ==
 Require:
   wxWidgets
+  OpenCV2.2 or higher
   gcc4
 
 If you are using Ubuntu, you may want to use apt to install binary wxWidgets:
