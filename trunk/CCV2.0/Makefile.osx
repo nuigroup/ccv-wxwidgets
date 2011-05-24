@@ -9,7 +9,7 @@ DOCDIR = docs
 DOXYGEN = /Developer/Applications/Doxygen.app/Contents/Resources/doxygen
 DOXYCONFIG = $(RESDIR)/Doxyfile
 
-MOVIDFLAG = -Ilib/movid/include -Ilib/movid/contrib -Ilib/movid/contrib/WOscLib-00.09 -Ilib/movid/contrib/ptypes-2.1.1/include -Ilib/movid/contrib/bitmap_munkres lib/movid/lib_osx/libmovid.a -Llib/movid/contrib/lib -L/usr/local/lib -lptypes -lwosclib -lfidtrack
+MOVIDFLAG = -Ilib/movid/include -Ilib/movid/contrib -Ilib/movid/contrib/WOscLib-00.09 -Ilib/movid/contrib/ptypes-2.1.1/include -Ilib/movid/contrib/bitmap_munkres lib/movid/lib_osx/libmovid.a -Llib/movid/lib_osx -L/usr/local/lib -lptypes -lwosclib -lfidtrack
 WXFLAG = `wx-config --libs --cxxflags`
 OPENCVFLAG = `pkg-config --cflags --libs opencv`
 
