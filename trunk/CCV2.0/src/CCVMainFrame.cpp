@@ -9,6 +9,10 @@
 #include <wx/image.h>
 #include "CCVMainFrame.h"
 
+CCVMainFrame::CCVMainFrame() : CCVbaseMainFrame(NULL)
+{
+    movidProcess = NULL;
+}
 
 void CCVMainFrame::SetMovid(CCVMovidProcess *movidProc)
 {
@@ -20,11 +24,12 @@ void CCVMainFrame::SetMovid(CCVMovidProcess *movidProc)
 
 void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
 {
-    DrawCameraImage();
+    DrawCameraImage(m_panel_inputViewer);
+    DrawCameraImage(m_panel_outputViewer);
+    DrawCameraImage(m_panel_background_viewer);
 }
 
-void CCVMainFrame::DrawCameraImage() {
-    wxPanel* drawRec = m_panel_inputViewer;
+void CCVMainFrame::DrawCameraImage(wxWindow *drawRec) {
     wxPaintDC dc(drawRec);
 
     if(! dc.Ok())
@@ -37,11 +42,8 @@ void CCVMainFrame::DrawCameraImage() {
         return;
     CvSize *roi = movidProcess->getRoi();
 
-    // FIXME when clipping box is w,h == 0,0, so nothing is displayer...
     if (w==0 || h==0 || roi->width==0 || roi->height==0) {
         return;
-        dc.SetClippingRegion(0, 0, roi->width, roi->height);
-        dc.GetClippingBox( &x, &y, &w, &h );
     }
 
     wxImage pWxImg = wxImage(roi->width, roi->height, rawData, TRUE);

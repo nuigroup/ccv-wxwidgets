@@ -19,22 +19,12 @@
 class CCVMainFrame : public CCVbaseMainFrame
 {
 public:
-    /**
-       Default constructor.
-    */
-    CCVMainFrame() : CCVbaseMainFrame(NULL)
-    {
-        movidProcess = NULL;
-    }
-
-    /**
-       Set movid processor
-    */
-    void SetMovid(CCVMovidProcess *movidProc);
+    CCVMainFrame();
+    void SetMovid(CCVMovidProcess *);
 
 private:
     CCVMovidProcess *movidProcess;
-    void DrawCameraImage();
+    void DrawCameraImage(wxWindow *);
     void OnMovidImage(wxCommandEvent&);
 };
 
