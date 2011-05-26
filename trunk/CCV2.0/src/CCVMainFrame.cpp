@@ -25,8 +25,6 @@ void CCVMainFrame::SetMovid(CCVMovidProcess *movidProc)
 void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
 {
     DrawCameraImage(m_panel_inputViewer);
-    DrawCameraImage(m_panel_outputViewer);
-    DrawCameraImage(m_panel_background_viewer);
 }
 
 void CCVMainFrame::DrawCameraImage(wxWindow *drawRec) {

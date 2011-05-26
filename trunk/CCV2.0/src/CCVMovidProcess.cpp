@@ -22,6 +22,7 @@ CCVMovidProcess::CCVMovidProcess()
     // initialize/discover all modules
     moFactory::init();
     factory = moFactory::getInstance();
+    factory->registerModule("Stream", otStreamModule::createModule);
 
     pipeline = new moPipeline();
     outRoi = new CvSize;
@@ -69,7 +70,7 @@ int CCVMovidProcess::movid_test()
     moModule *camera = factory->create("Camera");
     pipeline->addElement(camera);
 
-    moModule *stream = new otStreamModule();
+    moModule *stream = factory->create("Stream");
     pipeline->addElement(stream);
 
     stream->setInput(camera->getOutput(0), 0);

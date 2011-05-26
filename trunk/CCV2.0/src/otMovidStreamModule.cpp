@@ -63,3 +63,9 @@ bool otStreamModule :: copy()
     this->input->unlock();
     return true;
 }
+
+moModule *otStreamModule :: createModule()
+{
+     return new otStreamModule();
+}
+

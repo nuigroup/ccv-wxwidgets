@@ -22,6 +22,8 @@ public:
 
     moDataStream *input;
     IplImage* output_buffer;
+    
+    static moModule *createModule();
 };
 
 #endif // _OTSTEAMMODULE_H
