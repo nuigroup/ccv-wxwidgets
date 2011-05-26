@@ -24,7 +24,7 @@ CCVMovidProcess::CCVMovidProcess()
     factory = moFactory::getInstance();
 
     pipeline = new moPipeline();
-    imgRoi = new CvSize;
+    outRoi = new CvSize;
 }
 
 void *CCVMovidProcess::Entry()
@@ -35,7 +35,7 @@ void *CCVMovidProcess::Entry()
     while (true) {
         if(TestDestroy()==1)
             break;
-
+            
         if ( pipeline->isStarted() )
             pipeline->poll();
 
@@ -45,13 +45,17 @@ void *CCVMovidProcess::Entry()
         if (pipeline->lastModule()->getName() == "Stream") {
             otStreamModule *stream = static_cast<otStreamModule *>(pipeline->lastModule());
             if (stream->copy()) {
-                cvGetRawData(stream->output_buffer, &outRaw, &widthstep, imgRoi);
+                cvGetRawData(stream->output_buffer, &outRGBRaw, NULL, outRoi);
                 if (eventHandler != NULL) {
                     wxCommandEvent event( newEVT_MOVIDPROCESS_NEWIMAGE, GetId() );
-                    wxPostEvent(eventHandler, event);
+                    if(!TestDestroy()) {
+                        wxPostEvent(eventHandler, event);
+                    }
                 }
             }
         }
+        
+        wxThread::Sleep(20);
     }
     pipeline->stop();
 

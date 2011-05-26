@@ -35,7 +35,6 @@ public:
 private:
     CCVMovidProcess *movidProcess;
     void DrawCameraImage();
-    virtual void OnInputViewerPaint(wxPaintEvent& event);
     void OnMovidImage(wxCommandEvent&);
 };
 

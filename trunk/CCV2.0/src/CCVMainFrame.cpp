@@ -23,11 +23,6 @@ void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
     DrawCameraImage();
 }
 
-void CCVMainFrame::OnInputViewerPaint(wxPaintEvent& event)
-{
-    DrawCameraImage();
-}
-
 void CCVMainFrame::DrawCameraImage() {
     wxPanel* drawRec = m_panel_inputViewer;
     wxPaintDC dc(drawRec);
@@ -37,13 +32,14 @@ void CCVMainFrame::DrawCameraImage() {
 
     int x,y,w,h;
     dc.GetClippingBox( &x, &y, &w, &h );
-    unsigned char *rawData = movidProcess->getOutRaw();
+    unsigned char *rawData = movidProcess->getOutRGBRaw();
     if ( rawData == NULL )
         return;
     CvSize *roi = movidProcess->getRoi();
 
     // FIXME when clipping box is w,h == 0,0, so nothing is displayer...
-    if ( w == 0 ) {
+    if (w==0 || h==0 || roi->width==0 || roi->height==0) {
+        return;
         dc.SetClippingRegion(0, 0, roi->width, roi->height);
         dc.GetClippingBox( &x, &y, &w, &h );
     }

@@ -23,9 +23,8 @@ public:
     CCVMovidProcess();
     virtual void *Entry();
 
-    CvSize *getRoi() { return imgRoi; }
-    int getWidthstep() { return widthstep; }
-    unsigned char *getOutRaw() { return outRaw; }
+    CvSize *getRoi() { return outRoi; }
+    unsigned char *getOutRGBRaw() { return outRGBRaw; }
     void setEventHandler(wxEvtHandler *handler) { eventHandler = handler; }
 
 private:
@@ -33,9 +32,8 @@ private:
     moPipeline *pipeline;
     wxEvtHandler *eventHandler;
 
-    CvSize *imgRoi;
-    int widthstep;
-    unsigned char *outRaw;
+    CvSize *outRoi;
+    unsigned char *outRGBRaw;
 
     int movid_test();
 };
