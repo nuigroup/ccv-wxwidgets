@@ -32,6 +32,7 @@
 class CCVApp : public wxApp
 {
     virtual bool OnInit();
+    virtual int OnExit();
     int FilterEvent(wxEvent& event);
 
 private:
@@ -77,7 +78,7 @@ bool CCVApp::OnInit()
 */
 int CCVApp::FilterEvent(wxEvent& event)
 {
-    if ( event.GetEventType()==wxEVT_KEY_DOWN && ((wxKeyEvent&)event).GetKeyCode()==WXK_SPACE) {
+    if (event.GetEventType()==wxEVT_KEY_DOWN && ((wxKeyEvent&)event).GetKeyCode()==WXK_SPACE) {
         use_Mainframe = !use_Mainframe;
         mainframe->Show(use_Mainframe);
         miniframe->Show(!use_Mainframe);
@@ -85,4 +86,13 @@ int CCVApp::FilterEvent(wxEvent& event)
     }
 
     return -1;
+}
+
+int CCVApp::OnExit()
+{
+    if (movidthread->Delete() != wxTHREAD_NO_ERROR) {
+        return -1;
+    }
+
+    return 0;
 }

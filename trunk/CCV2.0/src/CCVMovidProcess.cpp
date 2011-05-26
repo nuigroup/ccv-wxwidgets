@@ -64,6 +64,8 @@ void *CCVMovidProcess::Entry()
 
 int CCVMovidProcess::movid_test()
 {
+    pipeline->clear();
+    
     moModule *camera = factory->create("Camera");
     pipeline->addElement(camera);
 
