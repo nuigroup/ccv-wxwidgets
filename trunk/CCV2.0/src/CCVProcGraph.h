@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:        src/ProcessGraph.h
-// Purpose:     For generating a movid processing graph
+// Name:        src/CCVProcGraph.h
+// Purpose:     Deccripting a processing graph
 // Author:      Jimbo Zhang
 // Copyright:   (c) 2011 NUI Group
 /////////////////////////////////////////////////////////////////////////////
@@ -14,7 +14,7 @@
 #include <moPipeline.h>
 #include "CCVCommon.h"
 
-class ProcessGraph
+class CCVProcGraph
 {
 private:
     std::map<std::string,std::string> modules;

@@ -75,7 +75,7 @@ void *CCVWorkerEngine::Entry()
     return NULL;
 }
 
-int CCVWorkerEngine::SetPipeline(ProcessGraph & graph)
+int CCVWorkerEngine::SetPipeline(CCVProcGraph & graph)
 {
     if (pipelineLocked) {
         return CCV_ERROR_RESOURCE_LOCKED;
@@ -97,7 +97,7 @@ int CCVWorkerEngine::SetPipeline(ProcessGraph & graph)
 
 int CCVWorkerEngine::SetFirstPipeline()
 {
-    ProcessGraph graph;
+    CCVProcGraph graph;
     graph.AddModule("input_camera", "Camera");
     graph.AddModule("output_leftviewer", "Stream");
     graph.ConnectModules("input_camera", "output_leftviewer");

@@ -8,7 +8,7 @@
 #include <wx/dcclient.h>
 #include <wx/image.h>
 #include "CCVMainFrame.h"
-#include "ProcessGraph.h"
+#include "CCVProcGraph.h"
 
 CCVMainFrame::CCVMainFrame() : CCVbaseMainFrame(NULL)
 {
@@ -26,7 +26,7 @@ void CCVMainFrame::SetMovidPipe_test()
     if (movidProcess == NULL)
         return;
 
-    ProcessGraph graph;
+    CCVProcGraph graph;
     graph.AddModule("input_camera", "Camera");
     graph.AddModule("output_leftviewer", "Stream");
     graph.ConnectModules("input_camera", "output_leftviewer");

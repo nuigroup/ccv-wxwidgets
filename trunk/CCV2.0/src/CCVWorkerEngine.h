@@ -10,7 +10,7 @@
 
 #include <wx/thread.h>
 #include "moMovid.h"
-#include "ProcessGraph.h"
+#include "CCVProcGraph.h"
 #include "CCVCommon.h"
 
 extern const wxEventType newEVT_MOVIDPROCESS_NEWIMAGE;
@@ -30,7 +30,7 @@ public:
     unsigned char *getOutRGBRaw() { return outRGBRaw; }
     void setEventHandler(wxEvtHandler *handler) { eventHandler = handler; }
     
-    int SetPipeline(ProcessGraph & graph);
+    int SetPipeline(CCVProcGraph & graph);
 
 private:
     moFactory *factory;
