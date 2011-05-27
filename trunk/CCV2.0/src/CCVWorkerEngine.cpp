@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:        src/CCVMovidProcess.cpp
+// Name:        src/CCVWorkerEngine.cpp
 // Purpose:     Provide the thread for movid processing
 // Author:      Jimbo Zhang
 // Copyright:   (c) 2011 NUI Group
@@ -8,14 +8,14 @@
 #include <wx/wx.h>
 #include <wx/string.h>
 #include <wx/log.h>
-#include "CCVMovidProcess.h"
+#include "CCVWorkerEngine.h"
 #include "otMovidStreamModule.h"
 
 int g_config_delay = 50;
 
 const wxEventType newEVT_MOVIDPROCESS_NEWIMAGE = wxNewEventType();
 
-CCVMovidProcess::CCVMovidProcess()
+CCVWorkerEngine::CCVWorkerEngine()
 {
     eventHandler = NULL;
 
@@ -34,17 +34,17 @@ CCVMovidProcess::CCVMovidProcess()
     }
 }
 
-void CCVMovidProcess::LockPipeline()
+void CCVWorkerEngine::LockPipeline()
 {
     pipelineLocked = true;
 }
 
-void CCVMovidProcess::UnlockPipeline()
+void CCVWorkerEngine::UnlockPipeline()
 {
     pipelineLocked = false;
 }
 
-void *CCVMovidProcess::Entry()
+void *CCVWorkerEngine::Entry()
 {
     while (true) {
         if (! pipeline->isStarted())
@@ -56,7 +56,7 @@ void *CCVMovidProcess::Entry()
         while (pipeline->haveError())
             wxLogMessage(wxT("Pipeline error: %s"), pipeline->getLastError().c_str());
 
-        if (!pipelineLocked && pipeline->lastModule()->getName() == "Stream") {
+        if (!pipelineLocked && pipeline->size()>0 && pipeline->lastModule()->getName() == "Stream") {
             otStreamModule *stream = static_cast<otStreamModule *>(pipeline->lastModule());
             if (stream->copy()) {
                 cvGetRawData(stream->output_buffer, &outRGBRaw, NULL, outRoi);
@@ -75,7 +75,7 @@ void *CCVMovidProcess::Entry()
     return NULL;
 }
 
-int CCVMovidProcess::SetPipeline(MovidGraph & graph)
+int CCVWorkerEngine::SetPipeline(ProcessGraph & graph)
 {
     if (pipelineLocked) {
         return CCV_ERROR_RESOURCE_LOCKED;
@@ -95,29 +95,12 @@ int CCVMovidProcess::SetPipeline(MovidGraph & graph)
     return CCV_SUCCESS;
 }
 
-int CCVMovidProcess::SetFirstPipeline()
+int CCVWorkerEngine::SetFirstPipeline()
 {
-    // TODO: Call SetPipeline to replace the codes below
+    ProcessGraph graph;
+    graph.AddModule("input_camera", "Camera");
+    graph.AddModule("output_leftviewer", "Stream");
+    graph.ConnectModules("input_camera", "output_leftviewer");
     
-    if (pipelineLocked) {
-        return CCV_ERROR_RESOURCE_LOCKED;
-    }
-    
-    LockPipeline();
-    Pause();
-    if (pipeline->isStarted())
-        pipeline->stop();
-    
-    pipeline->clear();
-    
-    moModule *camera = factory->create("Camera");
-    pipeline->addElement(camera);
-    moModule *stream = factory->create("Stream");
-    pipeline->addElement(stream);
-    stream->setInput(camera->getOutput(0), 0);
-
-    pipeline->start();
-    Resume();
-    UnlockPipeline();
-    return CCV_SUCCESS;
+    return SetPipeline(graph);
 }

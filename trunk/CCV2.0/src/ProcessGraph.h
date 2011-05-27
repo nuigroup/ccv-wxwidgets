@@ -1,12 +1,12 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:        src/MovidGraph.h
+// Name:        src/ProcessGraph.h
 // Purpose:     For generating a movid processing graph
 // Author:      Jimbo Zhang
 // Copyright:   (c) 2011 NUI Group
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _MOVID_GRAPH_H
-#define _MOVID_GRAPH_H
+#ifndef _PROCESS_GRAPH_H
+#define _PROCESS_GRAPH_H
 
 #include <map>
 #include <vector>
@@ -14,11 +14,11 @@
 #include <moPipeline.h>
 #include "CCVCommon.h"
 
-class MovidGraph
+class ProcessGraph
 {
 private:
-    std::map<std::string,std::string> MovidModules;
-    std::pair<std::string,std::string> MovidEdges;
+    std::map<std::string,std::string> modules;
+    std::pair<std::string,std::string> edges;
     
 public:
     int AddModule(std::string moduleID, std::string moduleType);

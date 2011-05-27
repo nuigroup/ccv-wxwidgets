@@ -22,7 +22,7 @@
 
 #include <wx/wx.h>
 #include <wx/thread.h>
-#include "CCVMovidProcess.h"
+#include "CCVWorkerEngine.h"
 #include "CCVMainFrame.h"
 #include "CCVMiniFrame.h"
 #include "CCVCommon.h"
@@ -40,7 +40,7 @@ private:
     bool use_Mainframe;
     CCVMainFrame *mainframe;
     CCVMiniFrame *miniframe;
-    CCVMovidProcess *movidthread;
+    CCVWorkerEngine *movidthread;
 };
 
 IMPLEMENT_APP(CCVApp)
@@ -50,7 +50,7 @@ IMPLEMENT_APP(CCVApp)
 */
 bool CCVApp::OnInit()
 {
-    movidthread = new CCVMovidProcess;
+    movidthread = new CCVWorkerEngine;
     if (movidthread->Create() != wxTHREAD_NO_ERROR ) {
         wxExit();
     }

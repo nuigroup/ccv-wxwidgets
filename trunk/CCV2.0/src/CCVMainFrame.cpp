@@ -8,14 +8,14 @@
 #include <wx/dcclient.h>
 #include <wx/image.h>
 #include "CCVMainFrame.h"
-#include "MovidGraph.h"
+#include "ProcessGraph.h"
 
 CCVMainFrame::CCVMainFrame() : CCVbaseMainFrame(NULL)
 {
     movidProcess = NULL;
 }
 
-CCVMainFrame::CCVMainFrame(CCVMovidProcess *movidProc) : CCVbaseMainFrame(NULL)
+CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc) : CCVbaseMainFrame(NULL)
 {
     SetMovid(movidProc);
     //SetMovidPipe_test();
@@ -26,7 +26,7 @@ void CCVMainFrame::SetMovidPipe_test()
     if (movidProcess == NULL)
         return;
 
-    MovidGraph graph;
+    ProcessGraph graph;
     graph.AddModule("input_camera", "Camera");
     graph.AddModule("output_leftviewer", "Stream");
     graph.ConnectModules("input_camera", "output_leftviewer");
@@ -34,7 +34,7 @@ void CCVMainFrame::SetMovidPipe_test()
     movidProcess->SetPipeline(graph);
 }
 
-void CCVMainFrame::SetMovid(CCVMovidProcess *movidProc)
+void CCVMainFrame::SetMovid(CCVWorkerEngine *movidProc)
 {
     movidProcess = movidProc;
     movidProcess->setEventHandler(this);

@@ -10,7 +10,7 @@
 
 #include <wx/wx.h>
 #include "CCVbaseFrame.h"
-#include "CCVMovidProcess.h"
+#include "CCVWorkerEngine.h"
 #include "CCVCommon.h"
 
 //
@@ -21,11 +21,11 @@ class CCVMainFrame : public CCVbaseMainFrame
 {
 public:
     CCVMainFrame();
-    CCVMainFrame(CCVMovidProcess *);
-    void SetMovid(CCVMovidProcess *);
+    CCVMainFrame(CCVWorkerEngine *);
+    void SetMovid(CCVWorkerEngine *);
     
 private:
-    CCVMovidProcess *movidProcess;
+    CCVWorkerEngine *movidProcess;
     void DrawCameraImage(wxWindow *);
     void OnMovidImage(wxCommandEvent&);
     

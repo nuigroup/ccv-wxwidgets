@@ -1,26 +1,26 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:        src/MovidGraph.cpp
+// Name:        src/ProcessGraph.cpp
 // Purpose:     For generating a movid processing graph
 // Author:      Jimbo Zhang
 // Copyright:   (c) 2011 NUI Group
 /////////////////////////////////////////////////////////////////////////////
 
-#include "MovidGraph.h"
+#include "ProcessGraph.h"
 
-int MovidGraph::AddModule(std::string moduleID, std::string moduleType)
+int ProcessGraph::AddModule(std::string moduleID, std::string moduleType)
 {
-    MovidModules[moduleID] = moduleType;
+    modules[moduleID] = moduleType;
     
     return CCV_SUCCESS;
 }
 
-int MovidGraph::ConnectModules(std::string firstModuleID, std::string secondModuleID)
+int ProcessGraph::ConnectModules(std::string firstModuleID, std::string secondModuleID)
 {
     
     return CCV_SUCCESS;
 }
 
-int MovidGraph::BuildPipeline(moPipeline *pipeline)
+int ProcessGraph::BuildPipeline(moPipeline *pipeline)
 {
     return CCV_SUCCESS;
 }

@@ -1,16 +1,16 @@
 /////////////////////////////////////////////////////////////////////////////
-// Name:        src/CCVMovidProcess.h
+// Name:        src/CCVWorkerEngine.h
 // Purpose:     Provide the thread for movid processing
 // Author:      Jimbo Zhang
 // Copyright:   (c) 2011 NUI Group
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _CCV_MOVID_PROCESS_H
-#define _CCV_MOVID_PROCESS_H
+#ifndef _CCV_WORKER_ENGINE_H
+#define _CCV_WORKER_ENGINE_H
 
 #include <wx/thread.h>
 #include "moMovid.h"
-#include "MovidGraph.h"
+#include "ProcessGraph.h"
 #include "CCVCommon.h"
 
 extern const wxEventType newEVT_MOVIDPROCESS_NEWIMAGE;
@@ -20,17 +20,17 @@ extern const wxEventType newEVT_MOVIDPROCESS_NEWIMAGE;
     (wxCommandEventFunction) & fn, (wxObject*) NULL )
     
 
-class CCVMovidProcess : public wxThread
+class CCVWorkerEngine : public wxThread
 {
 public:
-    CCVMovidProcess();
+    CCVWorkerEngine();
     virtual void *Entry();
 
     CvSize *getRoi() { return outRoi; }
     unsigned char *getOutRGBRaw() { return outRGBRaw; }
     void setEventHandler(wxEvtHandler *handler) { eventHandler = handler; }
     
-    int SetPipeline(MovidGraph & graph);
+    int SetPipeline(ProcessGraph & graph);
 
 private:
     moFactory *factory;
