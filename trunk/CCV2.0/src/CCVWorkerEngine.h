@@ -33,7 +33,6 @@ public:
     int SetPipeline(CCVProcGraph & graph);
 
 private:
-    moFactory *factory;
     moPipeline *pipeline;
     wxEvtHandler *eventHandler;
     

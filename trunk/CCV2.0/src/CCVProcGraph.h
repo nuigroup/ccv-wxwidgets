@@ -11,18 +11,24 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <moFactory.h>
 #include <moPipeline.h>
 #include "CCVCommon.h"
+
+typedef std::pair<std::string,std::string> MovidEdge;
 
 class CCVProcGraph
 {
 private:
     std::map<std::string,std::string> modules;
-    std::pair<std::string,std::string> edges;
+    std::vector<MovidEdge> edges;
+    moFactory *factory;
     
 public:
+    CCVProcGraph();
     int AddModule(std::string moduleID, std::string moduleType);
     int ConnectModules(std::string firstModuleID, std::string secondModuleID);
+    void ClearGraph();
     int BuildPipeline(moPipeline *pipeline);
 };
 

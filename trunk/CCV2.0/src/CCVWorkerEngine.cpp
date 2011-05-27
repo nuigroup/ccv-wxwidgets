@@ -19,11 +19,6 @@ CCVWorkerEngine::CCVWorkerEngine()
 {
     eventHandler = NULL;
 
-    // initialize/discover all modules
-    moFactory::init();
-    factory = moFactory::getInstance();
-    factory->registerModule("Stream", otStreamModule::createModule);
-
     pipeline = new moPipeline();
     outRoi = new CvSize;
         
@@ -47,6 +42,8 @@ void CCVWorkerEngine::UnlockPipeline()
 void *CCVWorkerEngine::Entry()
 {
     while (true) {
+        wxThread::Sleep(20);
+        
         if (! pipeline->isStarted())
             continue;
             
@@ -68,8 +65,6 @@ void *CCVWorkerEngine::Entry()
                 }
             }
         }
-        
-        wxThread::Sleep(20);
     }
 
     return NULL;
@@ -78,7 +73,7 @@ void *CCVWorkerEngine::Entry()
 int CCVWorkerEngine::SetPipeline(CCVProcGraph & graph)
 {
     if (pipelineLocked) {
-        return CCV_ERROR_RESOURCE_LOCKED;
+        return CCV_ERROR_LOCKED;
     }
     
     LockPipeline();
