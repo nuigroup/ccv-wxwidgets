@@ -6,6 +6,7 @@
 
 #include <wx/wx.h>
 #include "CCVbaseFrame.h"
+#include "CCVCommon.h"
 
 //
 // CCVbaseMiniFrame is generated automatically by wxFormBuilder, CCVMiniFrame

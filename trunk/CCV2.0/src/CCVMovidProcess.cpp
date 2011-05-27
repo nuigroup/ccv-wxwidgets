@@ -26,24 +26,37 @@ CCVMovidProcess::CCVMovidProcess()
 
     pipeline = new moPipeline();
     outRoi = new CvSize;
+        
+    pipelineLocked = false;
+    if (SetFirstPipeline() != CCV_SUCCESS) {
+        wxLogMessage(wxT("SetFirstPipeline Error"));
+        wxExit();
+    }
+}
+
+void CCVMovidProcess::LockPipeline()
+{
+    pipelineLocked = true;
+}
+
+void CCVMovidProcess::UnlockPipeline()
+{
+    pipelineLocked = false;
 }
 
 void *CCVMovidProcess::Entry()
 {
-    movid_test();
-
-    pipeline->start();
     while (true) {
-        if(TestDestroy()==1)
-            break;
+        if (! pipeline->isStarted())
+            continue;
             
-        if ( pipeline->isStarted() )
+        if (!pipelineLocked && pipeline->isStarted())
             pipeline->poll();
 
-        while ( pipeline->haveError() )
+        while (pipeline->haveError())
             wxLogMessage(wxT("Pipeline error: %s"), pipeline->getLastError().c_str());
 
-        if (pipeline->lastModule()->getName() == "Stream") {
+        if (!pipelineLocked && pipeline->lastModule()->getName() == "Stream") {
             otStreamModule *stream = static_cast<otStreamModule *>(pipeline->lastModule());
             if (stream->copy()) {
                 cvGetRawData(stream->output_buffer, &outRGBRaw, NULL, outRoi);
@@ -58,22 +71,53 @@ void *CCVMovidProcess::Entry()
         
         wxThread::Sleep(20);
     }
-    pipeline->stop();
 
     return NULL;
 }
 
-int CCVMovidProcess::movid_test()
+int CCVMovidProcess::SetPipeline(MovidGraph & graph)
 {
+    if (pipelineLocked) {
+        return CCV_ERROR_RESOURCE_LOCKED;
+    }
+    
+    LockPipeline();
+    Pause();
+    if (pipeline->isStarted())
+        pipeline->stop();
+    
+    pipeline->clear();
+    graph.BuildPipeline(pipeline);
+    
+    pipeline->start();
+    Resume();
+    UnlockPipeline();
+    return CCV_SUCCESS;
+}
+
+int CCVMovidProcess::SetFirstPipeline()
+{
+    // TODO: Call SetPipeline to replace the codes below
+    
+    if (pipelineLocked) {
+        return CCV_ERROR_RESOURCE_LOCKED;
+    }
+    
+    LockPipeline();
+    Pause();
+    if (pipeline->isStarted())
+        pipeline->stop();
+    
     pipeline->clear();
     
     moModule *camera = factory->create("Camera");
     pipeline->addElement(camera);
-
     moModule *stream = factory->create("Stream");
     pipeline->addElement(stream);
-
     stream->setInput(camera->getOutput(0), 0);
 
-    return 0;
+    pipeline->start();
+    Resume();
+    UnlockPipeline();
+    return CCV_SUCCESS;
 }

@@ -25,6 +25,7 @@
 #include "CCVMovidProcess.h"
 #include "CCVMainFrame.h"
 #include "CCVMiniFrame.h"
+#include "CCVCommon.h"
 
 //
 // CCVApp is the class that provides the main application.
@@ -59,10 +60,9 @@ bool CCVApp::OnInit()
 
     use_Mainframe = true;
 
-    mainframe = new CCVMainFrame();
+    mainframe = new CCVMainFrame(movidthread);
     if (mainframe==NULL)
         return false;
-    mainframe->SetMovid(movidthread);
     mainframe->Show(use_Mainframe);
 
     miniframe = new CCVMiniFrame(mainframe);
@@ -90,8 +90,11 @@ int CCVApp::FilterEvent(wxEvent& event)
 
 int CCVApp::OnExit()
 {
+    if (movidthread->Pause() != wxTHREAD_NO_ERROR) {
+        wxLogMessage(wxT("movidthread->Pause() != wxTHREAD_NO_ERROR"));
+    }
     if (movidthread->Delete() != wxTHREAD_NO_ERROR) {
-        return -1;
+        wxLogMessage(wxT("movidthread->Delete() != wxTHREAD_NO_ERROR"));
     }
 
     return 0;
