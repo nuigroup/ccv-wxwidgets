@@ -8,6 +8,11 @@
 #ifndef _CCV_COMMON_H
 #define _CCV_COMMON_H
 
+#ifdef WIN32
+#include "msw/wx/setup.h"
+#include "msw/wx/msw/rcdefs.h"
+#endif // WIN32
+
 enum CCV_ERROR_ID
 {
     CCV_SUCCESS,

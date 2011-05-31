@@ -9,9 +9,9 @@
 #define _CCV_FRAME_H
 
 #include <wx/wx.h>
+#include "CCVCommon.h"
 #include "CCVbaseFrame.h"
 #include "CCVWorkerEngine.h"
-#include "CCVCommon.h"
 
 //
 // CCVbaseMainFrame is generated automatically by wxFormBuilder, CCVMainFrame

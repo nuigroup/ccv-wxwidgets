@@ -11,8 +11,8 @@
 #include <map>
 #include <vector>
 #include <string>
-#include <moFactory.h>
-#include <moPipeline.h>
+#include "moFactory.h"
+#include "moPipeline.h"
 #include "CCVCommon.h"
 
 typedef std::pair<std::string,std::string> MovidEdge;

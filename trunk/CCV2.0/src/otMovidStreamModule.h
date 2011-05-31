@@ -2,11 +2,11 @@
 #define _OTSTEAMMODULE_H
 
 #include <string>
-#include <moDaemon.h>
-#include <moPipeline.h>
-#include <moFactory.h>
-#include <moDataStream.h>
 #include <cv.h>
+#include "moDaemon.h"
+#include "moPipeline.h"
+#include "moFactory.h"
+#include "moDataStream.h"
 
 class otStreamModule : public moModule
 {

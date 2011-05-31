@@ -22,10 +22,10 @@
 
 #include <wx/wx.h>
 #include <wx/thread.h>
+#include "CCVCommon.h"
 #include "CCVWorkerEngine.h"
 #include "CCVMainFrame.h"
 #include "CCVMiniFrame.h"
-#include "CCVCommon.h"
 
 //
 // CCVApp is the class that provides the main application.

@@ -10,8 +10,8 @@
 
 #include <wx/thread.h>
 #include "moMovid.h"
-#include "CCVProcGraph.h"
 #include "CCVCommon.h"
+#include "CCVProcGraph.h"
 
 extern const wxEventType newEVT_MOVIDPROCESS_NEWIMAGE;
 #define EVT_MOVIDPROCESS_NEWIMAGE(id, fn)                             \

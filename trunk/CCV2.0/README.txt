@@ -35,7 +35,8 @@ At present you need to use Microsoft Visual C++ 2010 to compile CCV. Microsoft
 provided a Visual C++'s free express version, which can be download from:
 http://www.microsoft.com/express/Downloads/#2010-Visual-CPP
 
-To compile, open MSVC\ccv2.sln and run build.
+To compile, open MSVC\ccv2.sln and run build. Before compiling, make sure set
+environment variable WXWIN to the wxWidgets path, OPENCVWIN to the opencv path.
 
 == Documents ==
 If you want to build documents, you need install doxygen and use the following
