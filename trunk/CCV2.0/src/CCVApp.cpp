@@ -17,7 +17,7 @@
  * including: FTIR, DI, DSI, and LLP with expansion planned for the future
  * vision applications (custom modules/filters).
  *
- * This ver?sion of CCV is based on wxWidgets.
+ * This version of CCV is based on OpenCV, Movid and wxWidgets.
  */
 
 #include <wx/wx.h>
