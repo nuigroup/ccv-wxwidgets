@@ -19,8 +19,7 @@ CCVWorkerEngine::CCVWorkerEngine()
 {
     eventHandler = NULL;
 
-    pipeline = new moPipeline();
-    outRoi = new CvSize;
+    procGraph = new CCVProcGraph();
         
     pipelineLocked = false;
     if (SetFirstPipeline() != CCV_SUCCESS) {
@@ -44,25 +43,39 @@ void *CCVWorkerEngine::Entry()
     while (true) {
         wxThread::Sleep(20);
         
-        if (! pipeline->isStarted())
+        if (! procGraph->isStarted())
             continue;
             
-        if (!pipelineLocked && pipeline->isStarted())
-            pipeline->poll();
+        if (!pipelineLocked && procGraph->isStarted())
+            procGraph->poll();
 
-        while (pipeline->haveError())
-            wxLogMessage(wxT("Pipeline error: %s"), pipeline->getLastError().c_str());
-
-        if (!pipelineLocked && pipeline->size()>0 && pipeline->lastModule()->getName() == "Stream") {
-            otStreamModule *stream = static_cast<otStreamModule *>(pipeline->lastModule());
-            if (stream->copy()) {
-                cvGetRawData(stream->output_buffer, &outRGBRaw, NULL, outRoi);
-                if (eventHandler != NULL) {
-                    wxCommandEvent event( newEVT_MOVIDPROCESS_NEWIMAGE, GetId() );
-                    if(!TestDestroy()) {
-                        wxPostEvent(eventHandler, event);
-                    }
+        while (procGraph->haveError())
+            wxLogMessage(wxT("procGraph error: %s"), procGraph->getLastError().c_str());
+            
+        ModuleList outputModules;
+        
+        for (ModuleList::const_iterator iter = outputModules.begin();
+	     iter != outputModules.end(); ++iter) {
+	        moModule *theModule = iter->first;
+	        std::string moduleLable = iter->second;
+	        
+	        RGBRawImage outRGBRaw;
+	        CvSize *outRoi = new CvSize;
+	        
+            if (!pipelineLocked && procGraph->size()>0 && theModule->getName() == "Stream") {
+                otStreamModule *stream = (otStreamModule *)theModule;
+                if (stream->copy()) {
+                    cvGetRawData(stream->output_buffer, &outRGBRaw, NULL, outRoi);                    
                 }
+            }
+            
+            outImages.push_back(new OutRGBImage(outRGBRaw, outRoi, moduleLable));
+        }
+        
+        if (eventHandler != NULL) {
+            wxCommandEvent event( newEVT_MOVIDPROCESS_NEWIMAGE, GetId() );
+            if(!TestDestroy()) {
+                wxPostEvent(eventHandler, event);
             }
         }
     }
@@ -78,13 +91,13 @@ int CCVWorkerEngine::SetPipeline(CCVProcGraph & graph)
     
     LockPipeline();
     Pause();
-    if (pipeline->isStarted())
-        pipeline->stop();
+    if (procGraph->isStarted())
+        procGraph->stop();
     
-    pipeline->clear();
-    graph.BuildPipeline(pipeline);
+    procGraph->clear();
+    graph.Build();
     
-    pipeline->start();
+    procGraph->start();
     Resume();
     UnlockPipeline();
     return CCV_SUCCESS;

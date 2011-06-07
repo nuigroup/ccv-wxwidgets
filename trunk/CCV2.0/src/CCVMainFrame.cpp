@@ -44,10 +44,11 @@ void CCVMainFrame::SetMovid(CCVWorkerEngine *movidProc)
 
 void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
 {
-    DrawCameraImage(m_panel_inputViewer);
+    OutImagesVector rawImages = movidProcess->getOutImages();   
+    DrawCameraImage(rawImages[0], m_panel_inputViewer);
 }
 
-void CCVMainFrame::DrawCameraImage(wxWindow *drawRec) {
+void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
     wxPaintDC dc(drawRec);
 
     if(! dc.Ok())
@@ -55,10 +56,11 @@ void CCVMainFrame::DrawCameraImage(wxWindow *drawRec) {
 
     int x,y,w,h;
     dc.GetClippingBox( &x, &y, &w, &h );
-    unsigned char *rawData = movidProcess->getOutRGBRaw();
+     
+    unsigned char *rawData = rawImage->data;
     if ( rawData == NULL )
         return;
-    CvSize *roi = movidProcess->getRoi();
+    CvSize *roi = rawImage->outRoi;
 
     if (w==0 || h==0 || roi->width==0 || roi->height==0) {
         return;

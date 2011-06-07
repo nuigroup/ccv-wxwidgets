@@ -8,7 +8,7 @@
 #include "CCVProcGraph.h"
 #include "otMovidStreamModule.h"
 
-CCVProcGraph::CCVProcGraph()
+CCVProcGraph::CCVProcGraph() : moPipeline()
 {
     // initialize/discover all modules
     moFactory::init();
@@ -37,26 +37,28 @@ int CCVProcGraph::ConnectModules(std::string firstModuleID, std::string secondMo
     return CCV_SUCCESS;
 }
 
-int CCVProcGraph::BuildPipeline(moPipeline *pipeline)
+int CCVProcGraph::Build()
 {
     for (std::vector<MovidEdge>::const_iterator iter = edges.begin();
 	 iter != edges.end(); ++iter) {
-	std::string id_input = iter->first;
-	std::string id_output = iter->second;
-	
-	if (modules.find(id_input) == modules.end())
-	    return CCV_ERROR_ITEM_NOT_EXISTS;
-	std::string type_input = modules[id_input];
-
-	if (modules.find(id_output) == modules.end())
-	    return CCV_ERROR_ITEM_NOT_EXISTS;
-	std::string type_output = modules[id_output];
-
-	moModule *input = factory->create(type_input);
-	pipeline->addElement(input);
-	moModule *output = factory->create(type_output);
-	pipeline->addElement(output);
-	output->setInput(input->getOutput(0), 0);
+    	std::string id_input = iter->first;
+    	std::string id_output = iter->second;
+    	
+    	if (modules.find(id_input) == modules.end())
+    	    return CCV_ERROR_ITEM_NOT_EXISTS;
+    	std::string type_input = modules[id_input];
+    
+    	if (modules.find(id_output) == modules.end())
+    	    return CCV_ERROR_ITEM_NOT_EXISTS;
+    	std::string type_output = modules[id_output];
+    	    
+    	this->clear();
+    
+    	moModule *input = factory->create(type_input);
+    	this->addElement(input);
+    	moModule *output = factory->create(type_output);
+    	this->addElement(output);
+    	output->setInput(input->getOutput(0), 0);
     }
     return CCV_SUCCESS;
 }
@@ -65,4 +67,15 @@ void CCVProcGraph::ClearGraph()
 {
     modules.clear();
     edges.clear();
+    this->clear();
+}
+
+ModuleList CCVProcGraph::GetOutputModules()
+{
+    ModuleList outputModules;
+    
+    ModuleListItem *tmp = new ModuleListItem(this->lastModule(), "OutputDefault");
+    outputModules.push_back(*tmp);
+    
+    return outputModules;
 }

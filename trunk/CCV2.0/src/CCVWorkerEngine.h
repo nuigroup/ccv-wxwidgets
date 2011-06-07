@@ -8,6 +8,8 @@
 #ifndef _CCV_WORKER_ENGINE_H
 #define _CCV_WORKER_ENGINE_H
 
+#include <vector>
+#include <string>
 #include <wx/thread.h>
 #include "moMovid.h"
 #include "CCVCommon.h"
@@ -18,7 +20,30 @@ extern const wxEventType newEVT_MOVIDPROCESS_NEWIMAGE;
     DECLARE_EVENT_TABLE_ENTRY( newEVT_MOVIDPROCESS_NEWIMAGE, id, -1,  \
     (wxObjectEventFunction) (wxEventFunction)                         \
     (wxCommandEventFunction) & fn, (wxObject*) NULL )
+
+typedef unsigned char * RGBRawImage;
+
+struct OutRGBImage
+{    
+    RGBRawImage data;
+    CvSize *outRoi;
+    std::string lable;
+        
+    OutRGBImage()
+    {
+        data = NULL;
+        outRoi = NULL;
+    }
     
+    OutRGBImage(RGBRawImage _data, CvSize *_outRoi, std::string _lable)
+    {
+        data = _data;
+        outRoi = _outRoi;
+        lable = _lable;
+    }
+};
+
+typedef std::vector<OutRGBImage *> OutImagesVector;
 
 class CCVWorkerEngine : public wxThread
 {
@@ -26,22 +51,20 @@ public:
     CCVWorkerEngine();
     virtual void *Entry();
 
-    CvSize *getRoi() { return outRoi; }
-    unsigned char *getOutRGBRaw() { return outRGBRaw; }
+    OutImagesVector getOutImages() { return outImages; }
     void setEventHandler(wxEvtHandler *handler) { eventHandler = handler; }
     
     int SetPipeline(CCVProcGraph & graph);
 
 private:
-    moPipeline *pipeline;
+    CCVProcGraph *procGraph;
     wxEvtHandler *eventHandler;
     
     bool pipelineLocked;
     void LockPipeline();
     void UnlockPipeline();
 
-    CvSize *outRoi;
-    unsigned char *outRGBRaw;
+    OutImagesVector outImages;
 
     int SetFirstPipeline();
 };

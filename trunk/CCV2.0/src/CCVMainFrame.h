@@ -13,10 +13,10 @@
 #include "CCVbaseFrame.h"
 #include "CCVWorkerEngine.h"
 
-//
-// CCVbaseMainFrame is generated automatically by wxFormBuilder, CCVMainFrame
-// extends CCVbaseMainFrame to implement the event handling functions.
-//
+/**
+    CCVbaseMainFrame is generated automatically by wxFormBuilder, CCVMainFrame
+    extends CCVbaseMainFrame to implement the event handling functions.
+*/
 class CCVMainFrame : public CCVbaseMainFrame
 {
 public:
@@ -26,7 +26,7 @@ public:
     
 private:
     CCVWorkerEngine *movidProcess;
-    void DrawCameraImage(wxWindow *);
+    void DrawCameraImage(OutRGBImage *, wxWindow *);
     void OnMovidImage(wxCommandEvent&);
     
     void SetMovidPipe_test();
