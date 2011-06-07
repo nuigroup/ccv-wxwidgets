@@ -32,6 +32,7 @@ void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
 {
     OutImagesVector rawImages = movidProcess->getOutImages();   
     DrawCameraImage(rawImages[0], m_panel_inputViewer);
+    DrawCameraImage(rawImages[1], m_panel_outputViewer);
 }
 
 void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {

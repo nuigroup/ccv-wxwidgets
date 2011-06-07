@@ -55,9 +55,12 @@ bool CCVApp::OnInit()
     // Set the initial pipeline
     if (! movidthread->procGraph->hasLocked()) {
         movidthread->procGraph->AddModule("input_camera", "Camera");
-        movidthread->procGraph->AddModule("output_leftviewer", "Stream");
+        movidthread->procGraph->AddModule("output_leftviewer", "Stream", true);
+        movidthread->procGraph->AddModule("invert", "Invert");
+        movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);
         movidthread->procGraph->ConnectModules("input_camera", "output_leftviewer");
-        movidthread->procGraph->Build();
+        movidthread->procGraph->ConnectModules("input_camera", "invert");
+        movidthread->procGraph->ConnectModules("invert", "output_rightviewer");
         movidthread->procGraph->start();
     }
     else {

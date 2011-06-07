@@ -18,68 +18,53 @@ CCVProcGraph::CCVProcGraph() : moPipeline()
     factory->registerModule("Stream", otStreamModule::createModule);
 }
 
-int CCVProcGraph::AddModule(std::string moduleID, std::string moduleType)
+int CCVProcGraph::AddModule(std::string moduleID, std::string moduleType, bool isOutModule)
 {    
-    if (modules.find(moduleID) != modules.end()) {
+    if (modulesTypeOf.find(moduleID) != modulesTypeOf.end()) {
 	return CCV_ERROR_ITEM_CANNOT_ADDED;
     }
-    modules[moduleID] = moduleType;
+    modulesTypeOf[moduleID] = moduleType;
+    
+    moModule *node = factory->create(moduleType);
+    this->addElement(node);
+    moduleAddr[moduleID] = node;
+    
+    if (isOutModule) {
+        ModuleListItem *item = new ModuleListItem(node, moduleID);
+        outputModules.push_back(*item);
+    }
+    
     return CCV_SUCCESS;
 }
 
 int CCVProcGraph::ConnectModules(std::string firstModuleID, std::string secondModuleID)
 {
-    if (modules.find(firstModuleID) == modules.end()
-	|| modules.find(secondModuleID) == modules.end()) {
-	return CCV_ERROR_ITEM_NOT_EXISTS;
+    if (modulesTypeOf.find(firstModuleID) == modulesTypeOf.end()
+	 || modulesTypeOf.find(secondModuleID) == modulesTypeOf.end()) {
+	    return CCV_ERROR_ITEM_NOT_EXISTS;
     }
 
     edges.push_back(MovidEdge(firstModuleID, secondModuleID));
     
-    return CCV_SUCCESS;
-}
-
-int CCVProcGraph::Build()
-{
-    for (std::vector<MovidEdge>::const_iterator iter = edges.begin();
-	 iter != edges.end(); ++iter) {
-    	std::string id_input = iter->first;
-    	std::string id_output = iter->second;
-    	
-    	if (modules.find(id_input) == modules.end())
-    	    return CCV_ERROR_ITEM_NOT_EXISTS;
-    	std::string type_input = modules[id_input];
-    
-    	if (modules.find(id_output) == modules.end())
-    	    return CCV_ERROR_ITEM_NOT_EXISTS;
-    	std::string type_output = modules[id_output];
-    	    
-    	this->clear();
-    
-    	moModule *input = factory->create(type_input);
-    	this->addElement(input);
-    	moModule *output = factory->create(type_output);
-    	this->addElement(output);
-    	output->setInput(input->getOutput(0), 0);
+    if (moduleAddr.find(firstModuleID) == moduleAddr.end()
+     || moduleAddr.find(secondModuleID) == moduleAddr.end()) {
+        return CCV_ERROR_ITEM_NOT_EXISTS;
     }
+    	        
+    moduleAddr[secondModuleID]->setInput(moduleAddr[firstModuleID]->getOutput(0), 0);
+    
     return CCV_SUCCESS;
 }
 
 void CCVProcGraph::ClearGraph()
 {
-    modules.clear();
+    modulesTypeOf.clear();
     edges.clear();
     this->clear();
 }
 
 ModuleList CCVProcGraph::GetOutputModules()
 {
-    ModuleList outputModules;
-    
-    // TODO: Replace this with real operations
-    ModuleListItem *tmp = new ModuleListItem(this->lastModule(), "OutputDefault");
-    outputModules.push_back(*tmp);
-    
     return outputModules;
 }
 
