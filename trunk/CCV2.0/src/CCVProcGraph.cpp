@@ -10,6 +10,8 @@
 
 CCVProcGraph::CCVProcGraph() : moPipeline()
 {
+    locked = false;
+    
     // initialize/discover all modules
     moFactory::init();
     factory = moFactory::getInstance();
@@ -74,8 +76,29 @@ ModuleList CCVProcGraph::GetOutputModules()
 {
     ModuleList outputModules;
     
+    // TODO: Replace this with real operations
     ModuleListItem *tmp = new ModuleListItem(this->lastModule(), "OutputDefault");
     outputModules.push_back(*tmp);
     
     return outputModules;
+}
+
+bool CCVProcGraph::hasLocked()
+{
+    return locked;
+}
+
+int CCVProcGraph::Lock()
+{
+    if (!locked) {
+        locked = true;
+        return CCV_SUCCESS;
+    }
+    else 
+        return CCV_ERROR_LOCKED;
+}
+
+void CCVProcGraph::Unlock()
+{
+    locked = false;
 }

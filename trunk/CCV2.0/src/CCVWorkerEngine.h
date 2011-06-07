@@ -54,19 +54,12 @@ public:
     OutImagesVector getOutImages() { return outImages; }
     void setEventHandler(wxEvtHandler *handler) { eventHandler = handler; }
     
-    int SetPipeline(CCVProcGraph & graph);
+    CCVProcGraph *procGraph;
 
 private:
-    CCVProcGraph *procGraph;
     wxEvtHandler *eventHandler;
-    
-    bool pipelineLocked;
-    void LockPipeline();
-    void UnlockPipeline();
 
     OutImagesVector outImages;
-
-    int SetFirstPipeline();
 };
 
 #endif

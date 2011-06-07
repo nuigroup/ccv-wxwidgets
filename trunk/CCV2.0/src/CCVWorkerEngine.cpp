@@ -18,24 +18,7 @@ const wxEventType newEVT_MOVIDPROCESS_NEWIMAGE = wxNewEventType();
 CCVWorkerEngine::CCVWorkerEngine()
 {
     eventHandler = NULL;
-
     procGraph = new CCVProcGraph();
-        
-    pipelineLocked = false;
-    if (SetFirstPipeline() != CCV_SUCCESS) {
-        wxLogMessage(wxT("SetFirstPipeline Error"));
-        wxExit();
-    }
-}
-
-void CCVWorkerEngine::LockPipeline()
-{
-    pipelineLocked = true;
-}
-
-void CCVWorkerEngine::UnlockPipeline()
-{
-    pipelineLocked = false;
 }
 
 void *CCVWorkerEngine::Entry()
@@ -43,16 +26,16 @@ void *CCVWorkerEngine::Entry()
     while (true) {
         wxThread::Sleep(20);
         
-        if (! procGraph->isStarted())
+        if (!procGraph || ! procGraph->isStarted())
             continue;
             
-        if (!pipelineLocked && procGraph->isStarted())
+        if (! procGraph->hasLocked() && procGraph->isStarted())
             procGraph->poll();
 
         while (procGraph->haveError())
             wxLogMessage(wxT("procGraph error: %s"), procGraph->getLastError().c_str());
             
-        ModuleList outputModules;
+        ModuleList outputModules = procGraph->GetOutputModules();
         
         for (ModuleList::const_iterator iter = outputModules.begin();
 	     iter != outputModules.end(); ++iter) {
@@ -62,7 +45,7 @@ void *CCVWorkerEngine::Entry()
 	        RGBRawImage outRGBRaw;
 	        CvSize *outRoi = new CvSize;
 	        
-            if (!pipelineLocked && procGraph->size()>0 && theModule->getName() == "Stream") {
+            if (! procGraph->hasLocked() && procGraph->size()>0 && theModule->getName() == "Stream") {
                 otStreamModule *stream = (otStreamModule *)theModule;
                 if (stream->copy()) {
                     cvGetRawData(stream->output_buffer, &outRGBRaw, NULL, outRoi);                    
@@ -81,34 +64,4 @@ void *CCVWorkerEngine::Entry()
     }
 
     return NULL;
-}
-
-int CCVWorkerEngine::SetPipeline(CCVProcGraph & graph)
-{
-    if (pipelineLocked) {
-        return CCV_ERROR_LOCKED;
-    }
-    
-    LockPipeline();
-    Pause();
-    if (procGraph->isStarted())
-        procGraph->stop();
-    
-    procGraph->clear();
-    graph.Build();
-    
-    procGraph->start();
-    Resume();
-    UnlockPipeline();
-    return CCV_SUCCESS;
-}
-
-int CCVWorkerEngine::SetFirstPipeline()
-{
-    CCVProcGraph graph;
-    graph.AddModule("input_camera", "Camera");
-    graph.AddModule("output_leftviewer", "Stream");
-    graph.ConnectModules("input_camera", "output_leftviewer");
-    
-    return SetPipeline(graph);
 }

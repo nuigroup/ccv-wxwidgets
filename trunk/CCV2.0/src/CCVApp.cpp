@@ -51,11 +51,27 @@ IMPLEMENT_APP(CCVApp)
 bool CCVApp::OnInit()
 {
     movidthread = new CCVWorkerEngine;
+    
+    // Set the initial pipeline
+    if (! movidthread->procGraph->hasLocked()) {
+        movidthread->procGraph->AddModule("input_camera", "Camera");
+        movidthread->procGraph->AddModule("output_leftviewer", "Stream");
+        movidthread->procGraph->ConnectModules("input_camera", "output_leftviewer");
+        movidthread->procGraph->Build();
+        movidthread->procGraph->start();
+    }
+    else {
+        wxLogMessage(wxT("movidthread->procGraph->hasLocked()"));
+        return false;
+    }
+    
     if (movidthread->Create() != wxTHREAD_NO_ERROR ) {
-        wxExit();
+        wxLogMessage(wxT("movidthread->Create() != wxTHREAD_NO_ERROR"));
+        return false;
     }
     if (movidthread->Run() != wxTHREAD_NO_ERROR) {
-        wxExit();
+        wxLogMessage(wxT("movidthread->Run() != wxTHREAD_NO_ERROR"));
+        return false;
     }
 
     use_Mainframe = true;

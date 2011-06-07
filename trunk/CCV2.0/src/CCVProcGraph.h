@@ -39,6 +39,7 @@ private:
     std::map<std::string,std::string> modules;
     std::vector<MovidEdge> edges;
     moFactory *factory;
+    bool locked;
     
 public:
     CCVProcGraph();
@@ -60,6 +61,18 @@ public:
         Get a vector that includes all modules that were output stream modules.
     */
     ModuleList GetOutputModules();
+    
+    bool hasLocked();
+    
+    /**
+        Lock the pipeline.
+    */
+    int Lock();
+     
+    /**
+        Unlock the pipeline.
+    */
+    void Unlock();
 };
 
 #endif

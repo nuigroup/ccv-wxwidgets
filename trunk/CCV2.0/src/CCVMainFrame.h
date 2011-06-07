@@ -22,14 +22,12 @@ class CCVMainFrame : public CCVbaseMainFrame
 public:
     CCVMainFrame();
     CCVMainFrame(CCVWorkerEngine *);
-    void SetMovid(CCVWorkerEngine *);
-    
+    void SetWorkerEngine(CCVWorkerEngine *);
+   
 private:
     CCVWorkerEngine *movidProcess;
     void DrawCameraImage(OutRGBImage *, wxWindow *);
     void OnMovidImage(wxCommandEvent&);
-    
-    void SetMovidPipe_test();
 };
 
 #endif

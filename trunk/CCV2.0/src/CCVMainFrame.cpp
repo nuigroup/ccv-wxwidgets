@@ -17,24 +17,10 @@ CCVMainFrame::CCVMainFrame() : CCVbaseMainFrame(NULL)
 
 CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc) : CCVbaseMainFrame(NULL)
 {
-    SetMovid(movidProc);
-    //SetMovidPipe_test();
+    SetWorkerEngine(movidProc);
 }
 
-void CCVMainFrame::SetMovidPipe_test()
-{
-    if (movidProcess == NULL)
-        return;
-
-    CCVProcGraph graph;
-    graph.AddModule("input_camera", "Camera");
-    graph.AddModule("output_leftviewer", "Stream");
-    graph.ConnectModules("input_camera", "output_leftviewer");
-    
-    movidProcess->SetPipeline(graph);
-}
-
-void CCVMainFrame::SetMovid(CCVWorkerEngine *movidProc)
+void CCVMainFrame::SetWorkerEngine(CCVWorkerEngine *movidProc)
 {
     movidProcess = movidProc;
     movidProcess->setEventHandler(this);
