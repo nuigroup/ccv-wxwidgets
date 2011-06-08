@@ -35,12 +35,13 @@ void *CCVWorkerEngine::Entry()
         while (procGraph->haveError())
             wxLogMessage(wxT("procGraph error: %s"), procGraph->getLastError().c_str());
             
-        ModuleList outputModules = procGraph->GetOutputModules();
+        ModuleAddrDict outputModules = procGraph->GetOutputModules();
+        outImages.clear();
         
-        for (ModuleList::const_iterator iter = outputModules.begin();
+        for (ModuleAddrDict::const_iterator iter = outputModules.begin();
 	     iter != outputModules.end(); ++iter) {
-	        moModule *theModule = iter->first;
-	        std::string moduleLable = iter->second;
+            std::string moduleLable = iter->first;
+	        moModule *theModule = iter->second;	        
 	        
 	        RGBRawImage outRGBRaw;
 	        CvSize *outRoi = new CvSize;
@@ -52,10 +53,10 @@ void *CCVWorkerEngine::Entry()
                 }
             }
             
-            outImages.push_back(new OutRGBImage(outRGBRaw, outRoi, moduleLable));
+            outImages[moduleLable] = new OutRGBImage(outRGBRaw, outRoi);
         }
         
-        if (eventHandler != NULL) {
+        if (eventHandler != NULL && ! outImages.empty()) {
             wxCommandEvent event( newEVT_MOVIDPROCESS_NEWIMAGE, GetId() );
             if(!TestDestroy()) {
                 wxPostEvent(eventHandler, event);

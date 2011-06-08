@@ -30,8 +30,7 @@ int CCVProcGraph::AddModule(std::string moduleID, std::string moduleType, bool i
     moduleAddr[moduleID] = node;
     
     if (isOutModule) {
-        ModuleListItem *item = new ModuleListItem(node, moduleID);
-        outputModules.push_back(*item);
+        outputModules[moduleID] = node;
     }
     
     return CCV_SUCCESS;
@@ -60,10 +59,12 @@ void CCVProcGraph::ClearGraph()
 {
     modulesTypeOf.clear();
     edges.clear();
+    outputModules.clear();
+    moduleAddr.clear();
     this->clear();
 }
 
-ModuleList CCVProcGraph::GetOutputModules()
+ModuleAddrDict CCVProcGraph::GetOutputModules()
 {
     return outputModules;
 }

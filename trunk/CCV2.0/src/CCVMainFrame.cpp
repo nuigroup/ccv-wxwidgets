@@ -30,9 +30,9 @@ void CCVMainFrame::SetWorkerEngine(CCVWorkerEngine *movidProc)
 
 void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
 {
-    OutImagesVector rawImages = movidProcess->getOutImages();   
-    DrawCameraImage(rawImages[0], m_panel_inputViewer);
-    DrawCameraImage(rawImages[1], m_panel_outputViewer);
+    OutImagesMap rawImages = movidProcess->getOutImages();   
+    DrawCameraImage(rawImages["output_leftviewer"], m_panel_inputViewer);
+    DrawCameraImage(rawImages["output_rightviewer"], m_panel_outputViewer);
 }
 
 void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {

@@ -27,23 +27,21 @@ struct OutRGBImage
 {    
     RGBRawImage data;
     CvSize *outRoi;
-    std::string lable;
         
     OutRGBImage()
     {
         data = NULL;
         outRoi = NULL;
     }
-    
-    OutRGBImage(RGBRawImage _data, CvSize *_outRoi, std::string _lable)
+
+    OutRGBImage(RGBRawImage _data, CvSize *_outRoi)
     {
         data = _data;
         outRoi = _outRoi;
-        lable = _lable;
     }
 };
 
-typedef std::vector<OutRGBImage *> OutImagesVector;
+typedef std::map<std::string, OutRGBImage *> OutImagesMap;
 
 class CCVWorkerEngine : public wxThread
 {
@@ -51,7 +49,7 @@ public:
     CCVWorkerEngine();
     virtual void *Entry();
 
-    OutImagesVector getOutImages() { return outImages; }
+    OutImagesMap getOutImages() { return outImages; }
     void setEventHandler(wxEvtHandler *handler) { eventHandler = handler; }
     
     CCVProcGraph *procGraph;
@@ -59,7 +57,7 @@ public:
 private:
     wxEvtHandler *eventHandler;
 
-    OutImagesVector outImages;
+    OutImagesMap outImages;
 };
 
 #endif

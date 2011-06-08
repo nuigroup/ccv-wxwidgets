@@ -22,26 +22,28 @@
 typedef std::pair<std::string,std::string> MovidEdge;
       
 /**
-    Item type of ModuleList. The first part of the std::pair is the address
-    f a module, and the second part is the lable. The lable is an alias of 
-    the module, which may be used to indicate the related UI item.
+    Dict for finding a module's address with its ID.
 */    
-typedef std::pair<moModule *, std::string> ModuleListItem;
-    
+typedef std::map<std::string, moModule *> ModuleAddrDict;
+
 /**
-    A vector that list some modules.
-*/ 
-typedef std::vector<ModuleListItem> ModuleList;
+    Dict for finding a module's type with its ID.
+*/    
+typedef std::map<std::string, std::string> ModuleTypeDict;
 
 class CCVProcGraph : public moPipeline
 {
 private:
-    std::map<std::string,std::string> modulesTypeOf;
+    ModuleTypeDict modulesTypeOf;
     std::vector<MovidEdge> edges;
     moFactory *factory;
+    ModuleAddrDict outputModules;
+    ModuleAddrDict moduleAddr;
+    
+    /**
+        Once locked, using the pipeline will be not allowed.
+    */
     bool locked;
-    ModuleList outputModules;
-    std::map<std::string, moModule *> moduleAddr;
     
 public:
     CCVProcGraph();
@@ -54,15 +56,18 @@ public:
     int ConnectModules(std::string firstModuleID, std::string secondModuleID);
         
     /**
-        Clear both the graph and the pipeline..
+        Clear graph, dicts and the pipeline..
     */
     void ClearGraph();
     
     /**
-        Get a vector that includes all modules that were output stream modules.
+        Get a dict that includes all modules that were output stream modules.
     */
-    ModuleList GetOutputModules();
+    ModuleAddrDict GetOutputModules();
     
+    /**
+        Check whether the pipeline was locked.
+    */
     bool hasLocked();
     
     /**
