@@ -38,7 +38,7 @@ void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
 void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
     wxPaintDC dc(drawRec);
 
-    if(! dc.Ok())
+    if(! dc.Ok() || rawImage==NULL)
         return;
 
     int x,y,w,h;
