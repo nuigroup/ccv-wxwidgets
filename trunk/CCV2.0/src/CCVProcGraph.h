@@ -22,7 +22,8 @@
 typedef std::pair<std::string,std::string> MovidEdge;
       
 /**
-    Dict for finding a module's address with its ID.
+    Dict for finding a module's address with its ID. This is faster
+    than moPipeline::getModuleById().
 */    
 typedef std::map<std::string, moModule *> ModuleAddrDict;
 
@@ -54,6 +55,13 @@ public:
     int AddModule(std::string moduleID, std::string moduleType, bool isOutModule=false);
     
     int ConnectModules(std::string firstModuleID, std::string secondModuleID);
+        
+    /**
+        The graph is just a logical struct. Once you have set your graph by
+        AddModule() and ConnectModules(..), you need use BuildPipeline() to
+        generate a real pipeline.
+    */
+    int BuildPipeline();
         
     /**
         Clear graph, dicts and the pipeline..

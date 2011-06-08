@@ -26,13 +26,14 @@ To compile, use the following command in uxix shell:
 Require:
   wxWidgets
   OpenCV2.2 or higher
+  Microsoft Visual C++ 2010 (Free express version is enough)
 
 You can download the binary wxWidgets (wxPack) from:
 http://wxpack.sourceforge.net
 
 For some reason, the mingw does not work for CCV now, we'll fix it in futrue.
 At present you need to use Microsoft Visual C++ 2010 to compile CCV. Microsoft
-provided a Visual C++'s free express version, which can be download from:
+provided a free express version's Visual C++'s, which can be download from:
 http://www.microsoft.com/express/Downloads/#2010-Visual-CPP
 
 To compile, open MSVC\ccv2.sln and run build. Before compiling, make sure set

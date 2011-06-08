@@ -26,6 +26,7 @@ int CCVProcGraph::AddModule(std::string moduleID, std::string moduleType, bool i
     modulesTypeOf[moduleID] = moduleType;
     
     moModule *node = factory->create(moduleType);
+    node->property("id").set(moduleID);
     this->addElement(node);
     moduleAddr[moduleID] = node;
     
@@ -87,4 +88,16 @@ int CCVProcGraph::Lock()
 void CCVProcGraph::Unlock()
 {
     locked = false;
+}
+
+int CCVProcGraph::BuildPipeline()
+{
+    if (this->Lock() != CCV_SUCCESS) {
+        return CCV_ERROR_LOCKED;
+    }
+    // TODO: Redegin the graph struct
+    // TODO: Move building codes to here from AddModule() and ConnectModules(..)
+    
+    this->Unlock();
+    return CCV_ERROR_LOCKED;
 }

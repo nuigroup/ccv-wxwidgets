@@ -61,6 +61,7 @@ bool CCVApp::OnInit()
         movidthread->procGraph->ConnectModules("input_camera", "output_leftviewer");
         movidthread->procGraph->ConnectModules("input_camera", "invert");
         movidthread->procGraph->ConnectModules("invert", "output_rightviewer");
+        movidthread->procGraph->BuildPipeline();
         movidthread->procGraph->start();
     }
     else {
