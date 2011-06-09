@@ -35,11 +35,10 @@ typedef std::map<std::string, std::string> ModuleTypeDict;
 class CCVProcGraph : public moPipeline
 {
 private:
-    ModuleTypeDict modulesTypeOf;
-    std::vector<MovidEdge> edges;
+    ModuleTypeDict moduleTypeOf;
     moFactory *factory;
     ModuleAddrDict outputModules;
-    ModuleAddrDict moduleAddr;
+    ModuleAddrDict moduleAddrOf;
     
     /**
         Once locked, using the pipeline will be not allowed.
@@ -54,14 +53,15 @@ public:
     */
     int AddModule(std::string moduleID, std::string moduleType, bool isOutModule=false);
     
+    /**
+        Connect two modules. The first module inputs, the second outputs. 
+    */
     int ConnectModules(std::string firstModuleID, std::string secondModuleID);
         
     /**
-        The graph is just a logical struct. Once you have set your graph by
-        AddModule() and ConnectModules(..), you need use BuildPipeline() to
-        generate a real pipeline.
+        Remove a module. The connects will be removed as well. 
     */
-    int BuildPipeline();
+    int RemoveModule(std::string moduleID);
         
     /**
         Clear graph, dicts and the pipeline..

@@ -5,8 +5,9 @@
 // Copyright:   (c) 2011 NUI Group
 /////////////////////////////////////////////////////////////////////////////
 
-#include "CCVProcGraph.h"
+#include "moDataStream.h"
 #include "otMovidStreamModule.h"
+#include "CCVProcGraph.h"
 
 CCVProcGraph::CCVProcGraph() : moPipeline()
 {
@@ -20,15 +21,16 @@ CCVProcGraph::CCVProcGraph() : moPipeline()
 
 int CCVProcGraph::AddModule(std::string moduleID, std::string moduleType, bool isOutModule)
 {    
-    if (modulesTypeOf.find(moduleID) != modulesTypeOf.end()) {
-	return CCV_ERROR_ITEM_CANNOT_ADDED;
+    if (moduleTypeOf.find(moduleID) != moduleTypeOf.end()) {
+	    return CCV_ERROR_ITEM_CANNOT_ADDED;
     }
-    modulesTypeOf[moduleID] = moduleType;
+    moduleTypeOf[moduleID] = moduleType;
     
+    this->stop();    
     moModule *node = factory->create(moduleType);
     node->property("id").set(moduleID);
     this->addElement(node);
-    moduleAddr[moduleID] = node;
+    moduleAddrOf[moduleID] = node;
     
     if (isOutModule) {
         outputModules[moduleID] = node;
@@ -39,29 +41,70 @@ int CCVProcGraph::AddModule(std::string moduleID, std::string moduleType, bool i
 
 int CCVProcGraph::ConnectModules(std::string firstModuleID, std::string secondModuleID)
 {
-    if (modulesTypeOf.find(firstModuleID) == modulesTypeOf.end()
-	 || modulesTypeOf.find(secondModuleID) == modulesTypeOf.end()) {
+    if (moduleTypeOf.find(firstModuleID) == moduleTypeOf.end()
+	 || moduleTypeOf.find(secondModuleID) == moduleTypeOf.end()) {
 	    return CCV_ERROR_ITEM_NOT_EXISTS;
     }
-
-    edges.push_back(MovidEdge(firstModuleID, secondModuleID));
     
-    if (moduleAddr.find(firstModuleID) == moduleAddr.end()
-     || moduleAddr.find(secondModuleID) == moduleAddr.end()) {
+    if (moduleAddrOf.find(firstModuleID) == moduleAddrOf.end()
+     || moduleAddrOf.find(secondModuleID) == moduleAddrOf.end()) {
         return CCV_ERROR_ITEM_NOT_EXISTS;
     }
     	        
-    moduleAddr[secondModuleID]->setInput(moduleAddr[firstModuleID]->getOutput(0), 0);
+    moModule *moFirst = moduleAddrOf[firstModuleID];
+    moModule *moSecond = moduleAddrOf[secondModuleID];
+    this->stop();
+	moFirst->stop();
+	moSecond->stop();
+	
+    moSecond->setInput(moFirst->getOutput(moFirst->getOutputCount()),
+                       moSecond->getInputCount());
+    
+    return CCV_SUCCESS;
+}
+
+int CCVProcGraph::RemoveModule(std::string moduleID)
+{
+    if (moduleTypeOf.find(moduleID) != moduleTypeOf.end()) {
+	    return CCV_ERROR_ITEM_CANNOT_ADDED;
+    }
+    moModule *module = moduleAddrOf[moduleID]; 
+    moDataStream *ds;
+    
+    this->stop();
+	module->stop();
+    
+    // disconnect inputs
+	if ( module->getInputCount() ) {
+		for ( int i = 0; i < module->getInputCount(); i++ ) {
+			ds = module->getInput(i);
+			if ( ds == NULL )
+				continue;
+			ds->removeObserver(module);
+		}
+	}
+
+	// disconnect output
+	if ( module->getOutputCount() ) {
+		for ( int i = 0; i < module->getOutputCount(); i++ ) {
+			ds = module->getOutput(i);
+			if ( ds == NULL )
+				continue;
+			ds->removeObservers();
+		}
+	}
+
+	// remove element from pipeline
+	this->removeElement(module);
     
     return CCV_SUCCESS;
 }
 
 void CCVProcGraph::ClearGraph()
 {
-    modulesTypeOf.clear();
-    edges.clear();
+    moduleTypeOf.clear();
     outputModules.clear();
-    moduleAddr.clear();
+    moduleAddrOf.clear();
     this->clear();
 }
 
@@ -88,16 +131,4 @@ int CCVProcGraph::Lock()
 void CCVProcGraph::Unlock()
 {
     locked = false;
-}
-
-int CCVProcGraph::BuildPipeline()
-{
-    if (this->Lock() != CCV_SUCCESS) {
-        return CCV_ERROR_LOCKED;
-    }
-    // TODO: Redegin the graph struct
-    // TODO: Move building codes to here from AddModule() and ConnectModules(..)
-    
-    this->Unlock();
-    return CCV_ERROR_LOCKED;
 }
