@@ -35,17 +35,17 @@ void *CCVWorkerEngine::Entry()
         while (procGraph->haveError())
             wxLogMessage(wxT("procGraph error: %s"), procGraph->getLastError().c_str());
             
-        ModuleAddrDict outputModules = procGraph->GetOutputModules();
+        Strings outputModules = procGraph->GetOutputModuleIDs();
         outImages.clear();
         
-        for (ModuleAddrDict::const_iterator iter = outputModules.begin();
-	     iter != outputModules.end(); ++iter) {
-            std::string moduleLable = iter->first;
-	        moModule *theModule = iter->second;	        
-	        
-	        RGBRawImage outRGBRaw;
-	        CvSize *outRoi = new CvSize;
-	        
+        for (Strings::const_iterator iter = outputModules.begin();
+         iter != outputModules.end(); ++iter) {
+            std::string moduleID = *iter;
+            moModule *theModule = procGraph->getModuleById(moduleID);
+            
+            RGBRawImage outRGBRaw;
+            CvSize *outRoi = new CvSize;
+            
             if (! procGraph->hasLocked() && procGraph->size()>0 && theModule->getName() == "Stream") {
                 otStreamModule *stream = (otStreamModule *)theModule;
                 if (stream->copy()) {
@@ -53,7 +53,7 @@ void *CCVWorkerEngine::Entry()
                 }
             }
             
-            outImages[moduleLable] = new OutRGBImage(outRGBRaw, outRoi);
+            outImages[moduleID] = new OutRGBImage(outRGBRaw, outRoi);
         }
         
         if (eventHandler != NULL && ! outImages.empty()) {

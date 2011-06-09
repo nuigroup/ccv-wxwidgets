@@ -8,8 +8,6 @@
 #ifndef _CCV_WORKER_ENGINE_H
 #define _CCV_WORKER_ENGINE_H
 
-#include <vector>
-#include <string>
 #include <wx/thread.h>
 #include "moMovid.h"
 #include "CCVCommon.h"

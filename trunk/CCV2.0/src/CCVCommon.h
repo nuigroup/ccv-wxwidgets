@@ -13,6 +13,9 @@
 #include "msw/wx/msw/rcdefs.h"
 #endif // WIN32
 
+#include<vector>
+#include<string>
+
 enum CCV_ERROR_ID
 {
     CCV_SUCCESS,
@@ -20,5 +23,7 @@ enum CCV_ERROR_ID
     CCV_ERROR_ITEM_CANNOT_ADDED,
     CCV_ERROR_ITEM_NOT_EXISTS
 };
+
+typedef std::vector<std::string> Strings;
 
 #endif // _CCV_COMMON_H

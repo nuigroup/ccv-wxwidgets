@@ -1,7 +1,6 @@
 #ifndef _OTSTEAMMODULE_H
 #define _OTSTEAMMODULE_H
 
-#include <string>
 #include <cv.h>
 #include "moDaemon.h"
 #include "moPipeline.h"
