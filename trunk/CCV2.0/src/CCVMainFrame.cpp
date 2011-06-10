@@ -42,15 +42,23 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
     if(! dc.Ok() || rawImage==NULL)
         return;
 
-    int x,y,w,h;
-    dc.GetClippingBox( &x, &y, &w, &h );
-     
     unsigned char *rawData = rawImage->data;
     if ( rawData == NULL )
         return;
     CvSize *roi = rawImage->outRoi;
+	if (roi->width==0 || roi->height==0) {
+        return;
+    }
 
-    if (w==0 || h==0 || roi->width==0 || roi->height==0) {
+    wxCoord x,y,w,h;
+#ifdef WIN32
+	x = 0;
+	y = 0;
+	dc.GetSize( &w, &h );
+#else
+    dc.GetClippingBox( &x, &y, &w, &h );
+#endif // WIN32
+    if (w==0 || h==0) {
         return;
     }
 
