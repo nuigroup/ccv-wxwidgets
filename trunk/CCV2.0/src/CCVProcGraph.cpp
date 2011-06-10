@@ -47,8 +47,8 @@ int CCVProcGraph::ConnectModules(std::string firstModuleID, std::string secondMo
 	moFirst->stop();
 	moSecond->stop();
 	
-    moSecond->setInput(moFirst->getOutput(moFirst->getOutputCount()),
-                       moSecond->getInputCount());
+    // TODO: replace "moFirst->getOutput(0), 0" with some more flexible codes
+    moSecond->setInput(moFirst->getOutput(0), 0);
     
     return CCV_SUCCESS;
 }

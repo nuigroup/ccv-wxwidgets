@@ -9,6 +9,7 @@
 #include <wx/image.h>
 #include "CCVMainFrame.h"
 #include "CCVProcGraph.h"
+#include "CCVWorkerEngine.h"
 
 CCVMainFrame::CCVMainFrame() : CCVbaseMainFrame(NULL)
 {

@@ -32,8 +32,10 @@ void *CCVWorkerEngine::Entry()
         if (! procGraph->hasLocked() && procGraph->isStarted())
             procGraph->poll();
 
-        while (procGraph->haveError())
-            wxLogMessage(wxT("procGraph error: %s"), procGraph->getLastError().c_str());
+        while (procGraph->haveError()) {
+            std::string err_msg = procGraph->getLastError();
+            wxLogMessage(wxT("procGraph error: %s"), err_msg.c_str());
+        }
             
         Strings outputModules = procGraph->GetOutputModuleIDs();
         outImages.clear();
@@ -50,10 +52,9 @@ void *CCVWorkerEngine::Entry()
                 otStreamModule *stream = (otStreamModule *)theModule;
                 if (stream->copy()) {
                     cvGetRawData(stream->output_buffer, &outRGBRaw, NULL, outRoi);                    
+                    outImages[moduleID] = new OutRGBImage(outRGBRaw, outRoi);
                 }
             }
-            
-            outImages[moduleID] = new OutRGBImage(outRGBRaw, outRoi);
         }
         
         if (eventHandler != NULL && ! outImages.empty()) {
