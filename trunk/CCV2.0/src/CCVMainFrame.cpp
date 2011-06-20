@@ -76,15 +76,26 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
 }
 
 void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
-{
+{    
+    moModule *moInput = movidProcess->procGraph->getModuleById("input_source");
+    moInput->property("id").set("tmp");
+    moModule *moNewInput = NULL;
+    if (moInput==NULL) {
+        wxLogMessage(wxT("procGraph->getModuleById==NULL"));
+        return;
+    }
+
     int selectedId = m_radioBox_selectInput->GetSelection();
-    
-    // TODO: implement source selection
-    if (selectedId == CCV_SOURCE_CAMERA)
-        wxMessageBox( wxT("Select Input Source: Camera."), wxT("OnSelectInput"), wxOK | wxICON_INFORMATION );
-    else if (selectedId == CCV_SOURCE_FILE)
-        wxMessageBox( wxT("Select Input Source: Video File."), wxT("OnSelectInput"), wxOK | wxICON_INFORMATION );
+    if (selectedId == CCV_SOURCE_CAMERA) {
+        moNewInput = movidProcess->procGraph->AddModule("input_source", "Camera");
+    }
+    else if (selectedId == CCV_SOURCE_FILE) {
+        moNewInput = movidProcess->procGraph->AddModule("input_source", "Video");
+        moNewInput->property("filename").set("RearDI.avi");        
+    }        
     else 
         wxMessageBox( wxT("Unknown Input Source."), wxT("OnSelectInput"), wxOK | wxICON_INFORMATION );
-    
+
+    movidProcess->procGraph->ReplaceModule(moInput, moNewInput);
+    movidProcess->procGraph->RemoveModule("tmp");    
 }

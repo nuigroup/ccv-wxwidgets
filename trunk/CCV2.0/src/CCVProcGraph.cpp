@@ -19,11 +19,8 @@ CCVProcGraph::CCVProcGraph() : moPipeline()
     factory->registerModule("Stream", otStreamModule::createModule);
 }
 
-int CCVProcGraph::AddModule(std::string moduleID, std::string moduleType, bool isOutModule)
+moModule * CCVProcGraph::AddModule(std::string moduleID, std::string moduleType, bool isOutModule)
 {
-    if (moduleTypeOf.find(moduleID) != moduleTypeOf.end()) {
-        return CCV_ERROR_ITEM_CANNOT_ADDED;
-    }
     moduleTypeOf[moduleID] = moduleType;
     
     this->stop();    
@@ -35,19 +32,13 @@ int CCVProcGraph::AddModule(std::string moduleID, std::string moduleType, bool i
         outputModuleIDs.push_back(moduleID);
     }
     
-    return CCV_SUCCESS;
+    return node;
 }
 
 int CCVProcGraph::ConnectModules(std::string firstModuleID, std::string secondModuleID)
 {
     moModule *moFirst = this->getModuleById(firstModuleID);
     moModule *moSecond = this->getModuleById(secondModuleID);
-    
-    this->stop();
-    moFirst->stop();
-    moSecond->stop();
-    
-    // TODO: replace "moFirst->getOutput(0), 0" with some more flexible codes
     moSecond->setInput(moFirst->getOutput(0), 0);
     
     return CCV_SUCCESS;
@@ -62,14 +53,48 @@ int CCVProcGraph::DisconnectModules(std::string firstModuleID, std::string secon
     moFirst->stop();
     moSecond->stop();
     
-    // TODO: DisconnectModules
+    moDataStream *ds;
+    // ds->observers only stores the second module, do not store the first
+    // so we only remove moSecond
+    if ( moSecond->getInputCount() ) {
+        for ( int i = 0; i < moSecond->getInputCount(); i++ ) {
+            ds = moSecond->getInput(i);
+            if ( ds == NULL )
+                continue;
+            ds->removeObserver(moSecond);
+        }
+    }
+    
+    return CCV_SUCCESS;
+}
+
+int CCVProcGraph::ReplaceModule(moModule *moOld, moModule *moNew)
+{
+    std::vector<moModule *> inputsModules;
+    std::vector<moModule *> outputsModules;
+    if ( moOld->getInputCount() ) {
+        for ( int i = 0; i < moOld->getInputCount(); i++ ) {
+            moDataStream *ds = moOld->getInput(i);
+            if ( ds == NULL )
+                continue;
+            ds = NULL;  // TODO: Debug here
+        }
+    }
+    if ( moOld->getOutputCount() ) {
+        for ( int i = 0; i < moOld->getOutputCount(); i++ ) {
+            moDataStream *ds = moOld->getOutput(i);
+            if ( ds == NULL )
+                continue;
+            ds = NULL;  // TODO: Debug here
+        }
+    }
     
     return CCV_SUCCESS;
 }
 
 int CCVProcGraph::RemoveModule(std::string moduleID)
 {
-    if (moduleTypeOf.find(moduleID) != moduleTypeOf.end()) {
+    if (this->getModuleById(moduleID) == NULL) {
         return CCV_ERROR_ITEM_CANNOT_ADDED;
     }
     moModule *module = this->getModuleById(moduleID); 

@@ -34,9 +34,10 @@ public:
     CCVProcGraph();
     
     /**
-        Add a module. If the module is used to draw on UI, set isOutModule to true. 
+        Add a module. If the module is used to draw on UI, set isOutModule to true.
+        The address of the new module will be returned.
     */
-    int AddModule(std::string moduleID, std::string moduleType, bool isOutModule=false);
+    moModule * AddModule(std::string moduleID, std::string moduleType, bool isOutModule=false);
     
     /**
         Connect two modules. The first module inputs, the second outputs. 
@@ -52,6 +53,11 @@ public:
         Remove a module. The connects will be removed as well. 
     */
     int RemoveModule(std::string moduleID);
+
+    /**
+        Replace the module moOld with moNew. All connections were moved to the new module.
+    */
+    int ReplaceModule(moModule *moOld, moModule *moNew);
         
     /**
         Clear graph, dicts and the pipeline..
