@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include "CCVUtil.h"
 
-int CCVUtil::WriteBMP(unsigned char *image, int xsize, int ysize, char *filename) {
+int CCVUtil::WriteBMP(unsigned char *image, int xsize, int ysize, const char *filename) {
     unsigned char header[54] = {
       0x42, 0x4d, 0, 0, 0, 0, 0, 0, 0, 0,
         54, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 24, 0, 

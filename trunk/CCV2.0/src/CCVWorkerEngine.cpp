@@ -59,6 +59,7 @@ void *CCVWorkerEngine::Entry()
         
         if (eventHandler != NULL && ! outImages.empty()) {
             wxCommandEvent event( newEVT_MOVIDPROCESS_NEWIMAGE, GetId() );
+            wxThread::Sleep(1);
             if(!TestDestroy()) {
                 wxPostEvent(eventHandler, event);
             }

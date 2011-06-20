@@ -37,8 +37,12 @@ void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
     DrawCameraImage(rawImages["output_rightviewer"], m_panel_outputViewer);
 }
 
-void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
+void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {    
+#ifdef WIN32
+    wxClientDC dc(drawRec);
+#else
     wxPaintDC dc(drawRec);
+#endif
 
     if(! dc.Ok() || rawImage==NULL)
         return;
@@ -63,7 +67,7 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
         return;
     }
 
-    wxImage pWxImg = wxImage(roi->width, roi->height, rawData, TRUE);
+    wxImage pWxImg = wxImage(roi->width, roi->height, rawData, true);
     wxBitmap bmp = wxBitmap(pWxImg.Scale(w, h));
     dc.DrawBitmap(bmp, x, y);
 }

@@ -11,7 +11,7 @@
 class CCVUtil
 {
 public:
-    static int WriteBMP(unsigned char *image, int xsize, int ysize, char *filename);
+    static int WriteBMP(unsigned char *image, int xsize, int ysize, const char *filename);
 };
 
 #endif // _CCV_UTIL_H
