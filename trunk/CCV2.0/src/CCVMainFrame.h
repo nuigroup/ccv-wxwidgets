@@ -28,6 +28,13 @@ private:
     CCVWorkerEngine *movidProcess;
     void DrawCameraImage(OutRGBImage *, wxWindow *);
     void OnMovidImage(wxCommandEvent&);
+    void OnSelectInput( wxCommandEvent& event );
+};
+
+enum CCV_SOURCE_ID
+{
+    CCV_SOURCE_CAMERA,
+    CCV_SOURCE_FILE,
 };
 
 #endif

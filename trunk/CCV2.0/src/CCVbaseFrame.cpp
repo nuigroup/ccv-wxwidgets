@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Sep 12 2010)
+// C++ code generated with wxFormBuilder (version Sep  8 2010)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -500,10 +500,16 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	this->Layout();
 	
 	this->Centre( wxBOTH );
+	
+	// Connect Events
+	m_radioBox_selectInput->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( CCVbaseMainFrame::OnSelectInput ), NULL, this );
 }
 
 CCVbaseMainFrame::~CCVbaseMainFrame()
 {
+	// Disconnect Events
+	m_radioBox_selectInput->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( CCVbaseMainFrame::OnSelectInput ), NULL, this );
+	
 }
 
 CCVbaseMiniFrame::CCVbaseMiniFrame( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Sep 12 2010)
+// C++ code generated with wxFormBuilder (version Sep  8 2010)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -114,6 +114,10 @@ class CCVbaseMainFrame : public wxFrame
 		
 		wxStaticText* m_staticText_out;
 		wxStaticText* m_staticText_about;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void OnSelectInput( wxCommandEvent& event ) { event.Skip(); }
+		
 	
 	public:
 		

@@ -37,7 +37,8 @@ void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
     DrawCameraImage(rawImages["output_rightviewer"], m_panel_outputViewer);
 }
 
-void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {    
+void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {  
+      
 #ifdef WIN32
     wxClientDC dc(drawRec);
 #else
@@ -51,18 +52,20 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
     if ( rawData == NULL )
         return;
     CvSize *roi = rawImage->outRoi;
-	if (roi->width==0 || roi->height==0) {
+    if (roi->width==0 || roi->height==0) {
         return;
     }
 
     wxCoord x,y,w,h;
+    
 #ifdef WIN32
-	x = 0;
-	y = 0;
-	dc.GetSize( &w, &h );
+    x = 0;
+    y = 0;
+    dc.GetSize( &w, &h );
 #else
     dc.GetClippingBox( &x, &y, &w, &h );
 #endif // WIN32
+
     if (w==0 || h==0) {
         return;
     }
@@ -70,4 +73,18 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
     wxImage pWxImg = wxImage(roi->width, roi->height, rawData, true);
     wxBitmap bmp = wxBitmap(pWxImg.Scale(w, h));
     dc.DrawBitmap(bmp, x, y);
+}
+
+void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
+{
+    int selectedId = m_radioBox_selectInput->GetSelection();
+    
+    // TODO: implement source selection
+    if (selectedId == CCV_SOURCE_CAMERA)
+        wxMessageBox( wxT("Select Input Source: Camera."), wxT("OnSelectInput"), wxOK | wxICON_INFORMATION );
+    else if (selectedId == CCV_SOURCE_FILE)
+        wxMessageBox( wxT("Select Input Source: Video File."), wxT("OnSelectInput"), wxOK | wxICON_INFORMATION );
+    else 
+        wxMessageBox( wxT("Unknown Input Source."), wxT("OnSelectInput"), wxOK | wxICON_INFORMATION );
+    
 }
