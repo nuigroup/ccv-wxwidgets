@@ -10,6 +10,7 @@
 #include "CCVMainFrame.h"
 #include "CCVProcGraph.h"
 #include "CCVWorkerEngine.h"
+#include "CCVUtil.h"
 
 CCVMainFrame::CCVMainFrame() : CCVbaseMainFrame(NULL)
 {

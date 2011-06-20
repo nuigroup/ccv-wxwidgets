@@ -86,6 +86,7 @@ copy %OPENCV_DIR%\bin\opencv_video220.dll .
     <ClInclude Include="..\src\CCVMainFrame.h" />
     <ClInclude Include="..\src\CCVMiniFrame.h" />
     <ClInclude Include="..\src\CCVProcGraph.h" />
+    <ClInclude Include="..\src\CCVUtil.h" />
     <ClInclude Include="..\src\CCVWorkerEngine.h" />
     <ClInclude Include="..\src\otMovidStreamModule.h" />
   </ItemGroup>
@@ -95,6 +96,7 @@ copy %OPENCV_DIR%\bin\opencv_video220.dll .
     <ClCompile Include="..\src\CCVMainFrame.cpp" />
     <ClCompile Include="..\src\CCVMiniFrame.cpp" />
     <ClCompile Include="..\src\CCVProcGraph.cpp" />
+    <ClCompile Include="..\src\CCVUtil.cpp" />
     <ClCompile Include="..\src\CCVWorkerEngine.cpp" />
     <ClCompile Include="..\src\otMovidStreamModule.cpp" />
   </ItemGroup>
