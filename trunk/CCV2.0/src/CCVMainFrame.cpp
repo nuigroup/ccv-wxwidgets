@@ -71,8 +71,9 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
     }
 
     wxImage pWxImg = wxImage(roi->width, roi->height, rawData, true);
-    wxBitmap bmp = wxBitmap(pWxImg.Scale(w, h));
-    dc.DrawBitmap(bmp, x, y);
+    // pWxImg.SaveFile("debug.bmp", wxBITMAP_TYPE_BMP); // For debug only
+    wxBitmap bmp = wxBitmap(pWxImg.Scale(w, h));    
+    dc.DrawBitmap(bmp, x, y);    
 }
 
 void CCVMainFrame::OnSelectInput( wxCommandEvent& event )

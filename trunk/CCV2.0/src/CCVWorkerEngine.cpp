@@ -45,13 +45,26 @@ void *CCVWorkerEngine::Entry()
             std::string moduleID = *iter;
             moModule *theModule = procGraph->getModuleById(moduleID);
             
-            RGBRawImage outRGBRaw;
+            unsigned char *outRGBRaw;
             CvSize *outRoi = new CvSize;
             
             if (procGraph->size()>0 && theModule->getName() == "Stream") {
                 otStreamModule *stream = (otStreamModule *)theModule;
                 if (stream->copy()) {
-                    cvGetRawData(stream->output_buffer, &outRGBRaw, NULL, outRoi);                    
+                    if (stream->output_buffer->nChannels == 3)
+                        cvCvtColor(stream->output_buffer, stream->output_buffer, CV_BGR2RGB);
+                    cvGetRawData(stream->output_buffer, &outRGBRaw, NULL, outRoi);
+
+                    if (stream->output_buffer->nChannels == 1) {
+                        unsigned char *RGBfromGray = new unsigned char[outRoi->height * outRoi->width * 3];
+                        for (int k=0; k<outRoi->height * outRoi->width; k++) {
+                            RGBfromGray[3*k] = outRGBRaw[k];
+                            RGBfromGray[3*k+1] = outRGBRaw[k];
+                            RGBfromGray[3*k+2] = outRGBRaw[k];
+                        }
+                        outRGBRaw = RGBfromGray;
+                    }
+                    
                     outImages[moduleID] = new OutRGBImage(outRGBRaw, outRoi);
                 }
             }

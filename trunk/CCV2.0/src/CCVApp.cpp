@@ -54,12 +54,15 @@ bool CCVApp::OnInit()
     
     // Set the initial pipeline
     movidthread->procGraph->AddModule("input_source", "Camera");
+
     movidthread->procGraph->AddModule("output_leftviewer", "Stream", true);
-    movidthread->procGraph->AddModule("invert", "Invert");
-    movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);
     movidthread->procGraph->ConnectModules("input_source", "output_leftviewer");
-    movidthread->procGraph->ConnectModules("input_source", "invert");
-    movidthread->procGraph->ConnectModules("invert", "output_rightviewer");
+
+    movidthread->procGraph->AddModule("init_filter_1", "GrayScale");
+    movidthread->procGraph->ConnectModules("input_source", "init_filter_1");
+
+    movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);    
+    movidthread->procGraph->ConnectModules("init_filter_1", "output_rightviewer");
     movidthread->procGraph->start();
     
     if (movidthread->Create() != wxTHREAD_NO_ERROR ) {

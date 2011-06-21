@@ -19,11 +19,9 @@ extern const wxEventType newEVT_MOVIDPROCESS_NEWIMAGE;
     (wxObjectEventFunction) (wxEventFunction)                         \
     (wxCommandEventFunction) & fn, (wxObject*) NULL )
 
-typedef unsigned char * RGBRawImage;
-
 struct OutRGBImage
 {    
-    RGBRawImage data;
+    unsigned char *data;
     CvSize *outRoi;
         
     OutRGBImage()
@@ -32,7 +30,7 @@ struct OutRGBImage
         outRoi = NULL;
     }
 
-    OutRGBImage(RGBRawImage _data, CvSize *_outRoi)
+    OutRGBImage(unsigned char * _data, CvSize *_outRoi)
     {
         data = _data;
         outRoi = _outRoi;

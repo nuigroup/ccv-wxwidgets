@@ -59,7 +59,6 @@ bool otStreamModule :: copy()
         cvCopy(src, this->output_buffer);
     else
         cvResize(src, this->output_buffer);
-    cvCvtColor(this->output_buffer, this->output_buffer, CV_BGR2RGB);
     this->input->unlock();
     return true;
 }
