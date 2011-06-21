@@ -58,7 +58,7 @@
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>%OPENCV_DIR%\include;%OPENCV_DIR%\include\opencv;%WXWIN%\include;%WXWIN%\include\msvc;%WXWIN%\lib\vc_lib;..\contrib\movid\include;..\contrib\movid\contrib;..\contrib\movid\contrib\WOscLib-00.09;..\contrib\movid\contrib\ptypes-2.1.1\include;..\contrib\movid\ontrib\bitmap_munkres;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%OPENCV_DIR%\include;%OPENCV_DIR%\include\opencv;%WXWIN%\include;%WXWIN%\include\msvc;%WXWIN%\lib\vc_lib;..\contrib\movid\include;..\contrib\movid\contrib;..\contrib\movid\contrib\WOscLib-00.09;..\contrib\movid\contrib\ptypes-2.1.1\include;..\contrib\movid\ontrib\bitmap_munkres;..\contrib\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -78,11 +78,13 @@ copy %OPENCV_DIR%\bin\opencv_imgproc220.dll .
 copy %OPENCV_DIR%\bin\opencv_legacy220.dll .
 copy %OPENCV_DIR%\bin\opencv_video220.dll .
 copy Release\CCV2.exe .
-copy ..\res\config.xml .
+copy ..\res\config_win.xml .\config.xml
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\contrib\tinyxml\ofxXmlSettings.h" />
+    <ClInclude Include="..\contrib\tinyxml\tinyxml.h" />
     <ClInclude Include="..\src\CCVbaseFrame.h" />
     <ClInclude Include="..\src\CCVCommon.h" />
     <ClInclude Include="..\src\CCVMainFrame.h" />
@@ -93,6 +95,10 @@ copy ..\res\config.xml .
     <ClInclude Include="..\src\otMovidStreamModule.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\contrib\tinyxml\ofxXmlSettings.cpp" />
+    <ClCompile Include="..\contrib\tinyxml\tinyxml.cpp" />
+    <ClCompile Include="..\contrib\tinyxml\tinyxmlerror.cpp" />
+    <ClCompile Include="..\contrib\tinyxml\tinyxmlparser.cpp" />
     <ClCompile Include="..\src\CCVApp.cpp" />
     <ClCompile Include="..\src\CCVbaseFrame.cpp" />
     <ClCompile Include="..\src\CCVMainFrame.cpp" />

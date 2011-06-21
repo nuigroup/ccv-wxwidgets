@@ -23,9 +23,15 @@ enum CCV_ERROR_ID
     CCV_SUCCESS,
     CCV_ERROR_LOCKED,
     CCV_ERROR_ITEM_CANNOT_ADDED,
-    CCV_ERROR_ITEM_NOT_EXISTS
+    CCV_ERROR_ITEM_NOT_EXISTS,
+    CCV_ERROR_FILE_CANNOT_FOUND
 };
 
 typedef std::vector<std::string> Strings;
+
+struct CCVGlobalParam
+{
+    std::string videoFileName;
+};
 
 #endif // _CCV_COMMON_H

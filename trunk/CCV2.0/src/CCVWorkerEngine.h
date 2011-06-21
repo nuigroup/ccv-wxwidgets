@@ -52,7 +52,6 @@ public:
 
 private:
     wxEvtHandler *eventHandler;
-
     OutImagesMap outImages;
 };
 

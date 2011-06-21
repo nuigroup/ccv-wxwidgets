@@ -23,9 +23,11 @@ public:
     CCVMainFrame();
     CCVMainFrame(CCVWorkerEngine *);
     void SetWorkerEngine(CCVWorkerEngine *);
+    void SetGlobalParam(CCVGlobalParam *);
    
 private:
-    CCVWorkerEngine *movidProcess;
+    CCVWorkerEngine *movidProcess;    
+    CCVGlobalParam *paramHook;
     void DrawCameraImage(OutRGBImage *, wxWindow *);
     void OnMovidImage(wxCommandEvent&);
     void OnSelectInput( wxCommandEvent& event );

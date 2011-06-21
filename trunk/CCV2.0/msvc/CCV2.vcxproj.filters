@@ -16,6 +16,9 @@
     <Filter Include="LibMovid">
       <UniqueIdentifier>{bfcc0e63-d5d0-436d-84ed-93a8db47b25b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LibTinyXml">
+      <UniqueIdentifier>{45a439a3-93cb-451f-9bb5-6f7e329f257b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\CCVbaseFrame.h">
@@ -42,6 +45,12 @@
     <ClInclude Include="..\src\CCVProcGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\contrib\tinyxml\tinyxml.h">
+      <Filter>LibTinyXml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\contrib\tinyxml\ofxXmlSettings.h">
+      <Filter>LibTinyXml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\CCVApp.cpp">
@@ -67,6 +76,18 @@
     </ClCompile>
     <ClCompile Include="..\src\CCVUtil.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\contrib\tinyxml\tinyxml.cpp">
+      <Filter>LibTinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\contrib\tinyxml\tinyxmlerror.cpp">
+      <Filter>LibTinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\contrib\tinyxml\tinyxmlparser.cpp">
+      <Filter>LibTinyXml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\contrib\tinyxml\ofxXmlSettings.cpp">
+      <Filter>LibTinyXml</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

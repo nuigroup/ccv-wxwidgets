@@ -30,4 +30,4 @@ app:
 	mkdir -p $(PROGRAM).app/Contents/Resources
 	cp $(OSXPLIST) $(PROGRAM).app/Contents/
 	cp $(PROGDIR)/$(PROGRAM) $(PROGRAM).app/Contents/MacOS/$(PROGRAM)
-	cp $(RESDIR)/$(CONFIGFILE) $(PROGRAM).app/Contents/Resources/$(CONFIGFILE)
+	cp $(RESDIR)/config_osx.xml $(PROGRAM).app/Contents/Resources/config.xml

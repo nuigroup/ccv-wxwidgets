@@ -26,6 +26,8 @@
 #include "CCVWorkerEngine.h"
 #include "CCVMainFrame.h"
 #include "CCVMiniFrame.h"
+#include "tinyxml.h"
+#include "ofxXmlSettings.h"
 
 //
 // CCVApp is the class that provides the main application.
@@ -41,6 +43,9 @@ private:
     CCVMainFrame *mainframe;
     CCVMiniFrame *miniframe;
     CCVWorkerEngine *movidthread;
+    CCVGlobalParam *param;
+
+    int LoadConfigXml(CCVGlobalParam *, std::string filename);
 };
 
 IMPLEMENT_APP(CCVApp)
@@ -50,7 +55,10 @@ IMPLEMENT_APP(CCVApp)
 */
 bool CCVApp::OnInit()
 {
-    movidthread = new CCVWorkerEngine;
+    param = new CCVGlobalParam;
+    LoadConfigXml(param, "config.xml");
+    
+    movidthread = new CCVWorkerEngine();
     
     // Set the initial pipeline
     movidthread->procGraph->AddModule("input_source", "Camera");
@@ -85,6 +93,7 @@ bool CCVApp::OnInit()
     mainframe = new CCVMainFrame(movidthread);
     if (mainframe==NULL)
         return false;
+    mainframe->SetGlobalParam(param);
     mainframe->Show(use_Mainframe);
 
     miniframe = new CCVMiniFrame(mainframe);
@@ -120,4 +129,17 @@ int CCVApp::OnExit()
     }
 
     return 0;
+}
+
+int CCVApp::LoadConfigXml(CCVGlobalParam *in_param, std::string filename)
+{
+    // Not means CCV2 depends oF.
+    // Just use ofxXml, as ofxXml is easier to use than tinyxml.
+    ofxXmlSettings XML;
+    if (! XML.loadFile("config.xml"))
+        return CCV_ERROR_FILE_CANNOT_FOUND;
+    
+    in_param->videoFileName = XML.getValue("CONFIG:VIDEO:FILENAME", "RearDI.m4v");
+
+    return CCV_SUCCESS;
 }

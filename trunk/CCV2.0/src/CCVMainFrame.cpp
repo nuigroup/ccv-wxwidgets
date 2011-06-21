@@ -15,6 +15,7 @@
 CCVMainFrame::CCVMainFrame() : CCVbaseMainFrame(NULL)
 {
     movidProcess = NULL;
+    paramHook = NULL;
 }
 
 CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc) : CCVbaseMainFrame(NULL)
@@ -28,6 +29,11 @@ void CCVMainFrame::SetWorkerEngine(CCVWorkerEngine *movidProc)
     movidProcess->setEventHandler(this);
     Disconnect(newEVT_MOVIDPROCESS_NEWIMAGE, wxCommandEventHandler(CCVMainFrame::OnMovidImage));
     Connect(newEVT_MOVIDPROCESS_NEWIMAGE, wxCommandEventHandler(CCVMainFrame::OnMovidImage));
+}
+
+void CCVMainFrame::SetGlobalParam(CCVGlobalParam *_param)
+{
+    paramHook = _param;
 }
 
 void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
@@ -94,7 +100,7 @@ void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
     }
     else if (selectedId == CCV_SOURCE_FILE) {
         moNewInput = movidProcess->procGraph->AddModule("input_source", "Video");
-        moNewInput->property("filename").set("RearDI.avi");        
+        moNewInput->property("filename").set(paramHook->videoFileName);        
     }        
     else 
         wxMessageBox( wxT("Unknown Input Source."), wxT("OnSelectInput"), wxOK | wxICON_INFORMATION );
