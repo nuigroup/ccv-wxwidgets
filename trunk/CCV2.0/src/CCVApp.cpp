@@ -53,20 +53,14 @@ bool CCVApp::OnInit()
     movidthread = new CCVWorkerEngine;
     
     // Set the initial pipeline
-    if (! movidthread->procGraph->hasLocked()) {
-        movidthread->procGraph->AddModule("input_source", "Camera");
-        movidthread->procGraph->AddModule("output_leftviewer", "Stream", true);
-        movidthread->procGraph->AddModule("invert", "Invert");
-        movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);
-        movidthread->procGraph->ConnectModules("input_source", "output_leftviewer");
-        movidthread->procGraph->ConnectModules("input_source", "invert");
-        movidthread->procGraph->ConnectModules("invert", "output_rightviewer");
-        movidthread->procGraph->start();
-    }
-    else {
-        wxLogMessage(wxT("movidthread->procGraph->hasLocked()"));
-        return false;
-    }
+    movidthread->procGraph->AddModule("input_source", "Camera");
+    movidthread->procGraph->AddModule("output_leftviewer", "Stream", true);
+    movidthread->procGraph->AddModule("invert", "Invert");
+    movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);
+    movidthread->procGraph->ConnectModules("input_source", "output_leftviewer");
+    movidthread->procGraph->ConnectModules("input_source", "invert");
+    movidthread->procGraph->ConnectModules("invert", "output_rightviewer");
+    movidthread->procGraph->start();
     
     if (movidthread->Create() != wxTHREAD_NO_ERROR ) {
         wxLogMessage(wxT("movidthread->Create() != wxTHREAD_NO_ERROR"));

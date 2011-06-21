@@ -25,11 +25,6 @@ private:
     moFactory *factory;
     Strings outputModuleIDs;
     
-    /**
-        Once locked, using the pipeline will be not allowed.
-    */
-    bool locked;
-    
 public:
     CCVProcGraph();
     
@@ -69,21 +64,6 @@ public:
         Get a list that includes all modules that were output stream modules.
     */
     Strings GetOutputModuleIDs();
-    
-    /**
-        Check whether the pipeline was locked.
-    */
-    bool hasLocked();
-    
-    /**
-        Lock the pipeline.
-    */
-    int Lock();
-     
-    /**
-        Unlock the pipeline.
-    */
-    void Unlock();
 };
 
 #endif

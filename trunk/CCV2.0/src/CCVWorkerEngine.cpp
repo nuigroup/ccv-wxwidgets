@@ -29,7 +29,7 @@ void *CCVWorkerEngine::Entry()
         if (!procGraph || ! procGraph->isStarted())
             continue;
             
-        if (! procGraph->hasLocked() && procGraph->isStarted())
+        if (procGraph->isStarted())
             procGraph->poll();
 
         while (procGraph->haveError()) {
@@ -48,7 +48,7 @@ void *CCVWorkerEngine::Entry()
             RGBRawImage outRGBRaw;
             CvSize *outRoi = new CvSize;
             
-            if (! procGraph->hasLocked() && procGraph->size()>0 && theModule->getName() == "Stream") {
+            if (procGraph->size()>0 && theModule->getName() == "Stream") {
                 otStreamModule *stream = (otStreamModule *)theModule;
                 if (stream->copy()) {
                     cvGetRawData(stream->output_buffer, &outRGBRaw, NULL, outRoi);                    

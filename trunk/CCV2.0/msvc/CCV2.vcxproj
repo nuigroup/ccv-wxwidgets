@@ -77,6 +77,7 @@ copy %OPENCV_DIR%\bin\opencv_highgui220.dll .
 copy %OPENCV_DIR%\bin\opencv_imgproc220.dll .
 copy %OPENCV_DIR%\bin\opencv_legacy220.dll .
 copy %OPENCV_DIR%\bin\opencv_video220.dll .
+copy Release\CCV2.exe .
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

@@ -11,9 +11,6 @@
 
 CCVProcGraph::CCVProcGraph() : moPipeline()
 {
-    locked = false;
-    
-    // initialize/discover all modules
     moFactory::init();
     factory = moFactory::getInstance();
     factory->registerModule("Stream", otStreamModule::createModule);
@@ -168,24 +165,4 @@ void CCVProcGraph::ClearGraph()
 Strings CCVProcGraph::GetOutputModuleIDs()
 {
     return outputModuleIDs;
-}
-
-bool CCVProcGraph::hasLocked()
-{
-    return locked;
-}
-
-int CCVProcGraph::Lock()
-{
-    if (!locked) {
-        locked = true;
-        return CCV_SUCCESS;
-    }
-    else 
-        return CCV_ERROR_LOCKED;
-}
-
-void CCVProcGraph::Unlock()
-{
-    locked = false;
 }
