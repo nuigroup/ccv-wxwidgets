@@ -55,7 +55,8 @@ public:
     int RemoveModule(std::string moduleID);
 
     /**
-        Replace the module moOld with moNew. All connections were moved to the new module.
+        Replace the module moOld with moNew. All connections will be moved to the new module.
+        The moOld will be removed.
     */
     int ReplaceModule(moModule *moOld, moModule *moNew);
         

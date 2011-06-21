@@ -77,6 +77,7 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
 
 void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
 {    
+    movidProcess->procGraph->stop();
     moModule *moInput = movidProcess->procGraph->getModuleById("input_source");
     moInput->property("id").set("tmp");
     moModule *moNewInput = NULL;
@@ -97,5 +98,5 @@ void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
         wxMessageBox( wxT("Unknown Input Source."), wxT("OnSelectInput"), wxOK | wxICON_INFORMATION );
 
     movidProcess->procGraph->ReplaceModule(moInput, moNewInput);
-    movidProcess->procGraph->RemoveModule("tmp");    
+    movidProcess->procGraph->start();
 }

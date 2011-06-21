@@ -70,14 +70,20 @@ int CCVProcGraph::DisconnectModules(std::string firstModuleID, std::string secon
 
 int CCVProcGraph::ReplaceModule(moModule *moOld, moModule *moNew)
 {
-    std::vector<moModule *> inputsModules;
-    std::vector<moModule *> outputsModules;
+    this->stop();
+    moOld->stop();
+    moNew->stop();
+
+    // Backup connections and then remove the old module
+    std::vector<moDataStream *> inputDataStreams;
+    std::vector<moModule *> outputModules;
     if ( moOld->getInputCount() ) {
         for ( int i = 0; i < moOld->getInputCount(); i++ ) {
             moDataStream *ds = moOld->getInput(i);
             if ( ds == NULL )
                 continue;
-            ds = NULL;  // TODO: Debug here
+            ds->removeObserver(moOld);
+            inputDataStreams.push_back(ds);
         }
     }
     if ( moOld->getOutputCount() ) {
@@ -85,8 +91,20 @@ int CCVProcGraph::ReplaceModule(moModule *moOld, moModule *moNew)
             moDataStream *ds = moOld->getOutput(i);
             if ( ds == NULL )
                 continue;
-            ds = NULL;  // TODO: Debug here
+            for (unsigned int j=0; j<ds->getObserverCount(); j++) {
+                outputModules.push_back(ds->getObserver(j));
+            }
+            ds->removeObservers();
         }
+    }
+    this->removeElement(moOld);
+
+    // Connect the new module
+    for (unsigned int i = 0; i < inputDataStreams.size(); i++) {
+        moNew->setInput(inputDataStreams[i], i);
+    }
+    for (unsigned int i = 0; i < outputModules.size(); i++) {
+        outputModules[i]->setInput(moNew->getOutput(0), 0);
     }
     
     return CCV_SUCCESS;
@@ -94,14 +112,15 @@ int CCVProcGraph::ReplaceModule(moModule *moOld, moModule *moNew)
 
 int CCVProcGraph::RemoveModule(std::string moduleID)
 {
+    this->stop();
+   
     if (this->getModuleById(moduleID) == NULL) {
         return CCV_ERROR_ITEM_CANNOT_ADDED;
     }
     moModule *module = this->getModuleById(moduleID); 
-    moDataStream *ds;
-    
-    this->stop();
     module->stop();
+
+    moDataStream *ds;
     
     // disconnect inputs
     if ( module->getInputCount() ) {
