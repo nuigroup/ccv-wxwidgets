@@ -8,7 +8,7 @@ DOCDIR = docs
 DOXYGEN = doxygen
 DOXYCONFIG = $(RESDIR)/Doxyfile
 
-MOVIDFLAG = -Ilib/movid/include -Ilib/movid/contrib -Ilib/movid/contrib/WOscLib-00.09 -Ilib/movid/contrib/ptypes-2.1.1/include -Ilib/movid/contrib/bitmap_munkres lib/movid/lib_linux/libmovid.a -Llib/movid/lib_linux -L/usr/local/lib -lptypes -lwosclib -lfidtrack
+MOVIDFLAG = -Icontrib/movid/include -Icontrib/movid/contrib -Icontrib/movid/contrib/WOscLib-00.09 -Icontrib/movid/contrib/ptypes-2.1.1/include -Icontrib/movid/contrib/bitmap_munkres contrib/movid/lib_linux/libmovid.a -Lcontrib/movid/lib_linux -L/usr/local/lib -lptypes -lwosclib -lfidtrack
 WXFLAG = `wx-config --libs --cxxflags`
 OPENCVFLAG = `pkg-config --cflags --libs opencv`
 

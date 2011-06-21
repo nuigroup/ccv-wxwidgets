@@ -70,16 +70,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\lib\movid\lib_vs2010\fidtrack.lib">
+    <Library Include="..\contrib\movid\lib_vs2010\fidtrack.lib">
       <Filter>LibMovid</Filter>
     </Library>
-    <Library Include="..\lib\movid\lib_vs2010\libmovid.lib">
+    <Library Include="..\contrib\movid\lib_vs2010\libmovid.lib">
       <Filter>LibMovid</Filter>
     </Library>
-    <Library Include="..\lib\movid\lib_vs2010\ptypes.lib">
+    <Library Include="..\contrib\movid\lib_vs2010\ptypes.lib">
       <Filter>LibMovid</Filter>
     </Library>
-    <Library Include="..\lib\movid\lib_vs2010\wosclib.lib">
+    <Library Include="..\contrib\movid\lib_vs2010\wosclib.lib">
       <Filter>LibMovid</Filter>
     </Library>
   </ItemGroup>

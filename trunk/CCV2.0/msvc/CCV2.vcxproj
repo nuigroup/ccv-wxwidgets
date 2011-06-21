@@ -58,7 +58,7 @@
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>%OPENCV_DIR%\include;%OPENCV_DIR%\include\opencv;%WXWIN%\include;%WXWIN%\include\msvc;%WXWIN%\lib\vc_lib;..\lib\movid\include;..\lib\movid\contrib;..\lib\movid\contrib\WOscLib-00.09;..\lib\movid\contrib\ptypes-2.1.1\include;..\lib\movid\ontrib\bitmap_munkres;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%OPENCV_DIR%\include;%OPENCV_DIR%\include\opencv;%WXWIN%\include;%WXWIN%\include\msvc;%WXWIN%\lib\vc_lib;..\contrib\movid\include;..\contrib\movid\contrib;..\contrib\movid\contrib\WOscLib-00.09;..\contrib\movid\contrib\ptypes-2.1.1\include;..\contrib\movid\ontrib\bitmap_munkres;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -78,6 +78,7 @@ copy %OPENCV_DIR%\bin\opencv_imgproc220.dll .
 copy %OPENCV_DIR%\bin\opencv_legacy220.dll .
 copy %OPENCV_DIR%\bin\opencv_video220.dll .
 copy Release\CCV2.exe .
+copy ..\res\config.xml .
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -102,10 +103,10 @@ copy Release\CCV2.exe .
     <ClCompile Include="..\src\otMovidStreamModule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\lib\movid\lib_vs2010\fidtrack.lib" />
-    <Library Include="..\lib\movid\lib_vs2010\libmovid.lib" />
-    <Library Include="..\lib\movid\lib_vs2010\ptypes.lib" />
-    <Library Include="..\lib\movid\lib_vs2010\wosclib.lib" />
+    <Library Include="..\contrib\movid\lib_vs2010\fidtrack.lib" />
+    <Library Include="..\contrib\movid\lib_vs2010\libmovid.lib" />
+    <Library Include="..\contrib\movid\lib_vs2010\ptypes.lib" />
+    <Library Include="..\contrib\movid\lib_vs2010\wosclib.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

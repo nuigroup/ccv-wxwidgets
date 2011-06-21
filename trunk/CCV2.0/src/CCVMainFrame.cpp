@@ -78,6 +78,7 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
 
 void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
 {    
+    movidProcess->Pause();
     movidProcess->procGraph->stop();
     moModule *moInput = movidProcess->procGraph->getModuleById("input_source");
     moInput->property("id").set("tmp");
@@ -100,4 +101,5 @@ void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
 
     movidProcess->procGraph->ReplaceModule(moInput, moNewInput);
     movidProcess->procGraph->start();
+    movidProcess->Resume();
 }
