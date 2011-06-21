@@ -61,8 +61,14 @@ bool CCVApp::OnInit()
     movidthread->procGraph->AddModule("init_filter_1", "GrayScale");
     movidthread->procGraph->ConnectModules("input_source", "init_filter_1");
 
+    movidthread->procGraph->AddModule("init_filter_2", "Threshold")->property("threshold").set(150);
+    movidthread->procGraph->ConnectModules("init_filter_1", "init_filter_2");
+
+    movidthread->procGraph->AddModule("init_filter_3", "BlobFinder");
+    movidthread->procGraph->ConnectModules("init_filter_2", "init_filter_3");
+
     movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);    
-    movidthread->procGraph->ConnectModules("init_filter_1", "output_rightviewer");
+    movidthread->procGraph->ConnectModules("init_filter_3", "output_rightviewer");
     movidthread->procGraph->start();
     
     if (movidthread->Create() != wxTHREAD_NO_ERROR ) {
