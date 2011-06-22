@@ -81,6 +81,7 @@ copy %OPENCV_DIR%\bin\opencv_video220.dll .
 copy %OPENCV_DIR%\bin\opencv_ffmpeg220.dll .
 copy Release\CCV2.exe .
 copy ..\res\config_win.xml .\config.xml
+copy ..\res\RearDI.avi .\RearDI.avi
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
