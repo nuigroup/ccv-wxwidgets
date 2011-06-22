@@ -3,4 +3,7 @@
     <VIDEO>
         <FILENAME>RearDI.avi</FILENAME>
     </VIDEO>
+    <LOG>
+        <FILENAME>ccv2.log</FILENAME>
+    </LOG>
 </CONFIG>
