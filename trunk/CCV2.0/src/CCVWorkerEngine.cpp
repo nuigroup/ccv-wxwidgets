@@ -23,18 +23,25 @@ CCVWorkerEngine::CCVWorkerEngine()
 
 void *CCVWorkerEngine::Entry()
 {
+    wxLogMessage(wxT("BEGIN CCVWorkerEngine::Entry();"));
     while (true) {
         wxThread::Sleep(20);
         
         if (!procGraph || ! procGraph->isStarted())
             continue;
             
-        if (procGraph->isStarted())
+        if (procGraph->isStarted() && !TestDestroy()) {
+            wxLogMessage(wxT("BEFORE procGraph->poll();"));
             procGraph->poll();
+            wxLogMessage(wxT("AFTER procGraph->poll();"));
+        }
+        else {
+            continue;
+        }
 
         while (procGraph->haveError()) {
             std::string err_msg = procGraph->getLastError();
-            wxLogMessage(wxT("procGraph error: %s"), err_msg.c_str());
+            wxLogMessage(wxT("ERROR procGraph error msg: %s"), err_msg.c_str());
         }
             
         Strings outputModules = procGraph->GetOutputModuleIDs();
@@ -74,7 +81,9 @@ void *CCVWorkerEngine::Entry()
             wxCommandEvent event( newEVT_MOVIDPROCESS_NEWIMAGE, GetId() );
             wxThread::Sleep(1);
             if(!TestDestroy()) {
+                wxLogMessage(wxT("BEFORE wxPostEvent(eventHandler, event);"));
                 wxPostEvent(eventHandler, event);
+                wxLogMessage(wxT("AFTER wxPostEvent(eventHandler, event);"));
             }
         }
     }

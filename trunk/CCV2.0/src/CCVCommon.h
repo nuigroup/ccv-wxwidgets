@@ -15,8 +15,11 @@
 #pragma comment(lib,"comctl32.lib")
 #endif // WIN32
 
-#include<vector>
-#include<string>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <wx/log.h>
 
 enum CCV_ERROR_ID
 {
@@ -32,6 +35,7 @@ typedef std::vector<std::string> Strings;
 struct CCVGlobalParam
 {
     std::string videoFileName;
+    wxLog *logger;
 };
 
 #endif // _CCV_COMMON_H

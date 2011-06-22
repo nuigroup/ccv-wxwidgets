@@ -22,6 +22,7 @@
 
 #include <wx/wx.h>
 #include <wx/thread.h>
+#include <cstdio>
 #include "CCVCommon.h"
 #include "CCVWorkerEngine.h"
 #include "CCVMainFrame.h"
@@ -44,6 +45,7 @@ private:
     CCVMiniFrame *miniframe;
     CCVWorkerEngine *movidthread;
     CCVGlobalParam *param;
+    FILE* logFp;
 
     int LoadConfigXml(CCVGlobalParam *, std::string filename);
 };
@@ -80,11 +82,11 @@ bool CCVApp::OnInit()
     movidthread->procGraph->start();
     
     if (movidthread->Create() != wxTHREAD_NO_ERROR ) {
-        wxLogMessage(wxT("movidthread->Create() != wxTHREAD_NO_ERROR"));
+        wxLogMessage(wxT("ERROR movidthread->Create() != wxTHREAD_NO_ERROR"));
         return false;
     }
     if (movidthread->Run() != wxTHREAD_NO_ERROR) {
-        wxLogMessage(wxT("movidthread->Run() != wxTHREAD_NO_ERROR"));
+        wxLogMessage(wxT("ERROR movidthread->Run() != wxTHREAD_NO_ERROR"));
         return false;
     }
 
@@ -121,11 +123,12 @@ int CCVApp::FilterEvent(wxEvent& event)
 
 int CCVApp::OnExit()
 {
+    fclose(logFp);
     if (movidthread->Pause() != wxTHREAD_NO_ERROR) {
-        wxLogMessage(wxT("movidthread->Pause() != wxTHREAD_NO_ERROR"));
+        wxLogMessage(wxT("ERROR movidthread->Pause() != wxTHREAD_NO_ERROR"));
     }
     if (movidthread->Delete() != wxTHREAD_NO_ERROR) {
-        wxLogMessage(wxT("movidthread->Delete() != wxTHREAD_NO_ERROR"));
+        wxLogMessage(wxT("ERROR movidthread->Delete() != wxTHREAD_NO_ERROR"));
     }
 
     return 0;
@@ -140,6 +143,9 @@ int CCVApp::LoadConfigXml(CCVGlobalParam *in_param, std::string filename)
         return CCV_ERROR_FILE_CANNOT_FOUND;
     
     in_param->videoFileName = XML.getValue("CONFIG:VIDEO:FILENAME", "RearDI.m4v");
-
+    std::string logFileName = XML.getValue("CONFIG:LOG:FILENAME", "ccv2.log");
+    logFp = fopen(logFileName.c_str(), "wt");
+    in_param->logger = new wxLogStderr(logFp);
+    wxLog::SetActiveTarget(in_param->logger);
     return CCV_SUCCESS;
 }

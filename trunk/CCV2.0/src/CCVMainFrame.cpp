@@ -29,6 +29,7 @@ void CCVMainFrame::SetWorkerEngine(CCVWorkerEngine *movidProc)
     movidProcess->setEventHandler(this);
     Disconnect(newEVT_MOVIDPROCESS_NEWIMAGE, wxCommandEventHandler(CCVMainFrame::OnMovidImage));
     Connect(newEVT_MOVIDPROCESS_NEWIMAGE, wxCommandEventHandler(CCVMainFrame::OnMovidImage));
+    wxLogMessage(wxT("FINISH CCVMainFrame::SetWorkerEngine()"));
 }
 
 void CCVMainFrame::SetGlobalParam(CCVGlobalParam *_param)
@@ -84,8 +85,11 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
 
 void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
 {    
+    wxLogMessage(wxT("BEGIN OnSelectInput();"));
     movidProcess->Pause();
     movidProcess->procGraph->stop();
+    wxLogMessage(wxT("AFTER movidProcess->procGraph->stop();"));
+    wxThread::Sleep(20);
     moModule *moInput = movidProcess->procGraph->getModuleById("input_source");
     moInput->property("id").set("tmp");
     moModule *moNewInput = NULL;
@@ -103,9 +107,11 @@ void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
         moNewInput->property("filename").set(paramHook->videoFileName);        
     }        
     else 
-        wxMessageBox( wxT("Unknown Input Source."), wxT("OnSelectInput"), wxOK | wxICON_INFORMATION );
+        wxMessageBox( wxT("Error: Unknown Input Source."), wxT("OnSelectInput"), wxOK | wxICON_INFORMATION );
 
     movidProcess->procGraph->ReplaceModule(moInput, moNewInput);
     movidProcess->procGraph->start();
+    wxLogMessage(wxT("AFTER movidProcess->procGraph->start();"));
     movidProcess->Resume();
+    wxLogMessage(wxT("AFTER movidProcess->procGraph->Resume();"));
 }
