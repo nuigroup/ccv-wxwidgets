@@ -84,15 +84,17 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
 }
 
 void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
-{    
-    int wait_count = 0;
-    while (movidProcess->procGraph->isBusy()) {
-        wxLogMessage(wxT("MESSAGE movidProcess->procGraph->isBusy(), waiting."));
-        wxThread::Sleep(200);
-        if(wait_count++ > 200) {
-            wxLogMessage(wxT("ERROR OnSelectInput: wait_count++ > 200"));
-            return;
+{
+    int selectedId = m_radioBox_selectInput->GetSelection();
+    if (movidProcess->procGraph->isBusy()) {
+        wxLogMessage(wxT("MESSAGE movidProcess->procGraph->isBusy(). Return."));
+        if (selectedId == CCV_SOURCE_CAMERA) {
+            m_radioBox_selectInput->SetSelection(CCV_SOURCE_FILE);
         }
+        else if (selectedId == CCV_SOURCE_FILE) {
+            m_radioBox_selectInput->SetSelection(CCV_SOURCE_CAMERA);
+        }
+        return;
     }
     wxLogMessage(wxT("BEGIN OnSelectInput();"));
     movidProcess->Pause();
@@ -105,8 +107,7 @@ void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
         wxLogMessage(wxT("procGraph->getModuleById==NULL"));
         return;
     }
-
-    int selectedId = m_radioBox_selectInput->GetSelection();
+    
     if (selectedId == CCV_SOURCE_CAMERA) {
         moNewInput = movidProcess->procGraph->AddModule("input_source", "Camera");
     }
