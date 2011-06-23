@@ -11,6 +11,7 @@
 
 CCVProcGraph::CCVProcGraph() : moPipeline()
 {
+    busy = false;
     moFactory::init();
     factory = moFactory::getInstance();
     factory->registerModule("Stream", otStreamModule::createModule);
@@ -165,4 +166,19 @@ void CCVProcGraph::ClearGraph()
 Strings CCVProcGraph::GetOutputModuleIDs()
 {
     return outputModuleIDs;
+}
+
+bool CCVProcGraph::isBusy()
+{
+    return busy;
+}
+
+void CCVProcGraph::SetBusy()
+{
+    busy = true;
+}
+
+void CCVProcGraph::SetNotBusy()
+{
+    busy = false;
 }

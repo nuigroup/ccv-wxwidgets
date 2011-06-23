@@ -32,7 +32,9 @@ void *CCVWorkerEngine::Entry()
             
         if (procGraph->isStarted() && !TestDestroy()) {
             wxLogMessage(wxT("BEFORE procGraph->poll();"));
+            procGraph->SetBusy();
             procGraph->poll();
+            procGraph->SetNotBusy();
             wxLogMessage(wxT("AFTER procGraph->poll();"));
         }
         else {

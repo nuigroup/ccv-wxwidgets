@@ -24,6 +24,7 @@ private:
     ModuleTypeDict moduleTypeOf;
     moFactory *factory;
     Strings outputModuleIDs;
+    bool busy;
     
 public:
     CCVProcGraph();
@@ -64,6 +65,21 @@ public:
         Get a list that includes all modules that were output stream modules.
     */
     Strings GetOutputModuleIDs();
+
+    /**
+        Check if this proc busy. If busy, do not modify the module struct.
+    */
+    bool isBusy();
+
+    /**
+        Set this proc busy.
+    */
+    void SetBusy();
+
+    /**
+        Set this proc not busy.
+    */
+    void SetNotBusy();
 };
 
 #endif

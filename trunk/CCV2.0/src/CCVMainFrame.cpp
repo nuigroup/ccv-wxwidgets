@@ -85,11 +85,19 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
 
 void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
 {    
+    int wait_count = 0;
+    while (movidProcess->procGraph->isBusy()) {
+        wxLogMessage(wxT("MESSAGE movidProcess->procGraph->isBusy(), waiting."));
+        wxThread::Sleep(20);
+        if(wait_count++ > 100) {
+            wxLogMessage(wxT("ERROR OnSelectInput: wait_count++ > 100"));
+            return;
+        }
+    }
     wxLogMessage(wxT("BEGIN OnSelectInput();"));
     movidProcess->Pause();
     movidProcess->procGraph->stop();
-    wxLogMessage(wxT("AFTER movidProcess->procGraph->stop();"));
-    wxThread::Sleep(20);
+    wxLogMessage(wxT("AFTER movidProcess->procGraph->stop();"));    
     moModule *moInput = movidProcess->procGraph->getModuleById("input_source");
     moInput->property("id").set("tmp");
     moModule *moNewInput = NULL;
