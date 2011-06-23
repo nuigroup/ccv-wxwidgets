@@ -88,9 +88,9 @@ void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
     int wait_count = 0;
     while (movidProcess->procGraph->isBusy()) {
         wxLogMessage(wxT("MESSAGE movidProcess->procGraph->isBusy(), waiting."));
-        wxThread::Sleep(20);
-        if(wait_count++ > 100) {
-            wxLogMessage(wxT("ERROR OnSelectInput: wait_count++ > 100"));
+        wxThread::Sleep(200);
+        if(wait_count++ > 200) {
+            wxLogMessage(wxT("ERROR OnSelectInput: wait_count++ > 200"));
             return;
         }
     }

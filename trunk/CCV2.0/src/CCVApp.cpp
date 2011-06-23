@@ -127,10 +127,6 @@ int CCVApp::OnExit()
     if (movidthread->Pause() != wxTHREAD_NO_ERROR) {
         wxLogMessage(wxT("ERROR movidthread->Pause() != wxTHREAD_NO_ERROR"));
     }
-    if (movidthread->Delete() != wxTHREAD_NO_ERROR) {
-        wxLogMessage(wxT("ERROR movidthread->Delete() != wxTHREAD_NO_ERROR"));
-    }
-
     return 0;
 }
 
