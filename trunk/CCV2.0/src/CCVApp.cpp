@@ -22,6 +22,7 @@
 
 #include <wx/wx.h>
 #include <wx/thread.h>
+#include <wx/app.h>
 #include <cstdio>
 #include "CCVCommon.h"
 #include "CCVWorkerEngine.h"

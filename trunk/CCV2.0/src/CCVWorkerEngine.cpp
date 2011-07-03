@@ -43,7 +43,7 @@ void *CCVWorkerEngine::Entry()
 
         while (procGraph->haveError()) {
             std::string err_msg = procGraph->getLastError();
-            MessageBox(wxT("ERROR procGraph error msg: %s"), err_msg.c_str());
+            wxLogMessage(wxT("ERROR procGraph error msg: %s"), err_msg.c_str());
         }
             
         Strings outputModules = procGraph->GetOutputModuleIDs();

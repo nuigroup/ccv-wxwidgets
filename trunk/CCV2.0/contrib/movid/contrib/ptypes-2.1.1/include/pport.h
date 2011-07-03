@@ -101,9 +101,9 @@ PTYPES_BEGIN
 
 // __APPLE__ is the only predefined macro on MacOS X
 #if defined(__APPLE__)
-#ifndef __DARWIN__
-#  define __DARWIN__
-#endif
+//#ifndef __DARWIN__
+//#  define __DARWIN__
+//#endif
 #endif
 
 // CHECK_BOUNDS enables bounds checking for strings and lists

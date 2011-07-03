@@ -651,7 +651,7 @@ void ofxXmlSettings::loadFromBuffer( string buffer )
 	
     int size = buffer.size();
 	
-    bool loadOkay = doc.ReadFromMemory( buffer.c_str(), size);//, TiXmlEncoding encoding = TIXML_DEFAULT_ENCODING);
+    doc.ReadFromMemory( buffer.c_str(), size);//, TiXmlEncoding encoding = TIXML_DEFAULT_ENCODING);
 	
 }
 //---------------------------------------------------------
