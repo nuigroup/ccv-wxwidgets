@@ -1090,7 +1090,7 @@
                                                                             <property name="font"></property>
                                                                             <property name="hidden">0</property>
                                                                             <property name="id">wxID_ANY</property>
-                                                                            <property name="maxValue">800</property>
+                                                                            <property name="maxValue">250</property>
                                                                             <property name="maximum_size"></property>
                                                                             <property name="minValue">0</property>
                                                                             <property name="minimum_size"></property>
@@ -1139,14 +1139,14 @@
                                                                             <event name="OnRightDClick"></event>
                                                                             <event name="OnRightDown"></event>
                                                                             <event name="OnRightUp"></event>
-                                                                            <event name="OnScroll">m_slider_imageThreOnScroll</event>
+                                                                            <event name="OnScroll"></event>
                                                                             <event name="OnScrollBottom"></event>
                                                                             <event name="OnScrollChanged"></event>
                                                                             <event name="OnScrollLineDown"></event>
                                                                             <event name="OnScrollLineUp"></event>
                                                                             <event name="OnScrollPageDown"></event>
                                                                             <event name="OnScrollPageUp"></event>
-                                                                            <event name="OnScrollThumbRelease"></event>
+                                                                            <event name="OnScrollThumbRelease">m_slider_imageThreOnScroll</event>
                                                                             <event name="OnScrollThumbTrack"></event>
                                                                             <event name="OnScrollTop"></event>
                                                                             <event name="OnSetFocus"></event>

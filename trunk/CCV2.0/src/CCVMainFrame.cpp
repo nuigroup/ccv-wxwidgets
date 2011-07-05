@@ -20,6 +20,9 @@ CCVMainFrame::CCVMainFrame() : CCVbaseMainFrame(NULL)
 
 CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc) : CCVbaseMainFrame(NULL)
 {
+    CCVMainFrame();
+    curThreshold = m_slider_imageThre->GetValue();
+    curThreshold = m_slider_imageThre->GetValue();
     SetWorkerEngine(movidProc);
 }
 
@@ -127,14 +130,22 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
 
 void CCVMainFrame::m_slider_imageThreOnScroll( wxScrollEvent& event )
 {
-    int thre = m_slider_imageThre->GetValue();
-    wxLogMessage(wxT("MSG m_radioBox_selectInputOnRadioBox: newValue = %d"), thre);
+    int newThreshold = m_slider_imageThre->GetValue();
+    wxLogMessage(wxT("MSG m_radioBox_selectInputOnRadioBox: newValue = %d"), newThreshold);
+    if (movidProcess->procGraph->isBusy()) {
+        wxLogMessage(wxT("MESSAGE movidProcess->procGraph->isBusy(). Return."));
+        m_slider_imageThre->SetValue(curThreshold);
+        return;
+    }    
+    movidProcess->Pause();
+    movidProcess->procGraph->stop();
     moModule *moThreshold = movidProcess->procGraph->getModuleById("threshold");
     if (moThreshold == NULL) {
-        wxLogMessage(wxT("ERROR moThreshold == NULL"), thre);
+        wxLogMessage(wxT("ERROR moThreshold == NULL"), newThreshold);
         return;
-    }
-    moThreshold->stop();
-    moThreshold->property("threshold").set(thre);
-    moThreshold->start();
+    }    
+    moThreshold->property("threshold").set(newThreshold);
+    curThreshold = newThreshold;
+    movidProcess->procGraph->start();
+    movidProcess->Resume();
 }

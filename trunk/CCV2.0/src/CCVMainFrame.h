@@ -32,6 +32,8 @@ private:
     void OnMovidImage(wxCommandEvent&);
     void m_radioBox_selectInputOnRadioBox( wxCommandEvent& event );
     void m_slider_imageThreOnScroll( wxScrollEvent& event );
+
+    int curThreshold;
 };
 
 enum CCV_SOURCE_ID
