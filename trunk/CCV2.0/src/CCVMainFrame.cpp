@@ -125,7 +125,8 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
     // wxLogMessage(wxT("AFTER movidProcess->procGraph->Resume();"));
 }
 
-void CCVMainFrame::m_slider_imageThreOnScroll( wxCommandEvent& event )
+void CCVMainFrame::m_slider_imageThreOnScroll( wxScrollEvent& event )
 {
-    wxLogMessage(wxT("BEGIN m_radioBox_selectInputOnRadioBox")); // TODO: Find the reason why this line can not be reached.
+    int thre = m_slider_imageThre->GetValue();
+    wxLogMessage(wxT("MSF m_radioBox_selectInputOnRadioBox: newValue = %d"), thre);
 }

@@ -31,7 +31,7 @@ private:
     void DrawCameraImage(OutRGBImage *, wxWindow *);
     void OnMovidImage(wxCommandEvent&);
     void m_radioBox_selectInputOnRadioBox( wxCommandEvent& event );
-    void m_slider_imageThreOnScroll( wxCommandEvent& event );
+    void m_slider_imageThreOnScroll( wxScrollEvent& event );
 };
 
 enum CCV_SOURCE_ID
