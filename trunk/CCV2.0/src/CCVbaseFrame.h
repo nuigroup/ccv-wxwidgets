@@ -118,7 +118,8 @@ class CCVbaseMainFrame : public wxFrame
 		wxStaticText* m_staticText_about;
 		
 		// Virtual event handlers, overide them in your derived class
-		virtual void OnSelectInput( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_radioBox_selectInputOnRadioBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_slider_imageThreOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		
 	
 	public:

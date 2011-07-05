@@ -83,8 +83,9 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec) {
     dc.DrawBitmap(bmp, x, y);    
 }
 
-void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
+void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
 {
+    wxLogMessage(wxT("BEGIN m_radioBox_selectInputOnRadioBox();"));
     int selectedId = m_radioBox_selectInput->GetSelection();
     if (movidProcess->procGraph->isBusy()) {
         wxLogMessage(wxT("MESSAGE movidProcess->procGraph->isBusy(). Return."));
@@ -95,16 +96,15 @@ void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
             m_radioBox_selectInput->SetSelection(CCV_SOURCE_CAMERA);
         }
         return;
-    }
-    wxLogMessage(wxT("BEGIN OnSelectInput();"));
+    }    
     movidProcess->Pause();
     movidProcess->procGraph->stop();
-    wxLogMessage(wxT("AFTER movidProcess->procGraph->stop();"));    
+    // wxLogMessage(wxT("AFTER movidProcess->procGraph->stop();"));    
     moModule *moInput = movidProcess->procGraph->getModuleById("input_source");
     moInput->property("id").set("tmp");
     moModule *moNewInput = NULL;
     if (moInput==NULL) {
-        wxLogMessage(wxT("procGraph->getModuleById==NULL"));
+        wxLogMessage(wxT("ERROR procGraph->getModuleById==NULL"));
         return;
     }
     
@@ -116,11 +116,16 @@ void CCVMainFrame::OnSelectInput( wxCommandEvent& event )
         moNewInput->property("filename").set(paramHook->videoFileName);        
     }        
     else 
-        wxMessageBox( wxT("Error: Unknown Input Source."), wxT("OnSelectInput"), wxOK | wxICON_INFORMATION );
+        wxLogMessage( wxT("ERROR Unknown Input Source."));
 
     movidProcess->procGraph->ReplaceModule(moInput, moNewInput);
     movidProcess->procGraph->start();
-    wxLogMessage(wxT("AFTER movidProcess->procGraph->start();"));
+    // wxLogMessage(wxT("AFTER movidProcess->procGraph->start();"));
     movidProcess->Resume();
-    wxLogMessage(wxT("AFTER movidProcess->procGraph->Resume();"));
+    // wxLogMessage(wxT("AFTER movidProcess->procGraph->Resume();"));
+}
+
+void CCVMainFrame::m_slider_imageThreOnScroll( wxCommandEvent& event )
+{
+    wxLogMessage(wxT("BEGIN m_radioBox_selectInputOnRadioBox")); // TODO: Find the reason why this line can not be reached.
 }

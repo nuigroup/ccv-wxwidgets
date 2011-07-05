@@ -31,11 +31,11 @@ void *CCVWorkerEngine::Entry()
             continue;
             
         if (procGraph->isStarted() && !TestDestroy()) {
-            wxLogMessage(wxT("BEFORE procGraph->poll();"));
+            // wxLogMessage(wxT("BEFORE procGraph->poll();"));
             procGraph->SetBusy();
             procGraph->poll();
             procGraph->SetNotBusy();
-            wxLogMessage(wxT("AFTER procGraph->poll();"));
+            // wxLogMessage(wxT("AFTER procGraph->poll();"));
         }
         else {
             continue;
@@ -83,9 +83,9 @@ void *CCVWorkerEngine::Entry()
             wxCommandEvent event( newEVT_MOVIDPROCESS_NEWIMAGE, GetId() );
             wxThread::Sleep(1);
             if(!TestDestroy()) {
-                wxLogMessage(wxT("BEFORE wxPostEvent(eventHandler, event);"));
+                // wxLogMessage(wxT("BEFORE wxPostEvent(eventHandler, event);"));
                 wxPostEvent(eventHandler, event);
-                wxLogMessage(wxT("AFTER wxPostEvent(eventHandler, event);"));
+                // wxLogMessage(wxT("AFTER wxPostEvent(eventHandler, event);"));
             }
         }
     }

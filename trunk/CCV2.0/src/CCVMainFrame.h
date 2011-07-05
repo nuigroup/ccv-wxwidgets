@@ -30,7 +30,8 @@ private:
     CCVGlobalParam *paramHook;
     void DrawCameraImage(OutRGBImage *, wxWindow *);
     void OnMovidImage(wxCommandEvent&);
-    void OnSelectInput( wxCommandEvent& event );
+    void m_radioBox_selectInputOnRadioBox( wxCommandEvent& event );
+    void m_slider_imageThreOnScroll( wxCommandEvent& event );
 };
 
 enum CCV_SOURCE_ID
