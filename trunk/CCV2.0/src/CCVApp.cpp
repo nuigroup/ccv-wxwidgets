@@ -69,17 +69,17 @@ bool CCVApp::OnInit()
     movidthread->procGraph->AddModule("output_leftviewer", "Stream", true);
     movidthread->procGraph->ConnectModules("input_source", "output_leftviewer");
 
-    movidthread->procGraph->AddModule("init_filter_1", "GrayScale");
-    movidthread->procGraph->ConnectModules("input_source", "init_filter_1");
+    movidthread->procGraph->AddModule("grayscale", "GrayScale");
+    movidthread->procGraph->ConnectModules("input_source", "grayscale");
 
-    movidthread->procGraph->AddModule("init_filter_2", "Threshold")->property("threshold").set(180);
-    movidthread->procGraph->ConnectModules("init_filter_1", "init_filter_2");
+    movidthread->procGraph->AddModule("threshold", "Threshold")->property("threshold").set(180);
+    movidthread->procGraph->ConnectModules("grayscale", "threshold");
 
-    movidthread->procGraph->AddModule("init_filter_3", "BlobFinder")->property("max_size").set(1000);
-    movidthread->procGraph->ConnectModules("init_filter_2", "init_filter_3");
+    movidthread->procGraph->AddModule("blobfinder", "BlobFinder")->property("max_size").set(1000);
+    movidthread->procGraph->ConnectModules("threshold", "blobfinder");
 
     movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);    
-    movidthread->procGraph->ConnectModules("init_filter_3", "output_rightviewer");
+    movidthread->procGraph->ConnectModules("blobfinder", "output_rightviewer");
     movidthread->procGraph->start();
     
     if (movidthread->Create() != wxTHREAD_NO_ERROR ) {

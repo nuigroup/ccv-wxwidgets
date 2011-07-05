@@ -128,5 +128,13 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
 void CCVMainFrame::m_slider_imageThreOnScroll( wxScrollEvent& event )
 {
     int thre = m_slider_imageThre->GetValue();
-    wxLogMessage(wxT("MSF m_radioBox_selectInputOnRadioBox: newValue = %d"), thre);
+    wxLogMessage(wxT("MSG m_radioBox_selectInputOnRadioBox: newValue = %d"), thre);
+    moModule *moThreshold = movidProcess->procGraph->getModuleById("threshold");
+    if (moThreshold == NULL) {
+        wxLogMessage(wxT("ERROR moThreshold == NULL"), thre);
+        return;
+    }
+    moThreshold->stop();
+    moThreshold->property("threshold").set(thre);
+    moThreshold->start();
 }
