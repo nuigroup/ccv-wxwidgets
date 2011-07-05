@@ -54,18 +54,20 @@ class CCVbaseMainFrame : public wxFrame
 		wxButton* m_button_prevCamera;
 		wxButton* m_button_nextCamera;
 		wxPanel* m_panel_outputControl;
-		wxStaticText* m_staticText_title_outputctrl;
-		
-		wxCheckBox* m_checkBox13;
-		
+		wxNotebook* m_notebook_trackcontrol;
+		wxPanel* m_panel_threshold;
 		wxStaticText* m_staticText_imageThre;
 		wxSlider* m_slider_imageThre;
-		wxStaticText* m_staticText_moveFilter;
-		wxSlider* m_slider_moveFilter;
+		wxPanel* m_panel_blob;
 		wxStaticText* m_staticText_minBlob;
 		wxSlider* m_slider_minBlob;
 		wxStaticText* m_staticText_maxBlob;
 		wxSlider* m_slider_maxBlob;
+		wxPanel* m_panel_movement;
+		wxStaticText* m_staticText_moveFilter;
+		wxSlider* m_slider_moveFilter;
+		wxPanel* m_panel_inverse;
+		wxCheckBox* m_checkBox13;
 		wxNotebook* m_notebook_filters;
 		wxPanel* m_panel_background;
 		wxPanel* m_panel_background_viewer;

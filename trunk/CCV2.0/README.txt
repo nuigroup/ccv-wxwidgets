@@ -4,6 +4,8 @@ Require:
   OpenCV2.2 or higher
   gcc4
   
+Move makefiles/Makefile.osx to the this folder and rename it to Makefile.  
+  
 you may need to select the correct gcc version in shell like this:
   $ sudo gcc_select gcc42
 
@@ -15,6 +17,8 @@ Require:
   wxWidgets
   OpenCV2.2 or higher
   gcc4
+  
+Move makefiles/Makefile.linux to the this folder and rename it to Makefile.    
 
 If you are using Ubuntu, you may want to use apt to install binary wxWidgets:
   $ sudo aptitude install libwxgtk2.8-dev

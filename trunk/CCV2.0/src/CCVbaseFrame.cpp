@@ -54,7 +54,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	
 	s_input->Add( m_panel_outputViewer, 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
 	
-	s_leftMain->Add( s_input, 5, wxEXPAND, 5 );
+	s_leftMain->Add( s_input, 6, wxEXPAND, 5 );
 	
 	wxBoxSizer* s_inout_ctrl;
 	s_inout_ctrl = new wxBoxSizer( wxHORIZONTAL );
@@ -126,59 +126,34 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxBoxSizer* s_outputControl;
 	s_outputControl = new wxBoxSizer( wxVERTICAL );
 	
-	wxBoxSizer* s_outputCtrl_up;
-	s_outputCtrl_up = new wxBoxSizer( wxHORIZONTAL );
-	
-	m_staticText_title_outputctrl = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Tracked Image"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText_title_outputctrl->Wrap( -1 );
-	s_outputCtrl_up->Add( m_staticText_title_outputctrl, 0, wxALL, 5 );
-	
-	
-	s_outputCtrl_up->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	m_checkBox13 = new wxCheckBox( m_panel_outputControl, wxID_ANY, wxT("Inverse"), wxDefaultPosition, wxDefaultSize, 0 );
-	s_outputCtrl_up->Add( m_checkBox13, 0, wxALL, 5 );
-	
-	s_outputControl->Add( s_outputCtrl_up, 0, wxEXPAND, 5 );
-	
-	
-	s_outputControl->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	wxGridSizer* s_outputCtrl_down;
-	s_outputCtrl_down = new wxGridSizer( 2, 2, 0, 0 );
-	
+	m_notebook_trackcontrol = new wxNotebook( m_panel_outputControl, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	m_panel_threshold = new wxPanel( m_notebook_trackcontrol, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	wxBoxSizer* s_imageThre;
 	s_imageThre = new wxBoxSizer( wxVERTICAL );
 	
-	m_staticText_imageThre = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Image Threshold"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_imageThre = new wxStaticText( m_panel_threshold, wxID_ANY, wxT("Image Threshold"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText_imageThre->Wrap( -1 );
 	s_imageThre->Add( m_staticText_imageThre, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider_imageThre = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	m_slider_imageThre = new wxSlider( m_panel_threshold, wxID_ANY, 180, 0, 800, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
 	s_imageThre->Add( m_slider_imageThre, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	s_outputCtrl_down->Add( s_imageThre, 1, wxEXPAND, 5 );
-	
-	wxBoxSizer* s_moveFilter;
-	s_moveFilter = new wxBoxSizer( wxVERTICAL );
-	
-	m_staticText_moveFilter = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Movement Filter"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText_moveFilter->Wrap( -1 );
-	s_moveFilter->Add( m_staticText_moveFilter, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
-	
-	m_slider_moveFilter = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	s_moveFilter->Add( m_slider_moveFilter, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
-	
-	s_outputCtrl_down->Add( s_moveFilter, 1, wxEXPAND, 5 );
+	m_panel_threshold->SetSizer( s_imageThre );
+	m_panel_threshold->Layout();
+	s_imageThre->Fit( m_panel_threshold );
+	m_notebook_trackcontrol->AddPage( m_panel_threshold, wxT("Threshold"), true );
+	m_panel_blob = new wxPanel( m_notebook_trackcontrol, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxGridSizer* s_outputCtrl_down;
+	s_outputCtrl_down = new wxGridSizer( 2, 2, 0, 0 );
 	
 	wxBoxSizer* s_minBlob;
 	s_minBlob = new wxBoxSizer( wxVERTICAL );
 	
-	m_staticText_minBlob = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Min Blob Size"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_minBlob = new wxStaticText( m_panel_blob, wxID_ANY, wxT("Min Blob Size"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText_minBlob->Wrap( -1 );
 	s_minBlob->Add( m_staticText_minBlob, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider_minBlob = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	m_slider_minBlob = new wxSlider( m_panel_blob, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
 	s_minBlob->Add( m_slider_minBlob, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	s_outputCtrl_down->Add( s_minBlob, 1, wxEXPAND, 5 );
@@ -186,16 +161,47 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxBoxSizer* s_maxBlob;
 	s_maxBlob = new wxBoxSizer( wxVERTICAL );
 	
-	m_staticText_maxBlob = new wxStaticText( m_panel_outputControl, wxID_ANY, wxT("Max Blob Size"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_maxBlob = new wxStaticText( m_panel_blob, wxID_ANY, wxT("Max Blob Size"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText_maxBlob->Wrap( -1 );
 	s_maxBlob->Add( m_staticText_maxBlob, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider_maxBlob = new wxSlider( m_panel_outputControl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	m_slider_maxBlob = new wxSlider( m_panel_blob, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
 	s_maxBlob->Add( m_slider_maxBlob, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	s_outputCtrl_down->Add( s_maxBlob, 1, wxEXPAND, 5 );
 	
-	s_outputControl->Add( s_outputCtrl_down, 0, wxEXPAND, 5 );
+	m_panel_blob->SetSizer( s_outputCtrl_down );
+	m_panel_blob->Layout();
+	s_outputCtrl_down->Fit( m_panel_blob );
+	m_notebook_trackcontrol->AddPage( m_panel_blob, wxT("Blob"), false );
+	m_panel_movement = new wxPanel( m_notebook_trackcontrol, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxBoxSizer* s_moveFilter;
+	s_moveFilter = new wxBoxSizer( wxVERTICAL );
+	
+	m_staticText_moveFilter = new wxStaticText( m_panel_movement, wxID_ANY, wxT("Movement Filter"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_moveFilter->Wrap( -1 );
+	s_moveFilter->Add( m_staticText_moveFilter, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	
+	m_slider_moveFilter = new wxSlider( m_panel_movement, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
+	s_moveFilter->Add( m_slider_moveFilter, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	
+	m_panel_movement->SetSizer( s_moveFilter );
+	m_panel_movement->Layout();
+	s_moveFilter->Fit( m_panel_movement );
+	m_notebook_trackcontrol->AddPage( m_panel_movement, wxT("Movement"), false );
+	m_panel_inverse = new wxPanel( m_notebook_trackcontrol, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxBoxSizer* s_inverse;
+	s_inverse = new wxBoxSizer( wxVERTICAL );
+	
+	m_checkBox13 = new wxCheckBox( m_panel_inverse, wxID_ANY, wxT("Inverse"), wxDefaultPosition, wxDefaultSize, 0 );
+	s_inverse->Add( m_checkBox13, 0, wxALL, 5 );
+	
+	m_panel_inverse->SetSizer( s_inverse );
+	m_panel_inverse->Layout();
+	s_inverse->Fit( m_panel_inverse );
+	m_notebook_trackcontrol->AddPage( m_panel_inverse, wxT("Inverse"), false );
+	
+	s_outputControl->Add( m_notebook_trackcontrol, 1, wxEXPAND | wxALL, 5 );
 	
 	m_panel_outputControl->SetSizer( s_outputControl );
 	m_panel_outputControl->Layout();
