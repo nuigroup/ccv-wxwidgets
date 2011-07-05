@@ -529,7 +529,7 @@
                                                                 <property name="checked">0</property>
                                                                 <property name="context_help"></property>
                                                                 <property name="context_menu">1</property>
-                                                                <property name="enabled">1</property>
+                                                                <property name="enabled">0</property>
                                                                 <property name="fg"></property>
                                                                 <property name="font"></property>
                                                                 <property name="hidden">0</property>
@@ -586,7 +586,7 @@
                                                                 <property name="checked">0</property>
                                                                 <property name="context_help"></property>
                                                                 <property name="context_menu">1</property>
-                                                                <property name="enabled">1</property>
+                                                                <property name="enabled">0</property>
                                                                 <property name="fg"></property>
                                                                 <property name="font"></property>
                                                                 <property name="hidden">0</property>
@@ -1216,11 +1216,11 @@
                                                                     <property name="permission">none</property>
                                                                     <property name="rows">2</property>
                                                                     <property name="vgap">0</property>
-                                                                    <object class="sizeritem" expanded="0">
+                                                                    <object class="sizeritem" expanded="1">
                                                                         <property name="border">5</property>
                                                                         <property name="flag">wxEXPAND</property>
                                                                         <property name="proportion">1</property>
-                                                                        <object class="wxBoxSizer" expanded="0">
+                                                                        <object class="wxBoxSizer" expanded="1">
                                                                             <property name="minimum_size"></property>
                                                                             <property name="name">s_minBlob</property>
                                                                             <property name="orient">wxVERTICAL</property>
@@ -1294,7 +1294,7 @@
                                                                                     <property name="font"></property>
                                                                                     <property name="hidden">0</property>
                                                                                     <property name="id">wxID_ANY</property>
-                                                                                    <property name="maxValue">100</property>
+                                                                                    <property name="maxValue">500</property>
                                                                                     <property name="maximum_size"></property>
                                                                                     <property name="minValue">0</property>
                                                                                     <property name="minimum_size"></property>
@@ -1350,7 +1350,7 @@
                                                                                     <event name="OnScrollLineUp"></event>
                                                                                     <event name="OnScrollPageDown"></event>
                                                                                     <event name="OnScrollPageUp"></event>
-                                                                                    <event name="OnScrollThumbRelease"></event>
+                                                                                    <event name="OnScrollThumbRelease">m_slider_minBlobOnScrollThumbRelease</event>
                                                                                     <event name="OnScrollThumbTrack"></event>
                                                                                     <event name="OnScrollTop"></event>
                                                                                     <event name="OnSetFocus"></event>
@@ -1360,11 +1360,11 @@
                                                                             </object>
                                                                         </object>
                                                                     </object>
-                                                                    <object class="sizeritem" expanded="0">
+                                                                    <object class="sizeritem" expanded="1">
                                                                         <property name="border">5</property>
                                                                         <property name="flag">wxEXPAND</property>
                                                                         <property name="proportion">1</property>
-                                                                        <object class="wxBoxSizer" expanded="0">
+                                                                        <object class="wxBoxSizer" expanded="1">
                                                                             <property name="minimum_size"></property>
                                                                             <property name="name">s_maxBlob</property>
                                                                             <property name="orient">wxVERTICAL</property>
@@ -1438,9 +1438,9 @@
                                                                                     <property name="font"></property>
                                                                                     <property name="hidden">0</property>
                                                                                     <property name="id">wxID_ANY</property>
-                                                                                    <property name="maxValue">100</property>
+                                                                                    <property name="maxValue">3000</property>
                                                                                     <property name="maximum_size"></property>
-                                                                                    <property name="minValue">0</property>
+                                                                                    <property name="minValue">500</property>
                                                                                     <property name="minimum_size"></property>
                                                                                     <property name="name">m_slider_maxBlob</property>
                                                                                     <property name="permission">protected</property>
@@ -1453,7 +1453,7 @@
                                                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                                                     <property name="validator_type">wxDefaultValidator</property>
                                                                                     <property name="validator_variable"></property>
-                                                                                    <property name="value">50</property>
+                                                                                    <property name="value">1000</property>
                                                                                     <property name="window_extra_style"></property>
                                                                                     <property name="window_name"></property>
                                                                                     <property name="window_style"></property>
@@ -1494,7 +1494,7 @@
                                                                                     <event name="OnScrollLineUp"></event>
                                                                                     <event name="OnScrollPageDown"></event>
                                                                                     <event name="OnScrollPageUp"></event>
-                                                                                    <event name="OnScrollThumbRelease"></event>
+                                                                                    <event name="OnScrollThumbRelease">m_slider_maxBlobOnScrollThumbRelease</event>
                                                                                     <event name="OnScrollThumbTrack"></event>
                                                                                     <event name="OnScrollTop"></event>
                                                                                     <event name="OnSetFocus"></event>

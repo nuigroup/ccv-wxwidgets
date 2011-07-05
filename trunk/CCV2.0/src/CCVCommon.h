@@ -27,7 +27,8 @@ enum CCV_ERROR_ID
     CCV_ERROR_LOCKED,
     CCV_ERROR_ITEM_CANNOT_ADDED,
     CCV_ERROR_ITEM_NOT_EXISTS,
-    CCV_ERROR_FILE_CANNOT_FOUND
+    CCV_ERROR_FILE_CANNOT_FOUND,
+    CCV_ERROR_BUSY
 };
 
 typedef std::vector<std::string> Strings;
@@ -36,6 +37,10 @@ struct CCVGlobalParam
 {
     std::string videoFileName;
     wxLog *logger;
+
+    int initThreshold;
+    int initMinBlob;
+    int initMaxBlob;
 };
 
 #endif // _CCV_COMMON_H

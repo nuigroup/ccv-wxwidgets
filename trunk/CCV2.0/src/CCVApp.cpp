@@ -72,10 +72,11 @@ bool CCVApp::OnInit()
     movidthread->procGraph->AddModule("grayscale", "GrayScale");
     movidthread->procGraph->ConnectModules("input_source", "grayscale");
 
-    movidthread->procGraph->AddModule("threshold", "Threshold")->property("threshold").set(180);
+    movidthread->procGraph->AddModule("threshold", "Threshold")->property("threshold").set(param->initThreshold);
     movidthread->procGraph->ConnectModules("grayscale", "threshold");
 
-    movidthread->procGraph->AddModule("blobfinder", "BlobFinder")->property("max_size").set(1000);
+    movidthread->procGraph->AddModule("blobfinder", "BlobFinder")->property("max_size").set(param->initMinBlob);
+    movidthread->procGraph->getModuleById("blobfinder")->property("max_size").set(param->initMaxBlob);
     movidthread->procGraph->ConnectModules("threshold", "blobfinder");
 
     movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);    
@@ -93,10 +94,9 @@ bool CCVApp::OnInit()
 
     use_Mainframe = true;
 
-    mainframe = new CCVMainFrame(movidthread);
+    mainframe = new CCVMainFrame(movidthread, param);
     if (mainframe==NULL)
         return false;
-    mainframe->SetGlobalParam(param);
     mainframe->Show(use_Mainframe);
 
     miniframe = new CCVMiniFrame(mainframe);
@@ -138,6 +138,10 @@ int CCVApp::LoadConfigXml(CCVGlobalParam *in_param, std::string filename)
     ofxXmlSettings XML;
     if (! XML.loadFile("config.xml"))
         return CCV_ERROR_FILE_CANNOT_FOUND;
+
+    in_param->initThreshold = XML.getValue("CONFIG:INIT:Threshold", 180);
+    in_param->initMinBlob = XML.getValue("CONFIG:INIT:MinBlob", 50);
+    in_param->initMaxBlob = XML.getValue("CONFIG:INIT:MaxBlob", 1000);
     
     in_param->videoFileName = XML.getValue("CONFIG:VIDEO:FILENAME", "RearDI.m4v");
     std::string logFileName = XML.getValue("CONFIG:LOG:FILENAME", "ccv2.log");

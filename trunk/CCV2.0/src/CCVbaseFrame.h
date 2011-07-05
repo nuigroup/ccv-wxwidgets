@@ -120,6 +120,8 @@ class CCVbaseMainFrame : public wxFrame
 		// Virtual event handlers, overide them in your derived class
 		virtual void m_radioBox_selectInputOnRadioBox( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_slider_imageThreOnScroll( wxScrollEvent& event ) { event.Skip(); }
+		virtual void m_slider_minBlobOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
+		virtual void m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
 		
 	
 	public:

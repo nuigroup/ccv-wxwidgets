@@ -21,19 +21,22 @@ class CCVMainFrame : public CCVbaseMainFrame
 {
 public:
     CCVMainFrame();
-    CCVMainFrame(CCVWorkerEngine *);
-    void SetWorkerEngine(CCVWorkerEngine *);
-    void SetGlobalParam(CCVGlobalParam *);
+    CCVMainFrame(CCVWorkerEngine *, CCVGlobalParam *);
    
 private:
     CCVWorkerEngine *movidProcess;    
     CCVGlobalParam *paramHook;
+    void SetWorkerEngine(CCVWorkerEngine *);
     void DrawCameraImage(OutRGBImage *, wxWindow *);
     void OnMovidImage(wxCommandEvent&);
     void m_radioBox_selectInputOnRadioBox( wxCommandEvent& event );
     void m_slider_imageThreOnScroll( wxScrollEvent& event );
+    void m_slider_minBlobOnScrollThumbRelease( wxScrollEvent& event );
+	void m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event );
 
     int curThreshold;
+    int curMinBlob;
+    int curMaxBlob;
 };
 
 enum CCV_SOURCE_ID

@@ -76,9 +76,13 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	s_inputContrl_up->Add( 0, 0, 1, wxEXPAND, 5 );
 	
 	m_checkBox_showoutline = new wxCheckBox( m_panel_inputContrl, wxID_ANY, wxT("Show Outlines"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBox_showoutline->Enable( false );
+	
 	s_inputContrl_up->Add( m_checkBox_showoutline, 0, wxALL, 5 );
 	
 	m_checkBox_showid = new wxCheckBox( m_panel_inputContrl, wxID_ANY, wxT("Show IDs"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBox_showid->Enable( false );
+	
 	s_inputContrl_up->Add( m_checkBox_showid, 0, wxALL, 5 );
 	
 	s_inputContrl->Add( s_inputContrl_up, 0, wxEXPAND, 5 );
@@ -153,7 +157,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_staticText_minBlob->Wrap( -1 );
 	s_minBlob->Add( m_staticText_minBlob, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider_minBlob = new wxSlider( m_panel_blob, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
+	m_slider_minBlob = new wxSlider( m_panel_blob, wxID_ANY, 50, 0, 500, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
 	s_minBlob->Add( m_slider_minBlob, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	s_outputCtrl_down->Add( s_minBlob, 1, wxEXPAND, 5 );
@@ -165,7 +169,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_staticText_maxBlob->Wrap( -1 );
 	s_maxBlob->Add( m_staticText_maxBlob, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider_maxBlob = new wxSlider( m_panel_blob, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
+	m_slider_maxBlob = new wxSlider( m_panel_blob, wxID_ANY, 1000, 500, 3000, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
 	s_maxBlob->Add( m_slider_maxBlob, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	s_outputCtrl_down->Add( s_maxBlob, 1, wxEXPAND, 5 );
@@ -510,6 +514,8 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	// Connect Events
 	m_radioBox_selectInput->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( CCVbaseMainFrame::m_radioBox_selectInputOnRadioBox ), NULL, this );
 	m_slider_imageThre->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_imageThreOnScroll ), NULL, this );
+	m_slider_minBlob->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_minBlobOnScrollThumbRelease ), NULL, this );
+	m_slider_maxBlob->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_maxBlobOnScrollThumbRelease ), NULL, this );
 }
 
 CCVbaseMainFrame::~CCVbaseMainFrame()
@@ -517,6 +523,8 @@ CCVbaseMainFrame::~CCVbaseMainFrame()
 	// Disconnect Events
 	m_radioBox_selectInput->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( CCVbaseMainFrame::m_radioBox_selectInputOnRadioBox ), NULL, this );
 	m_slider_imageThre->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_imageThreOnScroll ), NULL, this );
+	m_slider_minBlob->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_minBlobOnScrollThumbRelease ), NULL, this );
+	m_slider_maxBlob->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_maxBlobOnScrollThumbRelease ), NULL, this );
 	
 }
 

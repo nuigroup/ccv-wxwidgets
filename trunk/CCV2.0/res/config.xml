@@ -6,4 +6,9 @@
     <LOG>
         <FILENAME>ccv2.log</FILENAME>
     </LOG>
+    <INIT>
+        <Threshold>180</Threshold>
+        <MinBlob>50</MinBlob>
+        <MaxBlob>1000</MaxBlob>
+    </INIT>
 </CONFIG>

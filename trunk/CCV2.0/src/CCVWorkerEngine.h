@@ -50,6 +50,11 @@ public:
     
     CCVProcGraph *procGraph;
 
+    /**
+        Set a modules property safely.
+    */
+    int SafeSetProperty(std::string moduleName, std::string propertyName, int value);
+
 private:
     wxEvtHandler *eventHandler;
     OutImagesMap outImages;
