@@ -101,7 +101,7 @@ int CCVWorkerEngine::SafeSetProperty(std::string moduleName, std::string propert
         return CCV_ERROR_ITEM_NOT_EXISTS;
     } 
     if (procGraph->isBusy()) {
-        wxLogMessage(wxT("procGraph->isBusy(). Returned."));
+        wxLogMessage(wxT("MESSAGE procGraph->isBusy(). Return."));
         return CCV_ERROR_BUSY;
     }
     this->Pause();

@@ -84,11 +84,11 @@
                 <property name="name">mainSizer</property>
                 <property name="orient">wxHORIZONTAL</property>
                 <property name="permission">none</property>
-                <object class="sizeritem" expanded="1">
+                <object class="sizeritem" expanded="0">
                     <property name="border">5</property>
                     <property name="flag">wxEXPAND</property>
                     <property name="proportion">0</property>
-                    <object class="wxPanel" expanded="1">
+                    <object class="wxPanel" expanded="0">
                         <property name="bg">wxSYS_COLOUR_APPWORKSPACE</property>
                         <property name="context_help"></property>
                         <property name="context_menu">1</property>
@@ -135,7 +135,7 @@
                         <event name="OnSetFocus"></event>
                         <event name="OnSize"></event>
                         <event name="OnUpdateUI"></event>
-                        <object class="wxBoxSizer" expanded="1">
+                        <object class="wxBoxSizer" expanded="0">
                             <property name="minimum_size"></property>
                             <property name="name">s_leftMain</property>
                             <property name="orient">wxVERTICAL</property>
@@ -266,7 +266,7 @@
                             <object class="sizeritem" expanded="0">
                                 <property name="border">5</property>
                                 <property name="flag">wxEXPAND</property>
-                                <property name="proportion">6</property>
+                                <property name="proportion">5</property>
                                 <object class="wxBoxSizer" expanded="0">
                                     <property name="minimum_size"></property>
                                     <property name="name">s_input</property>
@@ -380,11 +380,11 @@
                                     </object>
                                 </object>
                             </object>
-                            <object class="sizeritem" expanded="1">
+                            <object class="sizeritem" expanded="0">
                                 <property name="border">5</property>
                                 <property name="flag">wxEXPAND</property>
                                 <property name="proportion">0</property>
-                                <object class="wxBoxSizer" expanded="1">
+                                <object class="wxBoxSizer" expanded="0">
                                     <property name="minimum_size"></property>
                                     <property name="name">s_inout_ctrl</property>
                                     <property name="orient">wxHORIZONTAL</property>
@@ -854,11 +854,11 @@
                                             </object>
                                         </object>
                                     </object>
-                                    <object class="sizeritem" expanded="1">
+                                    <object class="sizeritem" expanded="0">
                                         <property name="border">20</property>
                                         <property name="flag">wxEXPAND|wxBOTTOM|wxRIGHT|wxLEFT</property>
                                         <property name="proportion">1</property>
-                                        <object class="wxPanel" expanded="1">
+                                        <object class="wxPanel" expanded="0">
                                             <property name="bg">wxSYS_COLOUR_3DLIGHT</property>
                                             <property name="context_help"></property>
                                             <property name="context_menu">1</property>
@@ -905,16 +905,16 @@
                                             <event name="OnSetFocus"></event>
                                             <event name="OnSize"></event>
                                             <event name="OnUpdateUI"></event>
-                                            <object class="wxBoxSizer" expanded="1">
+                                            <object class="wxBoxSizer" expanded="0">
                                                 <property name="minimum_size"></property>
                                                 <property name="name">s_outputControl</property>
                                                 <property name="orient">wxVERTICAL</property>
                                                 <property name="permission">none</property>
-                                                <object class="sizeritem" expanded="1">
+                                                <object class="sizeritem" expanded="0">
                                                     <property name="border">5</property>
-                                                    <property name="flag">wxEXPAND | wxALL</property>
-                                                    <property name="proportion">1</property>
-                                                    <object class="wxNotebook" expanded="1">
+                                                    <property name="flag">wxEXPAND</property>
+                                                    <property name="proportion">0</property>
+                                                    <object class="wxNotebook" expanded="0">
                                                         <property name="bg"></property>
                                                         <property name="bitmapsize"></property>
                                                         <property name="context_help"></property>
@@ -1080,7 +1080,7 @@
                                                                     <object class="sizeritem" expanded="0">
                                                                         <property name="border">5</property>
                                                                         <property name="flag">wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT</property>
-                                                                        <property name="proportion">0</property>
+                                                                        <property name="proportion">1</property>
                                                                         <object class="wxSlider" expanded="0">
                                                                             <property name="bg"></property>
                                                                             <property name="context_help"></property>
@@ -1294,7 +1294,7 @@
                                                                                     <property name="font"></property>
                                                                                     <property name="hidden">0</property>
                                                                                     <property name="id">wxID_ANY</property>
-                                                                                    <property name="maxValue">500</property>
+                                                                                    <property name="maxValue">3000</property>
                                                                                     <property name="maximum_size"></property>
                                                                                     <property name="minValue">0</property>
                                                                                     <property name="minimum_size"></property>
@@ -1440,7 +1440,7 @@
                                                                                     <property name="id">wxID_ANY</property>
                                                                                     <property name="maxValue">3000</property>
                                                                                     <property name="maximum_size"></property>
-                                                                                    <property name="minValue">500</property>
+                                                                                    <property name="minValue">0</property>
                                                                                     <property name="minimum_size"></property>
                                                                                     <property name="name">m_slider_maxBlob</property>
                                                                                     <property name="permission">protected</property>
@@ -1822,11 +1822,11 @@
                                     </object>
                                 </object>
                             </object>
-                            <object class="sizeritem" expanded="1">
+                            <object class="sizeritem" expanded="0">
                                 <property name="border">20</property>
                                 <property name="flag">wxEXPAND | wxALL</property>
                                 <property name="proportion">0</property>
-                                <object class="wxNotebook" expanded="1">
+                                <object class="wxNotebook" expanded="0">
                                     <property name="bg"></property>
                                     <property name="bitmapsize"></property>
                                     <property name="context_help"></property>

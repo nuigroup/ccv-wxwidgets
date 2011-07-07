@@ -75,7 +75,7 @@ bool CCVApp::OnInit()
     movidthread->procGraph->AddModule("threshold", "Threshold")->property("threshold").set(param->initThreshold);
     movidthread->procGraph->ConnectModules("grayscale", "threshold");
 
-    movidthread->procGraph->AddModule("blobfinder", "BlobFinder")->property("max_size").set(param->initMinBlob);
+    movidthread->procGraph->AddModule("blobfinder", "BlobFinder")->property("min_size").set(param->initMinBlob);
     movidthread->procGraph->getModuleById("blobfinder")->property("max_size").set(param->initMaxBlob);
     movidthread->procGraph->ConnectModules("threshold", "blobfinder");
 

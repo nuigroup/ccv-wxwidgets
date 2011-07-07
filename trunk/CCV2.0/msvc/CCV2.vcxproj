@@ -68,6 +68,8 @@
       <AdditionalLibraryDirectories>%WXWIN%\lib\vc_lib;%OPENCV_DIR%\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opencv_calib3d220.lib;opencv_contrib220.lib;opencv_core220.lib;opencv_features2d220.lib;opencv_ffmpeg220.lib;opencv_flann220.lib;opencv_gpu220.lib;opencv_highgui220.lib;opencv_imgproc220.lib;opencv_legacy220.lib;opencv_ml220.lib;opencv_objdetect220.lib;opencv_ts220.lib;opencv_video220.lib;wxmsw28_adv.lib;wxmsw28_core.lib;wxbase28.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregex.lib;wxexpat.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>NotSet</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
       <Command>copy %OPENCV_DIR%\bin\opencv_calib3d220.dll .
@@ -92,7 +94,6 @@ copy ..\res\RearDI.avi .\RearDI.avi
     <ClInclude Include="..\src\CCVMainFrame.h" />
     <ClInclude Include="..\src\CCVMiniFrame.h" />
     <ClInclude Include="..\src\CCVProcGraph.h" />
-    <ClInclude Include="..\src\CCVUtil.h" />
     <ClInclude Include="..\src\CCVWorkerEngine.h" />
     <ClInclude Include="..\src\otMovidStreamModule.h" />
   </ItemGroup>
@@ -106,7 +107,6 @@ copy ..\res\RearDI.avi .\RearDI.avi
     <ClCompile Include="..\src\CCVMainFrame.cpp" />
     <ClCompile Include="..\src\CCVMiniFrame.cpp" />
     <ClCompile Include="..\src\CCVProcGraph.cpp" />
-    <ClCompile Include="..\src\CCVUtil.cpp" />
     <ClCompile Include="..\src\CCVWorkerEngine.cpp" />
     <ClCompile Include="..\src\otMovidStreamModule.cpp" />
   </ItemGroup>

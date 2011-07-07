@@ -10,7 +10,6 @@
 #include "CCVMainFrame.h"
 #include "CCVProcGraph.h"
 #include "CCVWorkerEngine.h"
-#include "CCVUtil.h"
 
 CCVMainFrame::CCVMainFrame() : CCVbaseMainFrame(NULL)
 {
@@ -132,11 +131,11 @@ void CCVMainFrame::m_slider_imageThreOnScroll( wxScrollEvent& event )
 {
     int newVaule = m_slider_imageThre->GetValue();
     if (movidProcess->SafeSetProperty("threshold", "threshold", newVaule) == CCV_SUCCESS) {
-        wxLogMessage(wxT("MSG SafeSetProperty Returned successfully."));
+        wxLogMessage(wxT("MESSAGE SafeSetProperty(threshold, threshold, %d)"), newVaule);
         curThreshold = newVaule;
     }
     else {
-        wxLogMessage(wxT("MSG SafeSetProperty Returned without setting."));
+        wxLogMessage(wxT("MESSAGE SafeSetProperty Returned without setting."));
         m_slider_imageThre->SetValue(curThreshold);
         return;
     }
@@ -146,11 +145,11 @@ void CCVMainFrame::m_slider_minBlobOnScrollThumbRelease( wxScrollEvent& event )
 {
     int newVaule = m_slider_minBlob->GetValue();
     if (movidProcess->SafeSetProperty("blobfinder", "min_size", newVaule) == CCV_SUCCESS) {
-        wxLogMessage(wxT("MSG SafeSetProperty Returned successfully."));
+        wxLogMessage(wxT("MESSAGE movidProcess->SafeSetProperty(blobfinder, min_size, %d)"), newVaule);
         curMinBlob = newVaule;
     }
     else {
-        wxLogMessage(wxT("MSG SafeSetProperty Returned without setting."));
+        wxLogMessage(wxT("MESSAGE SafeSetProperty Returned without setting."));
         m_slider_minBlob->SetValue(curMinBlob);
         return;
     }
@@ -160,11 +159,11 @@ void CCVMainFrame::m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event )
 {
     int newVaule = m_slider_maxBlob->GetValue();
     if (movidProcess->SafeSetProperty("blobfinder", "max_size", newVaule) == CCV_SUCCESS) {
-        wxLogMessage(wxT("MSG SafeSetProperty Returned successfully."));
+        wxLogMessage(wxT("MESSAGE movidProcess->SafeSetProperty(blobfinder, max_size, %d)"), newVaule);
         curMaxBlob = newVaule;
     }
     else {
-        wxLogMessage(wxT("MSG SafeSetProperty Returned without setting."));
+        wxLogMessage(wxT("MESSAGE SafeSetProperty Returned without setting."));
         m_slider_maxBlob->SetValue(curMaxBlob);
         return;
     }

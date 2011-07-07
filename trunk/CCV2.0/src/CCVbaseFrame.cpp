@@ -54,7 +54,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	
 	s_input->Add( m_panel_outputViewer, 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
 	
-	s_leftMain->Add( s_input, 6, wxEXPAND, 5 );
+	s_leftMain->Add( s_input, 5, wxEXPAND, 5 );
 	
 	wxBoxSizer* s_inout_ctrl;
 	s_inout_ctrl = new wxBoxSizer( wxHORIZONTAL );
@@ -140,7 +140,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	s_imageThre->Add( m_staticText_imageThre, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
 	m_slider_imageThre = new wxSlider( m_panel_threshold, wxID_ANY, 180, 0, 250, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
-	s_imageThre->Add( m_slider_imageThre, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	s_imageThre->Add( m_slider_imageThre, 1, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	m_panel_threshold->SetSizer( s_imageThre );
 	m_panel_threshold->Layout();
@@ -157,7 +157,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_staticText_minBlob->Wrap( -1 );
 	s_minBlob->Add( m_staticText_minBlob, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider_minBlob = new wxSlider( m_panel_blob, wxID_ANY, 50, 0, 500, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
+	m_slider_minBlob = new wxSlider( m_panel_blob, wxID_ANY, 50, 0, 3000, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
 	s_minBlob->Add( m_slider_minBlob, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	s_outputCtrl_down->Add( s_minBlob, 1, wxEXPAND, 5 );
@@ -169,7 +169,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_staticText_maxBlob->Wrap( -1 );
 	s_maxBlob->Add( m_staticText_maxBlob, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider_maxBlob = new wxSlider( m_panel_blob, wxID_ANY, 1000, 500, 3000, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
+	m_slider_maxBlob = new wxSlider( m_panel_blob, wxID_ANY, 1000, 0, 3000, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
 	s_maxBlob->Add( m_slider_maxBlob, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	s_outputCtrl_down->Add( s_maxBlob, 1, wxEXPAND, 5 );
@@ -205,7 +205,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	s_inverse->Fit( m_panel_inverse );
 	m_notebook_trackcontrol->AddPage( m_panel_inverse, wxT("Inverse"), false );
 	
-	s_outputControl->Add( m_notebook_trackcontrol, 1, wxEXPAND | wxALL, 5 );
+	s_outputControl->Add( m_notebook_trackcontrol, 0, wxEXPAND, 5 );
 	
 	m_panel_outputControl->SetSizer( s_outputControl );
 	m_panel_outputControl->Layout();
