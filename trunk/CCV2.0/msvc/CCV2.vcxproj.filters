@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="LibMovid">
-      <UniqueIdentifier>{bfcc0e63-d5d0-436d-84ed-93a8db47b25b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LibTinyXml">
       <UniqueIdentifier>{45a439a3-93cb-451f-9bb5-6f7e329f257b}</UniqueIdentifier>
     </Filter>
@@ -83,19 +80,5 @@
     <ClCompile Include="..\contrib\tinyxml\ofxXmlSettings.cpp">
       <Filter>LibTinyXml</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\contrib\movid\lib_vs2010\fidtrack.lib">
-      <Filter>LibMovid</Filter>
-    </Library>
-    <Library Include="..\contrib\movid\lib_vs2010\libmovid.lib">
-      <Filter>LibMovid</Filter>
-    </Library>
-    <Library Include="..\contrib\movid\lib_vs2010\ptypes.lib">
-      <Filter>LibMovid</Filter>
-    </Library>
-    <Library Include="..\contrib\movid\lib_vs2010\wosclib.lib">
-      <Filter>LibMovid</Filter>
-    </Library>
   </ItemGroup>
 </Project>

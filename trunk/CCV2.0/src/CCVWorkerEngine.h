@@ -8,8 +8,13 @@
 #ifndef _CCV_WORKER_ENGINE_H
 #define _CCV_WORKER_ENGINE_H
 
+#include <iostream>
+#include <string>
 #include <wx/thread.h>
-#include "moMovid.h"
+#include <opencv/highgui.h>
+#include <moDaemon.h>
+#include <moPipeline.h>
+#include <moFactory.h>
 #include "CCVCommon.h"
 #include "CCVProcGraph.h"
 

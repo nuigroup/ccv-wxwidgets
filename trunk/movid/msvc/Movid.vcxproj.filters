@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{f930453e-529a-4639-8aa0-78f2d40ab1e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contribs">
+      <UniqueIdentifier>{cd7f4994-b93f-4d08-a268-291b4cfacb68}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\moDaemon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\moDataGenericContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\moDataStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\moFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\moLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\moModule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\moOSC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\moPipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\moProperty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\moThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\moUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moAbstractBlobTrackerModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moAmplifyModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moBackgroundSubtractModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moBinaryMaskModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moBlobFinderModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moCalibrationModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moCameraModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moCannyModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moCombineModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moDilateModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moDistanceTransformModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moDumpModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moEqualizeHistModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moErodeModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moFiducialFinderModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moFingerTipFinderModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moGrayScaleModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moGreedyBlobTrackerModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moHighpassModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moHsvModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moHuObjectFinderModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moImageDisplayModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moImageFilterModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moImageModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moInvertModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moJustifyModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moMaskModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moMirrorImageModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moMunkresBlobTrackerModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moPeakFinderModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moRoiModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moSmoothModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moThresholdModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moTuio2Module.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moTuioModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moVideoModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\modules\moYCrCbThresholdModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\contrib\bitmap_munkres\match.c">
+      <Filter>Contribs</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\moDaemon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\moDataGenericContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\moDataStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\moFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\moLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\moModule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\moOSC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\moPipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\moProperty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\moThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\moUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moAbstractBlobTrackerModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moAmplifyModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moBackgroundSubtractModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moBinaryMaskModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moBlobFinderModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moCalibrationModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moCameraModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moCannyModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moCombineModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moDilateModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moDistanceTransformModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moDumpModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moEqualizeHistModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moErodeModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moFiducialFinderModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moFingerTipFinderModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moGrayScaleModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moGreedyBlobTrackerModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moHighpassModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moHsvModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moHuObjectFinderModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moImageDisplayModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moImageFilterModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moImageModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moInvertModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moJustifyModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moMaskModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moMirrorImageModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moMunkresBlobTrackerModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moPeakFinderModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moRoiModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moSmoothModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moThresholdModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moTuio2Module.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moTuioModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moVideoModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moYCrCbThresholdModule.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="..\contrib\bitmap_munkres\match.h">
+      <Filter>Contribs</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

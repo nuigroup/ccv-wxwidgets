@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{61C1E6E7-C048-4D19-B08F-21890459D8A8}</ProjectGuid>
+    <RootNamespace>Movid</RootNamespace>
+    <ProjectName>libmovid</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)\lib</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level2</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>%OPENCV_DIR%\include;%OPENCV_DIR%\include\opencv;..\contrib\WOscLib-00.09;..\contrib\ptypes-2.1.1\include;..\contrib\bitmap_munkres;..\contrib</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>%OPENCV_DIR%\include;%OPENCV_DIR%\include\opencv;..\contrib\WOscLib-00.09;..\contrib\ptypes-2.1.1\include;..\contrib\bitmap_munkres;..\contrib</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\contrib\bitmap_munkres\match.c" />
+    <ClCompile Include="..\src\moDaemon.cpp" />
+    <ClCompile Include="..\src\moDataGenericContainer.cpp" />
+    <ClCompile Include="..\src\moDataStream.cpp" />
+    <ClCompile Include="..\src\modules\moAbstractBlobTrackerModule.cpp" />
+    <ClCompile Include="..\src\modules\moAmplifyModule.cpp" />
+    <ClCompile Include="..\src\modules\moBackgroundSubtractModule.cpp" />
+    <ClCompile Include="..\src\modules\moBinaryMaskModule.cpp" />
+    <ClCompile Include="..\src\modules\moBlobFinderModule.cpp" />
+    <ClCompile Include="..\src\modules\moCalibrationModule.cpp" />
+    <ClCompile Include="..\src\modules\moCameraModule.cpp" />
+    <ClCompile Include="..\src\modules\moCannyModule.cpp" />
+    <ClCompile Include="..\src\modules\moCombineModule.cpp" />
+    <ClCompile Include="..\src\modules\moDilateModule.cpp" />
+    <ClCompile Include="..\src\modules\moDistanceTransformModule.cpp" />
+    <ClCompile Include="..\src\modules\moDumpModule.cpp" />
+    <ClCompile Include="..\src\modules\moEqualizeHistModule.cpp" />
+    <ClCompile Include="..\src\modules\moErodeModule.cpp" />
+    <ClCompile Include="..\src\modules\moFiducialFinderModule.cpp" />
+    <ClCompile Include="..\src\modules\moFingerTipFinderModule.cpp" />
+    <ClCompile Include="..\src\modules\moGrayScaleModule.cpp" />
+    <ClCompile Include="..\src\modules\moGreedyBlobTrackerModule.cpp" />
+    <ClCompile Include="..\src\modules\moHighpassModule.cpp" />
+    <ClCompile Include="..\src\modules\moHsvModule.cpp" />
+    <ClCompile Include="..\src\modules\moHuObjectFinderModule.cpp" />
+    <ClCompile Include="..\src\modules\moImageDisplayModule.cpp" />
+    <ClCompile Include="..\src\modules\moImageFilterModule.cpp" />
+    <ClCompile Include="..\src\modules\moImageModule.cpp" />
+    <ClCompile Include="..\src\modules\moInvertModule.cpp" />
+    <ClCompile Include="..\src\modules\moJustifyModule.cpp" />
+    <ClCompile Include="..\src\modules\moMaskModule.cpp" />
+    <ClCompile Include="..\src\modules\moMirrorImageModule.cpp" />
+    <ClCompile Include="..\src\modules\moMunkresBlobTrackerModule.cpp" />
+    <ClCompile Include="..\src\modules\moPeakFinderModule.cpp" />
+    <ClCompile Include="..\src\modules\moRoiModule.cpp" />
+    <ClCompile Include="..\src\modules\moSmoothModule.cpp" />
+    <ClCompile Include="..\src\modules\moThresholdModule.cpp" />
+    <ClCompile Include="..\src\modules\moTuio2Module.cpp" />
+    <ClCompile Include="..\src\modules\moTuioModule.cpp" />
+    <ClCompile Include="..\src\modules\moVideoModule.cpp" />
+    <ClCompile Include="..\src\modules\moYCrCbThresholdModule.cpp" />
+    <ClCompile Include="..\src\moFactory.cpp" />
+    <ClCompile Include="..\src\moLog.cpp" />
+    <ClCompile Include="..\src\moModule.cpp" />
+    <ClCompile Include="..\src\moOSC.cpp" />
+    <ClCompile Include="..\src\moPipeline.cpp" />
+    <ClCompile Include="..\src\moProperty.cpp" />
+    <ClCompile Include="..\src\moThread.cpp" />
+    <ClCompile Include="..\src\moUtils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\contrib\bitmap_munkres\match.h" />
+    <ClInclude Include="..\src\moDaemon.h" />
+    <ClInclude Include="..\src\moDataGenericContainer.h" />
+    <ClInclude Include="..\src\moDataStream.h" />
+    <ClInclude Include="..\src\modules\moAbstractBlobTrackerModule.h" />
+    <ClInclude Include="..\src\modules\moAmplifyModule.h" />
+    <ClInclude Include="..\src\modules\moBackgroundSubtractModule.h" />
+    <ClInclude Include="..\src\modules\moBinaryMaskModule.h" />
+    <ClInclude Include="..\src\modules\moBlobFinderModule.h" />
+    <ClInclude Include="..\src\modules\moCalibrationModule.h" />
+    <ClInclude Include="..\src\modules\moCameraModule.h" />
+    <ClInclude Include="..\src\modules\moCannyModule.h" />
+    <ClInclude Include="..\src\modules\moCombineModule.h" />
+    <ClInclude Include="..\src\modules\moDilateModule.h" />
+    <ClInclude Include="..\src\modules\moDistanceTransformModule.h" />
+    <ClInclude Include="..\src\modules\moDumpModule.h" />
+    <ClInclude Include="..\src\modules\moEqualizeHistModule.h" />
+    <ClInclude Include="..\src\modules\moErodeModule.h" />
+    <ClInclude Include="..\src\modules\moFiducialFinderModule.h" />
+    <ClInclude Include="..\src\modules\moFingerTipFinderModule.h" />
+    <ClInclude Include="..\src\modules\moGrayScaleModule.h" />
+    <ClInclude Include="..\src\modules\moGreedyBlobTrackerModule.h" />
+    <ClInclude Include="..\src\modules\moHighpassModule.h" />
+    <ClInclude Include="..\src\modules\moHsvModule.h" />
+    <ClInclude Include="..\src\modules\moHuObjectFinderModule.h" />
+    <ClInclude Include="..\src\modules\moImageDisplayModule.h" />
+    <ClInclude Include="..\src\modules\moImageFilterModule.h" />
+    <ClInclude Include="..\src\modules\moImageModule.h" />
+    <ClInclude Include="..\src\modules\moInvertModule.h" />
+    <ClInclude Include="..\src\modules\moJustifyModule.h" />
+    <ClInclude Include="..\src\modules\moMaskModule.h" />
+    <ClInclude Include="..\src\modules\moMirrorImageModule.h" />
+    <ClInclude Include="..\src\modules\moMunkresBlobTrackerModule.h" />
+    <ClInclude Include="..\src\modules\moPeakFinderModule.h" />
+    <ClInclude Include="..\src\modules\moRoiModule.h" />
+    <ClInclude Include="..\src\modules\moSmoothModule.h" />
+    <ClInclude Include="..\src\modules\moThresholdModule.h" />
+    <ClInclude Include="..\src\modules\moTuio2Module.h" />
+    <ClInclude Include="..\src\modules\moTuioModule.h" />
+    <ClInclude Include="..\src\modules\moVideoModule.h" />
+    <ClInclude Include="..\src\modules\moYCrCbThresholdModule.h" />
+    <ClInclude Include="..\src\moFactory.h" />
+    <ClInclude Include="..\src\moLog.h" />
+    <ClInclude Include="..\src\moModule.h" />
+    <ClInclude Include="..\src\moOSC.h" />
+    <ClInclude Include="..\src\moPipeline.h" />
+    <ClInclude Include="..\src\moProperty.h" />
+    <ClInclude Include="..\src\moThread.h" />
+    <ClInclude Include="..\src\moUtils.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
