@@ -49,6 +49,7 @@ private:
     FILE* logFp;
 
     int LoadConfigXml(CCVGlobalParam *, std::string filename);
+    int SetInitPipeline();
 };
 
 IMPLEMENT_APP(CCVApp)
@@ -57,31 +58,19 @@ IMPLEMENT_APP(CCVApp)
    The entrance of the application. Set mainframe and miniframe.
 */
 bool CCVApp::OnInit()
-{
+{    
     param = new CCVGlobalParam;
     LoadConfigXml(param, "config.xml");
     
     movidthread = new CCVWorkerEngine();
     
-    // Set the initial pipeline
-    movidthread->procGraph->AddModule("input_source", "Camera");
-
-    movidthread->procGraph->AddModule("output_leftviewer", "Stream", true);
-    movidthread->procGraph->ConnectModules("input_source", "output_leftviewer");
-
-    movidthread->procGraph->AddModule("grayscale", "GrayScale");
-    movidthread->procGraph->ConnectModules("input_source", "grayscale");
-
-    movidthread->procGraph->AddModule("threshold", "Threshold")->property("threshold").set(param->initThreshold);
-    movidthread->procGraph->ConnectModules("grayscale", "threshold");
-
-    movidthread->procGraph->AddModule("blobfinder", "BlobFinder")->property("min_size").set(param->initMinBlob);
-    movidthread->procGraph->getModuleById("blobfinder")->property("max_size").set(param->initMaxBlob);
-    movidthread->procGraph->ConnectModules("threshold", "blobfinder");
-
-    movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);    
-    movidthread->procGraph->ConnectModules("blobfinder", "output_rightviewer");
-    movidthread->procGraph->start();
+    if (SetInitPipeline()==CCV_SUCCESS) {
+        movidthread->procGraph->start();
+    }
+    else {
+        wxLogMessage(wxT("ERROR SetInitPipeline()!=CCV_SUCCESS"));
+        return false;
+    }
     
     if (movidthread->Create() != wxTHREAD_NO_ERROR ) {
         wxLogMessage(wxT("ERROR movidthread->Create() != wxTHREAD_NO_ERROR"));
@@ -149,4 +138,61 @@ int CCVApp::LoadConfigXml(CCVGlobalParam *in_param, std::string filename)
     in_param->logger = new wxLogStderr(logFp);
     wxLog::SetActiveTarget(in_param->logger);
     return CCV_SUCCESS;
+}
+
+int CCVApp::SetInitPipeline()
+{
+    // Input Source
+    movidthread->procGraph->AddModule("input_source", "Camera");
+    
+    // GrayScale
+    movidthread->procGraph->AddModule("grayscale", "GrayScale");
+    movidthread->procGraph->ConnectModules("input_source", "grayscale");    
+    
+    // Background Subtract
+    movidthread->procGraph->AddModule("backgroundSubtract", "BackgroundSubtract");
+    movidthread->procGraph->ConnectModules("grayscale", "backgroundSubtract");
+    param->backgroundsub_enabled = true;
+    
+    // Amplify
+    movidthread->procGraph->AddModule("amplify", "Amplify");
+    movidthread->procGraph->ConnectModules("backgroundSubtract", "amplify");
+    param->amplify_enabled = true;
+    
+    // Highpass
+    movidthread->procGraph->AddModule("highpass", "Highpass");
+    movidthread->procGraph->ConnectModules("amplify", "highpass");
+    param->highpass_enabled = true;
+    
+    // Smooth
+    movidthread->procGraph->AddModule("smooth", "Smooth");
+    movidthread->procGraph->ConnectModules("highpass", "smooth");
+    param->smooth_enabled = true;
+
+    // Threshold
+    movidthread->procGraph->AddModule("threshold", "Threshold")->property("threshold").set(param->initThreshold);
+    movidthread->procGraph->ConnectModules("smooth", "threshold");
+
+    // BlobFinder
+    movidthread->procGraph->AddModule("blobfinder", "BlobFinder")->property("min_size").set(param->initMinBlob);
+    movidthread->procGraph->getModuleById("blobfinder")->property("max_size").set(param->initMaxBlob);
+    movidthread->procGraph->ConnectModules("threshold", "blobfinder");    
+    
+    // In & Out Monitors
+    movidthread->procGraph->AddModule("output_leftviewer", "Stream", true);
+    movidthread->procGraph->ConnectModules("input_source", "output_leftviewer");
+    movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);    
+    movidthread->procGraph->ConnectModules("blobfinder", "output_rightviewer");    
+    
+    // Filter Monitors
+    movidthread->procGraph->AddModule("output_background", "Stream", true);
+    movidthread->procGraph->ConnectModules("backgroundSubtract", "output_background");
+    movidthread->procGraph->AddModule("output_amplify", "Stream", true);    
+    movidthread->procGraph->ConnectModules("amplify", "output_amplify");
+    movidthread->procGraph->AddModule("output_highpass", "Stream", true);
+    movidthread->procGraph->ConnectModules("highpass", "output_highpass");
+    movidthread->procGraph->AddModule("output_smooth", "Stream", true);    
+    movidthread->procGraph->ConnectModules("smooth", "output_smooth");
+    
+    return CCV_SUCCESS;    
 }

@@ -41,6 +41,23 @@ struct CCVGlobalParam
     int initThreshold;
     int initMinBlob;
     int initMaxBlob;
+    
+    bool backgroundsub_enabled;
+    bool amplify_enabled;
+    bool highpass_enabled;
+    bool smooth_enabled;
+    
+    CCVGlobalParam()
+    {
+        logger = NULL;
+        initThreshold = 0;
+        initMinBlob = 0;
+        initMaxBlob = 0;
+        backgroundsub_enabled = false;
+        amplify_enabled = false;
+        highpass_enabled = false;
+        smooth_enabled = false;
+    }
 };
 
 #endif // _CCV_COMMON_H

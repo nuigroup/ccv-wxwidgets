@@ -33,10 +33,6 @@ private:
     void m_slider_imageThreOnScroll( wxScrollEvent& event );
     void m_slider_minBlobOnScrollThumbRelease( wxScrollEvent& event );
 	void m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event );
-
-    int curThreshold;
-    int curMinBlob;
-    int curMaxBlob;
 };
 
 enum CCV_SOURCE_ID

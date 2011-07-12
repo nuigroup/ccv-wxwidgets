@@ -72,19 +72,20 @@ class CCVbaseMainFrame : public wxFrame
 		wxPanel* m_panel_background;
 		wxPanel* m_panel_background_viewer;
 		wxPanel* m_panel_background_ctrl;
+		wxCheckBox* m_checkBox_background;
 		
 		wxCheckBox* m_checkBox_removeBG;
 		wxCheckBox* m_checkBox_dsubtract;
 		wxStaticText* m_staticText_learnspeed;
 		wxSlider* m_slider_learnspeed;
 		
-		wxPanel* m_panel_smooth;
-		wxPanel* m_panel_smooth_viewer;
-		wxPanel* m_panel_smooth_ctrl;
-		wxCheckBox* m_checkBox_smooth;
+		wxPanel* m_panel_amp;
+		wxPanel* m_panel_amp_viewer;
+		wxPanel* m_panel_amplify_ctrl;
+		wxCheckBox* m_checkBox_amp;
 		
-		wxStaticText* m_staticText_smoothctrl;
-		wxSlider* m_slider_smooth;
+		wxStaticText* m_staticText_ampctrl;
+		wxSlider* m_slider_amp;
 		
 		wxPanel* m_panel_highpass;
 		wxPanel* m_panel_highpass_viewer;
@@ -96,13 +97,13 @@ class CCVbaseMainFrame : public wxFrame
 		wxStaticText* m_staticText_nosie;
 		wxSlider* m_slider_noise;
 		
-		wxPanel* m_panel_amp;
-		wxPanel* m_panel_amp_viewer;
-		wxPanel* m_panel_amplify_ctrl;
-		wxCheckBox* m_checkBox_amp;
+		wxPanel* m_panel_smooth;
+		wxPanel* m_panel_smooth_viewer;
+		wxPanel* m_panel_smooth_ctrl;
+		wxCheckBox* m_checkBox_smooth;
 		
-		wxStaticText* m_staticText_ampctrl;
-		wxSlider* m_slider_amp;
+		wxStaticText* m_staticText_smoothctrl;
+		wxSlider* m_slider_smooth;
 		
 		wxPanel* m_panel_mainright;
 		wxCheckBox* m_checkBox_filpV;

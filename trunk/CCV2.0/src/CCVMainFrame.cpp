@@ -22,14 +22,13 @@ CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc, CCVGlobalParam *_param) :
     CCVMainFrame();
     paramHook = _param;
 
-    curThreshold = paramHook->initThreshold;
-    m_slider_imageThre->SetValue(curThreshold);
-
-    curMinBlob = paramHook->initMinBlob;
-    m_slider_minBlob->SetValue(curMinBlob);
-
-    curMaxBlob = paramHook->initMaxBlob;
-    m_slider_maxBlob->SetValue(curMaxBlob);
+    m_slider_imageThre->SetValue(paramHook->initThreshold);
+    m_slider_minBlob->SetValue(paramHook->initMinBlob);
+    m_slider_maxBlob->SetValue(paramHook->initMaxBlob);
+    m_checkBox_background->SetValue(paramHook->backgroundsub_enabled);    
+    m_checkBox_amp->SetValue(paramHook->amplify_enabled);     
+    m_checkBox_highpass->SetValue(paramHook->highpass_enabled);
+    m_checkBox_smooth->SetValue(paramHook->smooth_enabled);
 
     SetWorkerEngine(movidProc);
 }
@@ -48,6 +47,10 @@ void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
     OutImagesMap rawImages = movidProcess->getOutImages();   
     DrawCameraImage(rawImages["output_leftviewer"], m_panel_inputViewer);
     DrawCameraImage(rawImages["output_rightviewer"], m_panel_outputViewer);
+    DrawCameraImage(rawImages["output_background"], m_panel_background_viewer);
+    DrawCameraImage(rawImages["output_amplify"], m_panel_amp_viewer);
+    DrawCameraImage(rawImages["output_highpass"], m_panel_highpass_viewer);
+    DrawCameraImage(rawImages["output_smooth"], m_panel_smooth_viewer);
 }
 
 void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec)
@@ -132,11 +135,11 @@ void CCVMainFrame::m_slider_imageThreOnScroll( wxScrollEvent& event )
     int newVaule = m_slider_imageThre->GetValue();
     if (movidProcess->SafeSetProperty("threshold", "threshold", newVaule) == CCV_SUCCESS) {
         wxLogMessage(wxT("MESSAGE SafeSetProperty(threshold, threshold, %d)"), newVaule);
-        curThreshold = newVaule;
+        paramHook->initThreshold = newVaule;
     }
     else {
         wxLogMessage(wxT("MESSAGE SafeSetProperty Returned without setting."));
-        m_slider_imageThre->SetValue(curThreshold);
+        m_slider_imageThre->SetValue(paramHook->initThreshold);
         return;
     }
 }
@@ -146,11 +149,11 @@ void CCVMainFrame::m_slider_minBlobOnScrollThumbRelease( wxScrollEvent& event )
     int newVaule = m_slider_minBlob->GetValue();
     if (movidProcess->SafeSetProperty("blobfinder", "min_size", newVaule) == CCV_SUCCESS) {
         wxLogMessage(wxT("MESSAGE movidProcess->SafeSetProperty(blobfinder, min_size, %d)"), newVaule);
-        curMinBlob = newVaule;
+        paramHook->initMinBlob = newVaule;
     }
     else {
         wxLogMessage(wxT("MESSAGE SafeSetProperty Returned without setting."));
-        m_slider_minBlob->SetValue(curMinBlob);
+        m_slider_minBlob->SetValue(paramHook->initMinBlob);
         return;
     }
 }
@@ -160,11 +163,11 @@ void CCVMainFrame::m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event )
     int newVaule = m_slider_maxBlob->GetValue();
     if (movidProcess->SafeSetProperty("blobfinder", "max_size", newVaule) == CCV_SUCCESS) {
         wxLogMessage(wxT("MESSAGE movidProcess->SafeSetProperty(blobfinder, max_size, %d)"), newVaule);
-        curMaxBlob = newVaule;
+        paramHook->initMaxBlob = newVaule;
     }
     else {
         wxLogMessage(wxT("MESSAGE SafeSetProperty Returned without setting."));
-        m_slider_maxBlob->SetValue(curMaxBlob);
+        m_slider_maxBlob->SetValue(paramHook->initMaxBlob);
         return;
     }
 }
