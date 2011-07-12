@@ -96,7 +96,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxString m_radioBox_selectInputChoices[] = { wxT("Use Camera"), wxT("Use Video") };
 	int m_radioBox_selectInputNChoices = sizeof( m_radioBox_selectInputChoices ) / sizeof( wxString );
 	m_radioBox_selectInput = new wxRadioBox( m_panel_inputContrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, m_radioBox_selectInputNChoices, m_radioBox_selectInputChoices, 1, wxRA_SPECIFY_COLS );
-	m_radioBox_selectInput->SetSelection( 0 );
+	m_radioBox_selectInput->SetSelection( 1 );
 	s_inputContrl_down->Add( m_radioBox_selectInput, 0, wxALL, 5 );
 	
 	

@@ -143,15 +143,11 @@ int CCVApp::LoadConfigXml(CCVGlobalParam *in_param, std::string filename)
 int CCVApp::SetInitPipeline()
 {
     // Input Source
-    movidthread->procGraph->AddModule("input_source", "Camera");
-    
-    // GrayScale
-    movidthread->procGraph->AddModule("grayscale", "GrayScale");
-    movidthread->procGraph->ConnectModules("input_source", "grayscale");    
+    movidthread->procGraph->AddModule("input_source", "Video")->property("filename").set(param->videoFileName);
     
     // Background Subtract
     movidthread->procGraph->AddModule("backgroundSubtract", "BackgroundSubtract");
-    movidthread->procGraph->ConnectModules("grayscale", "backgroundSubtract");
+    movidthread->procGraph->ConnectModules("input_source", "backgroundSubtract");
     param->backgroundsub_enabled = true;
     
     // Amplify
@@ -160,18 +156,22 @@ int CCVApp::SetInitPipeline()
     param->amplify_enabled = true;
     
     // Highpass
-    movidthread->procGraph->AddModule("highpass", "Highpass");
+    movidthread->procGraph->AddModule("highpass", "DoNothing");
     movidthread->procGraph->ConnectModules("amplify", "highpass");
-    param->highpass_enabled = true;
+    param->highpass_enabled = false;
     
     // Smooth
-    movidthread->procGraph->AddModule("smooth", "Smooth");
+    movidthread->procGraph->AddModule("smooth", "DoNothing");
     movidthread->procGraph->ConnectModules("highpass", "smooth");
-    param->smooth_enabled = true;
+    param->smooth_enabled = false;
+    
+    // GrayScale
+    movidthread->procGraph->AddModule("grayscale", "GrayScale");
+    movidthread->procGraph->ConnectModules("smooth", "grayscale");    
 
     // Threshold
     movidthread->procGraph->AddModule("threshold", "Threshold")->property("threshold").set(param->initThreshold);
-    movidthread->procGraph->ConnectModules("smooth", "threshold");
+    movidthread->procGraph->ConnectModules("grayscale", "threshold");
 
     // BlobFinder
     movidthread->procGraph->AddModule("blobfinder", "BlobFinder")->property("min_size").set(param->initMinBlob);

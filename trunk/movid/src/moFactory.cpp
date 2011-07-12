@@ -42,6 +42,7 @@ void moFactory::init() {
 	REGISTER_MODULE(Combine);
 	REGISTER_MODULE(Dilate);
 	REGISTER_MODULE(DistanceTransform);
+	REGISTER_MODULE(DoNothing);
 	REGISTER_MODULE(Dump);
 	REGISTER_MODULE(Erode);
 	REGISTER_MODULE(EqualizeHist);

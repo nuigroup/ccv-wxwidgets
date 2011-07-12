@@ -86,6 +86,7 @@
     <ClCompile Include="..\src\modules\moCombineModule.cpp" />
     <ClCompile Include="..\src\modules\moDilateModule.cpp" />
     <ClCompile Include="..\src\modules\moDistanceTransformModule.cpp" />
+    <ClCompile Include="..\src\modules\moDoNothingModule.cpp" />
     <ClCompile Include="..\src\modules\moDumpModule.cpp" />
     <ClCompile Include="..\src\modules\moEqualizeHistModule.cpp" />
     <ClCompile Include="..\src\modules\moErodeModule.cpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="..\src\modules\moCombineModule.h" />
     <ClInclude Include="..\src\modules\moDilateModule.h" />
     <ClInclude Include="..\src\modules\moDistanceTransformModule.h" />
+    <ClInclude Include="..\src\modules\moDoNothingModule.h" />
     <ClInclude Include="..\src\modules\moDumpModule.h" />
     <ClInclude Include="..\src\modules\moEqualizeHistModule.h" />
     <ClInclude Include="..\src\modules\moErodeModule.h" />

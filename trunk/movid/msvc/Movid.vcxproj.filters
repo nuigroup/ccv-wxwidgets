@@ -168,6 +168,9 @@
     <ClCompile Include="..\contrib\bitmap_munkres\match.c">
       <Filter>Contribs</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\modules\moDoNothingModule.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\moDaemon.h">
@@ -316,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="..\contrib\bitmap_munkres\match.h">
       <Filter>Contribs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\modules\moDoNothingModule.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
