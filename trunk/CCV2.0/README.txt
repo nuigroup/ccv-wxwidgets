@@ -1,3 +1,19 @@
+== Compile on Windows ==
+Require:
+  wxWidgets
+  OpenCV2.2 or higher
+  Microsoft Visual C++ 2010 (Free express version is enough)
+
+You do not need compile wxWidgets by yourself. You can download the 
+binary wxWidgets (wxPack) from:
+  http://wxpack.sourceforge.net
+
+Microsoft provided a free express version's Visual C++:
+  http://www.microsoft.com/express/Downloads/#2010-Visual-CPP
+
+To compile, just run msvc\build.bat. Before compiling, make environment
+variable WXWIN was set to wxWidgets's path, OPENCV_DIR was set to opencv's path.
+
 == Compile on Mac OS X ==
 Require:
   wxWidgets
@@ -9,8 +25,7 @@ Move makefiles/Makefile.osx to the this folder and rename it to Makefile.
 you may need to select the correct gcc version in shell like this:
   $ sudo gcc_select gcc42
 
-To compile, use the following command in uxix shell:
-  $ make -f Makefile.osx
+To compile, just run "make" in the uxix shell.
 
 == Compile on Linux ==
 Require:
@@ -23,27 +38,4 @@ Move makefiles/Makefile.linux to the this folder and rename it to Makefile.
 If you are using Ubuntu, you may want to use apt to install binary wxWidgets:
   $ sudo aptitude install libwxgtk2.8-dev
 
-To compile, use the following command in uxix shell:
-  $ make -f Makefile.linux
-  
-== Compile on Windows ==
-Require:
-  wxWidgets
-  OpenCV2.2 or higher
-  Microsoft Visual C++ 2010 (Free express version is enough)
-
-You can download the binary wxWidgets (wxPack) from:
-http://wxpack.sourceforge.net
-
-For some reason, the mingw does not work for CCV now, we'll fix it in futrue.
-At present you need to use Microsoft Visual C++ 2010 to compile CCV. Microsoft
-provided a free express version's Visual C++'s, which can be download from:
-http://www.microsoft.com/express/Downloads/#2010-Visual-CPP
-
-To compile, open MSVC\ccv2.sln and run build. Before compiling, make sure set
-environment variable WXWIN to the wxWidgets path, OPENCVWIN to the opencv path.
-
-== Documents ==
-If you want to build documents, you need install doxygen and use the following
-command:
-   $ make -f Makefile.yourplatform doc
+To compile, just run "make" in the uxix shell.
