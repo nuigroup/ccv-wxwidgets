@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Sep  8 2010)
+// C++ code generated with wxFormBuilder (version Oct  4 2010)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -187,6 +187,8 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	s_moveFilter->Add( m_staticText_moveFilter, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
 	m_slider_moveFilter = new wxSlider( m_panel_movement, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
+	m_slider_moveFilter->Enable( false );
+	
 	s_moveFilter->Add( m_slider_moveFilter, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	m_panel_movement->SetSizer( s_moveFilter );
@@ -198,6 +200,8 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	s_inverse = new wxBoxSizer( wxVERTICAL );
 	
 	m_checkBox13 = new wxCheckBox( m_panel_inverse, wxID_ANY, wxT("Inverse"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBox13->Enable( false );
+	
 	s_inverse->Add( m_checkBox13, 0, wxALL, 5 );
 	
 	m_panel_inverse->SetSizer( s_inverse );
@@ -240,18 +244,15 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	
 	bSizer_background_ctrl->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	m_checkBox_removeBG = new wxCheckBox( m_panel_background_ctrl, wxID_ANY, wxT("Remove BG"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer_background_ctrl->Add( m_checkBox_removeBG, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	m_checkBox_recapture = new wxCheckBox( m_panel_background_ctrl, wxID_ANY, wxT("Recapture"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBox_recapture->SetValue(true); 
+	bSizer_background_ctrl->Add( m_checkBox_recapture, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_checkBox_dsubtract = new wxCheckBox( m_panel_background_ctrl, wxID_ANY, wxT("Dynamic Subtract"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer_background_ctrl->Add( m_checkBox_dsubtract, 0, wxBOTTOM|wxRIGHT|wxLEFT, 5 );
+	m_checkBox_toggle = new wxCheckBox( m_panel_background_ctrl, wxID_ANY, wxT("Toggle"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer_background_ctrl->Add( m_checkBox_toggle, 0, wxRIGHT|wxLEFT, 5 );
 	
-	m_staticText_learnspeed = new wxStaticText( m_panel_background_ctrl, wxID_ANY, wxT("Learn Speed"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText_learnspeed->Wrap( -1 );
-	bSizer_background_ctrl->Add( m_staticText_learnspeed, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
-	
-	m_slider_learnspeed = new wxSlider( m_panel_background_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	bSizer_background_ctrl->Add( m_slider_learnspeed, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	m_checkBox_absolute = new wxCheckBox( m_panel_background_ctrl, wxID_ANY, wxT("Absolute"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer_background_ctrl->Add( m_checkBox_absolute, 0, wxBOTTOM|wxRIGHT|wxLEFT, 5 );
 	
 	s_background_ctrl_h->Add( bSizer_background_ctrl, 1, wxEXPAND, 5 );
 	
@@ -301,7 +302,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_staticText_ampctrl->Wrap( -1 );
 	s_amp_ctrl->Add( m_staticText_ampctrl, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider_amp = new wxSlider( m_panel_amplify_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	m_slider_amp = new wxSlider( m_panel_amplify_ctrl, wxID_ANY, 20, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
 	s_amp_ctrl->Add( m_slider_amp, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	s_apmlify_ctrl_h->Add( s_amp_ctrl, 1, wxEXPAND, 5 );
@@ -331,41 +332,43 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_panel_highpass_ctrl->SetBackgroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_3DLIGHT ) );
 	
 	wxBoxSizer* s_highpass_ctrl_h;
-	s_highpass_ctrl_h = new wxBoxSizer( wxHORIZONTAL );
-	
-	wxBoxSizer* s_highpass_ctrl;
-	s_highpass_ctrl = new wxBoxSizer( wxVERTICAL );
-	
-	wxBoxSizer* s_highpass_aligner;
-	s_highpass_aligner = new wxBoxSizer( wxHORIZONTAL );
+	s_highpass_ctrl_h = new wxBoxSizer( wxVERTICAL );
 	
 	m_checkBox_highpass = new wxCheckBox( m_panel_highpass_ctrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	m_checkBox_highpass->SetValue(true); 
-	s_highpass_aligner->Add( m_checkBox_highpass, 0, wxALL, 5 );
-	
-	s_highpass_ctrl->Add( s_highpass_aligner, 0, wxEXPAND, 5 );
-	
-	
-	s_highpass_ctrl->Add( 0, 0, 1, wxEXPAND, 5 );
-	
-	m_staticText_blur = new wxStaticText( m_panel_highpass_ctrl, wxID_ANY, wxT("Blur"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText_blur->Wrap( -1 );
-	s_highpass_ctrl->Add( m_staticText_blur, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
-	
-	m_slider_blur = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	s_highpass_ctrl->Add( m_slider_blur, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
-	
-	m_staticText_nosie = new wxStaticText( m_panel_highpass_ctrl, wxID_ANY, wxT("Noise"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText_nosie->Wrap( -1 );
-	s_highpass_ctrl->Add( m_staticText_nosie, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
-	
-	m_slider_noise = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
-	s_highpass_ctrl->Add( m_slider_noise, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
-	
-	s_highpass_ctrl_h->Add( s_highpass_ctrl, 1, wxEXPAND, 5 );
+	s_highpass_ctrl_h->Add( m_checkBox_highpass, 0, wxALL, 5 );
 	
 	
 	s_highpass_ctrl_h->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	wxBoxSizer* s_highpass_ctrl;
+	s_highpass_ctrl = new wxBoxSizer( wxHORIZONTAL );
+	
+	wxBoxSizer* s_highpass_blur;
+	s_highpass_blur = new wxBoxSizer( wxVERTICAL );
+	
+	m_staticText_highpass_blur = new wxStaticText( m_panel_highpass_ctrl, wxID_ANY, wxT("Blur"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_highpass_blur->Wrap( -1 );
+	s_highpass_blur->Add( m_staticText_highpass_blur, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	
+	m_slider_blur = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 20, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
+	s_highpass_blur->Add( m_slider_blur, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	
+	s_highpass_ctrl->Add( s_highpass_blur, 1, wxEXPAND, 5 );
+	
+	wxBoxSizer* s_highpass_size;
+	s_highpass_size = new wxBoxSizer( wxVERTICAL );
+	
+	m_staticText_highpass_size = new wxStaticText( m_panel_highpass_ctrl, wxID_ANY, wxT("Size"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_highpass_size->Wrap( -1 );
+	s_highpass_size->Add( m_staticText_highpass_size, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
+	
+	m_slider_noise = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 20, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
+	s_highpass_size->Add( m_slider_noise, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
+	
+	s_highpass_ctrl->Add( s_highpass_size, 1, wxEXPAND, 5 );
+	
+	s_highpass_ctrl_h->Add( s_highpass_ctrl, 3, wxEXPAND, 5 );
 	
 	m_panel_highpass_ctrl->SetSizer( s_highpass_ctrl_h );
 	m_panel_highpass_ctrl->Layout();
@@ -410,13 +413,19 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_staticText_smoothctrl->Wrap( -1 );
 	s_smooth_ctrl->Add( m_staticText_smoothctrl, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider_smooth = new wxSlider( m_panel_smooth_ctrl, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL );
+	m_slider_smooth = new wxSlider( m_panel_smooth_ctrl, wxID_ANY, 10, 10, 60, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
 	s_smooth_ctrl->Add( m_slider_smooth, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
-	s_smooth_ctrl_h->Add( s_smooth_ctrl, 1, wxEXPAND, 5 );
+	s_smooth_ctrl_h->Add( s_smooth_ctrl, 4, wxEXPAND, 5 );
 	
 	
 	s_smooth_ctrl_h->Add( 0, 0, 1, wxEXPAND, 5 );
+	
+	wxString m_radioBox_smoothtypeChoices[] = { wxT("median"), wxT("gaussian"), wxT("blur"), wxT("blur_no_scale") };
+	int m_radioBox_smoothtypeNChoices = sizeof( m_radioBox_smoothtypeChoices ) / sizeof( wxString );
+	m_radioBox_smoothtype = new wxRadioBox( m_panel_smooth_ctrl, wxID_ANY, wxT("Filter Type"), wxDefaultPosition, wxDefaultSize, m_radioBox_smoothtypeNChoices, m_radioBox_smoothtypeChoices, 1, wxRA_SPECIFY_COLS );
+	m_radioBox_smoothtype->SetSelection( 0 );
+	s_smooth_ctrl_h->Add( m_radioBox_smoothtype, 3, wxALL, 5 );
 	
 	m_panel_smooth_ctrl->SetSizer( s_smooth_ctrl_h );
 	m_panel_smooth_ctrl->Layout();
@@ -446,9 +455,13 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	s_ctrl_camera = new wxStaticBoxSizer( new wxStaticBox( m_panel_mainright, wxID_ANY, wxT("Camera Properties") ), wxVERTICAL );
 	
 	m_checkBox_filpV = new wxCheckBox( m_panel_mainright, wxID_ANY, wxT("Filp Vertical"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBox_filpV->Enable( false );
+	
 	s_ctrl_camera->Add( m_checkBox_filpV, 0, wxALL, 2 );
 	
 	m_checkBox_filpH = new wxCheckBox( m_panel_mainright, wxID_ANY, wxT("Filp Horizontal"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBox_filpH->Enable( false );
+	
 	s_ctrl_camera->Add( m_checkBox_filpH, 0, wxALL, 2 );
 	
 	s_contols->Add( s_ctrl_camera, 0, wxALL|wxEXPAND, 5 );
@@ -457,6 +470,8 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	s_ctrl_Gpu = new wxStaticBoxSizer( new wxStaticBox( m_panel_mainright, wxID_ANY, wxT("GPU Properties") ), wxVERTICAL );
 	
 	m_checkBox_gpu = new wxCheckBox( m_panel_mainright, wxID_ANY, wxT("GPU Shaders"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBox_gpu->Enable( false );
+	
 	s_ctrl_Gpu->Add( m_checkBox_gpu, 0, wxALL, 2 );
 	
 	s_contols->Add( s_ctrl_Gpu, 0, wxALL|wxEXPAND, 5 );
@@ -465,6 +480,8 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	int m_radioBox_ctrl_commuNChoices = sizeof( m_radioBox_ctrl_commuChoices ) / sizeof( wxString );
 	m_radioBox_ctrl_commu = new wxRadioBox( m_panel_mainright, wxID_ANY, wxT("Communication"), wxDefaultPosition, wxDefaultSize, m_radioBox_ctrl_commuNChoices, m_radioBox_ctrl_commuChoices, 1, wxRA_SPECIFY_COLS );
 	m_radioBox_ctrl_commu->SetSelection( 0 );
+	m_radioBox_ctrl_commu->Enable( false );
+	
 	s_contols->Add( m_radioBox_ctrl_commu, 0, wxALL|wxEXPAND, 5 );
 	
 	wxStaticBoxSizer* s_ctrl_settings;
@@ -474,12 +491,18 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	bSizer_ctrl_setting_aligner = new wxBoxSizer( wxVERTICAL );
 	
 	m_button_camera_setting = new wxButton( m_panel_mainright, wxID_ANY, wxT("Camera Settings"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button_camera_setting->Enable( false );
+	
 	bSizer_ctrl_setting_aligner->Add( m_button_camera_setting, 0, wxALL|wxEXPAND, 2 );
 	
 	m_button_calibr = new wxButton( m_panel_mainright, wxID_ANY, wxT("Enter Calibration"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button_calibr->Enable( false );
+	
 	bSizer_ctrl_setting_aligner->Add( m_button_calibr, 0, wxALL|wxEXPAND, 2 );
 	
 	m_button_savesetting = new wxButton( m_panel_mainright, wxID_ANY, wxT("Save Settings"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button_savesetting->Enable( false );
+	
 	bSizer_ctrl_setting_aligner->Add( m_button_savesetting, 0, wxALL|wxEXPAND, 2 );
 	
 	s_ctrl_settings->Add( bSizer_ctrl_setting_aligner, 3, wxEXPAND, 0 );
@@ -523,6 +546,18 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_slider_imageThre->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_imageThreOnScroll ), NULL, this );
 	m_slider_minBlob->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_minBlobOnScrollThumbRelease ), NULL, this );
 	m_slider_maxBlob->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_maxBlobOnScrollThumbRelease ), NULL, this );
+	m_checkBox_background->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_backgroundOnCheckBox ), NULL, this );
+	m_checkBox_recapture->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_recaptureOnCheckBox ), NULL, this );
+	m_checkBox_toggle->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_toggleOnCheckBox ), NULL, this );
+	m_checkBox_absolute->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_absoluteOnCheckBox ), NULL, this );
+	m_checkBox_amp->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_ampOnCheckBox ), NULL, this );
+	m_slider_amp->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_ampOnScrollThumbRelease ), NULL, this );
+	m_checkBox_highpass->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_highpassOnCheckBox ), NULL, this );
+	m_slider_blur->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_blurOnScrollThumbRelease ), NULL, this );
+	m_slider_noise->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_noiseOnScrollThumbRelease ), NULL, this );
+	m_checkBox_smooth->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_smoothOnCheckBox ), NULL, this );
+	m_slider_smooth->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_radioBox_smoothtype->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( CCVbaseMainFrame::m_radioBox_smoothtypeOnRadioBox ), NULL, this );
 }
 
 CCVbaseMainFrame::~CCVbaseMainFrame()
@@ -532,6 +567,18 @@ CCVbaseMainFrame::~CCVbaseMainFrame()
 	m_slider_imageThre->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_imageThreOnScroll ), NULL, this );
 	m_slider_minBlob->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_minBlobOnScrollThumbRelease ), NULL, this );
 	m_slider_maxBlob->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_maxBlobOnScrollThumbRelease ), NULL, this );
+	m_checkBox_background->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_backgroundOnCheckBox ), NULL, this );
+	m_checkBox_recapture->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_recaptureOnCheckBox ), NULL, this );
+	m_checkBox_toggle->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_toggleOnCheckBox ), NULL, this );
+	m_checkBox_absolute->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_absoluteOnCheckBox ), NULL, this );
+	m_checkBox_amp->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_ampOnCheckBox ), NULL, this );
+	m_slider_amp->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_ampOnScrollThumbRelease ), NULL, this );
+	m_checkBox_highpass->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_highpassOnCheckBox ), NULL, this );
+	m_slider_blur->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_blurOnScrollThumbRelease ), NULL, this );
+	m_slider_noise->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_noiseOnScrollThumbRelease ), NULL, this );
+	m_checkBox_smooth->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_smoothOnCheckBox ), NULL, this );
+	m_slider_smooth->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_radioBox_smoothtype->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( CCVbaseMainFrame::m_radioBox_smoothtypeOnRadioBox ), NULL, this );
 	
 }
 

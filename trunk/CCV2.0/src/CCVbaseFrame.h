@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Sep  8 2010)
+// C++ code generated with wxFormBuilder (version Oct  4 2010)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -74,10 +74,9 @@ class CCVbaseMainFrame : public wxFrame
 		wxPanel* m_panel_background_ctrl;
 		wxCheckBox* m_checkBox_background;
 		
-		wxCheckBox* m_checkBox_removeBG;
-		wxCheckBox* m_checkBox_dsubtract;
-		wxStaticText* m_staticText_learnspeed;
-		wxSlider* m_slider_learnspeed;
+		wxCheckBox* m_checkBox_recapture;
+		wxCheckBox* m_checkBox_toggle;
+		wxCheckBox* m_checkBox_absolute;
 		
 		wxPanel* m_panel_amp;
 		wxPanel* m_panel_amp_viewer;
@@ -92,11 +91,10 @@ class CCVbaseMainFrame : public wxFrame
 		wxPanel* m_panel_highpass_ctrl;
 		wxCheckBox* m_checkBox_highpass;
 		
-		wxStaticText* m_staticText_blur;
+		wxStaticText* m_staticText_highpass_blur;
 		wxSlider* m_slider_blur;
-		wxStaticText* m_staticText_nosie;
+		wxStaticText* m_staticText_highpass_size;
 		wxSlider* m_slider_noise;
-		
 		wxPanel* m_panel_smooth;
 		wxPanel* m_panel_smooth_viewer;
 		wxPanel* m_panel_smooth_ctrl;
@@ -105,6 +103,7 @@ class CCVbaseMainFrame : public wxFrame
 		wxStaticText* m_staticText_smoothctrl;
 		wxSlider* m_slider_smooth;
 		
+		wxRadioBox* m_radioBox_smoothtype;
 		wxPanel* m_panel_mainright;
 		wxCheckBox* m_checkBox_filpV;
 		wxCheckBox* m_checkBox_filpH;
@@ -123,11 +122,24 @@ class CCVbaseMainFrame : public wxFrame
 		virtual void m_slider_imageThreOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void m_slider_minBlobOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
 		virtual void m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
+		virtual void m_checkBox_backgroundOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_checkBox_recaptureOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_checkBox_toggleOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_checkBox_absoluteOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_checkBox_ampOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_slider_ampOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
+		virtual void m_checkBox_highpassOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_slider_blurOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
+		virtual void m_slider_noiseOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
+		virtual void m_checkBox_smoothOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_slider_smoothOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
+		virtual void m_radioBox_smoothtypeOnRadioBox( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:
 		
 		CCVbaseMainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Community Core Vision"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 950,650 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		
 		~CCVbaseMainFrame();
 	
 };
@@ -165,6 +177,7 @@ class CCVbaseMiniFrame : public wxFrame
 	public:
 		
 		CCVbaseMiniFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("CCV - Mini"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 190,205 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		
 		~CCVbaseMiniFrame();
 	
 };
