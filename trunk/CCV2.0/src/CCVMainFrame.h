@@ -33,6 +33,19 @@ private:
     void m_slider_imageThreOnScroll( wxScrollEvent& event );
     void m_slider_minBlobOnScrollThumbRelease( wxScrollEvent& event );
 	void m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event );
+
+    void m_checkBox_backgroundOnCheckBox( wxCommandEvent& event );
+    void m_checkBox_recaptureOnCheckBox( wxCommandEvent& event );
+    void m_checkBox_toggleOnCheckBox( wxCommandEvent& event );
+    void m_checkBox_absoluteOnCheckBox( wxCommandEvent& event );
+    void m_checkBox_ampOnCheckBox( wxCommandEvent& event );
+    void m_slider_ampOnScrollThumbRelease( wxScrollEvent& event );
+    void m_checkBox_highpassOnCheckBox( wxCommandEvent& event );
+    void m_slider_blurOnScrollThumbRelease( wxScrollEvent& event );
+    void m_slider_noiseOnScrollThumbRelease( wxScrollEvent& event );
+    void m_checkBox_smoothOnCheckBox( wxCommandEvent& event );
+    void m_slider_smoothOnScrollThumbRelease( wxScrollEvent& event );
+    void m_radioBox_smoothtypeOnRadioBox( wxCommandEvent& event );
 };
 
 enum CCV_SOURCE_ID

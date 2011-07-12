@@ -22,6 +22,7 @@ CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc, CCVGlobalParam *_param) :
     CCVMainFrame();
     paramHook = _param;
 
+    m_radioBox_selectInput->SetSelection(paramHook->input_source);
     m_slider_imageThre->SetValue(paramHook->initThreshold);
     m_slider_minBlob->SetValue(paramHook->initMinBlob);
     m_slider_maxBlob->SetValue(paramHook->initMaxBlob);
@@ -171,3 +172,64 @@ void CCVMainFrame::m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event )
         return;
     }
 }
+
+void CCVMainFrame::m_checkBox_backgroundOnCheckBox( wxCommandEvent& event )
+{
+
+}
+
+void CCVMainFrame::m_checkBox_recaptureOnCheckBox( wxCommandEvent& event )
+{
+
+}
+
+void CCVMainFrame::m_checkBox_toggleOnCheckBox( wxCommandEvent& event )
+{
+
+}
+
+void CCVMainFrame::m_checkBox_absoluteOnCheckBox( wxCommandEvent& event )
+{
+
+}
+
+void CCVMainFrame::m_checkBox_ampOnCheckBox( wxCommandEvent& event )
+{
+
+}
+
+void CCVMainFrame::m_slider_ampOnScrollThumbRelease( wxScrollEvent& event )
+{
+
+}
+
+void CCVMainFrame::m_checkBox_highpassOnCheckBox( wxCommandEvent& event )
+{
+
+}
+
+void CCVMainFrame::m_slider_blurOnScrollThumbRelease( wxScrollEvent& event )
+{
+
+}
+
+void CCVMainFrame::m_slider_noiseOnScrollThumbRelease( wxScrollEvent& event )
+{
+
+}
+
+void CCVMainFrame::m_checkBox_smoothOnCheckBox( wxCommandEvent& event )
+{
+
+}
+
+void CCVMainFrame::m_slider_smoothOnScrollThumbRelease( wxScrollEvent& event )
+{
+
+}
+
+void CCVMainFrame::m_radioBox_smoothtypeOnRadioBox( wxCommandEvent& event )
+{
+
+}
+

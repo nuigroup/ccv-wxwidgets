@@ -144,6 +144,7 @@ int CCVApp::SetInitPipeline()
 {
     // Input Source
     movidthread->procGraph->AddModule("input_source", "Video")->property("filename").set(param->videoFileName);
+    param->input_source = VIDEO;
     
     // Background Subtract
     movidthread->procGraph->AddModule("backgroundSubtract", "BackgroundSubtract");

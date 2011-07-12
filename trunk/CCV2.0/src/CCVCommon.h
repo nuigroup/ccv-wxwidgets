@@ -31,6 +31,12 @@ enum CCV_ERROR_ID
     CCV_ERROR_BUSY
 };
 
+enum SourceType
+{
+    CAMERA,
+    VIDEO
+};
+
 typedef std::vector<std::string> Strings;
 
 struct CCVGlobalParam
@@ -42,10 +48,13 @@ struct CCVGlobalParam
     int initMinBlob;
     int initMaxBlob;
     
+    SourceType input_source;
+
     bool backgroundsub_enabled;
     bool amplify_enabled;
     bool highpass_enabled;
     bool smooth_enabled;
+    
     
     CCVGlobalParam()
     {
@@ -57,6 +66,7 @@ struct CCVGlobalParam
         amplify_enabled = false;
         highpass_enabled = false;
         smooth_enabled = false;
+        input_source = VIDEO;
     }
 };
 
