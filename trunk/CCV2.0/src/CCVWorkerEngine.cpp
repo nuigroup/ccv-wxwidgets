@@ -92,22 +92,3 @@ void *CCVWorkerEngine::Entry()
 
     return NULL;
 }
-
-int CCVWorkerEngine::SafeSetProperty(std::string moduleName, std::string propertyName, int value)
-{
-    moModule *mo = procGraph->getModuleById(moduleName);
-    if (mo == NULL) {
-        wxLogMessage(wxT("ERROR no such module: %s"), moduleName.c_str());
-        return CCV_ERROR_ITEM_NOT_EXISTS;
-    } 
-    if (procGraph->isBusy()) {
-        wxLogMessage(wxT("MESSAGE procGraph->isBusy(). Return."));
-        return CCV_ERROR_BUSY;
-    }
-    this->Pause();
-    procGraph->stop();  
-    mo->property(propertyName).set(value);
-    procGraph->start();
-    this->Resume();
-    return CCV_SUCCESS;
-}

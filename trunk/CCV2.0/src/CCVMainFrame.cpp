@@ -135,43 +135,19 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
 void CCVMainFrame::m_slider_imageThreOnScroll( wxScrollEvent& event )
 {
     int newVaule = m_slider_imageThre->GetValue();
-    if (movidProcess->SafeSetProperty("threshold", "threshold", newVaule) == CCV_SUCCESS) {
-        wxLogMessage(wxT("MESSAGE SafeSetProperty(threshold, threshold, %d)"), newVaule);
-        paramHook->initThreshold = newVaule;
-    }
-    else {
-        wxLogMessage(wxT("MESSAGE SafeSetProperty Returned without setting."));
-        m_slider_imageThre->SetValue(paramHook->initThreshold);
-        return;
-    }
+    movidProcess->procGraph->getModuleById("threshold")->property("threshold").set(newVaule);
 }
 
 void CCVMainFrame::m_slider_minBlobOnScrollThumbRelease( wxScrollEvent& event )
 {
     int newVaule = m_slider_minBlob->GetValue();
-    if (movidProcess->SafeSetProperty("blobfinder", "min_size", newVaule) == CCV_SUCCESS) {
-        wxLogMessage(wxT("MESSAGE movidProcess->SafeSetProperty(blobfinder, min_size, %d)"), newVaule);
-        paramHook->initMinBlob = newVaule;
-    }
-    else {
-        wxLogMessage(wxT("MESSAGE SafeSetProperty Returned without setting."));
-        m_slider_minBlob->SetValue(paramHook->initMinBlob);
-        return;
-    }
+    movidProcess->procGraph->getModuleById("blobfinder")->property("min_size").set(newVaule);
 }
 
 void CCVMainFrame::m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event )
 {
     int newVaule = m_slider_maxBlob->GetValue();
-    if (movidProcess->SafeSetProperty("blobfinder", "max_size", newVaule) == CCV_SUCCESS) {
-        wxLogMessage(wxT("MESSAGE movidProcess->SafeSetProperty(blobfinder, max_size, %d)"), newVaule);
-        paramHook->initMaxBlob = newVaule;
-    }
-    else {
-        wxLogMessage(wxT("MESSAGE SafeSetProperty Returned without setting."));
-        m_slider_maxBlob->SetValue(paramHook->initMaxBlob);
-        return;
-    }
+    movidProcess->procGraph->getModuleById("blobfinder")->property("max_size").set(newVaule);
 }
 
 void CCVMainFrame::m_checkBox_backgroundOnCheckBox( wxCommandEvent& event )
@@ -191,17 +167,23 @@ void CCVMainFrame::m_checkBox_backgroundOnCheckBox( wxCommandEvent& event )
 
 void CCVMainFrame::m_checkBox_recaptureOnCheckBox( wxCommandEvent& event )
 {
-
+    int newVaule = m_checkBox_recapture->GetValue();
+    bool enable = (newVaule > 0);
+    movidProcess->procGraph->getModuleById("bgSubtract")->property("recapture").set(enable);
 }
 
 void CCVMainFrame::m_checkBox_toggleOnCheckBox( wxCommandEvent& event )
 {
-
+    int newVaule = m_checkBox_toggle->GetValue();
+    bool enable = (newVaule > 0);
+    movidProcess->procGraph->getModuleById("bgSubtract")->property("toggle").set(enable);
 }
 
 void CCVMainFrame::m_checkBox_absoluteOnCheckBox( wxCommandEvent& event )
 {
-
+    int newVaule = m_checkBox_absolute->GetValue();
+    bool enable = (newVaule > 0);
+    movidProcess->procGraph->getModuleById("bgSubtract")->property("absolute").set(enable);
 }
 
 void CCVMainFrame::m_checkBox_ampOnCheckBox( wxCommandEvent& event )
@@ -221,7 +203,8 @@ void CCVMainFrame::m_checkBox_ampOnCheckBox( wxCommandEvent& event )
 
 void CCVMainFrame::m_slider_ampOnScrollThumbRelease( wxScrollEvent& event )
 {
-
+    double newVaule = m_slider_amp->GetValue() / 100.0;
+    movidProcess->procGraph->getModuleById("amplify")->property("amplification").set(newVaule);
 }
 
 void CCVMainFrame::m_checkBox_highpassOnCheckBox( wxCommandEvent& event )
@@ -241,12 +224,14 @@ void CCVMainFrame::m_checkBox_highpassOnCheckBox( wxCommandEvent& event )
 
 void CCVMainFrame::m_slider_blurOnScrollThumbRelease( wxScrollEvent& event )
 {
-
+    double newVaule = m_slider_blur->GetValue() / 10.0;
+    movidProcess->procGraph->getModuleById("highpass")->property("blur").set(newVaule);
 }
 
 void CCVMainFrame::m_slider_noiseOnScrollThumbRelease( wxScrollEvent& event )
 {
-
+    double newVaule = m_slider_noise->GetValue() / 10.0;
+    movidProcess->procGraph->getModuleById("highpass")->property("size").set(newVaule);
 }
 
 void CCVMainFrame::m_checkBox_smoothOnCheckBox( wxCommandEvent& event )
@@ -266,11 +251,27 @@ void CCVMainFrame::m_checkBox_smoothOnCheckBox( wxCommandEvent& event )
 
 void CCVMainFrame::m_slider_smoothOnScrollThumbRelease( wxScrollEvent& event )
 {
-
+    double newVaule = m_slider_smooth->GetValue() / 10.0;
+    movidProcess->procGraph->getModuleById("smooth")->property("size").set(newVaule);
 }
 
 void CCVMainFrame::m_radioBox_smoothtypeOnRadioBox( wxCommandEvent& event )
 {
+    int sId = m_radioBox_selectInput->GetSelection();
+    moModule *mo = movidProcess->procGraph->getModuleById("smooth");
 
+    if (sId == 0) {
+        mo->property("filter").set("median");
+    }
+    else if (sId == 1) {
+        mo->property("filter").set("gaussian");
+    }
+    else if (sId == 2) {
+        mo->property("filter").set("blur");
+    }
+    else if (sId == 3) {
+        mo->property("filter").set("blur_no_scale");
+    }
+    else;
 }
 
