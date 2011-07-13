@@ -106,10 +106,10 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
     movidProcess->Pause();
     movidProcess->procGraph->stop();
     // wxLogMessage(wxT("AFTER movidProcess->procGraph->stop();"));    
-    moModule *moInput = movidProcess->procGraph->getModuleById("input_source");
-    moInput->property("id").set("tmp");
+    moModule *moOldInput = movidProcess->procGraph->getModuleById("input_source");
+    moOldInput->property("id").set("tmp");
     moModule *moNewInput = NULL;
-    if (moInput==NULL) {
+    if (moOldInput==NULL) {
         wxLogMessage(wxT("ERROR procGraph->getModuleById==NULL"));
         return;
     }
@@ -124,7 +124,8 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
     else 
         wxLogMessage( wxT("ERROR Unknown Input Source."));
 
-    movidProcess->procGraph->ReplaceModule(moInput, moNewInput);
+    movidProcess->procGraph->ReplaceModule(moOldInput, moNewInput);
+    movidProcess->procGraph->removeElement(moOldInput);
     movidProcess->procGraph->start();
     // wxLogMessage(wxT("AFTER movidProcess->procGraph->start();"));
     movidProcess->Resume();
@@ -175,7 +176,17 @@ void CCVMainFrame::m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event )
 
 void CCVMainFrame::m_checkBox_backgroundOnCheckBox( wxCommandEvent& event )
 {
+    int enable = m_checkBox_background->GetValue();
+    std::string bgModule = enable ? "bgSubtract" : "bgSubtract_dummy";
+    std::string ampModule = paramHook->amplify_enabled ? "amplify" : "amplify_dummy";
+    std::string hpassModule = paramHook->highpass_enabled ? "highpass" : "highpass_dummy";
+    std::string smoothModule = paramHook->smooth_enabled ? "smooth" : "smooth_dummy";
+    
+    movidProcess->procGraph->ConnectModules("input_source", bgModule);
+    movidProcess->procGraph->ConnectModules(bgModule, ampModule);
+    movidProcess->procGraph->ConnectModules(bgModule, "output_background");
 
+    paramHook->backgroundsub_enabled = enable;
 }
 
 void CCVMainFrame::m_checkBox_recaptureOnCheckBox( wxCommandEvent& event )
@@ -195,7 +206,17 @@ void CCVMainFrame::m_checkBox_absoluteOnCheckBox( wxCommandEvent& event )
 
 void CCVMainFrame::m_checkBox_ampOnCheckBox( wxCommandEvent& event )
 {
+    int enable = m_checkBox_amp->GetValue();
+    std::string bgModule = paramHook->backgroundsub_enabled ? "bgSubtract" : "bgSubtract_dummy";
+    std::string ampModule = enable ? "amplify" : "amplify_dummy";
+    std::string hpassModule = paramHook->highpass_enabled ? "highpass" : "highpass_dummy";
+    std::string smoothModule = paramHook->smooth_enabled ? "smooth" : "smooth_dummy";
+    
+    movidProcess->procGraph->ConnectModules(bgModule, ampModule);
+    movidProcess->procGraph->ConnectModules(ampModule, hpassModule);
+    movidProcess->procGraph->ConnectModules(ampModule, "output_amplify");
 
+    paramHook->amplify_enabled = enable;
 }
 
 void CCVMainFrame::m_slider_ampOnScrollThumbRelease( wxScrollEvent& event )
@@ -205,7 +226,17 @@ void CCVMainFrame::m_slider_ampOnScrollThumbRelease( wxScrollEvent& event )
 
 void CCVMainFrame::m_checkBox_highpassOnCheckBox( wxCommandEvent& event )
 {
+    int enable = m_checkBox_highpass->GetValue();
+    std::string bgModule = paramHook->backgroundsub_enabled ? "bgSubtract" : "bgSubtract_dummy";
+    std::string ampModule = paramHook->amplify_enabled ? "amplify" : "amplify_dummy";
+    std::string hpassModule = enable ? "highpass" : "highpass_dummy";
+    std::string smoothModule = paramHook->smooth_enabled ? "smooth" : "smooth_dummy";    
+    
+    movidProcess->procGraph->ConnectModules(ampModule, hpassModule);
+    movidProcess->procGraph->ConnectModules(hpassModule, smoothModule);
+    movidProcess->procGraph->ConnectModules(hpassModule, "output_highpass");
 
+    paramHook->highpass_enabled = enable;
 }
 
 void CCVMainFrame::m_slider_blurOnScrollThumbRelease( wxScrollEvent& event )
@@ -220,7 +251,17 @@ void CCVMainFrame::m_slider_noiseOnScrollThumbRelease( wxScrollEvent& event )
 
 void CCVMainFrame::m_checkBox_smoothOnCheckBox( wxCommandEvent& event )
 {
+    int enable = m_checkBox_smooth->GetValue();
+    std::string bgModule = paramHook->backgroundsub_enabled ? "bgSubtract" : "bgSubtract_dummy";
+    std::string ampModule = paramHook->amplify_enabled ? "amplify" : "amplify_dummy";
+    std::string hpassModule = paramHook->highpass_enabled ? "highpass" : "highpass_dummy";
+    std::string smoothModule = enable ? "smooth" : "smooth_dummy";
+    
+    movidProcess->procGraph->ConnectModules(hpassModule, smoothModule);
+    movidProcess->procGraph->ConnectModules(smoothModule, "grayscale");
+    movidProcess->procGraph->ConnectModules(smoothModule, "output_smooth");
 
+    paramHook->smooth_enabled = enable;
 }
 
 void CCVMainFrame::m_slider_smoothOnScrollThumbRelease( wxScrollEvent& event )

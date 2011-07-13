@@ -33,11 +33,11 @@ moModule * CCVProcGraph::AddModule(std::string moduleID, std::string moduleType,
     return node;
 }
 
-int CCVProcGraph::ConnectModules(std::string firstModuleID, std::string secondModuleID)
+int CCVProcGraph::ConnectModules(std::string firstModuleID, std::string secondModuleID, int outSlot, int inSlot)
 {
     moModule *moFirst = this->getModuleById(firstModuleID);
     moModule *moSecond = this->getModuleById(secondModuleID);
-    moSecond->setInput(moFirst->getOutput(0), 0);
+    moSecond->setInput(moFirst->getOutput(outSlot), inSlot);
     
     return CCV_SUCCESS;
 }
@@ -94,8 +94,7 @@ int CCVProcGraph::ReplaceModule(moModule *moOld, moModule *moNew)
             }
             ds->removeObservers();
         }
-    }
-    this->removeElement(moOld);
+    }    
 
     // Connect the new module
     for (unsigned int i = 0; i < inputDataStreams.size(); i++) {

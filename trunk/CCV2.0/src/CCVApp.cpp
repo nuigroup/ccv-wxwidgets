@@ -62,6 +62,11 @@ bool CCVApp::OnInit()
     param = new CCVGlobalParam;
     LoadConfigXml(param, "config.xml");
     
+    param->backgroundsub_enabled = true;
+    param->amplify_enabled = true;
+    param->highpass_enabled = false;
+    param->smooth_enabled = false;
+    
     movidthread = new CCVWorkerEngine();
     
     if (SetInitPipeline()==CCV_SUCCESS) {
@@ -142,33 +147,40 @@ int CCVApp::LoadConfigXml(CCVGlobalParam *in_param, std::string filename)
 
 int CCVApp::SetInitPipeline()
 {
+    // Decide whether to use filters
+    std::string bgModule = param->backgroundsub_enabled ? "bgSubtract" : "bgSubtract_dummy";
+    std::string ampModule = param->amplify_enabled ? "amplify" : "amplify_dummy";
+    std::string hpassModule = param->highpass_enabled ? "highpass" : "highpass_dummy";
+    std::string smoothModule = param->smooth_enabled ? "smooth" : "smooth_dummy";
+    
     // Input Source
     movidthread->procGraph->AddModule("input_source", "Video")->property("filename").set(param->videoFileName);
     param->input_source = VIDEO;
     
     // Background Subtract
-    movidthread->procGraph->AddModule("backgroundSubtract", "BackgroundSubtract");
-    movidthread->procGraph->ConnectModules("input_source", "backgroundSubtract");
-    param->backgroundsub_enabled = true;
+    movidthread->procGraph->AddModule("bgSubtract", "BackgroundSubtract");
+    movidthread->procGraph->AddModule("bgSubtract_dummy", "DoNothing");
+    movidthread->procGraph->ConnectModules("input_source", bgModule);    
     
     // Amplify
     movidthread->procGraph->AddModule("amplify", "Amplify");
-    movidthread->procGraph->ConnectModules("backgroundSubtract", "amplify");
-    param->amplify_enabled = true;
+    movidthread->procGraph->AddModule("amplify_dummy", "DoNothing");
+    movidthread->procGraph->ConnectModules(bgModule, ampModule);    
     
     // Highpass
-    movidthread->procGraph->AddModule("highpass", "DoNothing");
-    movidthread->procGraph->ConnectModules("amplify", "highpass");
-    param->highpass_enabled = false;
+    movidthread->procGraph->AddModule("highpass", "Highpass");
+    movidthread->procGraph->AddModule("highpass_dummy", "DoNothing");
+    movidthread->procGraph->ConnectModules(ampModule, hpassModule);    
     
     // Smooth
-    movidthread->procGraph->AddModule("smooth", "DoNothing");
-    movidthread->procGraph->ConnectModules("highpass", "smooth");
-    param->smooth_enabled = false;
+    movidthread->procGraph->AddModule("smooth", "Smooth");
+    movidthread->procGraph->AddModule("smooth_dummy", "DoNothing");
+    movidthread->procGraph->ConnectModules(hpassModule, smoothModule);
+    
     
     // GrayScale
     movidthread->procGraph->AddModule("grayscale", "GrayScale");
-    movidthread->procGraph->ConnectModules("smooth", "grayscale");    
+    movidthread->procGraph->ConnectModules(smoothModule, "grayscale");    
 
     // Threshold
     movidthread->procGraph->AddModule("threshold", "Threshold")->property("threshold").set(param->initThreshold);
@@ -187,13 +199,13 @@ int CCVApp::SetInitPipeline()
     
     // Filter Monitors
     movidthread->procGraph->AddModule("output_background", "Stream", true);
-    movidthread->procGraph->ConnectModules("backgroundSubtract", "output_background");
+    movidthread->procGraph->ConnectModules(bgModule, "output_background");
     movidthread->procGraph->AddModule("output_amplify", "Stream", true);    
-    movidthread->procGraph->ConnectModules("amplify", "output_amplify");
+    movidthread->procGraph->ConnectModules(ampModule, "output_amplify");
     movidthread->procGraph->AddModule("output_highpass", "Stream", true);
-    movidthread->procGraph->ConnectModules("highpass", "output_highpass");
+    movidthread->procGraph->ConnectModules(hpassModule, "output_highpass");
     movidthread->procGraph->AddModule("output_smooth", "Stream", true);    
-    movidthread->procGraph->ConnectModules("smooth", "output_smooth");
+    movidthread->procGraph->ConnectModules(smoothModule, "output_smooth");
     
     return CCV_SUCCESS;    
 }

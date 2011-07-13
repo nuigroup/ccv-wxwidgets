@@ -38,7 +38,7 @@ public:
     /**
         Connect two modules. The first module inputs, the second outputs. 
     */
-    int ConnectModules(std::string firstModuleID, std::string secondModuleID);
+    int ConnectModules(std::string firstModuleID, std::string secondModuleID, int outSlot=0, int inSlot=0);
         
     /**
         Disconnect two modules. The first module inputs, the second outputs. 
