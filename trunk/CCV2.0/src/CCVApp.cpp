@@ -136,6 +136,10 @@ int CCVApp::LoadConfigXml(CCVGlobalParam *in_param, std::string filename)
     in_param->initThreshold = XML.getValue("CONFIG:INIT:Threshold", 180);
     in_param->initMinBlob = XML.getValue("CONFIG:INIT:MinBlob", 50);
     in_param->initMaxBlob = XML.getValue("CONFIG:INIT:MaxBlob", 1000);
+    in_param->initHighpassBlur = XML.getValue("CONFIG:INIT:HighpassBlur", 100);
+    in_param->initHighpasSize = XML.getValue("CONFIG:INIT:HighpasSize", 20);
+    in_param->initAmplify = XML.getValue("CONFIG:INIT:Amplify", 20);
+    in_param->initSmooth = XML.getValue("CONFIG:INIT:Smooth", 10);
     
     in_param->videoFileName = XML.getValue("CONFIG:VIDEO:FILENAME", "RearDI.m4v");
     std::string logFileName = XML.getValue("CONFIG:LOG:FILENAME", "ccv2.log");
@@ -175,8 +179,7 @@ int CCVApp::SetInitPipeline()
     // Smooth
     movidthread->procGraph->AddModule("smooth", "Smooth");
     movidthread->procGraph->AddModule("smooth_dummy", "DoNothing");
-    movidthread->procGraph->ConnectModules(hpassModule, smoothModule);
-    
+    movidthread->procGraph->ConnectModules(hpassModule, smoothModule); 
     
     // GrayScale
     movidthread->procGraph->AddModule("grayscale", "GrayScale");
@@ -195,7 +198,7 @@ int CCVApp::SetInitPipeline()
     movidthread->procGraph->AddModule("output_leftviewer", "Stream", true);
     movidthread->procGraph->ConnectModules("input_source", "output_leftviewer");
     movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);    
-    movidthread->procGraph->ConnectModules("blobfinder", "output_rightviewer");    
+    movidthread->procGraph->ConnectModules("threshold", "output_rightviewer");    
     
     // Filter Monitors
     movidthread->procGraph->AddModule("output_background", "Stream", true);

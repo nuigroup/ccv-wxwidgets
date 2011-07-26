@@ -26,6 +26,11 @@ CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc, CCVGlobalParam *_param) :
     m_slider_imageThre->SetValue(paramHook->initThreshold);
     m_slider_minBlob->SetValue(paramHook->initMinBlob);
     m_slider_maxBlob->SetValue(paramHook->initMaxBlob);
+    m_slider_blur->SetValue(paramHook->initHighpassBlur);
+    m_slider_noise->SetValue(paramHook->initHighpasSize);
+    m_slider_amp->SetValue(paramHook->initAmplify);
+    m_slider_smooth->SetValue(paramHook->initSmooth);
+
     m_checkBox_background->SetValue(paramHook->backgroundsub_enabled);    
     m_checkBox_amp->SetValue(paramHook->amplify_enabled);     
     m_checkBox_highpass->SetValue(paramHook->highpass_enabled);

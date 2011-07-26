@@ -4362,7 +4362,7 @@
                                                                                     <property name="hidden">0</property>
                                                                                     <property name="id">wxID_ANY</property>
                                                                                     <property name="layer"></property>
-                                                                                    <property name="maxValue">100</property>
+                                                                                    <property name="maxValue">300</property>
                                                                                     <property name="maximize_button">0</property>
                                                                                     <property name="maximum_size"></property>
                                                                                     <property name="minValue">0</property>
@@ -4389,7 +4389,7 @@
                                                                                     <property name="validator_style">wxFILTER_NONE</property>
                                                                                     <property name="validator_type">wxDefaultValidator</property>
                                                                                     <property name="validator_variable"></property>
-                                                                                    <property name="value">20</property>
+                                                                                    <property name="value">100</property>
                                                                                     <property name="window_extra_style"></property>
                                                                                     <property name="window_name"></property>
                                                                                     <property name="window_style"></property>

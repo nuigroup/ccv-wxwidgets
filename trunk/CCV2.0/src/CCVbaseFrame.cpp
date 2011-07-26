@@ -351,7 +351,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_staticText_highpass_blur->Wrap( -1 );
 	s_highpass_blur->Add( m_staticText_highpass_blur, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider_blur = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 20, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
+	m_slider_blur = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 100, 0, 300, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
 	s_highpass_blur->Add( m_slider_blur, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	s_highpass_ctrl->Add( s_highpass_blur, 1, wxEXPAND, 5 );

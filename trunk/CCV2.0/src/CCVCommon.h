@@ -47,6 +47,10 @@ struct CCVGlobalParam
     int initThreshold;
     int initMinBlob;
     int initMaxBlob;
+    int initHighpassBlur;
+    int initHighpasSize;
+    int initAmplify;
+    int initSmooth;
     
     SourceType input_source;
 
@@ -62,6 +66,10 @@ struct CCVGlobalParam
         initThreshold = 0;
         initMinBlob = 0;
         initMaxBlob = 0;
+        initHighpassBlur = 0;
+        initHighpasSize = 0;
+        initAmplify = 0;
+        initSmooth = 0;
         backgroundsub_enabled = false;
         amplify_enabled = false;
         highpass_enabled = false;
