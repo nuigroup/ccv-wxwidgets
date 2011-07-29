@@ -47,8 +47,17 @@ void *CCVWorkerEngine::Entry()
         }
             
         Strings outputModules = procGraph->GetOutputModuleIDs();
+
+        procGraph->SetBusy();
+        // Release memory
+        for (OutImagesMap::const_iterator iter = outImages.begin();
+         iter != outImages.end(); ++iter) {
+            delete iter->second;
+        }
         outImages.clear();
-        
+        //wxLogMessage(wxT("MSG outImages.size()=%d"), outImages.size());
+        //wxLogMessage(wxT("BEGIN Fill outImages"));
+
         for (Strings::const_iterator iter = outputModules.begin();
          iter != outputModules.end(); ++iter) {
             std::string moduleID = *iter;
@@ -71,22 +80,23 @@ void *CCVWorkerEngine::Entry()
                             RGBfromGray[3*k+1] = outRGBRaw[k];
                             RGBfromGray[3*k+2] = outRGBRaw[k];
                         }
-                        outRGBRaw = RGBfromGray;
+                        outImages[moduleID] = new OutRGBImage(RGBfromGray, outRoi);
+                        delete[] RGBfromGray;
                     }
-                    
-                    outImages[moduleID] = new OutRGBImage(outRGBRaw, outRoi);
+                    else {
+                        outImages[moduleID] = new OutRGBImage(outRGBRaw, outRoi);
+                    }
                 }
             }
+            delete outRoi;
         }
+        procGraph->SetNotBusy();
         
-        if (eventHandler != NULL && ! outImages.empty()) {
+        if (!TestDestroy() && eventHandler != NULL && ! outImages.empty()) {
             wxCommandEvent event( newEVT_MOVIDPROCESS_NEWIMAGE, GetId() );
-            wxThread::Sleep(1);
-            if(!TestDestroy()) {
-                // wxLogMessage(wxT("BEFORE wxPostEvent(eventHandler, event);"));
-                wxPostEvent(eventHandler, event);
-                // wxLogMessage(wxT("AFTER wxPostEvent(eventHandler, event);"));
-            }
+            wxPostEvent(eventHandler, event);
+            wxLogMessage(wxT("AFTER wxPostEvent"));
+            wxLogMessage(wxT("MSG outImages.size()=%d"), outImages.size());
         }
     }
 

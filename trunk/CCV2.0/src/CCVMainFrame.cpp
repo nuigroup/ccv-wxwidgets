@@ -50,13 +50,21 @@ void CCVMainFrame::SetWorkerEngine(CCVWorkerEngine *movidProc)
 
 void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
 {
-    OutImagesMap rawImages = movidProcess->getOutImages();   
+    wxLogMessage(wxT("BEGIN CCVMainFrame::OnMovidImage()"));
+    OutImagesMap rawImages = movidProcess->getOutImages();
+    wxLogMessage(wxT("MSG rawImages.size()=%d"), rawImages.size());
+    if (movidProcess->procGraph->isBusy() ) {
+        wxLogMessage(wxT("MSG movidProcess->isBusy()"));
+        return;
+    }
     DrawCameraImage(rawImages["output_leftviewer"], m_panel_inputViewer);
     DrawCameraImage(rawImages["output_rightviewer"], m_panel_outputViewer);
     DrawCameraImage(rawImages["output_background"], m_panel_background_viewer);
     DrawCameraImage(rawImages["output_amplify"], m_panel_amp_viewer);
     DrawCameraImage(rawImages["output_highpass"], m_panel_highpass_viewer);
     DrawCameraImage(rawImages["output_smooth"], m_panel_smooth_viewer);
+
+    
 }
 
 void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec)
@@ -70,6 +78,8 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec)
     if ( rawData == NULL )
         return;
     CvSize *roi = rawImage->outRoi;
+    if ( roi == NULL )
+        return;
     if (roi->width==0 || roi->height==0) {
         return;
     }

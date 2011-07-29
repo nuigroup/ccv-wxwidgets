@@ -9,7 +9,8 @@
 #define _CCV_COMMON_H
 
 #ifdef WIN32
-#include "wx/setup.h"
+#include "wx/msw/setup.h"
+#include "wx/msw/msvcrt.h"      // redefines the new() operator to detect memory leak
 #include "msw/wx/msw/rcdefs.h"
 #pragma comment(lib,"ws2_32.lib")
 #pragma comment(lib,"comctl32.lib")

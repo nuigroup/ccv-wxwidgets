@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <wx/thread.h>
 #include <opencv/highgui.h>
 #include <moDaemon.h>
@@ -37,8 +38,23 @@ struct OutRGBImage
 
     OutRGBImage(unsigned char * _data, CvSize *_outRoi)
     {
-        data = _data;
-        outRoi = _outRoi;
+        int size = _outRoi->width * _outRoi->height * 3;
+        data = new unsigned char[size];
+        outRoi = new CvSize;
+        memcpy(data, _data, size*sizeof(unsigned char));
+        memcpy(outRoi, _outRoi, sizeof(CvSize));
+    }
+
+    ~OutRGBImage()
+    {
+        if (data != NULL) {
+            delete[] data;
+            data = NULL;
+        }
+        if (outRoi != NULL) {
+            delete outRoi;
+            outRoi = NULL;
+        }
     }
 };
 
