@@ -59,11 +59,6 @@ IMPLEMENT_APP(CCVApp)
 */
 bool CCVApp::OnInit()
 {
-#ifdef wxUSE_VC_CRTDBG
-    _CrtSetReportMode( _CRT_ERROR, _CRTDBG_MODE_FILE );
-    _CrtSetReportFile( _CRT_ERROR, _CRTDBG_FILE_STDERR );
-#endif
-
     param = new CCVGlobalParam;
     LoadConfigXml(param, "config.xml");
     

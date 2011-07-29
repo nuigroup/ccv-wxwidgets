@@ -54,8 +54,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>del *.dll
-copy %OPENCV_DIR%\bin\opencv_calib3d220d.dll .
+      <Command>copy %OPENCV_DIR%\bin\opencv_calib3d220d.dll .
 copy %OPENCV_DIR%\bin\opencv_core220d.dll .
 copy %OPENCV_DIR%\bin\opencv_features2d220d.dll .
 copy %OPENCV_DIR%\bin\opencv_flann220d.dll .
@@ -90,8 +89,7 @@ copy ..\res\RearDI.avi .\RearDI.avi
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>del *.dll
-copy %OPENCV_DIR%\bin\opencv_calib3d220.dll .
+      <Command>copy %OPENCV_DIR%\bin\opencv_calib3d220.dll .
 copy %OPENCV_DIR%\bin\opencv_core220.dll .
 copy %OPENCV_DIR%\bin\opencv_core220d.dll .
 copy %OPENCV_DIR%\bin\opencv_features2d220.dll .
