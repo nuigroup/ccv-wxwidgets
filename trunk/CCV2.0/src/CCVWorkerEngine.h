@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <queue>
 #include <wx/thread.h>
 #include <opencv/highgui.h>
 #include <moDaemon.h>
@@ -26,10 +27,10 @@ extern const wxEventType newEVT_MOVIDPROCESS_NEWIMAGE;
     (wxCommandEventFunction) & fn, (wxObject*) NULL )
 
 struct OutRGBImage
-{    
+{
     unsigned char *data;
     CvSize *outRoi;
-        
+
     OutRGBImage()
     {
         data = NULL;
@@ -38,11 +39,7 @@ struct OutRGBImage
 
     OutRGBImage(unsigned char * _data, CvSize *_outRoi)
     {
-        int size = _outRoi->width * _outRoi->height * 3;
-        data = new unsigned char[size];
-        outRoi = new CvSize;
-        memcpy(data, _data, size*sizeof(unsigned char));
-        memcpy(outRoi, _outRoi, sizeof(CvSize));
+        SetImageData(_data, _outRoi);
     }
 
     ~OutRGBImage()
@@ -56,9 +53,33 @@ struct OutRGBImage
             outRoi = NULL;
         }
     }
+
+    void SetImageData(unsigned char * _data, CvSize *_outRoi)
+    {
+        int size = _outRoi->width * _outRoi->height * 3;
+        data = new unsigned char[size];
+        outRoi = new CvSize;
+        memcpy(data, _data, size*sizeof(unsigned char));
+        memcpy(outRoi, _outRoi, sizeof(CvSize));
+    }
 };
 
 typedef std::map<std::string, OutRGBImage *> OutImagesMap;
+
+struct CCVWorkerEngineResItem {
+    OutImagesMap outImages;
+
+    CCVWorkerEngineResItem() {}
+
+    ~CCVWorkerEngineResItem()
+    {
+        for (OutImagesMap::const_iterator iter = outImages.begin();iter != outImages.end(); ++iter) {
+            delete iter->second;
+        }
+        outImages.clear();
+    }
+};
+typedef std::queue<CCVWorkerEngineResItem *> CCVWorkerEngineResQueue;
 
 class CCVWorkerEngine : public wxThread
 {
@@ -66,14 +87,14 @@ public:
     CCVWorkerEngine();
     virtual void *Entry();
 
-    OutImagesMap getOutImages() { return outImages; }
+    CCVWorkerEngineResQueue *getResQueue() { return &resourceQueue; }
     void setEventHandler(wxEvtHandler *handler) { eventHandler = handler; }
     
     CCVProcGraph *procGraph;
 
 private:
     wxEvtHandler *eventHandler;
-    OutImagesMap outImages;
+    CCVWorkerEngineResQueue resourceQueue;
 };
 
 #endif

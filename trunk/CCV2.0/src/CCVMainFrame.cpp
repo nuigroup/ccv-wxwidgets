@@ -51,20 +51,16 @@ void CCVMainFrame::SetWorkerEngine(CCVWorkerEngine *movidProc)
 void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
 {
     wxLogMessage(wxT("BEGIN CCVMainFrame::OnMovidImage()"));
-    OutImagesMap rawImages = movidProcess->getOutImages();
-    wxLogMessage(wxT("MSG rawImages.size()=%d"), rawImages.size());
-    if (movidProcess->procGraph->isBusy() ) {
-        wxLogMessage(wxT("MSG movidProcess->isBusy()"));
-        return;
-    }
+    CCVWorkerEngineResQueue *resQueue = movidProcess->getResQueue();
+    OutImagesMap rawImages = resQueue->front()->outImages;
     DrawCameraImage(rawImages["output_leftviewer"], m_panel_inputViewer);
     DrawCameraImage(rawImages["output_rightviewer"], m_panel_outputViewer);
     DrawCameraImage(rawImages["output_background"], m_panel_background_viewer);
     DrawCameraImage(rawImages["output_amplify"], m_panel_amp_viewer);
     DrawCameraImage(rawImages["output_highpass"], m_panel_highpass_viewer);
     DrawCameraImage(rawImages["output_smooth"], m_panel_smooth_viewer);
-
-    
+    delete resQueue->front();
+    resQueue->pop();
 }
 
 void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec)
@@ -75,10 +71,10 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec)
         return;
 
     unsigned char *rawData = rawImage->data;
-    if ( rawData == NULL )
+    if (rawData == NULL)
         return;
     CvSize *roi = rawImage->outRoi;
-    if ( roi == NULL )
+    if (roi == NULL)
         return;
     if (roi->width==0 || roi->height==0) {
         return;
@@ -177,7 +173,7 @@ void CCVMainFrame::m_checkBox_backgroundOnCheckBox( wxCommandEvent& event )
     movidProcess->procGraph->ConnectModules(bgModule, ampModule);
     movidProcess->procGraph->ConnectModules(bgModule, "output_background");
 
-    paramHook->backgroundsub_enabled = enable;
+    paramHook->backgroundsub_enabled = enable ? true : false;
 }
 
 void CCVMainFrame::m_checkBox_recaptureOnCheckBox( wxCommandEvent& event )
@@ -213,7 +209,7 @@ void CCVMainFrame::m_checkBox_ampOnCheckBox( wxCommandEvent& event )
     movidProcess->procGraph->ConnectModules(ampModule, hpassModule);
     movidProcess->procGraph->ConnectModules(ampModule, "output_amplify");
 
-    paramHook->amplify_enabled = enable;
+    paramHook->amplify_enabled = enable ? true : false;
 }
 
 void CCVMainFrame::m_slider_ampOnScrollThumbRelease( wxScrollEvent& event )
@@ -234,7 +230,7 @@ void CCVMainFrame::m_checkBox_highpassOnCheckBox( wxCommandEvent& event )
     movidProcess->procGraph->ConnectModules(hpassModule, smoothModule);
     movidProcess->procGraph->ConnectModules(hpassModule, "output_highpass");
 
-    paramHook->highpass_enabled = enable;
+    paramHook->highpass_enabled = enable ? true : false;
 }
 
 void CCVMainFrame::m_slider_blurOnScrollThumbRelease( wxScrollEvent& event )
@@ -261,7 +257,7 @@ void CCVMainFrame::m_checkBox_smoothOnCheckBox( wxCommandEvent& event )
     movidProcess->procGraph->ConnectModules(smoothModule, "grayscale");
     movidProcess->procGraph->ConnectModules(smoothModule, "output_smooth");
 
-    paramHook->smooth_enabled = enable;
+    paramHook->smooth_enabled = enable ? true : false;
 }
 
 void CCVMainFrame::m_slider_smoothOnScrollThumbRelease( wxScrollEvent& event )
