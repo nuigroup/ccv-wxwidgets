@@ -95,6 +95,8 @@ class CCVbaseMainFrame : public wxFrame
 		wxSlider* m_slider_blur;
 		wxStaticText* m_staticText_highpass_size;
 		wxSlider* m_slider_noise;
+		wxStaticText* m_staticText_highpass_amp;
+		wxSlider* m_slider_highpassamp;
 		wxPanel* m_panel_smooth;
 		wxPanel* m_panel_smooth_viewer;
 		wxPanel* m_panel_smooth_ctrl;
@@ -108,7 +110,7 @@ class CCVbaseMainFrame : public wxFrame
 		wxCheckBox* m_checkBox_filpV;
 		wxCheckBox* m_checkBox_filpH;
 		wxCheckBox* m_checkBox_gpu;
-		wxRadioBox* m_radioBox_ctrl_commu;
+		wxCheckBox* m_checkBox_tuio;
 		wxButton* m_button_camera_setting;
 		wxButton* m_button_calibr;
 		wxButton* m_button_savesetting;
@@ -131,9 +133,11 @@ class CCVbaseMainFrame : public wxFrame
 		virtual void m_checkBox_highpassOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_slider_blurOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
 		virtual void m_slider_noiseOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
+		virtual void m_slider_highpassampOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void m_checkBox_smoothOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_slider_smoothOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
 		virtual void m_radioBox_smoothtypeOnRadioBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_button_savesettingOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:

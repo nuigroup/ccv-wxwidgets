@@ -7,8 +7,21 @@
         <FILENAME>ccv2.log</FILENAME>
     </LOG>
     <INIT>
+        <EnableSubBackground>1</EnableSubBackground>
+        <EnableAmplify>1</EnableAmplify>
+        <EnableHighpass>1</EnableHighpass>
+        <EnableSmooth>1</EnableSmooth>
         <Threshold>180</Threshold>
         <MinBlob>50</MinBlob>
         <MaxBlob>1000</MaxBlob>
+        <HighpassBlur>100</HighpassBlur>
+        <HighpassSize>100</HighpassSize>
+        <HighpassAmp>20</HighpassAmp>
+        <Amplify>20</Amplify>
+        <Smooth>10</Smooth>
     </INIT>
+    <NETWORK>
+        <IP>127.0.0.1</IP>
+        <PORT>3333</PORT>
+    </NETWORK>
 </CONFIG>

@@ -46,6 +46,8 @@ private:
     void m_checkBox_smoothOnCheckBox( wxCommandEvent& event );
     void m_slider_smoothOnScrollThumbRelease( wxScrollEvent& event );
     void m_radioBox_smoothtypeOnRadioBox( wxCommandEvent& event );
+    void m_slider_highpassampOnScroll( wxScrollEvent& event );
+    void m_button_savesettingOnButtonClick( wxCommandEvent& event );
 };
 
 enum CCV_SOURCE_ID

@@ -24,6 +24,11 @@ MODULE_DECLARE(DoNothing, "native", "Pass everything.");
 
 moDoNothingModule::moDoNothingModule() : moImageFilterModule(){
 	MODULE_INIT();
+
+    this->declareInput(1, &this->input, new moDataStreamInfo(
+				"data", "blob", "Data stream of type 'blob'"));
+	this->declareInput(2, &this->output, new moDataStreamInfo(
+				"data", "trackedblob", "Data stream of type 'trackedblob'"));
 }
 
 moDoNothingModule::~moDoNothingModule() {

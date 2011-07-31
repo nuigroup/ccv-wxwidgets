@@ -56,7 +56,9 @@ void moImageFilterModule::notifyData(moDataStream *input) {
 	// ensure that input data is IplImage
 	assert( input != NULL );
 	assert( input == this->input );
-	assert( input->getFormat() == "IplImage" || input->getFormat() == "IplImage8" );
+	if( input->getFormat() != "IplImage" && input->getFormat() != "IplImage8" ){
+        assert( NULL );
+    }
 
 	IplImage* src = static_cast<IplImage*>(this->input->getData());
 

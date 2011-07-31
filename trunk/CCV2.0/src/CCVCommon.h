@@ -22,6 +22,8 @@
 #include <fstream>
 #include <wx/log.h>
 
+#define CONFIGFILE "config.xml"
+
 enum CCV_ERROR_ID
 {
     CCV_SUCCESS,
@@ -50,16 +52,20 @@ struct CCVGlobalParam
     int initMinBlob;
     int initMaxBlob;
     int initHighpassBlur;
-    int initHighpasSize;
+    int initHighpassSize;
+    int initHighpassAmp;
     int initAmplify;
     int initSmooth;
     
     SourceType input_source;
 
-    bool backgroundsub_enabled;
-    bool amplify_enabled;
-    bool highpass_enabled;
-    bool smooth_enabled;
+    int backgroundsub_enabled;
+    int amplify_enabled;
+    int highpass_enabled;
+    int smooth_enabled;
+
+    std::string output_ipAddress;
+    int output_port;
     
     
     CCVGlobalParam()
@@ -69,14 +75,15 @@ struct CCVGlobalParam
         initMinBlob = 0;
         initMaxBlob = 0;
         initHighpassBlur = 0;
-        initHighpasSize = 0;
+        initHighpassSize = 0;
         initAmplify = 0;
         initSmooth = 0;
-        backgroundsub_enabled = false;
-        amplify_enabled = false;
-        highpass_enabled = false;
-        smooth_enabled = false;
+        backgroundsub_enabled = 0;
+        amplify_enabled = 0;
+        highpass_enabled = 0;
+        smooth_enabled = 0;
         input_source = VIDEO;
+        output_port = 9999;
     }
 };
 

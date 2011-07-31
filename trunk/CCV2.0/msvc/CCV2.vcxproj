@@ -63,7 +63,7 @@ copy %OPENCV_DIR%\bin\opencv_imgproc220d.dll .
 copy %OPENCV_DIR%\bin\opencv_legacy220d.dll .
 copy %OPENCV_DIR%\bin\opencv_video220d.dll .
 copy Debug\CCV2.exe .
-copy ..\res\config.xml .\config.xml
+if not exist "config.xml" (copy ..\res\config.xml .\config.xml)
 copy ..\res\RearDI.avi .\RearDI.avi
 </Command>
     </PostBuildEvent>

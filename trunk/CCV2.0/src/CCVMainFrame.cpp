@@ -10,6 +10,7 @@
 #include "CCVMainFrame.h"
 #include "CCVProcGraph.h"
 #include "CCVWorkerEngine.h"
+#include "ofxXmlSettings.h"
 
 CCVMainFrame::CCVMainFrame() : CCVbaseMainFrame(NULL)
 {
@@ -27,7 +28,8 @@ CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc, CCVGlobalParam *_param) :
     m_slider_minBlob->SetValue(paramHook->initMinBlob);
     m_slider_maxBlob->SetValue(paramHook->initMaxBlob);
     m_slider_blur->SetValue(paramHook->initHighpassBlur);
-    m_slider_noise->SetValue(paramHook->initHighpasSize);
+    m_slider_noise->SetValue(paramHook->initHighpassSize);
+    m_slider_highpassamp->SetValue(paramHook->initHighpassAmp);
     m_slider_amp->SetValue(paramHook->initAmplify);
     m_slider_smooth->SetValue(paramHook->initSmooth);
 
@@ -267,6 +269,12 @@ void CCVMainFrame::m_slider_smoothOnScrollThumbRelease( wxScrollEvent& event )
     movidProcess->procGraph->getModuleById("smooth")->property("size").set(newVaule);
 }
 
+void CCVMainFrame::m_slider_highpassampOnScroll( wxScrollEvent& event )
+{
+    double newVaule = m_slider_highpassamp->GetValue() / 100.0;
+    movidProcess->procGraph->getModuleById("amplify")->property("amplification").set(newVaule);
+}
+
 void CCVMainFrame::m_radioBox_smoothtypeOnRadioBox( wxCommandEvent& event )
 {
     int sId = m_radioBox_selectInput->GetSelection();
@@ -286,4 +294,26 @@ void CCVMainFrame::m_radioBox_smoothtypeOnRadioBox( wxCommandEvent& event )
     }
     else;
 }
+
+void CCVMainFrame::m_button_savesettingOnButtonClick( wxCommandEvent& event )
+{
+    ofxXmlSettings XML;
+    if (! XML.loadFile(CONFIGFILE))
+        return;
+
+    XML.setValue("CONFIG:INIT:Threshold", paramHook->initThreshold);
+    XML.setValue("CONFIG:INIT:MinBlob", paramHook->initMinBlob);
+    XML.setValue("CONFIG:INIT:MaxBlob", paramHook->initMaxBlob);
+    XML.setValue("CONFIG:INIT:HighpassBlur", paramHook->initHighpassBlur);
+    XML.setValue("CONFIG:INIT:HighpassSize", paramHook->initHighpassSize);
+    XML.setValue("CONFIG:INIT:HighpassAmp", paramHook->initHighpassAmp);
+    XML.setValue("CONFIG:INIT:Amplify", paramHook->initAmplify);
+    XML.setValue("CONFIG:INIT:Smooth", paramHook->initSmooth);
+
+    XML.setValue("CONFIG:INIT:EnableSubBackground", paramHook->backgroundsub_enabled);
+    XML.setValue("CONFIG:INIT:EnableAmplify", paramHook->amplify_enabled);
+    XML.setValue("CONFIG:INIT:EnableHighpass", paramHook->highpass_enabled);
+    XML.setValue("CONFIG:INIT:EnableSmooth", paramHook->smooth_enabled);
+}
+
 
