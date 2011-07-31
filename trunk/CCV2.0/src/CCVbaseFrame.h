@@ -63,11 +63,6 @@ class CCVbaseMainFrame : public wxFrame
 		wxSlider* m_slider_minBlob;
 		wxStaticText* m_staticText_maxBlob;
 		wxSlider* m_slider_maxBlob;
-		wxPanel* m_panel_movement;
-		wxStaticText* m_staticText_moveFilter;
-		wxSlider* m_slider_moveFilter;
-		wxPanel* m_panel_inverse;
-		wxCheckBox* m_checkBox13;
 		wxNotebook* m_notebook_filters;
 		wxPanel* m_panel_background;
 		wxPanel* m_panel_background_viewer;

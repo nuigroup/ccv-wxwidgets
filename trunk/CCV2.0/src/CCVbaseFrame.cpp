@@ -178,36 +178,6 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_panel_blob->Layout();
 	s_outputCtrl_down->Fit( m_panel_blob );
 	m_notebook_trackcontrol->AddPage( m_panel_blob, wxT("Blob"), false );
-	m_panel_movement = new wxPanel( m_notebook_trackcontrol, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	wxBoxSizer* s_moveFilter;
-	s_moveFilter = new wxBoxSizer( wxVERTICAL );
-	
-	m_staticText_moveFilter = new wxStaticText( m_panel_movement, wxID_ANY, wxT("Movement Filter"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText_moveFilter->Wrap( -1 );
-	s_moveFilter->Add( m_staticText_moveFilter, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
-	
-	m_slider_moveFilter = new wxSlider( m_panel_movement, wxID_ANY, 50, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
-	m_slider_moveFilter->Enable( false );
-	
-	s_moveFilter->Add( m_slider_moveFilter, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
-	
-	m_panel_movement->SetSizer( s_moveFilter );
-	m_panel_movement->Layout();
-	s_moveFilter->Fit( m_panel_movement );
-	m_notebook_trackcontrol->AddPage( m_panel_movement, wxT("Movement"), false );
-	m_panel_inverse = new wxPanel( m_notebook_trackcontrol, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	wxBoxSizer* s_inverse;
-	s_inverse = new wxBoxSizer( wxVERTICAL );
-	
-	m_checkBox13 = new wxCheckBox( m_panel_inverse, wxID_ANY, wxT("Inverse"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_checkBox13->Enable( false );
-	
-	s_inverse->Add( m_checkBox13, 0, wxALL, 5 );
-	
-	m_panel_inverse->SetSizer( s_inverse );
-	m_panel_inverse->Layout();
-	s_inverse->Fit( m_panel_inverse );
-	m_notebook_trackcontrol->AddPage( m_panel_inverse, wxT("Inverse"), false );
 	
 	s_outputControl->Add( m_notebook_trackcontrol, 0, wxEXPAND, 5 );
 	

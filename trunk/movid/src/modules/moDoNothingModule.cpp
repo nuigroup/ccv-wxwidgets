@@ -27,8 +27,10 @@ moDoNothingModule::moDoNothingModule() : moImageFilterModule(){
 
     this->declareInput(1, &this->input, new moDataStreamInfo(
 				"data", "blob", "Data stream of type 'blob'"));
-	this->declareInput(2, &this->output, new moDataStreamInfo(
+	this->declareInput(2, &this->input, new moDataStreamInfo(
 				"data", "trackedblob", "Data stream of type 'trackedblob'"));
+    this->declareInput(3, &this->input, new moDataStreamInfo(
+				"data", "IplImage8", "IplImage8"));
 }
 
 moDoNothingModule::~moDoNothingModule() {
