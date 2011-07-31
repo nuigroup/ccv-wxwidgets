@@ -1644,14 +1644,14 @@
                                                                             <event name="OnRightDClick"></event>
                                                                             <event name="OnRightDown"></event>
                                                                             <event name="OnRightUp"></event>
-                                                                            <event name="OnScroll"></event>
+                                                                            <event name="OnScroll">m_slider_imageThreOnScroll</event>
                                                                             <event name="OnScrollBottom"></event>
                                                                             <event name="OnScrollChanged"></event>
                                                                             <event name="OnScrollLineDown"></event>
                                                                             <event name="OnScrollLineUp"></event>
                                                                             <event name="OnScrollPageDown"></event>
                                                                             <event name="OnScrollPageUp"></event>
-                                                                            <event name="OnScrollThumbRelease">m_slider_imageThreOnScroll</event>
+                                                                            <event name="OnScrollThumbRelease"></event>
                                                                             <event name="OnScrollThumbTrack"></event>
                                                                             <event name="OnScrollTop"></event>
                                                                             <event name="OnSetFocus"></event>
@@ -5950,7 +5950,7 @@
                                             <property name="window_name"></property>
                                             <property name="window_style"></property>
                                             <event name="OnChar"></event>
-                                            <event name="OnCheckBox"></event>
+                                            <event name="OnCheckBox">m_checkBox_tuioOnCheckBox</event>
                                             <event name="OnEnterWindow"></event>
                                             <event name="OnEraseBackground"></event>
                                             <event name="OnKeyDown"></event>
@@ -6277,11 +6277,11 @@
                                     <property name="width">0</property>
                                 </object>
                             </object>
-                            <object class="sizeritem" expanded="0">
+                            <object class="sizeritem" expanded="1">
                                 <property name="border">5</property>
                                 <property name="flag">wxEXPAND|wxALL</property>
                                 <property name="proportion">3</property>
-                                <object class="wxStaticBoxSizer" expanded="0">
+                                <object class="wxStaticBoxSizer" expanded="1">
                                     <property name="id">wxID_ANY</property>
                                     <property name="label"></property>
                                     <property name="minimum_size"></property>

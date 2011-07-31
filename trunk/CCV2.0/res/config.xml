@@ -19,6 +19,7 @@
         <HighpassAmp>20</HighpassAmp>
         <Amplify>20</Amplify>
         <Smooth>10</Smooth>
+        <EnableTuio>0</EnableTuio>
     </INIT>
     <NETWORK>
         <IP>127.0.0.1</IP>

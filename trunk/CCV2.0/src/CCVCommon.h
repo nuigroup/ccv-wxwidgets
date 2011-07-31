@@ -64,9 +64,10 @@ struct CCVGlobalParam
     int highpass_enabled;
     int smooth_enabled;
 
+    int tuio_enabled;
+
     std::string output_ipAddress;
     int output_port;
-    
     
     CCVGlobalParam()
     {
@@ -82,6 +83,7 @@ struct CCVGlobalParam
         amplify_enabled = 0;
         highpass_enabled = 0;
         smooth_enabled = 0;
+        tuio_enabled = 0;
         input_source = VIDEO;
         output_port = 9999;
     }

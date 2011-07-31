@@ -137,6 +137,7 @@ class CCVbaseMainFrame : public wxFrame
 		virtual void m_checkBox_smoothOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_slider_smoothOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
 		virtual void m_radioBox_smoothtypeOnRadioBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_checkBox_tuioOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_button_savesettingOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		
 	

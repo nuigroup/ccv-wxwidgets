@@ -38,6 +38,8 @@ CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc, CCVGlobalParam *_param) :
     m_checkBox_highpass->SetValue(paramHook->highpass_enabled);
     m_checkBox_smooth->SetValue(paramHook->smooth_enabled);
 
+    m_checkBox_tuio->SetValue(paramHook->tuio_enabled);
+
     SetWorkerEngine(movidProc);
 }
 
@@ -176,7 +178,7 @@ void CCVMainFrame::m_checkBox_backgroundOnCheckBox( wxCommandEvent& event )
     movidProcess->procGraph->ConnectModules(bgModule, ampModule);
     movidProcess->procGraph->ConnectModules(bgModule, "output_background");
 
-    paramHook->backgroundsub_enabled = enable ? true : false;
+    paramHook->backgroundsub_enabled = enable;
 }
 
 void CCVMainFrame::m_checkBox_recaptureOnCheckBox( wxCommandEvent& event )
@@ -212,7 +214,7 @@ void CCVMainFrame::m_checkBox_ampOnCheckBox( wxCommandEvent& event )
     movidProcess->procGraph->ConnectModules(ampModule, hpassModule);
     movidProcess->procGraph->ConnectModules(ampModule, "output_amplify");
 
-    paramHook->amplify_enabled = enable ? true : false;
+    paramHook->amplify_enabled = enable;
 }
 
 void CCVMainFrame::m_slider_ampOnScrollThumbRelease( wxScrollEvent& event )
@@ -233,7 +235,7 @@ void CCVMainFrame::m_checkBox_highpassOnCheckBox( wxCommandEvent& event )
     movidProcess->procGraph->ConnectModules(hpassModule, smoothModule);
     movidProcess->procGraph->ConnectModules(hpassModule, "output_highpass");
 
-    paramHook->highpass_enabled = enable ? true : false;
+    paramHook->highpass_enabled = enable;
 }
 
 void CCVMainFrame::m_slider_blurOnScrollThumbRelease( wxScrollEvent& event )
@@ -260,7 +262,7 @@ void CCVMainFrame::m_checkBox_smoothOnCheckBox( wxCommandEvent& event )
     movidProcess->procGraph->ConnectModules(smoothModule, "grayscale");
     movidProcess->procGraph->ConnectModules(smoothModule, "output_smooth");
 
-    paramHook->smooth_enabled = enable ? true : false;
+    paramHook->smooth_enabled = enable;
 }
 
 void CCVMainFrame::m_slider_smoothOnScrollThumbRelease( wxScrollEvent& event )
@@ -301,19 +303,31 @@ void CCVMainFrame::m_button_savesettingOnButtonClick( wxCommandEvent& event )
     if (! XML.loadFile(CONFIGFILE))
         return;
 
-    XML.setValue("CONFIG:INIT:Threshold", paramHook->initThreshold);
-    XML.setValue("CONFIG:INIT:MinBlob", paramHook->initMinBlob);
-    XML.setValue("CONFIG:INIT:MaxBlob", paramHook->initMaxBlob);
-    XML.setValue("CONFIG:INIT:HighpassBlur", paramHook->initHighpassBlur);
-    XML.setValue("CONFIG:INIT:HighpassSize", paramHook->initHighpassSize);
-    XML.setValue("CONFIG:INIT:HighpassAmp", paramHook->initHighpassAmp);
-    XML.setValue("CONFIG:INIT:Amplify", paramHook->initAmplify);
-    XML.setValue("CONFIG:INIT:Smooth", paramHook->initSmooth);
+    XML.setValue("CONFIG:INIT:Threshold", m_slider_imageThre->GetValue());
+    XML.setValue("CONFIG:INIT:MinBlob", m_slider_minBlob->GetValue());
+    XML.setValue("CONFIG:INIT:MaxBlob", m_slider_maxBlob->GetValue());
+    XML.setValue("CONFIG:INIT:HighpassBlur", m_slider_blur->GetValue());
+    XML.setValue("CONFIG:INIT:HighpassSize", m_slider_noise->GetValue());
+    XML.setValue("CONFIG:INIT:HighpassAmp", m_slider_highpassamp->GetValue());
+    XML.setValue("CONFIG:INIT:Amplify", m_slider_amp->GetValue());
+    XML.setValue("CONFIG:INIT:Smooth", m_slider_smooth->GetValue());
 
     XML.setValue("CONFIG:INIT:EnableSubBackground", paramHook->backgroundsub_enabled);
     XML.setValue("CONFIG:INIT:EnableAmplify", paramHook->amplify_enabled);
     XML.setValue("CONFIG:INIT:EnableHighpass", paramHook->highpass_enabled);
     XML.setValue("CONFIG:INIT:EnableSmooth", paramHook->smooth_enabled);
+
+    XML.saveFile(CONFIGFILE);
 }
 
-
+void CCVMainFrame::m_checkBox_tuioOnCheckBox( wxCommandEvent& event )
+{
+    int enabled = m_checkBox_tuio->GetValue();
+    if (enabled) {
+        movidProcess->procGraph->ConnectModules("blobtracker", "tuio");
+    }
+    else {
+        movidProcess->procGraph->getModuleById("tuio")->setInput(NULL, 0);
+    }
+    paramHook->smooth_enabled = enabled;
+}

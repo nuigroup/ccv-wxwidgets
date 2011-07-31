@@ -218,7 +218,12 @@ int CCVApp::SetInitPipeline()
     movidthread->procGraph->AddModule("tuio", "Tuio");
     movidthread->procGraph->getModuleById("tuio")->property("ip").set(param->output_ipAddress);
     movidthread->procGraph->getModuleById("tuio")->property("port").set(param->output_port);
-    //movidthread->procGraph->ConnectModules("blobtracker", "tuio");
+    if (param->tuio_enabled) {
+        movidthread->procGraph->ConnectModules("blobtracker", "tuio");
+    }
+    else {
+        movidthread->procGraph->getModuleById("tuio")->setInput(NULL, 0);
+    }
     
     // In & Out Monitors
     movidthread->procGraph->AddModule("output_leftviewer", "Stream", true);
