@@ -108,45 +108,26 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec)
 
 void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
 {
-    wxLogMessage(wxT("BEGIN m_radioBox_selectInputOnRadioBox();"));
     int selectedId = m_radioBox_selectInput->GetSelection();
-    if (movidProcess->procGraph->isBusy()) {
-        wxLogMessage(wxT("MESSAGE movidProcess->procGraph->isBusy(). Return."));
-        if (selectedId == CCV_SOURCE_CAMERA) {
-            m_radioBox_selectInput->SetSelection(CCV_SOURCE_FILE);
-        }
-        else if (selectedId == CCV_SOURCE_FILE) {
-            m_radioBox_selectInput->SetSelection(CCV_SOURCE_CAMERA);
-        }
-        return;
-    }    
-    movidProcess->Pause();
-    movidProcess->procGraph->stop();
-    // wxLogMessage(wxT("AFTER movidProcess->procGraph->stop();"));    
-    moModule *moOldInput = movidProcess->procGraph->getModuleById("input_source");
-    moOldInput->property("id").set("tmp");
-    moModule *moNewInput = NULL;
-    if (moOldInput==NULL) {
-        wxLogMessage(wxT("ERROR procGraph->getModuleById==NULL"));
-        return;
-    }
-    
+    std::string bgModule = paramHook->backgroundsub_enabled ? "bgSubtract" : "bgSubtract_dummy";
     if (selectedId == CCV_SOURCE_CAMERA) {
-        moNewInput = movidProcess->procGraph->AddModule("input_source", "Camera");
+        moModule *cameraModule = movidProcess->procGraph->getModuleById("input_source_camera");
+        if (cameraModule == NULL) {
+            cameraModule = movidProcess->procGraph->AddModule("input_source_camera", "Camera");
+        }
+        cameraModule->start();
+        movidProcess->procGraph->ConnectModules("input_source_camera", bgModule);
+        movidProcess->procGraph->ConnectModules("input_source_camera", "output_leftviewer");
+        //movidProcess->procGraph->getModuleById("input_source_video")->stop();
+        paramHook->input_source = CAMERA;
     }
-    else if (selectedId == CCV_SOURCE_FILE) {
-        moNewInput = movidProcess->procGraph->AddModule("input_source", "Video");
-        moNewInput->property("filename").set(paramHook->videoFileName);        
-    }        
-    else 
-        wxLogMessage( wxT("ERROR Unknown Input Source."));
-
-    movidProcess->procGraph->ReplaceModule(moOldInput, moNewInput);
-    movidProcess->procGraph->removeElement(moOldInput);
-    movidProcess->procGraph->start();
-    // wxLogMessage(wxT("AFTER movidProcess->procGraph->start();"));
-    movidProcess->Resume();
-    // wxLogMessage(wxT("AFTER movidProcess->procGraph->Resume();"));
+    else {
+        //movidProcess->procGraph->getModuleById("input_source_video")->start();
+        movidProcess->procGraph->ConnectModules("input_source_video", bgModule);
+        movidProcess->procGraph->ConnectModules("input_source_video", "output_leftviewer");
+        movidProcess->procGraph->getModuleById("input_source_camera")->stop();
+        paramHook->input_source = VIDEO;
+    }
 }
 
 void CCVMainFrame::m_slider_imageThreOnScroll( wxScrollEvent& event )

@@ -165,14 +165,14 @@ int CCVApp::SetInitPipeline()
     std::string smoothModule = param->smooth_enabled ? "smooth" : "smooth_dummy";
     
     // Input Source
-    movidthread->procGraph->AddModule("input_source", "Video");
-    movidthread->procGraph->getModuleById("input_source")->property("filename").set(param->videoFileName);
+    movidthread->procGraph->AddModule("input_source_video", "Video");
+    movidthread->procGraph->getModuleById("input_source_video")->property("filename").set(param->videoFileName);
     param->input_source = VIDEO;
     
     // Background Subtract
     movidthread->procGraph->AddModule("bgSubtract", "BackgroundSubtract");
     movidthread->procGraph->AddModule("bgSubtract_dummy", "DoNothing");
-    movidthread->procGraph->ConnectModules("input_source", bgModule);    
+    movidthread->procGraph->ConnectModules("input_source_video", bgModule);    
     
     // Amplify
     movidthread->procGraph->AddModule("amplify", "Amplify");
@@ -227,7 +227,7 @@ int CCVApp::SetInitPipeline()
     
     // In & Out Monitors
     movidthread->procGraph->AddModule("output_leftviewer", "Stream", true);
-    movidthread->procGraph->ConnectModules("input_source", "output_leftviewer");
+    movidthread->procGraph->ConnectModules("input_source_video", "output_leftviewer");
     movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);    
     movidthread->procGraph->ConnectModules("blobfinder", "output_rightviewer");    
     
