@@ -525,14 +525,14 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	
 	s_contols->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	wxStaticBoxSizer* s_debuger;
-	s_debuger = new wxStaticBoxSizer( new wxStaticBox( m_panel_mainright, wxID_ANY, wxEmptyString ), wxVERTICAL );
+	wxStaticBoxSizer* s_debuger_commu;
+	s_debuger_commu = new wxStaticBoxSizer( new wxStaticBox( m_panel_mainright, wxID_ANY, wxT("Communication") ), wxVERTICAL );
 	
 	m_staticText_out = new wxStaticText( m_panel_mainright, wxID_ANY, wxT("CCV is running ...\n"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText_out->Wrap( -1 );
-	s_debuger->Add( m_staticText_out, 0, wxALL, 5 );
+	s_debuger_commu->Add( m_staticText_out, 0, wxALL, 5 );
 	
-	s_contols->Add( s_debuger, 3, wxEXPAND|wxALL, 5 );
+	s_contols->Add( s_debuger_commu, 1, wxEXPAND|wxALL, 5 );
 	
 	m_staticText_about = new wxStaticText( m_panel_mainright, wxID_ANY, wxT("ccv.nuigroup.com"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
 	m_staticText_about->Wrap( -1 );

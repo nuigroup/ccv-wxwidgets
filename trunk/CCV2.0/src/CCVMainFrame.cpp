@@ -37,10 +37,11 @@ CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc, CCVGlobalParam *_param) :
     m_checkBox_amp->SetValue(paramHook->amplify_enabled);     
     m_checkBox_highpass->SetValue(paramHook->highpass_enabled);
     m_checkBox_smooth->SetValue(paramHook->smooth_enabled);
-
     m_checkBox_tuio->SetValue(paramHook->tuio_enabled);
 
     SetWorkerEngine(movidProc);
+
+    UpdateDebugViewers();
 }
 
 void CCVMainFrame::SetWorkerEngine(CCVWorkerEngine *movidProc)
@@ -318,6 +319,7 @@ void CCVMainFrame::m_button_savesettingOnButtonClick( wxCommandEvent& event )
     XML.setValue("CONFIG:INIT:EnableSmooth", paramHook->smooth_enabled);
 
     XML.saveFile(CONFIGFILE);
+    wxMessageBox(wxT("Settings have been saved successfully."));
 }
 
 void CCVMainFrame::m_checkBox_tuioOnCheckBox( wxCommandEvent& event )
@@ -329,5 +331,19 @@ void CCVMainFrame::m_checkBox_tuioOnCheckBox( wxCommandEvent& event )
     else {
         movidProcess->procGraph->getModuleById("tuio")->setInput(NULL, 0);
     }
-    paramHook->smooth_enabled = enabled;
+    paramHook->tuio_enabled = enabled;
+    UpdateDebugViewers();
+}
+
+void CCVMainFrame::UpdateDebugViewers()
+{
+    wxString msgText;
+    if (m_checkBox_tuio->GetValue()) {
+        msgText = wxString::Format("Senting messages on TUIO ..\nProtocol: UDP\nHost %s\nPort: %d\n", paramHook->output_ipAddress.c_str(), paramHook->output_port);
+    }
+    else {
+        msgText = "No Communication.";
+        
+    }
+    m_staticText_out->SetLabel(msgText);
 }
