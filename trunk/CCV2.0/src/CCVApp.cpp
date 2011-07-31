@@ -193,6 +193,14 @@ int CCVApp::SetInitPipeline()
     movidthread->procGraph->AddModule("blobfinder", "BlobFinder")->property("min_size").set(param->initMinBlob);
     movidthread->procGraph->getModuleById("blobfinder")->property("max_size").set(param->initMaxBlob);
     movidthread->procGraph->ConnectModules("threshold", "blobfinder");    
+
+    // BlobTracker
+    movidthread->procGraph->AddModule("blobtracker", "GreedyBlobTracker");
+    movidthread->procGraph->ConnectModules("blobfinder", "blobtracker", 1);
+
+    // TUIO
+    movidthread->procGraph->AddModule("tuio", "Tuio");
+    movidthread->procGraph->ConnectModules("blobtracker", "tuio");
     
     // In & Out Monitors
     movidthread->procGraph->AddModule("output_leftviewer", "Stream", true);

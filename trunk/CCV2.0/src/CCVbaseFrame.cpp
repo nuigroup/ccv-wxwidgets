@@ -479,7 +479,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxString m_radioBox_ctrl_commuChoices[] = { wxT("None"), wxT("TUIO UDP"), wxT("Flash XML"), wxT("Binary TCP") };
 	int m_radioBox_ctrl_commuNChoices = sizeof( m_radioBox_ctrl_commuChoices ) / sizeof( wxString );
 	m_radioBox_ctrl_commu = new wxRadioBox( m_panel_mainright, wxID_ANY, wxT("Communication"), wxDefaultPosition, wxDefaultSize, m_radioBox_ctrl_commuNChoices, m_radioBox_ctrl_commuChoices, 1, wxRA_SPECIFY_COLS );
-	m_radioBox_ctrl_commu->SetSelection( 0 );
+	m_radioBox_ctrl_commu->SetSelection( 1 );
 	m_radioBox_ctrl_commu->Enable( false );
 	
 	s_contols->Add( m_radioBox_ctrl_commu, 0, wxALL|wxEXPAND, 5 );
