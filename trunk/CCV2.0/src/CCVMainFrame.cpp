@@ -227,14 +227,14 @@ void CCVMainFrame::m_slider_ampOnScrollThumbRelease( wxScrollEvent& event )
 void CCVMainFrame::m_checkBox_highpassOnCheckBox( wxCommandEvent& event )
 {
     int enable = m_checkBox_highpass->GetValue();
-    std::string bgModule = paramHook->backgroundsub_enabled ? "bgSubtract" : "bgSubtract_dummy";
     std::string ampModule = paramHook->amplify_enabled ? "amplify" : "amplify_dummy";
     std::string hpassModule = enable ? "highpass" : "highpass_dummy";
     std::string smoothModule = paramHook->smooth_enabled ? "smooth" : "smooth_dummy";    
     
     movidProcess->procGraph->ConnectModules(ampModule, hpassModule);
-    movidProcess->procGraph->ConnectModules(hpassModule, smoothModule);
-    movidProcess->procGraph->ConnectModules(hpassModule, "output_highpass");
+    movidProcess->procGraph->ConnectModules(hpassModule, "highpass_amplify");
+    movidProcess->procGraph->ConnectModules("highpass_amplify", smoothModule);
+    movidProcess->procGraph->ConnectModules("highpass_amplify", "output_highpass");
 
     paramHook->highpass_enabled = enable;
 }
@@ -254,12 +254,9 @@ void CCVMainFrame::m_slider_noiseOnScrollThumbRelease( wxScrollEvent& event )
 void CCVMainFrame::m_checkBox_smoothOnCheckBox( wxCommandEvent& event )
 {
     int enable = m_checkBox_smooth->GetValue();
-    std::string bgModule = paramHook->backgroundsub_enabled ? "bgSubtract" : "bgSubtract_dummy";
-    std::string ampModule = paramHook->amplify_enabled ? "amplify" : "amplify_dummy";
-    std::string hpassModule = paramHook->highpass_enabled ? "highpass" : "highpass_dummy";
     std::string smoothModule = enable ? "smooth" : "smooth_dummy";
     
-    movidProcess->procGraph->ConnectModules(hpassModule, smoothModule);
+    movidProcess->procGraph->ConnectModules("highpass_amplify", smoothModule);
     movidProcess->procGraph->ConnectModules(smoothModule, "grayscale");
     movidProcess->procGraph->ConnectModules(smoothModule, "output_smooth");
 

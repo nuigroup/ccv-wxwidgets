@@ -363,7 +363,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_staticText_highpass_size->Wrap( -1 );
 	s_highpass_size->Add( m_staticText_highpass_size, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider_noise = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 20, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
+	m_slider_noise = new wxSlider( m_panel_highpass_ctrl, wxID_ANY, 100, 0, 500, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
 	s_highpass_size->Add( m_slider_noise, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	s_highpass_ctrl->Add( s_highpass_size, 1, wxEXPAND, 5 );
@@ -425,7 +425,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_staticText_smoothctrl->Wrap( -1 );
 	s_smooth_ctrl->Add( m_staticText_smoothctrl, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
 	
-	m_slider_smooth = new wxSlider( m_panel_smooth_ctrl, wxID_ANY, 10, 10, 60, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
+	m_slider_smooth = new wxSlider( m_panel_smooth_ctrl, wxID_ANY, 30, 0, 200, wxDefaultPosition, wxDefaultSize, wxSL_BOTH|wxSL_HORIZONTAL|wxSL_LABELS|wxSL_TOP );
 	s_smooth_ctrl->Add( m_slider_smooth, 0, wxBOTTOM|wxEXPAND|wxLEFT|wxRIGHT, 5 );
 	
 	s_smooth_ctrl_h->Add( s_smooth_ctrl, 4, wxEXPAND, 5 );
@@ -623,7 +623,15 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_slider_highpassamp->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_highpassampOnScroll ), NULL, this );
 	m_slider_highpassamp->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( CCVbaseMainFrame::m_slider_highpassampOnScroll ), NULL, this );
 	m_checkBox_smooth->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_smoothOnCheckBox ), NULL, this );
+	m_slider_smooth->Connect( wxEVT_SCROLL_TOP, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Connect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Connect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Connect( wxEVT_SCROLL_LINEDOWN, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Connect( wxEVT_SCROLL_PAGEUP, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Connect( wxEVT_SCROLL_PAGEDOWN, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Connect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
 	m_slider_smooth->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
 	m_radioBox_smoothtype->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( CCVbaseMainFrame::m_radioBox_smoothtypeOnRadioBox ), NULL, this );
 	m_checkBox_tuio->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_tuioOnCheckBox ), NULL, this );
 	m_button_savesetting->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_button_savesettingOnButtonClick ), NULL, this );
@@ -703,7 +711,15 @@ CCVbaseMainFrame::~CCVbaseMainFrame()
 	m_slider_highpassamp->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_highpassampOnScroll ), NULL, this );
 	m_slider_highpassamp->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( CCVbaseMainFrame::m_slider_highpassampOnScroll ), NULL, this );
 	m_checkBox_smooth->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_smoothOnCheckBox ), NULL, this );
+	m_slider_smooth->Disconnect( wxEVT_SCROLL_TOP, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Disconnect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Disconnect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Disconnect( wxEVT_SCROLL_LINEDOWN, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Disconnect( wxEVT_SCROLL_PAGEUP, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Disconnect( wxEVT_SCROLL_PAGEDOWN, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Disconnect( wxEVT_SCROLL_THUMBTRACK, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
 	m_slider_smooth->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
+	m_slider_smooth->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( CCVbaseMainFrame::m_slider_smoothOnScrollThumbRelease ), NULL, this );
 	m_radioBox_smoothtype->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( CCVbaseMainFrame::m_radioBox_smoothtypeOnRadioBox ), NULL, this );
 	m_checkBox_tuio->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_tuioOnCheckBox ), NULL, this );
 	m_button_savesetting->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_button_savesettingOnButtonClick ), NULL, this );
