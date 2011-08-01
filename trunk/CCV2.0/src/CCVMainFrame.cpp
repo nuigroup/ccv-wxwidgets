@@ -153,10 +153,14 @@ void CCVMainFrame::m_checkBox_backgroundOnCheckBox( wxCommandEvent& event )
     int enable = m_checkBox_background->GetValue();
     std::string bgModule = enable ? "bgSubtract" : "bgSubtract_dummy";
     std::string ampModule = paramHook->amplify_enabled ? "amplify" : "amplify_dummy";
-    std::string hpassModule = paramHook->highpass_enabled ? "highpass" : "highpass_dummy";
-    std::string smoothModule = paramHook->smooth_enabled ? "smooth" : "smooth_dummy";
+
+    if (paramHook->input_source == CAMERA) {
+        movidProcess->procGraph->ConnectModules("input_source_camera", bgModule);
+    }
+    else {
+        movidProcess->procGraph->ConnectModules("input_source_video", bgModule);
+    }
     
-    movidProcess->procGraph->ConnectModules("input_source", bgModule);
     movidProcess->procGraph->ConnectModules(bgModule, ampModule);
     movidProcess->procGraph->ConnectModules(bgModule, "output_background");
 
