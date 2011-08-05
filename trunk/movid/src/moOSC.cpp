@@ -20,6 +20,9 @@
 #include <stdio.h>
 
 #ifdef _WIN32
+#ifndef WIN32_LEAN_AND_MEAN /* Void BUG!! - Will not compile with winsock.h AND winsock2.h */
+	#define WIN32_LEAN_AND_MEAN
+#endif
 	#include <WinSock2.h>
 	#include <ws2ipdef.h>
 	#define ssize_t SSIZE_T
@@ -51,6 +54,12 @@ moOSC::~moOSC() {
 }
 
 void moOSC::init() {
+#ifdef _WIN32
+	WSADATA wsaData;
+	WORD wVersionRequested = MAKEWORD(2, 0);
+	int err = WSAStartup(wVersionRequested, &wsaData);
+#endif
+
 	this->sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	if ( this->sock == -1 ) {
 		LOG(MO_ERROR, "unable to open socket (ret=" << this->sock << ")");

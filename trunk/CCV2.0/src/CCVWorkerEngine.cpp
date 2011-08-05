@@ -90,10 +90,10 @@ void *CCVWorkerEngine::Entry()
             resourceQueue.push(curResItem);
             wxCommandEvent event( newEVT_MOVIDPROCESS_NEWIMAGE, GetId() );
             wxPostEvent(eventHandler, event);
-            wxLogMessage(wxT("AFTER wxPostEvent"));
+            //wxLogMessage(wxT("AFTER wxPostEvent"));
         }
         else {
-            wxLogMessage(wxT("MSG No wxPostEvent"));
+            //wxLogMessage(wxT("MSG No wxPostEvent"));
             delete curResItem;
         }
     }

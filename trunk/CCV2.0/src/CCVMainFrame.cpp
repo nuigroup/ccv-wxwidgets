@@ -55,9 +55,9 @@ void CCVMainFrame::SetWorkerEngine(CCVWorkerEngine *movidProc)
 
 void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
 {
-    wxLogMessage(wxT("BEGIN CCVMainFrame::OnMovidImage()"));
+    //wxLogMessage(wxT("BEGIN CCVMainFrame::OnMovidImage()"));
     CCVWorkerEngineResQueue *resQueue = movidProcess->getResQueue();
-    wxLogMessage(wxT("MSG Resource queue size: %d)"), resQueue->size());
+    //wxLogMessage(wxT("MSG Resource queue size: %d"), resQueue->size());
     OutImagesMap rawImages = resQueue->front()->outImages;
     DrawCameraImage(rawImages["output_leftviewer"], m_panel_inputViewer);
     DrawCameraImage(rawImages["output_rightviewer"], m_panel_outputViewer);
