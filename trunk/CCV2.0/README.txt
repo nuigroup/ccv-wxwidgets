@@ -1,23 +1,26 @@
 == Compile on Windows ==
 Require:
   wxWidgets
-  OpenCV2.2 or higher
+  OpenCV2.3 or higher
   Microsoft Visual C++ 2010 (Free express version is enough)
 
-You do not need compile wxWidgets by yourself. You can download the 
+If you do not want to compile wxWidgets or OpenCV by yourself, You can download the 
 binary wxWidgets (wxPack) from:
   http://wxpack.sourceforge.net
+  
+The binary OpenCV can be downloaded from:
+	http://sourceforge.net/projects/opencvlibrary/files/opencv-win/2.3/OpenCV-2.3.0-win-superpack.exe/download
 
 Microsoft provided a free express version's Visual C++:
   http://www.microsoft.com/express/Downloads/#2010-Visual-CPP
 
-To compile, just run msvc\build.bat. Before compiling, make environment
+To compile, just run msvc\build.bat. Before compiling, make sure the environment
 variable WXWIN was set to wxWidgets's path, OPENCV_DIR was set to opencv's path.
 
 == Compile on Mac OS X ==
 Require:
   wxWidgets
-  OpenCV2.2 or higher
+  OpenCV2.3 or higher
   gcc4
   
 Move makefiles/Makefile.osx to the this folder and rename it to Makefile.  
@@ -30,7 +33,7 @@ To compile, just run "make" in the uxix shell.
 == Compile on Linux ==
 Require:
   wxWidgets
-  OpenCV2.2 or higher
+  OpenCV2.3 or higher
   gcc4
   
 Move makefiles/Makefile.linux to the this folder and rename it to Makefile.    
