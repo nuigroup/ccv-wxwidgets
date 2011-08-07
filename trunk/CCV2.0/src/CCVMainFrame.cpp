@@ -171,11 +171,9 @@ void CCVMainFrame::m_checkBox_backgroundOnCheckBox( wxCommandEvent& event )
     paramHook->backgroundsub_enabled = enable;
 }
 
-void CCVMainFrame::m_checkBox_recaptureOnCheckBox( wxCommandEvent& event )
+void CCVMainFrame::m_button_subbg_recaptureOnButtonClick( wxCommandEvent& event )
 {
-    int newVaule = m_checkBox_recapture->GetValue();
-    bool enable = (newVaule > 0);
-    movidProcess->procGraph->getModuleById("bgSubtract")->property("recapture").set(enable);
+    movidProcess->procGraph->getModuleById("bgSubtract")->property("recapture").set(true);
 }
 
 void CCVMainFrame::m_checkBox_toggleOnCheckBox( wxCommandEvent& event )

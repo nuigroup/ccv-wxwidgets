@@ -69,9 +69,9 @@ class CCVbaseMainFrame : public wxFrame
 		wxPanel* m_panel_background_ctrl;
 		wxCheckBox* m_checkBox_background;
 		
-		wxCheckBox* m_checkBox_recapture;
 		wxCheckBox* m_checkBox_toggle;
 		wxCheckBox* m_checkBox_absolute;
+		wxButton* m_button_subbg_recapture;
 		
 		wxPanel* m_panel_amp;
 		wxPanel* m_panel_amp_viewer;
@@ -120,9 +120,9 @@ class CCVbaseMainFrame : public wxFrame
 		virtual void m_slider_minBlobOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
 		virtual void m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
 		virtual void m_checkBox_backgroundOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
-		virtual void m_checkBox_recaptureOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_checkBox_toggleOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_checkBox_absoluteOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_button_subbg_recaptureOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_checkBox_ampOnCheckBox( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_slider_ampOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
 		virtual void m_checkBox_highpassOnCheckBox( wxCommandEvent& event ) { event.Skip(); }

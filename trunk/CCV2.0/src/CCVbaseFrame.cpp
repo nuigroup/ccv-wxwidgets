@@ -214,15 +214,14 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	
 	bSizer_background_ctrl->Add( 0, 0, 1, wxEXPAND, 5 );
 	
-	m_checkBox_recapture = new wxCheckBox( m_panel_background_ctrl, wxID_ANY, wxT("Recapture"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_checkBox_recapture->SetValue(true); 
-	bSizer_background_ctrl->Add( m_checkBox_recapture, 0, wxTOP|wxRIGHT|wxLEFT, 5 );
-	
 	m_checkBox_toggle = new wxCheckBox( m_panel_background_ctrl, wxID_ANY, wxT("Toggle"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer_background_ctrl->Add( m_checkBox_toggle, 0, wxRIGHT|wxLEFT, 5 );
 	
 	m_checkBox_absolute = new wxCheckBox( m_panel_background_ctrl, wxID_ANY, wxT("Absolute"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer_background_ctrl->Add( m_checkBox_absolute, 0, wxBOTTOM|wxRIGHT|wxLEFT, 5 );
+	
+	m_button_subbg_recapture = new wxButton( m_panel_background_ctrl, wxID_ANY, wxT("Recapture"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer_background_ctrl->Add( m_button_subbg_recapture, 0, wxALL, 5 );
 	
 	s_background_ctrl_h->Add( bSizer_background_ctrl, 1, wxEXPAND, 5 );
 	
@@ -551,9 +550,9 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_slider_maxBlob->Connect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_maxBlobOnScrollThumbRelease ), NULL, this );
 	m_slider_maxBlob->Connect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( CCVbaseMainFrame::m_slider_maxBlobOnScrollThumbRelease ), NULL, this );
 	m_checkBox_background->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_backgroundOnCheckBox ), NULL, this );
-	m_checkBox_recapture->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_recaptureOnCheckBox ), NULL, this );
 	m_checkBox_toggle->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_toggleOnCheckBox ), NULL, this );
 	m_checkBox_absolute->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_absoluteOnCheckBox ), NULL, this );
+	m_button_subbg_recapture->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_button_subbg_recaptureOnButtonClick ), NULL, this );
 	m_checkBox_amp->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_ampOnCheckBox ), NULL, this );
 	m_slider_amp->Connect( wxEVT_SCROLL_TOP, wxScrollEventHandler( CCVbaseMainFrame::m_slider_ampOnScrollThumbRelease ), NULL, this );
 	m_slider_amp->Connect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( CCVbaseMainFrame::m_slider_ampOnScrollThumbRelease ), NULL, this );
@@ -639,9 +638,9 @@ CCVbaseMainFrame::~CCVbaseMainFrame()
 	m_slider_maxBlob->Disconnect( wxEVT_SCROLL_THUMBRELEASE, wxScrollEventHandler( CCVbaseMainFrame::m_slider_maxBlobOnScrollThumbRelease ), NULL, this );
 	m_slider_maxBlob->Disconnect( wxEVT_SCROLL_CHANGED, wxScrollEventHandler( CCVbaseMainFrame::m_slider_maxBlobOnScrollThumbRelease ), NULL, this );
 	m_checkBox_background->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_backgroundOnCheckBox ), NULL, this );
-	m_checkBox_recapture->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_recaptureOnCheckBox ), NULL, this );
 	m_checkBox_toggle->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_toggleOnCheckBox ), NULL, this );
 	m_checkBox_absolute->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_absoluteOnCheckBox ), NULL, this );
+	m_button_subbg_recapture->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_button_subbg_recaptureOnButtonClick ), NULL, this );
 	m_checkBox_amp->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_checkBox_ampOnCheckBox ), NULL, this );
 	m_slider_amp->Disconnect( wxEVT_SCROLL_TOP, wxScrollEventHandler( CCVbaseMainFrame::m_slider_ampOnScrollThumbRelease ), NULL, this );
 	m_slider_amp->Disconnect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( CCVbaseMainFrame::m_slider_ampOnScrollThumbRelease ), NULL, this );

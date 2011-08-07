@@ -37,7 +37,6 @@ private:
 	void m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event );
 
     void m_checkBox_backgroundOnCheckBox( wxCommandEvent& event );
-    void m_checkBox_recaptureOnCheckBox( wxCommandEvent& event );
     void m_checkBox_toggleOnCheckBox( wxCommandEvent& event );
     void m_checkBox_absoluteOnCheckBox( wxCommandEvent& event );
     void m_checkBox_ampOnCheckBox( wxCommandEvent& event );
@@ -51,6 +50,7 @@ private:
     void m_slider_highpassampOnScroll( wxScrollEvent& event );
     void m_button_savesettingOnButtonClick( wxCommandEvent& event );
     void m_checkBox_tuioOnCheckBox( wxCommandEvent& event );
+    void m_button_subbg_recaptureOnButtonClick( wxCommandEvent& event );
 };
 
 enum CCV_SOURCE_ID
