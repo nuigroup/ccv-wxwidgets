@@ -55,7 +55,7 @@ bool otStreamModule :: copy()
         this->input->unlock();
         return false;
     }
-    if ( this->property("scale").asInteger() == 1 )
+    if (src->width == output_buffer->width && src->height == output_buffer->height )
         cvCopy(src, this->output_buffer);
     else
         cvResize(src, this->output_buffer);

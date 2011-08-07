@@ -47,7 +47,7 @@
     <ClCompile>
       <WarningLevel>Level2</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>%OPENCV_DIR%\include;%OPENCV_DIR%\include\opencv;..\contrib\WOscLib-00.09;..\contrib\ptypes-2.1.1\include;..\contrib\bitmap_munkres;..\contrib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%OPENCV_DIR%\build\include;%OPENCV_DIR%\build\include\opencv;..\contrib\WOscLib-00.09;..\contrib\ptypes-2.1.1\include;..\contrib\bitmap_munkres;..\contrib</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -60,7 +60,7 @@
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>%OPENCV_DIR%\include;%OPENCV_DIR%\include\opencv;..\contrib\WOscLib-00.09;..\contrib\ptypes-2.1.1\include;..\contrib\bitmap_munkres;..\contrib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%OPENCV_DIR%\build\include;%OPENCV_DIR%\build\include\opencv;..\contrib\WOscLib-00.09;..\contrib\ptypes-2.1.1\include;..\contrib\bitmap_munkres;..\contrib</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>

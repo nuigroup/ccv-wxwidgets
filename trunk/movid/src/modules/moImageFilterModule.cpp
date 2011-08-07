@@ -98,6 +98,11 @@ void moImageFilterModule::update() {
 	if ( this->input->getData() != NULL ) {
 		// duplicate the image, and release as fast as we can the input lock.
 		dup = cvCloneImage(static_cast<IplImage *>(this->input->getData()));
+        if (dup->width!=output_buffer->width || dup->height!=output_buffer->height) {
+            cvResize(dup, this->output_buffer);
+            cvReleaseImage(&dup);
+            dup = cvCloneImage(static_cast<IplImage *>(this->output_buffer));
+        }
 		this->input->unlock();
 
 		// apply the filter

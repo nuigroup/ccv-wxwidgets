@@ -68,6 +68,9 @@ struct CCVGlobalParam
 
     std::string output_ipAddress;
     int output_port;
+
+    void *videoModule;
+    void *cameraModule;
     
     CCVGlobalParam()
     {

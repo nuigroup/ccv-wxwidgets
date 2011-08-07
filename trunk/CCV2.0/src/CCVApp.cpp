@@ -158,21 +158,31 @@ int CCVApp::LoadConfigXml(CCVGlobalParam *in_param, std::string filename)
 
 int CCVApp::SetInitPipeline()
 {
-    // Decide whether to use filters
+    // Init Settings
     std::string bgModule = param->backgroundsub_enabled ? "bgSubtract" : "bgSubtract_dummy";
     std::string ampModule = param->amplify_enabled ? "amplify" : "amplify_dummy";
     std::string hpassModule = param->highpass_enabled ? "highpass" : "highpass_dummy";
     std::string smoothModule = param->smooth_enabled ? "smooth" : "smooth_dummy";
+    param->input_source = VIDEO;
+    std::string inputModule;
     
     // Input Source
-    movidthread->procGraph->AddModule("input_source_video", "Video");
-    movidthread->procGraph->getModuleById("input_source_video")->property("filename").set(param->videoFileName);
-    param->input_source = VIDEO;
+    param->cameraModule = movidthread->procGraph->CreateModule("input_source_camera", "Camera");
+    param->videoModule = movidthread->procGraph->CreateModule("input_source_video", "Video");
+    ((moModule *)(param->videoModule))->property("filename").set(param->videoFileName);
+    if (param->input_source == VIDEO) {
+        movidthread->procGraph->AddExistedModule((moModule *)(param->videoModule));
+        inputModule = "input_source_video";
+    }
+    else {
+        movidthread->procGraph->AddExistedModule((moModule *)(param->cameraModule));
+        inputModule = "input_source_camera";
+    }
     
     // Background Subtract
     movidthread->procGraph->AddModule("bgSubtract", "BackgroundSubtract");
     movidthread->procGraph->AddModule("bgSubtract_dummy", "DoNothing");
-    movidthread->procGraph->ConnectModules("input_source_video", bgModule);    
+    movidthread->procGraph->ConnectModules(inputModule, bgModule);    
     
     // Amplify
     movidthread->procGraph->AddModule("amplify", "Amplify");
@@ -227,7 +237,7 @@ int CCVApp::SetInitPipeline()
     
     // In & Out Monitors
     movidthread->procGraph->AddModule("output_leftviewer", "Stream", true);
-    movidthread->procGraph->ConnectModules("input_source_video", "output_leftviewer");
+    movidthread->procGraph->ConnectModules(inputModule, "output_leftviewer");
     movidthread->procGraph->AddModule("output_rightviewer", "Stream", true);    
     movidthread->procGraph->ConnectModules("blobfinder", "output_rightviewer");    
     

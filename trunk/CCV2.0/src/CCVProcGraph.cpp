@@ -19,16 +19,33 @@ CCVProcGraph::CCVProcGraph() : moPipeline()
 
 moModule * CCVProcGraph::AddModule(std::string moduleID, std::string moduleType, bool isOutModule)
 {
-    moduleTypeOf[moduleID] = moduleType;
-    
-    this->stop();    
-    moModule *node = factory->create(moduleType);
-    node->property("id").set(moduleID);
+    moModule *node = CreateModule(moduleID, moduleType);
     this->addElement(node);
     
     if (isOutModule) {
         outputModuleIDs.push_back(moduleID);
     }
+    
+    return node;
+}
+
+int CCVProcGraph::AddExistedModule(moModule *node, bool isOutModule)
+{
+    this->addElement(node);
+    
+    if (isOutModule) {
+        outputModuleIDs.push_back(node->property("id").asString());
+    }
+    
+    return CCV_SUCCESS;
+}
+
+moModule * CCVProcGraph::CreateModule(std::string moduleID, std::string moduleType)
+{
+    moduleTypeOf[moduleID] = moduleType;
+    
+    moModule *node = factory->create(moduleType);
+    node->property("id").set(moduleID);
     
     return node;
 }

@@ -30,10 +30,20 @@ public:
     CCVProcGraph();
     
     /**
-        Add a module. If the module is used to draw on UI, set isOutModule to true.
+        Create and add a module. If the module is used to draw on UI, set isOutModule to true.
         The address of the new module will be returned.
     */
     moModule * AddModule(std::string moduleID, std::string moduleType, bool isOutModule=false);
+
+    /**
+        Add a existed module.
+    */
+    int AddExistedModule(moModule *, bool isOutModule=false);
+
+    /**
+        Create a module.
+    */
+    moModule * CCVProcGraph::CreateModule(std::string moduleID, std::string moduleType);
     
     /**
         Connect two modules. The first module inputs, the second outputs. 

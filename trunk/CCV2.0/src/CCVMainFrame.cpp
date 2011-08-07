@@ -33,11 +33,11 @@ CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc, CCVGlobalParam *_param) :
     m_slider_amp->SetValue(paramHook->initAmplify);
     m_slider_smooth->SetValue(paramHook->initSmooth);
 
-    m_checkBox_background->SetValue(paramHook->backgroundsub_enabled);    
-    m_checkBox_amp->SetValue(paramHook->amplify_enabled);     
-    m_checkBox_highpass->SetValue(paramHook->highpass_enabled);
-    m_checkBox_smooth->SetValue(paramHook->smooth_enabled);
-    m_checkBox_tuio->SetValue(paramHook->tuio_enabled);
+    m_checkBox_background->SetValue(paramHook->backgroundsub_enabled ? true : false);    
+    m_checkBox_amp->SetValue(paramHook->amplify_enabled ? true : false);     
+    m_checkBox_highpass->SetValue(paramHook->highpass_enabled ? true : false);
+    m_checkBox_smooth->SetValue(paramHook->smooth_enabled ? true : false);
+    m_checkBox_tuio->SetValue(paramHook->tuio_enabled ? true : false);
 
     SetWorkerEngine(movidProc);
 
@@ -55,17 +55,18 @@ void CCVMainFrame::SetWorkerEngine(CCVWorkerEngine *movidProc)
 
 void CCVMainFrame::OnMovidImage(wxCommandEvent &command)
 {
-    //wxLogMessage(wxT("BEGIN CCVMainFrame::OnMovidImage()"));
+    //wxLogMessage(wxT("BEGIN CCVMainFrame::OnMovidImage"));
     CCVWorkerEngineResQueue *resQueue = movidProcess->getResQueue();
     //wxLogMessage(wxT("MSG Resource queue size: %d"), resQueue->size());
-    OutImagesMap rawImages = resQueue->front()->outImages;
+    CCVWorkerEngineResItem *front = resQueue->front();
+    OutImagesMap rawImages = front->outImages;
     DrawCameraImage(rawImages["output_leftviewer"], m_panel_inputViewer);
     DrawCameraImage(rawImages["output_rightviewer"], m_panel_outputViewer);
     DrawCameraImage(rawImages["output_background"], m_panel_background_viewer);
     DrawCameraImage(rawImages["output_amplify"], m_panel_amp_viewer);
     DrawCameraImage(rawImages["output_highpass"], m_panel_highpass_viewer);
     DrawCameraImage(rawImages["output_smooth"], m_panel_smooth_viewer);
-    delete resQueue->front();
+    delete front;
     resQueue->pop();
 }
 
@@ -108,24 +109,27 @@ void CCVMainFrame::DrawCameraImage(OutRGBImage *rawImage, wxWindow *drawRec)
 
 void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
 {
+    wxLogMessage(wxT("BEGIN CCVMainFrame::m_radioBox_selectInputOnRadioBox"));
     int selectedId = m_radioBox_selectInput->GetSelection();
     std::string bgModule = paramHook->backgroundsub_enabled ? "bgSubtract" : "bgSubtract_dummy";
+    moModule *videoModule = (moModule *)(paramHook->videoModule);
+    moModule *cameraModule = (moModule *)(paramHook->cameraModule);
     if (selectedId == CCV_SOURCE_CAMERA) {
-        moModule *cameraModule = movidProcess->procGraph->getModuleById("input_source_camera");
-        if (cameraModule == NULL) {
-            cameraModule = movidProcess->procGraph->AddModule("input_source_camera", "Camera");
-        }
         cameraModule->start();
+        movidProcess->procGraph->AddExistedModule(cameraModule);
         movidProcess->procGraph->ConnectModules("input_source_camera", bgModule);
         movidProcess->procGraph->ConnectModules("input_source_camera", "output_leftviewer");
-        //movidProcess->procGraph->getModuleById("input_source_video")->stop();
+        movidProcess->procGraph->removeElement(videoModule);
+        videoModule->stop();
         paramHook->input_source = CAMERA;
     }
     else {
-        //movidProcess->procGraph->getModuleById("input_source_video")->start();
+        videoModule->start();
+        movidProcess->procGraph->AddExistedModule(videoModule);
         movidProcess->procGraph->ConnectModules("input_source_video", bgModule);
         movidProcess->procGraph->ConnectModules("input_source_video", "output_leftviewer");
-        movidProcess->procGraph->getModuleById("input_source_camera")->stop();
+        movidProcess->procGraph->removeElement(cameraModule);
+        cameraModule->stop();
         paramHook->input_source = VIDEO;
     }
 }
