@@ -32,6 +32,8 @@ private:
     void OnMovidImage(wxCommandEvent&);
 
     void m_radioBox_selectInputOnRadioBox( wxCommandEvent& event );
+    void m_button_prevCameraOnButtonClick( wxCommandEvent& event );
+	void m_button_nextCameraOnButtonClick( wxCommandEvent& event );
     void m_slider_imageThreOnScroll( wxScrollEvent& event );
     void m_slider_minBlobOnScrollThumbRelease( wxScrollEvent& event );
 	void m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event );

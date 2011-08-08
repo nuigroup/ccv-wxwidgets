@@ -24,6 +24,10 @@
 #include "moCameraModule.h"
 #include "highgui.h"
 
+#ifdef _WIN32
+#include "CLEyeMulticam.h"
+#endif
+
 MODULE_DECLARE(Camera, "native", "Fetch camera stream");
 
 moCameraModule::moCameraModule() : moModule(MO_MODULE_OUTPUT) {
@@ -42,6 +46,8 @@ moCameraModule::moCameraModule() : moModule(MO_MODULE_OUTPUT) {
 
 	// declare properties
 	this->properties["index"] = new moProperty(0);
+    this->properties["nextcamera"] = new moProperty(false);
+    this->properties["prevcamera"] = new moProperty(false);
 }
 
 moCameraModule::~moCameraModule() {
@@ -70,6 +76,19 @@ void moCameraModule::stop() {
 
 void moCameraModule::update() {
 	if ( this->camera != NULL ) {
+        // select the next camera
+        if (this->property("nextcamera").asBool() || this->property("prevcamera").asBool()) {
+            int newindex = this->property("nextcamera").asBool() ? this->property("index").asInteger()+1 : this->property("index").asInteger()-1;
+            void *tmp_camera = cvCaptureFromCAM(newindex);
+            if ( newindex >= 0 && tmp_camera != NULL ) {
+                this->property("index").set(newindex);
+                cvReleaseCapture((CvCapture **)&this->camera);
+                this->camera = tmp_camera;
+            }
+            this->properties["prevcamera"]->set(false);
+            this->properties["nextcamera"]->set(false);
+        }
+
 		// push a new image on the stream
 		LOGM(MO_TRACE, "push a new image on the stream");
 		IplImage *img = cvQueryFrame(static_cast<CvCapture *>(this->camera));

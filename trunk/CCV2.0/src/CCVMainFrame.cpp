@@ -39,6 +39,11 @@ CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc, CCVGlobalParam *_param) :
     m_checkBox_smooth->SetValue(paramHook->smooth_enabled ? true : false);
     m_checkBox_tuio->SetValue(paramHook->tuio_enabled ? true : false);
 
+    if (paramHook->input_source != CAMERA) {
+        m_button_prevCamera->Enable(false);
+        m_button_nextCamera->Enable(false);
+    }
+
     SetWorkerEngine(movidProc);
 
     UpdateDebugViewers();
@@ -115,15 +120,19 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
     moModule *videoModule = (moModule *)(paramHook->videoModule);
     moModule *cameraModule = (moModule *)(paramHook->cameraModule);
     if (selectedId == CCV_SOURCE_CAMERA) {
+        m_button_prevCamera->Enable(true);
+        m_button_nextCamera->Enable(true);
         cameraModule->start();
         movidProcess->procGraph->AddExistedModule(cameraModule);
         movidProcess->procGraph->ConnectModules("input_source_camera", bgModule);
         movidProcess->procGraph->ConnectModules("input_source_camera", "output_leftviewer");
         movidProcess->procGraph->removeElement(videoModule);
-        videoModule->stop();
+        videoModule->stop();        
         paramHook->input_source = CAMERA;
     }
     else {
+        m_button_prevCamera->Enable(false);
+        m_button_nextCamera->Enable(false);
         videoModule->start();
         movidProcess->procGraph->AddExistedModule(videoModule);
         movidProcess->procGraph->ConnectModules("input_source_video", bgModule);
@@ -330,4 +339,16 @@ void CCVMainFrame::UpdateDebugViewers()
         
     }
     m_staticText_out->SetLabel(msgText);
+}
+
+void CCVMainFrame::m_button_prevCameraOnButtonClick( wxCommandEvent& event )
+{
+    moModule *cameraModule = (moModule *)(paramHook->cameraModule);
+    cameraModule->property("prevcamera").set(true);
+}
+
+void CCVMainFrame::m_button_nextCameraOnButtonClick( wxCommandEvent& event )
+{
+    moModule *cameraModule = (moModule *)(paramHook->cameraModule);
+    cameraModule->property("nextcamera").set(true);
 }

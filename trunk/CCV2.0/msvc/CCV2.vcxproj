@@ -48,7 +48,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Rpcrt4.lib;opencv_calib3d230d.lib;opencv_contrib230d.lib;opencv_core230d.lib;opencv_features2d230d.lib;opencv_flann230d.lib;opencv_gpu230d.lib;opencv_highgui230d.lib;opencv_imgproc230d.lib;opencv_legacy230d.lib;opencv_ml230d.lib;opencv_objdetect230d.lib;opencv_video230d.lib;wxmsw28d_adv.lib;wxmsw28d_core.lib;wxbase28d.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexd.lib;wxexpatd.lib;fidtrack.lib;ptypes.lib;wosclib.lib;libmovid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Rpcrt4.lib;opencv_calib3d230d.lib;opencv_contrib230d.lib;opencv_core230d.lib;opencv_features2d230d.lib;opencv_flann230d.lib;opencv_gpu230d.lib;opencv_highgui230d.lib;opencv_imgproc230d.lib;opencv_legacy230d.lib;opencv_ml230d.lib;opencv_objdetect230d.lib;opencv_video230d.lib;wxmsw28d_adv.lib;wxmsw28d_core.lib;wxbase28d.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexd.lib;wxexpatd.lib;fidtrack.lib;ptypes.lib;wosclib.lib;CLEyeMulticam.lib;libmovid.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%WXWIN%\lib\vc_lib;%OPENCV_DIR%\build\x86\vc10\lib;DebugLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
@@ -64,6 +64,7 @@ copy %OPENCV_DIR%\build\x86\vc10\bin\opencv_legacy230d.dll .
 copy %OPENCV_DIR%\build\x86\vc10\bin\opencv_video230d.dll .
 copy %OPENCV_DIR%\build\x86\vc10\bin\tbb_debug.dll .
 copy %OPENCV_DIR%\opencv\3rdparty\ffmpeg\opencv_ffmpeg.dll .
+copy DebugLib\CLEyeMulticam.dll .
 copy Debug\CCV2.exe .
 if not exist "config.xml" (copy ..\res\config.xml .\config.xml)
 copy ..\res\RearDI.m4v .\RearDI.m4v
@@ -85,7 +86,7 @@ copy ..\res\RearDI.m4v .\RearDI.m4v
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>%WXWIN%\lib\vc_lib;%OPENCV_DIR%\build\x86\vc10\lib;ReleaseLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_calib3d230.lib;opencv_core230.lib;opencv_contrib230.lib;opencv_features2d230.lib;opencv_flann230.lib;opencv_gpu230.lib;opencv_highgui230.lib;opencv_imgproc230.lib;opencv_legacy230.lib;opencv_ml230.lib;opencv_objdetect230.lib;opencv_video230.lib;wxmsw28_adv.lib;wxmsw28_core.lib;wxbase28.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregex.lib;wxexpat.lib;fidtrack.lib;ptypes.lib;wosclib.lib;libmovid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_calib3d230.lib;opencv_core230.lib;opencv_contrib230.lib;opencv_features2d230.lib;opencv_flann230.lib;opencv_gpu230.lib;opencv_highgui230.lib;opencv_imgproc230.lib;opencv_legacy230.lib;opencv_ml230.lib;opencv_objdetect230.lib;opencv_video230.lib;wxmsw28_adv.lib;wxmsw28_core.lib;wxbase28.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregex.lib;wxexpat.lib;fidtrack.lib;ptypes.lib;wosclib.lib;CLEyeMulticam.lib;libmovid.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>libcmt.lib</IgnoreSpecificDefaultLibraries>
@@ -101,6 +102,7 @@ copy %OPENCV_DIR%\build\x86\vc10\bin\opencv_legacy230.dll .
 copy %OPENCV_DIR%\build\x86\vc10\bin\opencv_video230.dll .
 copy %OPENCV_DIR%\build\x86\vc10\bin\tbb.dll .
 copy %OPENCV_DIR%\opencv\3rdparty\ffmpeg\opencv_ffmpeg.dll .
+copy ReleaseLib\CLEyeMulticam.dll .
 copy Release\CCV2.exe .
 if not exist "config.xml" (copy ..\res\config.xml .\config.xml)
 copy ..\res\RearDI.m4v .\RearDI.m4v

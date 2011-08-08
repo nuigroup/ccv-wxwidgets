@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Oct  4 2010)
+// C++ code generated with wxFormBuilder (version Sep  8 2010)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -116,6 +116,8 @@ class CCVbaseMainFrame : public wxFrame
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void m_radioBox_selectInputOnRadioBox( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_button_prevCameraOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
+		virtual void m_button_nextCameraOnButtonClick( wxCommandEvent& event ) { event.Skip(); }
 		virtual void m_slider_imageThreOnScroll( wxScrollEvent& event ) { event.Skip(); }
 		virtual void m_slider_minBlobOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
 		virtual void m_slider_maxBlobOnScrollThumbRelease( wxScrollEvent& event ) { event.Skip(); }
@@ -139,7 +141,6 @@ class CCVbaseMainFrame : public wxFrame
 	public:
 		
 		CCVbaseMainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Community Core Vision"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 950,650 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
-		
 		~CCVbaseMainFrame();
 	
 };
@@ -177,7 +178,6 @@ class CCVbaseMiniFrame : public wxFrame
 	public:
 		
 		CCVbaseMiniFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("CCV - Mini"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 190,205 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
-		
 		~CCVbaseMiniFrame();
 	
 };

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Oct  4 2010)
+// C++ code generated with wxFormBuilder (version Sep  8 2010)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -106,13 +106,9 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	bSizer_camera_sel = new wxBoxSizer( wxVERTICAL );
 	
 	m_button_prevCamera = new wxButton( m_panel_inputContrl, wxID_ANY, wxT("Prev Camera"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_button_prevCamera->Enable( false );
-	
 	bSizer_camera_sel->Add( m_button_prevCamera, 0, wxALIGN_CENTER|wxEXPAND|wxALL, 5 );
 	
 	m_button_nextCamera = new wxButton( m_panel_inputContrl, wxID_ANY, wxT("Next Camera"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_button_nextCamera->Enable( false );
-	
 	bSizer_camera_sel->Add( m_button_nextCamera, 0, wxALIGN_CENTER|wxEXPAND|wxALL, 5 );
 	
 	s_inputContrl_down->Add( bSizer_camera_sel, 2, wxEXPAND|wxRIGHT, 10 );
@@ -522,6 +518,8 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	
 	// Connect Events
 	m_radioBox_selectInput->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( CCVbaseMainFrame::m_radioBox_selectInputOnRadioBox ), NULL, this );
+	m_button_prevCamera->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_button_prevCameraOnButtonClick ), NULL, this );
+	m_button_nextCamera->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_button_nextCameraOnButtonClick ), NULL, this );
 	m_slider_imageThre->Connect( wxEVT_SCROLL_TOP, wxScrollEventHandler( CCVbaseMainFrame::m_slider_imageThreOnScroll ), NULL, this );
 	m_slider_imageThre->Connect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( CCVbaseMainFrame::m_slider_imageThreOnScroll ), NULL, this );
 	m_slider_imageThre->Connect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( CCVbaseMainFrame::m_slider_imageThreOnScroll ), NULL, this );
@@ -610,6 +608,8 @@ CCVbaseMainFrame::~CCVbaseMainFrame()
 {
 	// Disconnect Events
 	m_radioBox_selectInput->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( CCVbaseMainFrame::m_radioBox_selectInputOnRadioBox ), NULL, this );
+	m_button_prevCamera->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_button_prevCameraOnButtonClick ), NULL, this );
+	m_button_nextCamera->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( CCVbaseMainFrame::m_button_nextCameraOnButtonClick ), NULL, this );
 	m_slider_imageThre->Disconnect( wxEVT_SCROLL_TOP, wxScrollEventHandler( CCVbaseMainFrame::m_slider_imageThreOnScroll ), NULL, this );
 	m_slider_imageThre->Disconnect( wxEVT_SCROLL_BOTTOM, wxScrollEventHandler( CCVbaseMainFrame::m_slider_imageThreOnScroll ), NULL, this );
 	m_slider_imageThre->Disconnect( wxEVT_SCROLL_LINEUP, wxScrollEventHandler( CCVbaseMainFrame::m_slider_imageThreOnScroll ), NULL, this );
