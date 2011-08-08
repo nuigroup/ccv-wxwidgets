@@ -63,9 +63,10 @@ copy %OPENCV_DIR%\build\x86\vc10\bin\opencv_imgproc230d.dll .
 copy %OPENCV_DIR%\build\x86\vc10\bin\opencv_legacy230d.dll .
 copy %OPENCV_DIR%\build\x86\vc10\bin\opencv_video230d.dll .
 copy %OPENCV_DIR%\build\x86\vc10\bin\tbb_debug.dll .
+copy %OPENCV_DIR%\opencv\3rdparty\ffmpeg\opencv_ffmpeg.dll .
 copy Debug\CCV2.exe .
 if not exist "config.xml" (copy ..\res\config.xml .\config.xml)
-copy ..\res\RearDI.avi .\RearDI.avi
+copy ..\res\RearDI.m4v .\RearDI.m4v
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -99,9 +100,10 @@ copy %OPENCV_DIR%\build\x86\vc10\bin\opencv_imgproc230.dll .
 copy %OPENCV_DIR%\build\x86\vc10\bin\opencv_legacy230.dll .
 copy %OPENCV_DIR%\build\x86\vc10\bin\opencv_video230.dll .
 copy %OPENCV_DIR%\build\x86\vc10\bin\tbb.dll .
+copy %OPENCV_DIR%\opencv\3rdparty\ffmpeg\opencv_ffmpeg.dll .
 copy Release\CCV2.exe .
 if not exist "config.xml" (copy ..\res\config.xml .\config.xml)
-copy ..\res\RearDI.avi .\RearDI.avi
+copy ..\res\RearDI.m4v .\RearDI.m4v
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
