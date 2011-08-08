@@ -39,14 +39,35 @@ CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc, CCVGlobalParam *_param) :
     m_checkBox_smooth->SetValue(paramHook->smooth_enabled ? true : false);
     m_checkBox_tuio->SetValue(paramHook->tuio_enabled ? true : false);
 
+    cameraNum = 2;
+    curCameraIndex = 0;
+    updateCameraSelectButtonsState();
+
+    SetWorkerEngine(movidProc);
+    UpdateDebugViewers();
+}
+
+void CCVMainFrame::updateCameraSelectButtonsState()
+{
     if (paramHook->input_source != CAMERA) {
         m_button_prevCamera->Enable(false);
         m_button_nextCamera->Enable(false);
     }
+    else {
+        if (curCameraIndex==0) {
+            m_button_prevCamera->Enable(false);
+        }
+        else {
+            m_button_prevCamera->Enable(true);
+        }
 
-    SetWorkerEngine(movidProc);
-
-    UpdateDebugViewers();
+        if (curCameraIndex>=cameraNum-1) {
+            m_button_nextCamera->Enable(false);
+        }
+        else {
+            m_button_nextCamera->Enable(true);
+        }
+    }
 }
 
 void CCVMainFrame::SetWorkerEngine(CCVWorkerEngine *movidProc)
@@ -120,8 +141,6 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
     moModule *videoModule = (moModule *)(paramHook->videoModule);
     moModule *cameraModule = (moModule *)(paramHook->cameraModule);
     if (selectedId == CCV_SOURCE_CAMERA) {
-        m_button_prevCamera->Enable(true);
-        m_button_nextCamera->Enable(true);
         cameraModule->start();
         movidProcess->procGraph->AddExistedModule(cameraModule);
         movidProcess->procGraph->ConnectModules("input_source_camera", bgModule);
@@ -131,8 +150,6 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
         paramHook->input_source = CAMERA;
     }
     else {
-        m_button_prevCamera->Enable(false);
-        m_button_nextCamera->Enable(false);
         videoModule->start();
         movidProcess->procGraph->AddExistedModule(videoModule);
         movidProcess->procGraph->ConnectModules("input_source_video", bgModule);
@@ -141,6 +158,7 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
         cameraModule->stop();
         paramHook->input_source = VIDEO;
     }
+    updateCameraSelectButtonsState();
 }
 
 void CCVMainFrame::m_slider_imageThreOnScroll( wxScrollEvent& event )
@@ -343,12 +361,22 @@ void CCVMainFrame::UpdateDebugViewers()
 
 void CCVMainFrame::m_button_prevCameraOnButtonClick( wxCommandEvent& event )
 {
+    if (curCameraIndex<=0)
+        return;
+    
     moModule *cameraModule = (moModule *)(paramHook->cameraModule);
     cameraModule->property("prevcamera").set(true);
+    curCameraIndex--;
+    updateCameraSelectButtonsState();
 }
 
 void CCVMainFrame::m_button_nextCameraOnButtonClick( wxCommandEvent& event )
 {
+    if (curCameraIndex>=cameraNum-1)
+        return;
+    
     moModule *cameraModule = (moModule *)(paramHook->cameraModule);
     cameraModule->property("nextcamera").set(true);
+    curCameraIndex++;
+    updateCameraSelectButtonsState();
 }
