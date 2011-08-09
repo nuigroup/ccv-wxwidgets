@@ -49,6 +49,7 @@ private:
 
     int LoadConfigXml(CCVGlobalParam *, std::string filename);
     int SetInitPipeline();
+    int GetCameraNum();
 };
 
 IMPLEMENT_APP(CCVApp)
@@ -63,6 +64,8 @@ bool CCVApp::OnInit()
 
     param->logger = new wxLogStderr(logFp);
     wxLog::SetActiveTarget(param->logger);
+
+    param->camera_count = GetCameraNum();
     
     movidthread = new CCVWorkerEngine();
     
@@ -253,3 +256,36 @@ int CCVApp::SetInitPipeline()
     
     return CCV_SUCCESS;    
 }
+
+int CCVApp::GetCameraNum()
+{
+    int cameraNum = 0;
+    void *cameraHandle;
+    do {
+        cameraHandle = cvCaptureFromCAM(cameraNum);
+
+        // debug
+        IplImage *debug_img = cvQueryFrame(static_cast<CvCapture *> (cameraHandle));
+        unsigned char *debug_data;
+        CvSize *debug_roi;
+        cvGetRawData(debug_img, &debug_data, NULL, debug_roi);
+        wxImage pWxImg = wxImage(debug_img->width, debug_img->height, debug_data, true);
+        ostringstream debugfilename; 
+        debugfilename << "debug" << cameraNum << ".bmp";
+        pWxImg.SaveFile(debugfilename.str(), wxBITMAP_TYPE_BMP); // For debug only
+
+        void *tmp = cameraHandle;
+        cvReleaseCapture((CvCapture **)&tmp);
+
+        if (cameraNum == MAX_CAMERA_COUNT) {
+            wxLogMessage(wxT("MSG Can not support more than %d cameras."), MAX_CAMERA_COUNT);
+            break;
+        }
+        cameraNum++;       
+    } while (cameraHandle != NULL);
+
+    
+    wxLogMessage(wxT("FINISH CCVMainFrame::getCameraNum(), Camera number = %d"), cameraNum);
+    return cameraNum;
+}
+

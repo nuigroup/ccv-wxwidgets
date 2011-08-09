@@ -31,7 +31,6 @@ private:
     void DrawCameraImage(OutRGBImage *, wxWindow *);
     void OnMovidImage(wxCommandEvent&);
 
-    int cameraNum;
     int curCameraIndex;
     void updateCameraSelectButtonsState();
 

@@ -22,7 +22,8 @@
 #include <fstream>
 #include <wx/log.h>
 
-#define CONFIGFILE "config.xml"
+const int MAX_CAMERA_COUNT = 8;
+const std::string CONFIGFILE = "config.xml";
 
 enum CCV_ERROR_ID
 {
@@ -71,6 +72,8 @@ struct CCVGlobalParam
 
     void *videoModule;
     void *cameraModule;
+
+    int camera_count;
     
     CCVGlobalParam()
     {
@@ -89,6 +92,7 @@ struct CCVGlobalParam
         tuio_enabled = 0;
         input_source = VIDEO;
         output_port = 9999;
+        camera_count = 0;
     }
 };
 

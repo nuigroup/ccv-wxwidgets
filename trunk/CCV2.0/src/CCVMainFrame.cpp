@@ -39,7 +39,6 @@ CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc, CCVGlobalParam *_param) :
     m_checkBox_smooth->SetValue(paramHook->smooth_enabled ? true : false);
     m_checkBox_tuio->SetValue(paramHook->tuio_enabled ? true : false);
 
-    cameraNum = 2;
     curCameraIndex = 0;
     updateCameraSelectButtonsState();
 
@@ -49,6 +48,13 @@ CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc, CCVGlobalParam *_param) :
 
 void CCVMainFrame::updateCameraSelectButtonsState()
 {
+    if (paramHook->camera_count == 0) {
+        m_radioBox_selectInput->Enable(false);
+        m_button_prevCamera->Enable(false);
+        m_button_nextCamera->Enable(false);
+        return;
+    }
+
     if (paramHook->input_source != CAMERA) {
         m_button_prevCamera->Enable(false);
         m_button_nextCamera->Enable(false);
@@ -61,7 +67,7 @@ void CCVMainFrame::updateCameraSelectButtonsState()
             m_button_prevCamera->Enable(true);
         }
 
-        if (curCameraIndex>=cameraNum-1) {
+        if (curCameraIndex>=paramHook->camera_count-1) {
             m_button_nextCamera->Enable(false);
         }
         else {
@@ -372,7 +378,7 @@ void CCVMainFrame::m_button_prevCameraOnButtonClick( wxCommandEvent& event )
 
 void CCVMainFrame::m_button_nextCameraOnButtonClick( wxCommandEvent& event )
 {
-    if (curCameraIndex>=cameraNum-1)
+    if (curCameraIndex>=paramHook->camera_count-1)
         return;
     
     moModule *cameraModule = (moModule *)(paramHook->cameraModule);
