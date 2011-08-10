@@ -12,7 +12,7 @@
 CCVProcGraph::CCVProcGraph() : moPipeline()
 {
     busy = false;
-    moFactory::init();
+    moDaemon::init();
     factory = moFactory::getInstance();
     factory->registerModule("Stream", otStreamModule::createModule);
 }

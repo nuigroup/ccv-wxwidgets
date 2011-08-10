@@ -71,23 +71,24 @@ void moCameraModule::stop() {
 }
 
 void moCameraModule::update() {
-	if ( this->camera != NULL ) {
-        // select the next camera
-        if (this->property("nextcamera").asBool() || this->property("prevcamera").asBool()) {
-            int newindex = this->property("nextcamera").asBool() ? this->property("index").asInteger()+1 : this->property("index").asInteger()-1;
-            void *tmp_camera = cvCaptureFromCAM(newindex);
-            if ( newindex >= 0 && tmp_camera != NULL ) {
-                this->property("index").set(newindex);
+    // select the next camera
+    if (this->property("nextcamera").asBool() || this->property("prevcamera").asBool()) {
+        int newindex = this->property("nextcamera").asBool() ? this->property("index").asInteger()+1 : this->property("index").asInteger()-1;
+        void *tmp_camera = cvCaptureFromCAM(newindex);
+        if ( newindex >= 0 && tmp_camera != NULL ) {
+            this->property("index").set(newindex);
+            if ( this->camera != NULL )
                 cvReleaseCapture((CvCapture **)&this->camera);
-                this->camera = tmp_camera;
-            }
-            this->properties["prevcamera"]->set(false);
-            this->properties["nextcamera"]->set(false);
+            this->camera = tmp_camera;
         }
+        this->properties["prevcamera"]->set(false);
+        this->properties["nextcamera"]->set(false);
+    }
 
-		// push a new image on the stream
-		LOGM(MO_TRACE, "push a new image on the stream");
-		IplImage *img = cvQueryFrame(static_cast<CvCapture *>(this->camera));
+    // push a new image on the stream
+    if ( this->camera != NULL ) {        
+        LOGM(MO_TRACE, "push a new image on the stream");
+        IplImage *img = cvQueryFrame(static_cast<CvCapture *>(this->camera));
         if (img != NULL) {
             if (img->nChannels == 3)
                 this->stream->push(img);
@@ -99,7 +100,7 @@ void moCameraModule::update() {
             }
             this->notifyUpdate();
         }
-	}
+    }
 }
 
 void moCameraModule::poll() {

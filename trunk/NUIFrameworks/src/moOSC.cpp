@@ -54,12 +54,6 @@ moOSC::~moOSC() {
 }
 
 void moOSC::init() {
-#ifdef _WIN32
-	WSADATA wsaData;
-	WORD wVersionRequested = MAKEWORD(2, 0);
-	int err = WSAStartup(wVersionRequested, &wsaData);
-#endif
-
 	this->sock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	if ( this->sock == -1 ) {
 		LOG(MO_ERROR, "unable to open socket (ret=" << this->sock << ")");
