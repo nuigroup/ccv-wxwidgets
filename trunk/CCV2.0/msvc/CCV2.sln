@@ -9,34 +9,40 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CCV2", "CCV2.vcxproj", "{8F
 		{61C1E6E7-C048-4D19-B08F-21890459D8A8} = {61C1E6E7-C048-4D19-B08F-21890459D8A8}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmovid", "..\..\movid\msvc\Movid.vcxproj", "{61C1E6E7-C048-4D19-B08F-21890459D8A8}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A6F3D524-2274-4117-BF4B-3155232CE0FC} = {A6F3D524-2274-4117-BF4B-3155232CE0FC}
-		{CCA79A3A-FB12-4DE9-B93C-50BF4A925E2D} = {CCA79A3A-FB12-4DE9-B93C-50BF4A925E2D}
-		{A6EA8955-4C2E-4ED9-89CA-EBC8F547534F} = {A6EA8955-4C2E-4ED9-89CA-EBC8F547534F}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fidtrack", "..\..\NUIFrameworks\contrib\.msvc\fidtrack\fidtrack.vcxproj", "{A6EA8955-4C2E-4ED9-89CA-EBC8F547534F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fidtrack", "..\..\movid\contrib\.msvc\fidtrack\fidtrack.vcxproj", "{A6EA8955-4C2E-4ED9-89CA-EBC8F547534F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ptypes", "..\..\NUIFrameworks\contrib\.msvc\ptypes\ptypes.vcxproj", "{A6F3D524-2274-4117-BF4B-3155232CE0FC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ptypes", "..\..\movid\contrib\.msvc\ptypes\ptypes.vcxproj", "{A6F3D524-2274-4117-BF4B-3155232CE0FC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wosclib", "..\..\NUIFrameworks\contrib\.msvc\wosclib\wosclib.vcxproj", "{CCA79A3A-FB12-4DE9-B93C-50BF4A925E2D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wosclib", "..\..\movid\contrib\.msvc\wosclib\wosclib.vcxproj", "{CCA79A3A-FB12-4DE9-B93C-50BF4A925E2D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmovid", "..\..\NUIFrameworks\msvc\Movid.vcxproj", "{61C1E6E7-C048-4D19-B08F-21890459D8A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F1DF5E5-9724-4A7C-9EB9-DD3B6CD8B9C2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8F1DF5E5-9724-4A7C-9EB9-DD3B6CD8B9C2}.Debug|Win32.Build.0 = Debug|Win32
 		{8F1DF5E5-9724-4A7C-9EB9-DD3B6CD8B9C2}.Release|Win32.ActiveCfg = Release|Win32
 		{8F1DF5E5-9724-4A7C-9EB9-DD3B6CD8B9C2}.Release|Win32.Build.0 = Release|Win32
-		{61C1E6E7-C048-4D19-B08F-21890459D8A8}.Release|Win32.ActiveCfg = Release|Win32
-		{61C1E6E7-C048-4D19-B08F-21890459D8A8}.Release|Win32.Build.0 = Release|Win32
+		{A6EA8955-4C2E-4ED9-89CA-EBC8F547534F}.Debug|Win32.ActiveCfg = Release|Win32
+		{A6EA8955-4C2E-4ED9-89CA-EBC8F547534F}.Debug|Win32.Build.0 = Release|Win32
 		{A6EA8955-4C2E-4ED9-89CA-EBC8F547534F}.Release|Win32.ActiveCfg = Release|Win32
 		{A6EA8955-4C2E-4ED9-89CA-EBC8F547534F}.Release|Win32.Build.0 = Release|Win32
+		{A6F3D524-2274-4117-BF4B-3155232CE0FC}.Debug|Win32.ActiveCfg = Release|Win32
+		{A6F3D524-2274-4117-BF4B-3155232CE0FC}.Debug|Win32.Build.0 = Release|Win32
 		{A6F3D524-2274-4117-BF4B-3155232CE0FC}.Release|Win32.ActiveCfg = Release|Win32
 		{A6F3D524-2274-4117-BF4B-3155232CE0FC}.Release|Win32.Build.0 = Release|Win32
+		{CCA79A3A-FB12-4DE9-B93C-50BF4A925E2D}.Debug|Win32.ActiveCfg = Release|Win32
+		{CCA79A3A-FB12-4DE9-B93C-50BF4A925E2D}.Debug|Win32.Build.0 = Release|Win32
 		{CCA79A3A-FB12-4DE9-B93C-50BF4A925E2D}.Release|Win32.ActiveCfg = Release|Win32
 		{CCA79A3A-FB12-4DE9-B93C-50BF4A925E2D}.Release|Win32.Build.0 = Release|Win32
+		{61C1E6E7-C048-4D19-B08F-21890459D8A8}.Debug|Win32.ActiveCfg = Release|Win32
+		{61C1E6E7-C048-4D19-B08F-21890459D8A8}.Debug|Win32.Build.0 = Release|Win32
+		{61C1E6E7-C048-4D19-B08F-21890459D8A8}.Release|Win32.ActiveCfg = Release|Win32
+		{61C1E6E7-C048-4D19-B08F-21890459D8A8}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

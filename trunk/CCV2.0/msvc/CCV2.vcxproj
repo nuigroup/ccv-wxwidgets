@@ -77,7 +77,7 @@ copy ..\res\RearDI.m4v .\RearDI.m4v
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>%OPENCV_DIR%\build\include;%OPENCV_DIR%\build\include\opencv;%WXWIN%\include;%WXWIN%\include\msvc;%WXWIN%\lib\vc_lib;..\contrib\videoInput\include;..\contrib\tinyxml;..\..\movid\src;..\..\movid\contrib\ptypes-2.1.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%OPENCV_DIR%\build\include;%OPENCV_DIR%\build\include\opencv;%WXWIN%\include;%WXWIN%\include\msvc;%WXWIN%\lib\vc_lib;..\contrib\videoInput\include;..\contrib\tinyxml;..\..\NUIFrameworks\src;..\..\NUIFrameworks\contrib\ptypes-2.1.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
