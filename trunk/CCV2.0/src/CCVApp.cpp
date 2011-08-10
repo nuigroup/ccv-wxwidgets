@@ -30,6 +30,10 @@
 #include "CCVMiniFrame.h"
 #include "ofxXmlSettings.h"
 
+#ifdef WIN32
+#include "videoInput.h"
+#endif // WIN32
+
 //
 // CCVApp is the class that provides the main application.
 //
@@ -260,19 +264,24 @@ int CCVApp::SetInitPipeline()
 int CCVApp::GetCameraNum()
 {
     int cameraNum = 0;
+
+#ifdef WIN32
+    videoInput VI;
+	cameraNum = VI.listDevices();
+#else
     void *cameraHandle;
     do {
         cameraHandle = cvCaptureFromCAM(cameraNum);
 
-        // debug
-        IplImage *debug_img = cvQueryFrame(static_cast<CvCapture *> (cameraHandle));
-        unsigned char *debug_data;
-        CvSize *debug_roi;
-        cvGetRawData(debug_img, &debug_data, NULL, debug_roi);
-        wxImage pWxImg = wxImage(debug_img->width, debug_img->height, debug_data, true);
-        ostringstream debugfilename; 
-        debugfilename << "debug" << cameraNum << ".bmp";
-        pWxImg.SaveFile(debugfilename.str(), wxBITMAP_TYPE_BMP); // For debug only
+        // For debug only
+        //IplImage *debug_img = cvQueryFrame(static_cast<CvCapture *> (cameraHandle));
+        //unsigned char *debug_data;
+        //CvSize *debug_roi;
+        //cvGetRawData(debug_img, &debug_data, NULL, debug_roi);
+        //wxImage pWxImg = wxImage(debug_img->width, debug_img->height, debug_data, true);
+        //ostringstream debugfilename; 
+        //debugfilename << "debug" << cameraNum << ".bmp";
+        //pWxImg.SaveFile(debugfilename.str(), wxBITMAP_TYPE_BMP);
 
         void *tmp = cameraHandle;
         cvReleaseCapture((CvCapture **)&tmp);
@@ -282,10 +291,9 @@ int CCVApp::GetCameraNum()
             break;
         }
         cameraNum++;       
-    } while (cameraHandle != NULL);
-
-    
+    } while (cameraHandle != NULL);  
     wxLogMessage(wxT("FINISH CCVMainFrame::getCameraNum(), Camera number = %d"), cameraNum);
+#endif // WIN32
+
     return cameraNum;
 }
-

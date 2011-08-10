@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -16,11 +12,6 @@
     <ProjectName>libmovid</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>MultiByte</CharacterSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -30,9 +21,6 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -40,31 +28,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)\ReleaseLib</OutDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)\DebugLib</OutDir>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level2</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>%OPENCV_DIR%\build\include;%OPENCV_DIR%\build\include\opencv;..\contrib\WOscLib-00.09;..\contrib\ptypes-2.1.1\include;..\contrib\bitmap_munkres;..\contrib\CLEyeMulticam_win32;..\contrib</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-    <PostBuildEvent>
-      <Command>copy ..\contrib\CLEyeMulticam_win32\CLEyeMulticam.lib $(SolutionDir)\DebugLib
-copy ..\contrib\CLEyeMulticam_win32\CLEyeMulticam.dll $(SolutionDir)\DebugLib</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>%OPENCV_DIR%\build\include;%OPENCV_DIR%\build\include\opencv;..\contrib\WOscLib-00.09;..\contrib\ptypes-2.1.1\include;..\contrib\bitmap_munkres;..\contrib\CLEyeMulticam_win32;..\contrib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%OPENCV_DIR%\build\include;%OPENCV_DIR%\build\include\opencv;..\contrib\WOscLib-00.09;..\contrib\ptypes-2.1.1\include;..\contrib\bitmap_munkres;..\contrib</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
@@ -74,8 +44,8 @@ copy ..\contrib\CLEyeMulticam_win32\CLEyeMulticam.dll $(SolutionDir)\DebugLib</C
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>copy ..\contrib\CLEyeMulticam_win32\CLEyeMulticam.lib $(SolutionDir)\ReleaseLib
-copy ..\contrib\CLEyeMulticam_win32\CLEyeMulticam.dll $(SolutionDir)\ReleaseLib</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -147,6 +147,7 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
     moModule *videoModule = (moModule *)(paramHook->videoModule);
     moModule *cameraModule = (moModule *)(paramHook->cameraModule);
     if (selectedId == CCV_SOURCE_CAMERA) {
+        cameraModule->property("index").set(curCameraIndex);
         cameraModule->start();
         movidProcess->procGraph->AddExistedModule(cameraModule);
         movidProcess->procGraph->ConnectModules("input_source_camera", bgModule);

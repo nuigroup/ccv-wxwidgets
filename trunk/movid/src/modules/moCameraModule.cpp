@@ -24,10 +24,6 @@
 #include "moCameraModule.h"
 #include "highgui.h"
 
-#ifdef _WIN32
-#include "CLEyeMulticam.h"
-#endif
-
 MODULE_DECLARE(Camera, "native", "Fetch camera stream");
 
 moCameraModule::moCameraModule() : moModule(MO_MODULE_OUTPUT) {
