@@ -126,6 +126,7 @@ int CCVApp::OnExit()
     if (movidthread->Pause() != wxTHREAD_NO_ERROR) {
         wxLogMessage(wxT("ERROR movidthread->Pause() != wxTHREAD_NO_ERROR"));
     }
+    movidthread->procGraph->stop();
     return 0;
 }
 
@@ -292,8 +293,9 @@ int CCVApp::GetCameraNum()
         }
         cameraNum++;       
     } while (cameraHandle != NULL);  
-    wxLogMessage(wxT("FINISH CCVMainFrame::getCameraNum(), Camera number = %d"), cameraNum);
+    
 #endif // WIN32
 
+    wxLogMessage(wxT("FINISH CCVMainFrame::getCameraNum(), Camera number = %d"), cameraNum);
     return cameraNum;
 }
