@@ -74,9 +74,13 @@ void moCameraModule::update() {
     // select the next camera
     if (this->property("nextcamera").asBool() || this->property("prevcamera").asBool()) {
         int newindex = this->property("nextcamera").asBool() ? this->property("index").asInteger()+1 : this->property("index").asInteger()-1;
+        if (newindex < 0) {
+            return;
+        }
+
         void *tmp_camera = cvCaptureFromCAM(newindex);
-        if ( newindex >= 0 && tmp_camera != NULL ) {
-            this->property("index").set(newindex);
+        this->property("index").set(newindex);
+        if ( tmp_camera != NULL ) {
             if ( this->camera != NULL )
                 cvReleaseCapture((CvCapture **)&this->camera);
             this->camera = tmp_camera;
