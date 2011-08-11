@@ -7,14 +7,25 @@
 
 #include "moDataStream.h"
 #include "otMovidStreamModule.h"
+#include "moLog.h"
 #include "CCVProcGraph.h"
+extern std::ofstream molog_file;
 
-CCVProcGraph::CCVProcGraph() : moPipeline()
+CCVProcGraph::CCVProcGraph(CCVGlobalParam *_param) : moPipeline()
 {
     busy = false;
+    moLog::setLogLevel(_param->nflogLevel);
+    molog_file.open(_param->nflogFileName);
     moDaemon::init();
     factory = moFactory::getInstance();
     factory->registerModule("Stream", otStreamModule::createModule);
+}
+
+CCVProcGraph::~CCVProcGraph()
+{
+    this->clear();
+    molog_file.close();
+    moDaemon::cleanup();
 }
 
 moModule * CCVProcGraph::AddModule(std::string moduleID, std::string moduleType, bool isOutModule)

@@ -4,7 +4,9 @@
         <FILENAME>RearDI.m4v</FILENAME>
     </VIDEO>
     <LOG>
-        <FILENAME>ccv2.log</FILENAME>
+        <CCVLogFile>ccv2.log</CCVLogFile>
+        <MovidLogFile>nfLog.log</MovidLogFile>
+        <MovidLogLevel>5</MovidLogLevel>
     </LOG>
     <INIT>
         <EnableSubBackground>1</EnableSubBackground>

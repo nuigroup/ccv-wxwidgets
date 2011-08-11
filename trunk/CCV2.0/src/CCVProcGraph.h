@@ -27,7 +27,9 @@ private:
     bool busy;
     
 public:
-    CCVProcGraph();
+    CCVProcGraph() {CCVProcGraph(NULL);}
+    CCVProcGraph(CCVGlobalParam *_param);
+    ~CCVProcGraph();
     
     /**
         Create and add a module. If the module is used to draw on UI, set isOutModule to true.

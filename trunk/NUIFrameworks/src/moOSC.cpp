@@ -16,8 +16,10 @@
  **********************************************************************/
 
 
-#include <iostream>
 #include <stdio.h>
+#include "moOSC.h"
+#include "moLog.h"
+#include "moFactory.h"
 
 #ifdef _WIN32
 #ifndef WIN32_LEAN_AND_MEAN /* Void BUG!! - Will not compile with winsock.h AND winsock2.h */
@@ -34,10 +36,6 @@
 	#include <netinet/in.h>
 	#include <arpa/inet.h>
 #endif // ifdef WIN32
-
-#include "moOSC.h"
-#include "moLog.h"
-#include "moFactory.h"
 
 LOG_DECLARE("OSC");
 

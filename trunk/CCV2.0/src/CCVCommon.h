@@ -74,6 +74,9 @@ struct CCVGlobalParam
     void *cameraModule;
 
     int camera_count;
+
+    std::string nflogFileName;
+    int nflogLevel;
     
     CCVGlobalParam()
     {
@@ -93,6 +96,7 @@ struct CCVGlobalParam
         input_source = VIDEO;
         output_port = 9999;
         camera_count = 0;
+        nflogLevel = 0;
     }
 };
 

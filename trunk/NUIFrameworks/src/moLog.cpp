@@ -18,7 +18,7 @@
 
 #include <time.h>
 #include <stdlib.h>
-
+#include <fstream>
 #include "moLog.h"
 #include "pasync.h"
 
@@ -30,6 +30,7 @@ static pt::mutex(logmtx);
 
 int g_loglevel = MO_INFO;
 bool g_use_syslog = false;
+std::ofstream molog_file;
 
 moLogMessage::moLogMessage(std::string name, std::string filename,
 						   int line, int level) {
@@ -59,7 +60,14 @@ moLogMessage::~moLogMessage() {
 			std::cout << this->os.str() << std::endl;
 		}
 #else
-		std::cout << this->os.str() << std::endl;
+		if (molog_file.is_open()) {
+		    molog_file << this->os.str() << std::endl;
+            molog_file.flush();
+		}
+		else {
+		    std::cout << this->os.str() << std::endl;
+		}
+		
 #endif
 		logmtx.unlock();
 	}

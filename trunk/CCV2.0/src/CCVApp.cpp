@@ -71,7 +71,7 @@ bool CCVApp::OnInit()
 
     param->camera_count = GetCameraNum();
     
-    movidthread = new CCVWorkerEngine();
+    movidthread = new CCVWorkerEngine(param);
     
     if (SetInitPipeline()==CCV_SUCCESS) {
         movidthread->procGraph->start();
@@ -158,8 +158,12 @@ int CCVApp::LoadConfigXml(CCVGlobalParam *in_param, std::string filename)
     in_param->output_port = XML.getValue("CONFIG:NETWORK:PORT", 3333);
     
     in_param->videoFileName = XML.getValue("CONFIG:VIDEO:FILENAME", "RearDI.m4v");
-    std::string logFileName = XML.getValue("CONFIG:LOG:FILENAME", "ccv2.log");
+
+    std::string logFileName = XML.getValue("CONFIG:LOG:CCVLogFile", "ccv2.log");
     logFp = fopen(logFileName.c_str(), "wt");
+    
+    in_param->nflogFileName = XML.getValue("CONFIG:LOG:MovidLogFile", "nfLog.log");
+    in_param->nflogLevel = XML.getValue("CONFIG:LOG:MovidLogLevel", 0);
 
     return CCV_SUCCESS;
 }

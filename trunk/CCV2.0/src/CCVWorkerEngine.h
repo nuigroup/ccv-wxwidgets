@@ -84,7 +84,8 @@ typedef std::queue<CCVWorkerEngineResItem *> CCVWorkerEngineResQueue;
 class CCVWorkerEngine : public wxThread
 {
 public:
-    CCVWorkerEngine();
+    CCVWorkerEngine() {CCVWorkerEngine(NULL); }
+    CCVWorkerEngine(CCVGlobalParam *_param);
     virtual void *Entry();
 
     CCVWorkerEngineResQueue *getResQueue() { return &resourceQueue; }

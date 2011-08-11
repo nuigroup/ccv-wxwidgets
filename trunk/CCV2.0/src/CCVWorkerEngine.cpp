@@ -15,10 +15,10 @@ int g_config_delay = 50;
 
 const wxEventType newEVT_MOVIDPROCESS_NEWIMAGE = wxNewEventType();
 
-CCVWorkerEngine::CCVWorkerEngine()
+CCVWorkerEngine::CCVWorkerEngine(CCVGlobalParam *_param)
 {
     eventHandler = NULL;
-    procGraph = new CCVProcGraph;
+    procGraph = new CCVProcGraph(_param);
 }
 
 void *CCVWorkerEngine::Entry()
