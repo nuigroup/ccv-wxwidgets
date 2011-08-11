@@ -147,7 +147,9 @@ void moPipeline::poll() {
 	LOGM(MO_TRACE, "poll");
 
 	for ( it = this->modules.begin(); it != this->modules.end(); it++ ) {
+        LOGM(MO_TRACE, "start polling: " << (*it)->property("id").asString());
 		(*it)->poll();
+        LOGM(MO_TRACE, "completed polling: " << (*it)->property("id").asString());
 	}
 }
 
