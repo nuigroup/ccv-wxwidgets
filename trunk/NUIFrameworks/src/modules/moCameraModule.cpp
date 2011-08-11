@@ -66,7 +66,7 @@ void moCameraModule::stop() {
 	if ( this->camera != NULL ) {
 		LOGM(MO_TRACE, "release camera");
 		cvReleaseCapture((CvCapture **)&this->camera);
-		this->camera = NULL;
+        assert( this->camera == NULL );
 	}
 }
 
