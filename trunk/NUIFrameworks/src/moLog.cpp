@@ -85,7 +85,17 @@ void moLog::init(bool use_syslog) {
 		g_loglevel = MO_TRACE;
 }
 
-void moLog::cleanup() {
+void moLog::init(std::string logfile, int loglevel)
+{
+    g_loglevel = loglevel;
+    molog_file.open(logfile);
+}
+
+void moLog::cleanup()
+{
+    if (molog_file.is_open()) {
+        molog_file.close();
+    }
 }
 
 int moLog::getLogLevel() {
