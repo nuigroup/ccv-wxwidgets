@@ -159,6 +159,8 @@ int CCVApp::LoadConfigXml(CCVGlobalParam *in_param, std::string filename)
     
     in_param->videoFileName = XML.getValue("CONFIG:VIDEO:FILENAME", "RearDI.m4v");
 
+    in_param->cur_camera_idx = XML.getValue("CONFIG:CAMERA:DefaultIndex", 0);
+
     std::string logFileName = XML.getValue("CONFIG:LOG:CCVLogFile", "ccv2.log");
     logFp = fopen(logFileName.c_str(), "wt");
     
@@ -180,6 +182,7 @@ int CCVApp::SetInitPipeline()
     
     // Input Source
     param->cameraModule = movidthread->procGraph->CreateModule("input_source_camera", "Camera");
+    ((moModule *)(param->cameraModule))->property("index").set(param->cur_camera_idx);
     param->videoModule = movidthread->procGraph->CreateModule("input_source_video", "Video");
     ((moModule *)(param->videoModule))->property("filename").set(param->videoFileName);
     if (param->input_source == VIDEO) {

@@ -31,8 +31,8 @@ private:
     void DrawCameraImage(OutRGBImage *, wxWindow *);
     void OnMovidImage(wxCommandEvent&);
 
-    int curCameraIndex;
-    void updateCameraSelectButtonsState();
+    void UpdateCameraSelectButtonsState();
+    void UpdateSourceInfo();
 
     void m_radioBox_selectInputOnRadioBox( wxCommandEvent& event );
     void m_button_prevCameraOnButtonClick( wxCommandEvent& event );

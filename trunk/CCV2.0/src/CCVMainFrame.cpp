@@ -39,14 +39,26 @@ CCVMainFrame::CCVMainFrame(CCVWorkerEngine *movidProc, CCVGlobalParam *_param) :
     m_checkBox_smooth->SetValue(paramHook->smooth_enabled ? true : false);
     m_checkBox_tuio->SetValue(paramHook->tuio_enabled ? true : false);
 
-    curCameraIndex = 0;
-    updateCameraSelectButtonsState();
+    UpdateCameraSelectButtonsState();
 
     SetWorkerEngine(movidProc);
+    UpdateSourceInfo();
     UpdateDebugViewers();
 }
 
-void CCVMainFrame::updateCameraSelectButtonsState()
+void CCVMainFrame::UpdateSourceInfo()
+{
+    wxString msgText;
+    if (paramHook->input_source != CAMERA) {
+        msgText = wxString::Format("Input source: Video File.\nFilename: %s", paramHook->videoFileName.c_str());
+    }
+    else {
+        msgText = wxString::Format("Input source: Camera.\nCurrent Camera Index: %d.\nCameras Count: %d.\n", paramHook->cur_camera_idx, paramHook->camera_count);
+    }
+    m_staticText_sourceinfo->SetLabel(msgText);
+}
+
+void CCVMainFrame::UpdateCameraSelectButtonsState()
 {
     if (paramHook->camera_count == 0) {
         m_radioBox_selectInput->Enable(false);
@@ -60,14 +72,14 @@ void CCVMainFrame::updateCameraSelectButtonsState()
         m_button_nextCamera->Enable(false);
     }
     else {
-        if (curCameraIndex==0) {
+        if (paramHook->cur_camera_idx==0) {
             m_button_prevCamera->Enable(false);
         }
         else {
             m_button_prevCamera->Enable(true);
         }
 
-        if (curCameraIndex>=paramHook->camera_count-1) {
+        if (paramHook->cur_camera_idx>=paramHook->camera_count-1) {
             m_button_nextCamera->Enable(false);
         }
         else {
@@ -147,7 +159,7 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
     moModule *videoModule = (moModule *)(paramHook->videoModule);
     moModule *cameraModule = (moModule *)(paramHook->cameraModule);
     if (selectedId == CCV_SOURCE_CAMERA) {
-        cameraModule->property("index").set(curCameraIndex);
+        cameraModule->property("index").set(paramHook->cur_camera_idx);
         cameraModule->start();
         movidProcess->procGraph->AddExistedModule(cameraModule);
         movidProcess->procGraph->ConnectModules("input_source_camera", bgModule);
@@ -165,7 +177,8 @@ void CCVMainFrame::m_radioBox_selectInputOnRadioBox( wxCommandEvent& event )
         cameraModule->stop();
         paramHook->input_source = VIDEO;
     }
-    updateCameraSelectButtonsState();
+    UpdateCameraSelectButtonsState();
+    UpdateSourceInfo();
 }
 
 void CCVMainFrame::m_slider_imageThreOnScroll( wxScrollEvent& event )
@@ -336,6 +349,8 @@ void CCVMainFrame::m_button_savesettingOnButtonClick( wxCommandEvent& event )
     XML.setValue("CONFIG:INIT:EnableHighpass", paramHook->highpass_enabled);
     XML.setValue("CONFIG:INIT:EnableSmooth", paramHook->smooth_enabled);
 
+    XML.setValue("CONFIG:CAMERA:DefaultIndex", paramHook->cur_camera_idx);
+
     XML.saveFile(CONFIGFILE);
     wxMessageBox(wxT("Settings have been saved successfully."));
 }
@@ -368,22 +383,24 @@ void CCVMainFrame::UpdateDebugViewers()
 
 void CCVMainFrame::m_button_prevCameraOnButtonClick( wxCommandEvent& event )
 {
-    if (curCameraIndex<=0)
+    if (paramHook->cur_camera_idx<=0)
         return;
     
     moModule *cameraModule = (moModule *)(paramHook->cameraModule);
     cameraModule->property("prevcamera").set(true);
-    curCameraIndex--;
-    updateCameraSelectButtonsState();
+    paramHook->cur_camera_idx--;
+    UpdateCameraSelectButtonsState();
+    UpdateSourceInfo();
 }
 
 void CCVMainFrame::m_button_nextCameraOnButtonClick( wxCommandEvent& event )
 {
-    if (curCameraIndex>=paramHook->camera_count-1)
+    if (paramHook->cur_camera_idx>=paramHook->camera_count-1)
         return;
     
     moModule *cameraModule = (moModule *)(paramHook->cameraModule);
     cameraModule->property("nextcamera").set(true);
-    curCameraIndex++;
-    updateCameraSelectButtonsState();
+    paramHook->cur_camera_idx++;
+    UpdateCameraSelectButtonsState();
+    UpdateSourceInfo();
 }

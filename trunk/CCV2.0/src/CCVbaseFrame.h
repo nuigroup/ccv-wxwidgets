@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Sep  8 2010)
+// C++ code generated with wxFormBuilder (version Oct  4 2010)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -50,7 +50,7 @@ class CCVbaseMainFrame : public wxFrame
 		wxCheckBox* m_checkBox_showid;
 		
 		wxRadioBox* m_radioBox_selectInput;
-		
+		wxPanel* m_panel22;
 		wxButton* m_button_prevCamera;
 		wxButton* m_button_nextCamera;
 		wxPanel* m_panel_outputControl;
@@ -106,11 +106,13 @@ class CCVbaseMainFrame : public wxFrame
 		wxCheckBox* m_checkBox_filpH;
 		wxCheckBox* m_checkBox_gpu;
 		wxCheckBox* m_checkBox_tuio;
+		
 		wxButton* m_button_camera_setting;
 		wxButton* m_button_calibr;
 		wxButton* m_button_savesetting;
 		
 		
+		wxStaticText* m_staticText_sourceinfo;
 		wxStaticText* m_staticText_out;
 		wxStaticText* m_staticText_about;
 		
@@ -141,6 +143,7 @@ class CCVbaseMainFrame : public wxFrame
 	public:
 		
 		CCVbaseMainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Community Core Vision"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 950,650 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		
 		~CCVbaseMainFrame();
 	
 };
@@ -178,6 +181,7 @@ class CCVbaseMiniFrame : public wxFrame
 	public:
 		
 		CCVbaseMiniFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("CCV - Mini"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 190,205 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		
 		~CCVbaseMiniFrame();
 	
 };

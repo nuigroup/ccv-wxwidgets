@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Sep  8 2010)
+// C++ code generated with wxFormBuilder (version Oct  4 2010)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -44,12 +44,12 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxBoxSizer* s_input;
 	s_input = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_panel_inputViewer = new wxPanel( m_panel_mainleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	m_panel_inputViewer = new wxPanel( m_panel_mainleft, wxID_ANY, wxDefaultPosition, wxSize( 320,240 ), wxTAB_TRAVERSAL );
 	m_panel_inputViewer->SetBackgroundColour( wxColour( 0, 0, 0 ) );
 	
 	s_input->Add( m_panel_inputViewer, 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
 	
-	m_panel_outputViewer = new wxPanel( m_panel_mainleft, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	m_panel_outputViewer = new wxPanel( m_panel_mainleft, wxID_ANY, wxDefaultPosition, wxSize( 320,240 ), wxTAB_TRAVERSAL );
 	m_panel_outputViewer->SetBackgroundColour( wxColour( 0, 0, 0 ) );
 	
 	s_input->Add( m_panel_outputViewer, 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
@@ -96,22 +96,23 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxString m_radioBox_selectInputChoices[] = { wxT("Use Camera"), wxT("Use Video") };
 	int m_radioBox_selectInputNChoices = sizeof( m_radioBox_selectInputChoices ) / sizeof( wxString );
 	m_radioBox_selectInput = new wxRadioBox( m_panel_inputContrl, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, m_radioBox_selectInputNChoices, m_radioBox_selectInputChoices, 1, wxRA_SPECIFY_COLS );
-	m_radioBox_selectInput->SetSelection( 1 );
+	m_radioBox_selectInput->SetSelection( 0 );
 	s_inputContrl_down->Add( m_radioBox_selectInput, 0, wxALL, 5 );
 	
-	
-	s_inputContrl_down->Add( 0, 0, 1, wxEXPAND, 5 );
-	
+	m_panel22 = new wxPanel( m_panel_inputContrl, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	wxBoxSizer* bSizer_camera_sel;
-	bSizer_camera_sel = new wxBoxSizer( wxVERTICAL );
+	bSizer_camera_sel = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_button_prevCamera = new wxButton( m_panel_inputContrl, wxID_ANY, wxT("Prev Camera"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button_prevCamera = new wxButton( m_panel22, wxID_ANY, wxT("Prev Camera"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer_camera_sel->Add( m_button_prevCamera, 0, wxALIGN_CENTER|wxEXPAND|wxALL, 5 );
 	
-	m_button_nextCamera = new wxButton( m_panel_inputContrl, wxID_ANY, wxT("Next Camera"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_button_nextCamera = new wxButton( m_panel22, wxID_ANY, wxT("Next Camera"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer_camera_sel->Add( m_button_nextCamera, 0, wxALIGN_CENTER|wxEXPAND|wxALL, 5 );
 	
-	s_inputContrl_down->Add( bSizer_camera_sel, 2, wxEXPAND|wxRIGHT, 10 );
+	m_panel22->SetSizer( bSizer_camera_sel );
+	m_panel22->Layout();
+	bSizer_camera_sel->Fit( m_panel22 );
+	s_inputContrl_down->Add( m_panel22, 0, wxEXPAND|wxTOP, 20 );
 	
 	s_inputContrl->Add( s_inputContrl_down, 0, wxEXPAND, 5 );
 	
@@ -189,7 +190,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxBoxSizer* s_background;
 	s_background = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_panel_background_viewer = new wxPanel( m_panel_background, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	m_panel_background_viewer = new wxPanel( m_panel_background, wxID_ANY, wxDefaultPosition, wxSize( 160,120 ), wxTAB_TRAVERSAL );
 	m_panel_background_viewer->SetBackgroundColour( wxColour( 0, 0, 0 ) );
 	
 	s_background->Add( m_panel_background_viewer, 2, wxEXPAND | wxALL, 5 );
@@ -237,7 +238,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxBoxSizer* s_amp;
 	s_amp = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_panel_amp_viewer = new wxPanel( m_panel_amp, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	m_panel_amp_viewer = new wxPanel( m_panel_amp, wxID_ANY, wxDefaultPosition, wxSize( 160,120 ), wxTAB_TRAVERSAL );
 	m_panel_amp_viewer->SetBackgroundColour( wxColour( 0, 0, 0 ) );
 	
 	s_amp->Add( m_panel_amp_viewer, 2, wxEXPAND|wxALL, 5 );
@@ -288,7 +289,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxBoxSizer* s_highpass;
 	s_highpass = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_panel_highpass_viewer = new wxPanel( m_panel_highpass, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	m_panel_highpass_viewer = new wxPanel( m_panel_highpass, wxID_ANY, wxDefaultPosition, wxSize( 160,120 ), wxTAB_TRAVERSAL );
 	m_panel_highpass_viewer->SetBackgroundColour( wxColour( 0, 0, 0 ) );
 	
 	s_highpass->Add( m_panel_highpass_viewer, 2, wxEXPAND|wxALL, 5 );
@@ -360,7 +361,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxBoxSizer* s_smooth;
 	s_smooth = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_panel_smooth_viewer = new wxPanel( m_panel_smooth, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	m_panel_smooth_viewer = new wxPanel( m_panel_smooth, wxID_ANY, wxDefaultPosition, wxSize( 160,120 ), wxTAB_TRAVERSAL );
 	m_panel_smooth_viewer->SetBackgroundColour( wxColour( 0, 0, 0 ) );
 	
 	s_smooth->Add( m_panel_smooth_viewer, 2, wxEXPAND|wxALL, 5 );
@@ -419,7 +420,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_panel_mainleft->SetSizer( s_leftMain );
 	m_panel_mainleft->Layout();
 	s_leftMain->Fit( m_panel_mainleft );
-	mainSizer->Add( m_panel_mainleft, 0, wxEXPAND, 5 );
+	mainSizer->Add( m_panel_mainleft, 100, wxEXPAND, 5 );
 	
 	m_panel_mainright = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	m_panel_mainright->SetForegroundColour( wxSystemSettings::GetColour( wxSYS_COLOUR_BTNHIGHLIGHT ) );
@@ -464,6 +465,9 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	wxStaticBoxSizer* s_ctrl_settings;
 	s_ctrl_settings = new wxStaticBoxSizer( new wxStaticBox( m_panel_mainright, wxID_ANY, wxT("Settings") ), wxHORIZONTAL );
 	
+	
+	s_ctrl_settings->Add( 0, 0, 1, wxEXPAND, 0 );
+	
 	wxBoxSizer* bSizer_ctrl_setting_aligner;
 	bSizer_ctrl_setting_aligner = new wxBoxSizer( wxVERTICAL );
 	
@@ -480,7 +484,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_button_savesetting = new wxButton( m_panel_mainright, wxID_ANY, wxT("Save Settings"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer_ctrl_setting_aligner->Add( m_button_savesetting, 0, wxALL|wxEXPAND, 2 );
 	
-	s_ctrl_settings->Add( bSizer_ctrl_setting_aligner, 3, wxEXPAND, 0 );
+	s_ctrl_settings->Add( bSizer_ctrl_setting_aligner, 12, wxEXPAND, 0 );
 	
 	
 	s_ctrl_settings->Add( 0, 0, 1, wxEXPAND, 0 );
@@ -490,10 +494,19 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	
 	s_contols->Add( 0, 0, 1, wxEXPAND, 5 );
 	
+	wxStaticBoxSizer* s_debuger_sourceinfo;
+	s_debuger_sourceinfo = new wxStaticBoxSizer( new wxStaticBox( m_panel_mainright, wxID_ANY, wxT("Input Source Info") ), wxVERTICAL );
+	
+	m_staticText_sourceinfo = new wxStaticText( m_panel_mainright, wxID_ANY, wxT("Video.\n"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_sourceinfo->Wrap( -1 );
+	s_debuger_sourceinfo->Add( m_staticText_sourceinfo, 0, wxALL, 5 );
+	
+	s_contols->Add( s_debuger_sourceinfo, 1, wxEXPAND|wxALL, 5 );
+	
 	wxStaticBoxSizer* s_debuger_commu;
 	s_debuger_commu = new wxStaticBoxSizer( new wxStaticBox( m_panel_mainright, wxID_ANY, wxT("Communication") ), wxVERTICAL );
 	
-	m_staticText_out = new wxStaticText( m_panel_mainright, wxID_ANY, wxT("CCV is running ...\n"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText_out = new wxStaticText( m_panel_mainright, wxID_ANY, wxT("No communication.\n"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText_out->Wrap( -1 );
 	s_debuger_commu->Add( m_staticText_out, 0, wxALL, 5 );
 	
@@ -509,7 +522,7 @@ CCVbaseMainFrame::CCVbaseMainFrame( wxWindow* parent, wxWindowID id, const wxStr
 	m_panel_mainright->SetSizer( s_contols );
 	m_panel_mainright->Layout();
 	s_contols->Fit( m_panel_mainright );
-	mainSizer->Add( m_panel_mainright, 23, wxEXPAND, 5 );
+	mainSizer->Add( m_panel_mainright, 35, wxEXPAND, 5 );
 	
 	this->SetSizer( mainSizer );
 	this->Layout();
