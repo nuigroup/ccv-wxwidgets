@@ -47,6 +47,7 @@ private:
     bool use_Mainframe;
     CCVMainFrame *mainframe;
     CCVMiniFrame *miniframe;
+    CCVAbout *aboutdialog;
     CCVWorkerEngine *movidthread;
     CCVGlobalParam *param;
     FILE* logFp;
@@ -102,6 +103,9 @@ bool CCVApp::OnInit()
         return false;
     miniframe->Show(!use_Mainframe);
 
+    aboutdialog = new CCVAbout(mainframe);
+    aboutdialog->Show(false);
+
     return true;
 }
 
@@ -110,10 +114,17 @@ bool CCVApp::OnInit()
 */
 int CCVApp::FilterEvent(wxEvent& event)
 {
+    /*
     if (event.GetEventType()==wxEVT_KEY_DOWN && ((wxKeyEvent&)event).GetKeyCode()==WXK_SPACE) {
         use_Mainframe = !use_Mainframe;
         mainframe->Show(use_Mainframe);
         miniframe->Show(!use_Mainframe);
+        return 0;
+    }
+    */
+
+    if (event.GetEventType()==wxEVT_KEY_DOWN && ((wxKeyEvent&)event).GetKeyCode()==WXK_F1) {
+        aboutdialog->Show(true);
         return 0;
     }
 

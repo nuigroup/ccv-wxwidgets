@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Oct  4 2010)
+// C++ code generated with wxFormBuilder (version Sep  8 2010)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -810,4 +810,26 @@ CCVbaseMiniFrame::~CCVbaseMiniFrame()
 	// Disconnect Events
 	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( CCVbaseMiniFrame::OnClose ) );
 	
+}
+
+CCVAbout::CCVAbout( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+{
+	this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	
+	wxBoxSizer* s_about_main;
+	s_about_main = new wxBoxSizer( wxVERTICAL );
+	
+	m_about_text = new wxStaticText( this, wxID_ANY, wxT("NUI Group Community Core Vision\nVersion 2.0 Alpha\nCreated by NUI Group Dev Team\n\nDEVELOPERS\nJimbo Zhang <dr.jimbozhang@gmail.com>\nMathieu Virbel <txprog@gmail.com>\nChristian Moore <naturalui@gmail.com>\n\nTHANKS TO\nYishi Guo\nScott Halstvedt\nRemaldeep Singh"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );
+	m_about_text->Wrap( -1 );
+	s_about_main->Add( m_about_text, 0, wxALL, 30 );
+	
+	this->SetSizer( s_about_main );
+	this->Layout();
+	s_about_main->Fit( this );
+	
+	this->Centre( wxBOTH );
+}
+
+CCVAbout::~CCVAbout()
+{
 }

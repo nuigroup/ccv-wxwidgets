@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Oct  4 2010)
+// C++ code generated with wxFormBuilder (version Sep  8 2010)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO "NOT" EDIT THIS FILE!
@@ -27,6 +27,7 @@
 #include <wx/statbox.h>
 #include <wx/frame.h>
 #include <wx/statline.h>
+#include <wx/dialog.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -143,7 +144,6 @@ class CCVbaseMainFrame : public wxFrame
 	public:
 		
 		CCVbaseMainFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Community Core Vision"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 950,650 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
-		
 		~CCVbaseMainFrame();
 	
 };
@@ -181,8 +181,24 @@ class CCVbaseMiniFrame : public wxFrame
 	public:
 		
 		CCVbaseMiniFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("CCV - Mini"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 190,205 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
-		
 		~CCVbaseMiniFrame();
+	
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class CCVAbout
+///////////////////////////////////////////////////////////////////////////////
+class CCVAbout : public wxDialog 
+{
+	private:
+	
+	protected:
+		wxStaticText* m_about_text;
+	
+	public:
+		
+		CCVAbout( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("About"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxCAPTION|wxDEFAULT_DIALOG_STYLE|wxSTAY_ON_TOP );
+		~CCVAbout();
 	
 };
 
