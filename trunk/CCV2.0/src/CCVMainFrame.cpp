@@ -50,10 +50,10 @@ void CCVMainFrame::UpdateSourceInfo()
 {
     wxString msgText;
     if (paramHook->input_source != CAMERA) {
-        msgText = wxString::Format("Input source: Video File.\nFilename: %s", paramHook->videoFileName.c_str());
+        msgText = wxString::Format(wxT("Input source: Video File.\nFilename: %s"), paramHook->videoFileName.c_str());
     }
     else {
-        msgText = wxString::Format("Input source: Camera.\nCurrent Camera Index: %d.\nCameras Count: %d.\n", paramHook->cur_camera_idx, paramHook->camera_count);
+        msgText = wxString::Format(wxT("Input source: Camera.\nCurrent Camera Index: %d.\nCameras Count: %d.\n"), paramHook->cur_camera_idx, paramHook->camera_count);
     }
     m_staticText_sourceinfo->SetLabel(msgText);
 }
@@ -372,10 +372,10 @@ void CCVMainFrame::UpdateDebugViewers()
 {
     wxString msgText;
     if (m_checkBox_tuio->GetValue()) {
-        msgText = wxString::Format("Senting messages on TUIO ..\nProtocol: UDP\nHost %s\nPort: %d\n", paramHook->output_ipAddress.c_str(), paramHook->output_port);
+        msgText = wxString::Format(wxT("Senting messages on TUIO ..\nProtocol: UDP\nHost %s\nPort: %d\n"), paramHook->output_ipAddress.c_str(), paramHook->output_port);
     }
     else {
-        msgText = "No Communication.";
+        msgText = wxT("No Communication.");
         
     }
     m_staticText_out->SetLabel(msgText);

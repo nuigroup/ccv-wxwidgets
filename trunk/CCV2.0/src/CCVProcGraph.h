@@ -45,7 +45,7 @@ public:
     /**
         Create a module.
     */
-    moModule * CCVProcGraph::CreateModule(std::string moduleID, std::string moduleType);
+    moModule * CreateModule(std::string moduleID, std::string moduleType);
     
     /**
         Connect two modules. The first module inputs, the second outputs. 

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
-project(Movid)
+project(NUIFrameworks)
 
 find_package(OpenCV)
 
@@ -12,4 +12,4 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}/contrib/libfidtrack")
 file (GLOB source_movid "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 file (GLOB source_module "${CMAKE_CURRENT_SOURCE_DIR}/src/modules/*.cpp")
 
-add_library(libmovid ${source_movid} ${source_module})
+add_library(movid ${source_movid} ${source_module})
