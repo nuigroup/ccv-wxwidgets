@@ -1,8 +1,9 @@
 == Supported Platforms ==
 CCV2 use cmake (http://cmake.org/) as its build system. It can be build on Windows,
 Mac OS X and Linux. Please make sure cmake has been installed before trying to build.
+As an alternative way, you can also use MSVC to build.
 
-== Require ==
+== Dependencies ==
 CCV2 depends on NUIFrameworks. NUIFrameworks requires OpenCV, and CCV2 requires 
 both OpenCV and wxWidgets. Before building, OpenCV and wxWidgets must be installed.
 
@@ -21,15 +22,13 @@ them by yourself.
 
 == Build Steps ==
 Step 1: Install the dependencies (OpenCV, wxWidgets).
-Step 2: mkdir build in the "trunk" folder.
+Step 2: cd xxx/trunk && mkdir build
 Step 3: cd build && cmake ..
 Step 4: make
 
 == Build with MSVC ==
-If you are a Windows guy, You may want to use MSVC to build.
+If you are a Windows guy, You may want to use MSVC to build. Before compiling,
+make sure the environment variable WXWIN was set to wxWidgets's path, 
+OPENCV_DIR was set to opencv's path (do not need these for cmake users).
 We provided a Visual C++ 2010 sln. To compile, cd trunk/CCV2.0/msvc, and then
 run msvc\build.bat. Or open CCV.sln and click the Rebuild button.
-
-Before compiling, make sure the environment variable WXWIN was set to 
-wxWidgets's path, OPENCV_DIR was set to opencv's path.
-
