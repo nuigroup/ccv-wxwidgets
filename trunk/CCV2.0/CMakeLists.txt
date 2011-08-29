@@ -10,7 +10,8 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}/contrib/tinyxml")
 include(${wxWidgets_USE_FILE})
 
 file (GLOB source_ccv "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+file (GLOB source_contrib "${CMAKE_CURRENT_SOURCE_DIR}/contrib/tinyxml/*.cpp")
 
-add_executable(ccv2 ${source_ccv})
+add_executable(ccv2 ${source_ccv} ${source_contrib})
 target_link_libraries(ccv2 ${wxWidgets_LIBRARIES} ${OpenCV_LIBS} "${CMAKE_CURRENT_BINARY_DIR}/../NUIFrameworks/libmovid.a")
 
