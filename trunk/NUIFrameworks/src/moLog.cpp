@@ -88,14 +88,18 @@ void moLog::init(bool use_syslog) {
 void moLog::init(std::string logfile, int loglevel)
 {
     g_loglevel = loglevel;
+#ifdef WIN32
     molog_file.open(logfile);
+#endif
 }
 
 void moLog::cleanup()
 {
+#ifdef WIN32
     if (molog_file.is_open()) {
         molog_file.close();
     }
+#endif
 }
 
 int moLog::getLogLevel() {
