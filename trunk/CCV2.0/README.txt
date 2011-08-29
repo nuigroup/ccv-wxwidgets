@@ -39,6 +39,7 @@ Require:
 Move makefiles/Makefile.linux to the this folder and rename it to Makefile.    
 
 If you are using Ubuntu, you may want to use apt to install binary wxWidgets:
-  $ sudo aptitude install libwxgtk2.8-dev
+  $ sudo apt-get install libwxgtk2.8-dev
+  $ sudo apt-get install libcv-dev libcvaux-dev libhighgui-dev
 
 To compile, just run "make" in the uxix shell.
